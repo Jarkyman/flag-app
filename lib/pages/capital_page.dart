@@ -13,14 +13,14 @@ import '../helper/route_helper.dart';
 import '../widget/guess_button.dart';
 import '../widget/hint_widget.dart';
 
-class FlagPage extends StatefulWidget {
-  const FlagPage({Key? key}) : super(key: key);
+class CapitalPage extends StatefulWidget {
+  const CapitalPage({Key? key}) : super(key: key);
 
   @override
-  State<FlagPage> createState() => _FlagPageState();
+  State<CapitalPage> createState() => _CapitalPageState();
 }
 
-class _FlagPageState extends State<FlagPage> {
+class _CapitalPageState extends State<CapitalPage> {
   late CountryModel selectedCountry;
   late List<CountryModel> countryOptions;
   List<bool> correctColor = [false, false, false, false];
@@ -41,8 +41,8 @@ class _FlagPageState extends State<FlagPage> {
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
-        fiftyFiftyUsed = false;
         checkUsed = false;
+        fiftyFiftyUsed = false;
       });
       isLoading = false;
     });
@@ -57,7 +57,7 @@ class _FlagPageState extends State<FlagPage> {
         score++;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCapitalScore(highScore);
         }
       });
       generateCountries();
@@ -67,7 +67,7 @@ class _FlagPageState extends State<FlagPage> {
         wrongColor[selected] = true;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCapitalScore(highScore);
         }
         generateCountries();
         score = 0;
@@ -105,10 +105,10 @@ class _FlagPageState extends State<FlagPage> {
       selectedCountry = Get.find<CountryController>().getACountry();
       countryOptions = Get.find<CountryController>()
           .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getFlagScore;
+      highScore = Get.find<ScoreController>().getCapitalScore;
       isLoading = false;
     });
-    print(Get.find<ScoreController>().getFlagScore);
+    print(Get.find<ScoreController>().getCapitalScore);
   }
 
   @override
@@ -212,18 +212,33 @@ class _FlagPageState extends State<FlagPage> {
                       ),
                     ),
                     Container(
-                      width: double.maxFinite,
-                      height: Dimensions.height20 * 14,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
-                        fit: BoxFit.contain,
+                      height: Dimensions.height30 * 2,
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Dimensions.width10),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              selectedCountry.capital.toString(),
+                              style: TextStyle(
+                                fontSize: Dimensions.font26 * 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
+                    const Divider(
+                      height: 20,
+                      thickness: 2,
+                      indent: 20,
+                      endIndent: 20,
+                      color: Colors.grey,
+                    ),
                     SizedBox(
-                      height: Dimensions.height20,
+                      height: Dimensions.height20 * 2,
                     ),
                     Expanded(
                       child: ListView.builder(
@@ -249,13 +264,11 @@ class _FlagPageState extends State<FlagPage> {
                               country:
                                   countryOptions[index].countryName.toString(),
                               onTap: () {
-                                if (!wrongColor[index]) {
-                                  checkWin(
-                                      countryOptions[index]
-                                          .countryName
-                                          .toString(),
-                                      index);
-                                }
+                                checkWin(
+                                    countryOptions[index]
+                                        .countryName
+                                        .toString(),
+                                    index);
                               },
                             );
                           }),

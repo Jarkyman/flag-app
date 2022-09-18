@@ -10,24 +10,29 @@ class ScoreRepo {
   });
 
   Future<int> readFlagScore() async {
-    String score =
-        await sharedPreferences.getString(AppConstants.FLAG_SCORE) ?? '0';
-    return int.parse(score);
+    int score = await sharedPreferences.getInt(AppConstants.FLAG_SCORE) ?? 0;
+    return score;
   }
 
-  Future<bool> saveFlagScore(String score) async {
-    print('saved');
-    return await sharedPreferences.setString(AppConstants.FLAG_SCORE, score);
+  Future<bool> saveFlagScore(int score) async {
+    return await sharedPreferences.setInt(AppConstants.FLAG_SCORE, score);
   }
 
   Future<int> readFlagsScore() async {
-    String score =
-        await sharedPreferences.getString(AppConstants.FLAGS_SCORE) ?? '0';
-    return int.parse(score);
+    int score = await sharedPreferences.getInt(AppConstants.FLAGS_SCORE) ?? 0;
+    return score;
   }
 
-  Future<bool> saveFlagsScore(String score) async {
-    print('saved');
-    return await sharedPreferences.setString(AppConstants.FLAGS_SCORE, score);
+  Future<bool> saveFlagsScore(int score) async {
+    return await sharedPreferences.setInt(AppConstants.FLAGS_SCORE, score);
+  }
+
+  Future<int> readCapitalScore() async {
+    int score = await sharedPreferences.getInt(AppConstants.CAPITAL_SCORE) ?? 0;
+    return score;
+  }
+
+  Future<bool> saveCapitalScore(int score) async {
+    return await sharedPreferences.setInt(AppConstants.CAPITAL_SCORE, score);
   }
 }

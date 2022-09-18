@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flag_app/controllers/country_controller.dart';
+import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,7 @@ class _SpalshPageState extends State<SplashScreen>
     await Get.find<CountryController>().readCountries();
     await Get.find<CountryContinentController>().readCountries();
     await Get.find<ScoreController>().readAllScores();
+    await Get.find<HintController>().readHints();
   }
 
   @override

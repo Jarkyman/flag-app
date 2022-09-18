@@ -1,21 +1,20 @@
 import 'package:flag_app/controllers/hint_controller.dart';
-import 'package:flag_app/helper/app_colors.dart';
-import 'package:flag_app/helper/dimensions.dart';
-import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../helper/app_colors.dart';
+import '../../helper/dimensions.dart';
 import '../../helper/route_helper.dart';
+import '../../widget/hint_widget.dart';
 import '../../widget/menu_button.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ShopPage extends StatefulWidget {
+  const ShopPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ShopPage> createState() => _ShopPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,25 +27,30 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: Dimensions.width20 * 2,
-                    height: Dimensions.height20 * 2,
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor.withOpacity(0.2),
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radius20 * 2),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.settings_outlined,
-                        color: AppColors.mainColor,
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      width: Dimensions.width20 * 2,
+                      height: Dimensions.height20 * 2,
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor.withOpacity(0.2),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20 * 2),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.mainColor,
+                        ),
                       ),
                     ),
                   ),
                   GetBuilder<HintController>(builder: (hintController) {
                     return HintWidget(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getShopPage());
+                        hintController.useHint(hintController.getHints);
                       },
                       icon: Icon(
                         Icons.lightbulb_outline,
@@ -67,36 +71,42 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getFlagPage());
+                      for (int i = 1; i <= 10; i++) {
+                        Get.find<HintController>().addHint(5);
+                      }
                     },
-                    title: 'Match the country',
+                    title: 'Buy 50 hints',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getFlagsPage());
+                      for (int i = 1; i <= 20; i++) {
+                        Get.find<HintController>().addHint(5);
+                      }
                     },
-                    title: 'Match the flag',
+                    title: 'Buy 100 hints',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getCapitalPage());
+                      for (int i = 1; i <= 100; i++) {
+                        Get.find<HintController>().addHint(5);
+                      }
                     },
-                    title: 'Capitals',
+                    title: 'Buy 500 hints',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getShopPage());
+                      Get.find<HintController>().addHint(3);
                     },
-                    title: 'Shop',
+                    title: 'Watch a video and get 3',
                   ),
                 ],
               ),

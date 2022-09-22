@@ -1,26 +1,17 @@
-import 'dart:io';
-
-import 'package:flag_app/controllers/country_controller.dart';
-import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
-import 'package:flag_app/helper/app_colors.dart';
-import 'package:flag_app/helper/dimensions.dart';
-import 'package:flag_app/models/country_model.dart';
-import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../controllers/hint_controller.dart';
+import '../../helper/app_colors.dart';
+import '../../helper/app_constants.dart';
+import '../../helper/dimensions.dart';
 import '../../helper/route_helper.dart';
+import '../../widget/hint_widget.dart';
 import '../../widget/menu_button.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class PlayPage extends StatelessWidget {
+  const PlayPage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +26,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      print(Get.find<LevelController>().getFlagLevels);
+                      Get.back();
                     },
                     child: Container(
                       width: Dimensions.width20 * 2,
@@ -47,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Center(
                         child: Icon(
-                          Icons.settings_outlined,
+                          Icons.arrow_back_ios,
                           color: AppColors.mainColor,
                         ),
                       ),
@@ -77,34 +68,28 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getPlayPage());
+                      Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [
+                        //Get.find<LevelController>().getFlagLevels,
+                        AppConstants.FLAGS
+                      ]);
                     },
-                    title: 'Play',
+                    title: 'Flags',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getFlagPage());
+                      //Get.toNamed(RouteHelper.getCountryLevelPage());
                     },
-                    title: 'Match the country',
+                    title: 'Countries',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getFlagsPage());
-                    },
-                    title: 'Match the flag',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getCapitalPage());
+                      //Get.toNamed(RouteHelper.getCapitalLevelPage());
                     },
                     title: 'Capitals',
                   ),
@@ -113,9 +98,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getShopPage());
+                      //Get.toNamed(RouteHelper.getCoatOfArmsLevelPage());
                     },
-                    title: 'Shop',
+                    title: 'Coat of arms',
                   ),
                 ],
               ),

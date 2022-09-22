@@ -9,4 +9,7 @@ class AppConstants {
 
   // Hints
   static const String HINTS = 'hints';
+
+  // Levels
+  static const String FLAGS = 'flags';
 }

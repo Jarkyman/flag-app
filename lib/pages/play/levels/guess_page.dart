@@ -301,83 +301,87 @@ class _GuessPageState extends State<GuessPage> {
                       top: Dimensions.height10, bottom: Dimensions.height10),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: Dimensions.width10,
-                            right: Dimensions.width10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Expanded(
+                      country.guessed!
+                          ? Container()
+                          : Padding(
+                              padding: EdgeInsets.only(
+                                  left: Dimensions.width10,
+                                  right: Dimensions.width10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        GetBuilder<HintController>(
+                                            builder: (hintController) {
+                                          return HintWidget(
+                                            onTap: () {
+                                              useFinishHint();
+                                            },
+                                            icon: Icon(
+                                              Icons.check,
+                                              color: AppColors.mainColor,
+                                            ),
+                                            num: '3',
+                                          );
+                                        }),
+                                        SizedBox(
+                                          width: Dimensions.width10,
+                                        ),
+                                        GetBuilder<HintController>(
+                                            builder: (hintController) {
+                                          return HintWidget(
+                                            onTap: () {
+                                              useBombHint();
+                                            },
+                                            icon: ImageIcon(
+                                              AssetImage(
+                                                  'assets/icon/bomb.png'),
+                                              color: AppColors.mainColor,
+                                              size: Dimensions.iconSize24,
+                                            ),
+                                            num: '1',
+                                          );
+                                        }),
+                                        SizedBox(
+                                          width: Dimensions.width10,
+                                        ),
+                                        GetBuilder<HintController>(
+                                            builder: (hintController) {
+                                          return HintWidget(
+                                            onTap: () {
+                                              useFirstLetterHint();
+                                            },
+                                            icon: ImageIcon(
+                                              AssetImage('assets/icon/a.png'),
+                                              color: AppColors.mainColor,
+                                              size: Dimensions.iconSize24,
+                                            ),
+                                            num: '1',
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  ),
                                   GetBuilder<HintController>(
                                       builder: (hintController) {
                                     return HintWidget(
                                       onTap: () {
-                                        useFinishHint();
+                                        Get.toNamed(RouteHelper.getShopPage());
                                       },
                                       icon: Icon(
-                                        Icons.check,
+                                        Icons.lightbulb_outline,
                                         color: AppColors.mainColor,
                                       ),
-                                      num: '3',
-                                    );
-                                  }),
-                                  SizedBox(
-                                    width: Dimensions.width10,
-                                  ),
-                                  GetBuilder<HintController>(
-                                      builder: (hintController) {
-                                    return HintWidget(
-                                      onTap: () {
-                                        useBombHint();
-                                      },
-                                      icon: ImageIcon(
-                                        AssetImage('assets/icon/bomb.png'),
-                                        color: AppColors.mainColor,
-                                        size: Dimensions.iconSize24,
-                                      ),
-                                      num: '1',
-                                    );
-                                  }),
-                                  SizedBox(
-                                    width: Dimensions.width10,
-                                  ),
-                                  GetBuilder<HintController>(
-                                      builder: (hintController) {
-                                    return HintWidget(
-                                      onTap: () {
-                                        useFirstLetterHint();
-                                      },
-                                      icon: ImageIcon(
-                                        AssetImage('assets/icon/a.png'),
-                                        color: AppColors.mainColor,
-                                        size: Dimensions.iconSize24,
-                                      ),
-                                      num: '1',
+                                      num: hintController.getHints.toString(),
                                     );
                                   }),
                                 ],
                               ),
                             ),
-                            GetBuilder<HintController>(
-                                builder: (hintController) {
-                              return HintWidget(
-                                onTap: () {
-                                  Get.toNamed(RouteHelper.getShopPage());
-                                },
-                                icon: Icon(
-                                  Icons.lightbulb_outline,
-                                  color: AppColors.mainColor,
-                                ),
-                                num: hintController.getHints.toString(),
-                              );
-                            }),
-                          ],
-                        ),
-                      ),
                       SizedBox(height: Dimensions.height10),
                       Hero(
                         tag:

@@ -150,7 +150,7 @@
     "level": 2
   },
   {
-    "Country": "Democratic Republic of Congo",
+    "Country": "Portugal",
     "guessed": false,
     "level": 2
   },
@@ -690,7 +690,7 @@
     "level": 7
   },
   {
-    "Country": "Saint Vincent and the Grenadines",
+    "Country": "Lithuania",
     "guessed": false,
     "level": 7
   },
@@ -956,16 +956,6 @@
   },
   {
     "Country": "Bahrain",
-    "guessed": false,
-    "level": 10
-  },
-  {
-    "Country": "Portugal",
-    "guessed": false,
-    "level": 10
-  },
-  {
-    "Country": "Lithuania",
     "guessed": false,
     "level": 10
   }

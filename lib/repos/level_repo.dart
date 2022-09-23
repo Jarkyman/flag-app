@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flag_app/models/level_model.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helper/app_constants.dart';
@@ -14,27 +13,33 @@ class LevelRepo {
     required this.sharedPreferences,
   });
 
-  Future<String> readFlagLevels() async {
-    final String response =
-        await rootBundle.loadString('assets/json/flags.json');
-    //print(response);
-    return response;
-    /*
-    if (await sharedPreferences.getString(AppConstants.FLAGS) == null) {
-      return list;
-    }
-    return await sharedPreferences.getString(AppConstants.FLAGS) as String;
+  Future<List<LevelModel>> readFlagLevels(String option) async {
+    if (await sharedPreferences.getStringList(AppConstants.FLAGS) == null) {
+      final String response = await rootBundle
+          .loadString('assets/json/${option.toLowerCase()}.json');
 
-     */
+      final list = json.decode(response) as List<dynamic>;
+      List<LevelModel> levelModels = [];
+      levelModels = list.map((e) => LevelModel.fromJson(e)).toList();
+
+      saveFlagLevels(levelModels, option);
+      return levelModels;
+    } else {
+      List<String> response = await sharedPreferences.getStringList(option)!;
+      List<LevelModel> levelModels = [];
+
+      response.forEach((element) =>
+          levelModels.add(LevelModel.fromJson(jsonDecode(element))));
+      return levelModels;
+    }
   }
 
-  Future<bool> saveFlagLevels(List<LevelModel> flags) async {
+  Future<bool> saveFlagLevels(List<LevelModel> flags, String option) async {
     List<String> saveFlags = [];
     flags.forEach((element) {
       return saveFlags.add(jsonEncode(element));
     });
 
-    return await sharedPreferences.setString(
-        AppConstants.FLAGS, saveFlags.toString());
+    return await sharedPreferences.setStringList(option, saveFlags);
   }
 }

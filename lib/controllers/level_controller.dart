@@ -62,9 +62,11 @@ class LevelController extends GetxController implements GetxService {
         if (element == country) {
           element.guessed = true;
           //country.guessed = true;
+          saveLevels(playOption);
         }
       });
     }
+
     update();
   }
 
@@ -76,17 +78,16 @@ class LevelController extends GetxController implements GetxService {
   }
 
   Future<void> readAllLevels() async {
-    await readFlagLevels();
+    await readLevels();
   }
 
-  Future<void> readFlagLevels() async {
-    final list = json.decode(await levelRepo.readFlagLevels()) as List<dynamic>;
-    _flagLevels = [];
-    _flagLevels = list.map((e) => LevelModel.fromJson(e)).toList();
+  Future<void> readLevels() async {
+    _flagLevels = await levelRepo.readFlagLevels(AppConstants.FLAGS);
     update();
   }
 
-  Future<bool> saveFlagLevels(List<LevelModel> flags) async {
-    return await levelRepo.saveFlagLevels(flags);
+  Future<bool> saveLevels(String option) async {
+    List<LevelModel> levelModels = getList(option)!;
+    return await levelRepo.saveFlagLevels(levelModels, option);
   }
 }

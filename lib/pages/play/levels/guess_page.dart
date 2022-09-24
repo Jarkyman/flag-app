@@ -31,6 +31,7 @@ class _GuessPageState extends State<GuessPage> {
   late List<List<String>> lettersListAnswer;
   late List<String> allLetters;
   final int TILES_PR_ROW = 8;
+  bool bombUsed = false;
 
   @override
   void initState() {
@@ -250,11 +251,137 @@ class _GuessPageState extends State<GuessPage> {
     }
   }
 
-  void useFirstLetterHint() {}
+  void useFirstLetterHint(int hints) {
+    String letter = '';
+    int index = 0;
+    bool isDone = false;
 
-  void useBombHint() {}
+    print('lettersListAnswer[i][j] and correctLettersList[i][j] = ' +
+        lettersListAnswer[0][0] +
+        correctLettersList[0][0]);
+    for (int i = 0; i < lettersListAnswer.length; i++) {
+      for (int j = 0; j < lettersListAnswer[i].length; j++) {
+        if (lettersListAnswer[i][j] == '') {
+          isDone = true;
+          letter = correctLettersList[i][j];
+          j = lettersListAnswer[i].length;
+        } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
+          for (int k = 0; k < allLetters.length; k++) {
+            if (allLetters[k] == '') {
+              print('HIT');
+              removeLetter(lettersListAnswer[i][j], j, i);
+              isDone = true;
+              letter = correctLettersList[i][j];
+              k = allLetters.length;
+              j = lettersListAnswer[i].length;
+            }
+          }
+        }
+      }
+      if (isDone) {
+        i = lettersListAnswer.length;
+      }
+    }
 
-  void useFinishHint() {}
+    for (int i = 0; i < allLetters.length; i++) {
+      if (allLetters[i] == letter) {
+        index = i;
+      }
+    }
+    print('lettter to put: ' + letter);
+    putLetterInBox(letter, index);
+    Get.find<HintController>().useHint(hints);
+  }
+
+  void useBombHint(int hints) {
+    if (!bombUsed) {
+      List<String> reducedLetters = [];
+      List<String> tempAllList = [];
+      List<String> correctList =
+          country.country!.removeAllWhitespace.toUpperCase().split('');
+      bool isDone = false;
+
+      for (int i = 0; i < allLetters.length; i++) {
+        tempAllList.add(allLetters[i]);
+      }
+
+      for (int i = 0; i < allLetters.length; i++) {
+        reducedLetters.add('');
+      }
+
+      //for (int i = 0; i < allLetters.length; i++) {
+      for (int j = 0; j < correctList.length; j++) {
+        print(correctList[j]);
+        int index = tempAllList.indexOf(correctList[j]);
+        print(index);
+        tempAllList[index] = '';
+        reducedLetters[index] = correctList[j];
+      }
+      //}
+
+      /*
+    print(allLetters);
+    for (int i = 0; i < allLetters.length; i++) {
+      isDone = false;
+      for (int j = 0; j < correctList.length; j++) {
+        if (allLetters[i] == correctList[j]) {
+          print(reducedLetters.length.toString() + ' / ' + i.toString());
+          if (reducedLetters.length >= i) {
+            reducedLetters.add(correctList[j]);
+            print('new Index : $i - ${correctList[j]}');
+            correctList.remove(correctList[j]);
+            isDone = true;
+            j = correctList.length;
+          } else {
+            print('Change: $i - ${correctList[j]}');
+            reducedLetters[i] = correctList[j];
+
+            correctList.remove(correctList[j]);
+            j = correctList.length;
+          }
+        } else {
+            reducedLetters.add('');
+            j = correctList.length;
+        }
+      }
+      if (isDone) {
+        i = 0;
+      }
+    }*/
+
+      print('all -$allLetters - ${allLetters.length}');
+      print('cop -$tempAllList - ${tempAllList.length}');
+      print('new -$reducedLetters - ${reducedLetters.length}');
+
+      /*
+    setState(() {
+      for (int j = 0; j < reducedLetters.length; j++) {
+        for (int i = 0; i < allLetters.length; i++) {
+          if (allLetters[i] != reducedLetters[j]) {
+            allLetters[i] = '';
+            print(allLetters);
+          } else {
+            reducedLetters[j] = '';
+            i = allLetters.length;
+          }
+        }
+      }
+    });
+     */
+      setState(() {
+        allLetters = reducedLetters;
+        bombUsed = true;
+      });
+      Get.find<HintController>().useHint(hints);
+    }
+  }
+
+  void useFinishHint(int hints) {
+    setState(() {
+      Get.find<LevelController>().guessed(Get.arguments[0], country);
+    });
+    Get.find<HintController>().useHint(hints);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -262,12 +389,8 @@ class _GuessPageState extends State<GuessPage> {
         appBar: AppBar(
           title: Text('Guess'),
         ),
-        bottomNavigationBar: country.guessed!
-            ? Container(
-                height: Dimensions.screenHeight / 3,
-                color: Colors.grey,
-              )
-            : BottomAppBar(),
+        bottomNavigationBar:
+            country.guessed! ? finishInfoBox() : BottomAppBar(),
         body: SwipeDetector(
           onSwipeRight: (value) {
             int nextPageIndex = Get.arguments[2];
@@ -306,24 +429,24 @@ class _GuessPageState extends State<GuessPage> {
                           ? Container()
                           : HintBar(
                               tapHintOne: () {
-                                useFinishHint();
+                                useFinishHint(5);
                               },
                               iconOne: Icon(
                                 Icons.check,
                                 color: AppColors.mainColor,
                               ),
-                              hintPriceOne: '3',
+                              hintPriceOne: '5',
                               tapHintTwo: () {
-                                useBombHint();
+                                useBombHint(2);
                               },
                               iconTwo: ImageIcon(
                                 AssetImage('assets/icon/bomb.png'),
                                 color: AppColors.mainColor,
                                 size: Dimensions.iconSize24,
                               ),
-                              hintPriceTwo: '1',
+                              hintPriceTwo: '2',
                               tapHintThree: () {
-                                useFirstLetterHint();
+                                useFirstLetterHint(1);
                               },
                               iconThree: ImageIcon(
                                 AssetImage('assets/icon/a.png'),
@@ -369,6 +492,13 @@ class _GuessPageState extends State<GuessPage> {
             ),
           ),
         ));
+  }
+
+  Container finishInfoBox() {
+    return Container(
+      height: Dimensions.screenHeight / 4,
+      color: Colors.grey,
+    );
   }
 
   Padding tilesAtBottom() {

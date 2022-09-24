@@ -13,6 +13,7 @@ import '../../../controllers/hint_controller.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
+import '../../../widget/hint_bar.dart';
 import '../../../widget/hint_widget.dart';
 
 class GuessPage extends StatefulWidget {
@@ -303,84 +304,33 @@ class _GuessPageState extends State<GuessPage> {
                     children: [
                       country.guessed!
                           ? Container()
-                          : Padding(
-                              padding: EdgeInsets.only(
-                                  left: Dimensions.width10,
-                                  right: Dimensions.width10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Expanded(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        GetBuilder<HintController>(
-                                            builder: (hintController) {
-                                          return HintWidget(
-                                            onTap: () {
-                                              useFinishHint();
-                                            },
-                                            icon: Icon(
-                                              Icons.check,
-                                              color: AppColors.mainColor,
-                                            ),
-                                            num: '3',
-                                          );
-                                        }),
-                                        SizedBox(
-                                          width: Dimensions.width10,
-                                        ),
-                                        GetBuilder<HintController>(
-                                            builder: (hintController) {
-                                          return HintWidget(
-                                            onTap: () {
-                                              useBombHint();
-                                            },
-                                            icon: ImageIcon(
-                                              AssetImage(
-                                                  'assets/icon/bomb.png'),
-                                              color: AppColors.mainColor,
-                                              size: Dimensions.iconSize24,
-                                            ),
-                                            num: '1',
-                                          );
-                                        }),
-                                        SizedBox(
-                                          width: Dimensions.width10,
-                                        ),
-                                        GetBuilder<HintController>(
-                                            builder: (hintController) {
-                                          return HintWidget(
-                                            onTap: () {
-                                              useFirstLetterHint();
-                                            },
-                                            icon: ImageIcon(
-                                              AssetImage('assets/icon/a.png'),
-                                              color: AppColors.mainColor,
-                                              size: Dimensions.iconSize24,
-                                            ),
-                                            num: '1',
-                                          );
-                                        }),
-                                      ],
-                                    ),
-                                  ),
-                                  GetBuilder<HintController>(
-                                      builder: (hintController) {
-                                    return HintWidget(
-                                      onTap: () {
-                                        Get.toNamed(RouteHelper.getShopPage());
-                                      },
-                                      icon: Icon(
-                                        Icons.lightbulb_outline,
-                                        color: AppColors.mainColor,
-                                      ),
-                                      num: hintController.getHints.toString(),
-                                    );
-                                  }),
-                                ],
+                          : HintBar(
+                              tapHintOne: () {
+                                useFinishHint();
+                              },
+                              iconOne: Icon(
+                                Icons.check,
+                                color: AppColors.mainColor,
                               ),
+                              hintPriceOne: '3',
+                              tapHintTwo: () {
+                                useBombHint();
+                              },
+                              iconTwo: ImageIcon(
+                                AssetImage('assets/icon/bomb.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceTwo: '1',
+                              tapHintThree: () {
+                                useFirstLetterHint();
+                              },
+                              iconThree: ImageIcon(
+                                AssetImage('assets/icon/a.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceThree: '1',
                             ),
                       SizedBox(height: Dimensions.height10),
                       Hero(
@@ -400,91 +350,15 @@ class _GuessPageState extends State<GuessPage> {
                       ),
                       country.guessed!
                           ? Expanded(
-                              child: Container(
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: Dimensions.width5,
-                                      right: Dimensions.width5,
-                                      top: Dimensions.height10),
-                                  child: Column(
-                                    children: List.generate(
-                                        lettersListAnswer.length, (index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: Dimensions.height10 / 1.5),
-                                        child: TileList(
-                                            correctLettersList[index],
-                                            correctLettersList[index],
-                                            index,
-                                            true),
-                                      );
-                                    }),
-                                  ),
-                                ),
-                              ),
+                              child: guessTiles(correctLettersList, true),
                             )
                           : Expanded(
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: Dimensions.width5,
-                                        right: Dimensions.width5,
-                                        top: Dimensions.height10),
-                                    child: Column(
-                                      children: List.generate(
-                                          lettersListAnswer.length, (index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(
-                                              bottom:
-                                                  Dimensions.height10 / 1.5),
-                                          child: TileList(
-                                            correctLettersList[index],
-                                            lettersListAnswer[index],
-                                            index,
-                                            false,
-                                          ),
-                                        );
-                                      }),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(Dimensions.width10),
-                                    child: Column(
-                                        children: List.generate(
-                                            getAmountOfTileRows(TILES_PR_ROW),
-                                            (rowIndex) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: List.generate(TILES_PR_ROW,
-                                            (tileIndex) {
-                                          int index = tileIndex +
-                                              (TILES_PR_ROW * rowIndex);
-
-                                          return Padding(
-                                            padding: EdgeInsets.only(
-                                                bottom:
-                                                    Dimensions.height10 / 2),
-                                            child: allLetters[index] == ''
-                                                ? EmptyTile()
-                                                : GestureDetector(
-                                                    onTap: () {
-                                                      putLetterInBox(
-                                                          allLetters[index],
-                                                          index);
-                                                    },
-                                                    child: LetterTile(
-                                                        letter:
-                                                            allLetters[index]),
-                                                  ),
-                                          );
-                                        }),
-                                      );
-                                    })),
-                                  ),
+                                  guessTiles(lettersListAnswer, false),
+                                  tilesAtBottom(),
                                 ],
                               ),
                             ),
@@ -497,7 +371,57 @@ class _GuessPageState extends State<GuessPage> {
         ));
   }
 
-  Wrap TileList(
+  Padding tilesAtBottom() {
+    return Padding(
+      padding: EdgeInsets.all(Dimensions.width10),
+      child: Column(
+          children:
+              List.generate(getAmountOfTileRows(TILES_PR_ROW), (rowIndex) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(TILES_PR_ROW, (tileIndex) {
+            int index = tileIndex + (TILES_PR_ROW * rowIndex);
+
+            return Padding(
+              padding: EdgeInsets.only(bottom: Dimensions.height10 / 2),
+              child: allLetters[index] == ''
+                  ? EmptyTile()
+                  : GestureDetector(
+                      onTap: () {
+                        putLetterInBox(allLetters[index], index);
+                      },
+                      child: LetterTile(letter: allLetters[index]),
+                    ),
+            );
+          }),
+        );
+      })),
+    );
+  }
+
+  Padding guessTiles(List<List<String>> identifier, bool isGuessed) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: Dimensions.width5,
+          right: Dimensions.width5,
+          top: Dimensions.height10),
+      child: Column(
+        children: List.generate(lettersListAnswer.length, (index) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: Dimensions.height10 / 1.5),
+            child: tileList(
+              correctLettersList[index],
+              identifier[index],
+              index,
+              isGuessed,
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  Wrap tileList(
       List<String> words, List<String> answer, int wordIndex, bool isGuessed) {
     return Wrap(
       spacing: 5,
@@ -518,49 +442,3 @@ class _GuessPageState extends State<GuessPage> {
     );
   }
 }
-/*
-[
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: List.generate(
-                                              8,
-                                              (index) => allLetters[index] == ''
-                                                  ? EmptyTile()
-                                                  : GestureDetector(
-                                                      onTap: () {
-                                                        putLetterInBox(
-                                                            allLetters[index],
-                                                            index);
-                                                      },
-                                                      child: LetterTile(
-                                                          letter: allLetters[
-                                                              index]),
-                                                    ),
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: List.generate(
-                                              8,
-                                              (index) => allLetters[index +
-                                                          TILES_PR_ROW] ==
-                                                      ''
-                                                  ? EmptyTile()
-                                                  : GestureDetector(
-                                                      onTap: () {
-                                                        putLetterInBox(
-                                                            allLetters[index +
-                                                                TILES_PR_ROW],
-                                                            index +
-                                                                TILES_PR_ROW);
-                                                      },
-                                                      child: LetterTile(
-                                                          letter: allLetters[
-                                                              index +
-                                                                  TILES_PR_ROW])),
-                                            ),
-                                          ),
-                                        ],
- */

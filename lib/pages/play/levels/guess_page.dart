@@ -49,8 +49,6 @@ class _GuessPageState extends State<GuessPage> {
     lettersListAnswer = getLettersListEmpty(country.country!);
     allLetters =
         generateRandomLetters(country.country!.toUpperCase().split(''));
-    print('\nLETTERS = ' +
-        country.country!.removeAllWhitespace.length.toString());
   }
 
   void checkWin() {
@@ -147,12 +145,9 @@ class _GuessPageState extends State<GuessPage> {
   List<String> generateRandomLetters(List<String> correctLetters) {
     List<String> result = correctLetters;
     int tileRows = getAmountOfTileRows(TILES_PR_ROW);
-    print('tileRows = $tileRows');
-    print('tileRows = $tileRows');
     int maxLetters = TILES_PR_ROW * tileRows;
     Random random = Random();
 
-    print('maxLetters = ' + maxLetters.toString());
     for (int i = 0; i < result.length; i++) {
       if (result[i] == ' ' || result[i] == '-') {
         result.remove(result[i]);
@@ -164,7 +159,6 @@ class _GuessPageState extends State<GuessPage> {
       result.add(String.fromCharCode(nextLetter).toUpperCase());
     }
 
-    print('All Letters : ' + result.toString());
     result.shuffle();
     result.shuffle();
     result.shuffle();
@@ -256,9 +250,6 @@ class _GuessPageState extends State<GuessPage> {
     int index = 0;
     bool isDone = false;
 
-    print('lettersListAnswer[i][j] and correctLettersList[i][j] = ' +
-        lettersListAnswer[0][0] +
-        correctLettersList[0][0]);
     for (int i = 0; i < lettersListAnswer.length; i++) {
       for (int j = 0; j < lettersListAnswer[i].length; j++) {
         if (lettersListAnswer[i][j] == '') {
@@ -268,7 +259,6 @@ class _GuessPageState extends State<GuessPage> {
         } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
           for (int k = 0; k < allLetters.length; k++) {
             if (allLetters[k] == '') {
-              print('HIT');
               removeLetter(lettersListAnswer[i][j], j, i);
               isDone = true;
               letter = correctLettersList[i][j];
@@ -288,7 +278,6 @@ class _GuessPageState extends State<GuessPage> {
         index = i;
       }
     }
-    print('lettter to put: ' + letter);
     putLetterInBox(letter, index);
     Get.find<HintController>().useHint(hints);
   }
@@ -309,65 +298,12 @@ class _GuessPageState extends State<GuessPage> {
         reducedLetters.add('');
       }
 
-      //for (int i = 0; i < allLetters.length; i++) {
       for (int j = 0; j < correctList.length; j++) {
-        print(correctList[j]);
         int index = tempAllList.indexOf(correctList[j]);
-        print(index);
         tempAllList[index] = '';
         reducedLetters[index] = correctList[j];
       }
-      //}
 
-      /*
-    print(allLetters);
-    for (int i = 0; i < allLetters.length; i++) {
-      isDone = false;
-      for (int j = 0; j < correctList.length; j++) {
-        if (allLetters[i] == correctList[j]) {
-          print(reducedLetters.length.toString() + ' / ' + i.toString());
-          if (reducedLetters.length >= i) {
-            reducedLetters.add(correctList[j]);
-            print('new Index : $i - ${correctList[j]}');
-            correctList.remove(correctList[j]);
-            isDone = true;
-            j = correctList.length;
-          } else {
-            print('Change: $i - ${correctList[j]}');
-            reducedLetters[i] = correctList[j];
-
-            correctList.remove(correctList[j]);
-            j = correctList.length;
-          }
-        } else {
-            reducedLetters.add('');
-            j = correctList.length;
-        }
-      }
-      if (isDone) {
-        i = 0;
-      }
-    }*/
-
-      print('all -$allLetters - ${allLetters.length}');
-      print('cop -$tempAllList - ${tempAllList.length}');
-      print('new -$reducedLetters - ${reducedLetters.length}');
-
-      /*
-    setState(() {
-      for (int j = 0; j < reducedLetters.length; j++) {
-        for (int i = 0; i < allLetters.length; i++) {
-          if (allLetters[i] != reducedLetters[j]) {
-            allLetters[i] = '';
-            print(allLetters);
-          } else {
-            reducedLetters[j] = '';
-            i = allLetters.length;
-          }
-        }
-      }
-    });
-     */
       setState(() {
         allLetters = reducedLetters;
         bombUsed = true;
@@ -387,7 +323,7 @@ class _GuessPageState extends State<GuessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Guess'),
+          title: Text('${Get.arguments[0]}'),
         ),
         bottomNavigationBar:
             country.guessed! ? finishInfoBox() : BottomAppBar(),

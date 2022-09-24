@@ -1,4 +1,5 @@
 import 'package:flag_app/controllers/level_controller.dart';
+import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/route_helper.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/level_card.dart';
@@ -15,7 +16,8 @@ class LevelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Title'),
+        title: Text('Level ${Get.arguments[1]}'),
+        backgroundColor: AppColors.mainColor,
       ),
       body: Padding(
           padding: EdgeInsets.only(
@@ -53,7 +55,7 @@ class LevelPage extends StatelessWidget {
                       child: LevelCard(
                         guessed: levels[index].guessed!,
                         image:
-                            'assets/image/${Get.arguments[0]}/${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}.png',
+                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}.png',
                       ),
                     ),
                   );

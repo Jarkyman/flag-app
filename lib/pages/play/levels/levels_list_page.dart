@@ -70,28 +70,40 @@ class LevelsListPage extends StatelessWidget {
                       itemCount: levelController.getLevelAmount(
                           levelController.getList(Get.arguments[0])!),
                       itemBuilder: (context, index) {
+                        String numOfDone = levelController
+                            .getFinishedLevelsForLevel(index + 1,
+                                levelController.getList(Get.arguments[0])!)
+                            .toString();
+                        String numTotal = levelController
+                            .getUnFinishedLevels(index + 1,
+                                levelController.getList(Get.arguments[0])!)
+                            .toString();
+                        int levelsToComplete = (index * 10) - 11;
+                        int levelsCompleted =
+                            levelController.getFinishedLevels(Get.arguments[0]);
+                        bool isLocked = levelsToComplete >= levelsCompleted;
                         return Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: Dimensions.height10,
                               horizontal: Dimensions.width10),
                           child: LevelButton(
+                            isLocked: isLocked,
                             onTap: () {
-                              Get.toNamed(RouteHelper.getLevelPage(),
-                                  arguments: [
-                                    //levelController.getLevelList(index + 1, Get.arguments[0]),
-                                    Get.arguments[0],
-                                    index + 1
-                                  ]);
+                              if (!isLocked) {
+                                Get.toNamed(RouteHelper.getLevelPage(),
+                                    arguments: [Get.arguments[0], index + 1]);
+                              } else {
+                                Get.snackbar(
+                                  'Unlock more levels',
+                                  'You need to unlock ${levelsToComplete - levelsCompleted + 1} to unlock next level',
+                                  backgroundColor:
+                                      AppColors.wrongColor.withOpacity(0.3),
+                                );
+                              }
                             },
                             title: 'Level ${index + 1}',
-                            numOfDone: levelController
-                                .getFinishedLevels(index + 1,
-                                    levelController.getList(Get.arguments[0])!)
-                                .toString(),
-                            numTotal: levelController
-                                .getUnFinishedLevels(index + 1,
-                                    levelController.getList(Get.arguments[0])!)
-                                .toString(),
+                            numOfDone: numOfDone,
+                            numTotal: numTotal,
                           ),
                         );
                       });

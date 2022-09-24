@@ -49,6 +49,7 @@ class _GuessPageState extends State<GuessPage> {
     lettersListAnswer = getLettersListEmpty(country.country!);
     allLetters =
         generateRandomLetters(country.country!.toUpperCase().split(''));
+    bombUsed = false;
   }
 
   void checkWin() {
@@ -246,77 +247,89 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void useFirstLetterHint(int hints) {
-    String letter = '';
-    int index = 0;
-    bool isDone = false;
+    if (Get.find<HintController>().getHints >= hints) {
+      String letter = '';
+      int index = 0;
+      bool isDone = false;
 
-    for (int i = 0; i < lettersListAnswer.length; i++) {
-      for (int j = 0; j < lettersListAnswer[i].length; j++) {
-        if (lettersListAnswer[i][j] == '') {
-          isDone = true;
-          letter = correctLettersList[i][j];
-          j = lettersListAnswer[i].length;
-        } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
-          for (int k = 0; k < allLetters.length; k++) {
-            if (allLetters[k] == '') {
-              removeLetter(lettersListAnswer[i][j], j, i);
-              isDone = true;
-              letter = correctLettersList[i][j];
-              k = allLetters.length;
-              j = lettersListAnswer[i].length;
+      for (int i = 0; i < lettersListAnswer.length; i++) {
+        for (int j = 0; j < lettersListAnswer[i].length; j++) {
+          if (lettersListAnswer[i][j] == '') {
+            isDone = true;
+            letter = correctLettersList[i][j];
+            j = lettersListAnswer[i].length;
+          } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
+            for (int k = 0; k < allLetters.length; k++) {
+              if (allLetters[k] == '') {
+                removeLetter(lettersListAnswer[i][j], j, i);
+                isDone = true;
+                letter = correctLettersList[i][j];
+                k = allLetters.length;
+                j = lettersListAnswer[i].length;
+              }
             }
           }
         }
+        if (isDone) {
+          i = lettersListAnswer.length;
+        }
       }
-      if (isDone) {
-        i = lettersListAnswer.length;
-      }
-    }
 
-    for (int i = 0; i < allLetters.length; i++) {
-      if (allLetters[i] == letter) {
-        index = i;
+      for (int i = 0; i < allLetters.length; i++) {
+        if (allLetters[i] == letter) {
+          index = i;
+        }
       }
+      putLetterInBox(letter, index);
+      Get.find<HintController>().useHint(hints);
+    } else {
+      Get.toNamed(RouteHelper.getShopPage());
     }
-    putLetterInBox(letter, index);
-    Get.find<HintController>().useHint(hints);
   }
 
   void useBombHint(int hints) {
-    if (!bombUsed) {
-      List<String> reducedLetters = [];
-      List<String> tempAllList = [];
-      List<String> correctList =
-          country.country!.removeAllWhitespace.toUpperCase().split('');
-      bool isDone = false;
+    if (Get.find<HintController>().getHints >= hints) {
+      if (!bombUsed) {
+        List<String> reducedLetters = [];
+        List<String> tempAllList = [];
+        List<String> correctList =
+            country.country!.removeAllWhitespace.toUpperCase().split('');
+        bool isDone = false;
 
-      for (int i = 0; i < allLetters.length; i++) {
-        tempAllList.add(allLetters[i]);
+        for (int i = 0; i < allLetters.length; i++) {
+          tempAllList.add(allLetters[i]);
+        }
+
+        for (int i = 0; i < allLetters.length; i++) {
+          reducedLetters.add('');
+        }
+
+        for (int j = 0; j < correctList.length; j++) {
+          int index = tempAllList.indexOf(correctList[j]);
+          tempAllList[index] = '';
+          reducedLetters[index] = correctList[j];
+        }
+
+        setState(() {
+          allLetters = reducedLetters;
+          bombUsed = true;
+        });
+        Get.find<HintController>().useHint(hints);
       }
-
-      for (int i = 0; i < allLetters.length; i++) {
-        reducedLetters.add('');
-      }
-
-      for (int j = 0; j < correctList.length; j++) {
-        int index = tempAllList.indexOf(correctList[j]);
-        tempAllList[index] = '';
-        reducedLetters[index] = correctList[j];
-      }
-
-      setState(() {
-        allLetters = reducedLetters;
-        bombUsed = true;
-      });
-      Get.find<HintController>().useHint(hints);
+    } else {
+      Get.toNamed(RouteHelper.getShopPage());
     }
   }
 
   void useFinishHint(int hints) {
-    setState(() {
-      Get.find<LevelController>().guessed(Get.arguments[0], country);
-    });
-    Get.find<HintController>().useHint(hints);
+    if (Get.find<HintController>().getHints >= hints) {
+      setState(() {
+        Get.find<LevelController>().guessed(Get.arguments[0], country);
+      });
+      Get.find<HintController>().useHint(hints);
+    } else {
+      Get.toNamed(RouteHelper.getShopPage());
+    }
   }
 
   @override
@@ -324,6 +337,7 @@ class _GuessPageState extends State<GuessPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('${Get.arguments[0]}'),
+          backgroundColor: AppColors.mainColor,
         ),
         bottomNavigationBar:
             country.guessed! ? finishInfoBox() : BottomAppBar(),
@@ -402,7 +416,7 @@ class _GuessPageState extends State<GuessPage> {
                               horizontal: Dimensions.height20),
                           decoration: BoxDecoration(),
                           child: Image.asset(
-                            'assets/image/${Get.arguments[0]}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
                             fit: BoxFit.contain,
                           ),
                         ),

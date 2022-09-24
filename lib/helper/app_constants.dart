@@ -11,6 +11,6 @@ class AppConstants {
   static const String HINTS = 'hints';
 
   // Levels
-  static const String FLAGS = 'flags';
-  static const String COUNTRIES = 'countries';
+  static const String FLAGS = 'Flags';
+  static const String COUNTRIES = 'Countries';
 }

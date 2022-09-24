@@ -30,9 +30,11 @@ class HintController extends GetxController implements GetxService {
   }
 
   void useHint(int hints) {
-    _hints -= hints;
-    saveHints(_hints);
-    update();
+    if (_hints >= hints) {
+      _hints -= hints;
+      saveHints(_hints);
+      update();
+    }
   }
 
   bool getCorrect() {

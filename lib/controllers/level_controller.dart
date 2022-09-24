@@ -16,6 +16,17 @@ class LevelController extends GetxController implements GetxService {
   List<LevelModel> _countriesLevels = [];
   List<LevelModel> get getCountriesLevels => _countriesLevels;
 
+  int getFinishedLevels(String option) {
+    List<LevelModel> levels = getList(option)!;
+    int finishedLevels = 0;
+    for (var element in levels) {
+      if (element.guessed!) {
+        finishedLevels++;
+      }
+    }
+    return finishedLevels;
+  }
+
   int getLevelAmount(List<LevelModel> levels) {
     int amount = 0;
     levels.forEach((element) {
@@ -36,7 +47,7 @@ class LevelController extends GetxController implements GetxService {
     return levelListResult;
   }
 
-  int getFinishedLevels(int level, List<LevelModel> levelList) {
+  int getFinishedLevelsForLevel(int level, List<LevelModel> levelList) {
     int finishedLevels = 0;
     levelList.forEach((element) {
       if (element.level == level) {

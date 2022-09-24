@@ -68,10 +68,8 @@ class PlayPage extends StatelessWidget {
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [
-                        //Get.find<LevelController>().getFlagLevels,
-                        AppConstants.FLAGS
-                      ]);
+                      Get.toNamed(RouteHelper.getLevelsListPage(),
+                          arguments: [AppConstants.FLAGS]);
                     },
                     title: 'Flags',
                   ),
@@ -80,7 +78,8 @@ class PlayPage extends StatelessWidget {
                   ),
                   MenuButton(
                     onTap: () {
-                      //Get.toNamed(RouteHelper.getCountryLevelPage());
+                      Get.toNamed(RouteHelper.getLevelsListPage(),
+                          arguments: [AppConstants.COUNTRIES]);
                     },
                     title: 'Countries',
                   ),
@@ -89,7 +88,7 @@ class PlayPage extends StatelessWidget {
                   ),
                   MenuButton(
                     onTap: () {
-                      //Get.toNamed(RouteHelper.getCapitalLevelPage());
+                      //Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [AppConstants.CAPITALS]);
                     },
                     title: 'Capitals',
                   ),
@@ -98,7 +97,7 @@ class PlayPage extends StatelessWidget {
                   ),
                   MenuButton(
                     onTap: () {
-                      //Get.toNamed(RouteHelper.getCoatOfArmsLevelPage());
+                      //Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [AppConstants.COAT_OF_ARMS]);
                     },
                     title: 'Coat of arms',
                   ),

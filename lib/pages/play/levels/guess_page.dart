@@ -402,7 +402,7 @@ class _GuessPageState extends State<GuessPage> {
                               horizontal: Dimensions.height20),
                           decoration: BoxDecoration(),
                           child: Image.asset(
-                            'assets/image/flags/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                            'assets/image/${Get.arguments[0]}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
                             fit: BoxFit.contain,
                           ),
                         ),

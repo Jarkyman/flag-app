@@ -13,16 +13,16 @@ class LevelRepo {
     required this.sharedPreferences,
   });
 
-  Future<List<LevelModel>> readFlagLevels(String option) async {
-    if (await sharedPreferences.getStringList(AppConstants.FLAGS) == null) {
+  Future<List<LevelModel>> readLevels(String option) async {
+    if (await sharedPreferences.getStringList(option) == null) {
       final String response = await rootBundle
-          .loadString('assets/json/${option.toLowerCase()}.json');
+          .loadString('assets/json/${option.toLowerCase()}Levels.json');
 
       final list = json.decode(response) as List<dynamic>;
       List<LevelModel> levelModels = [];
       levelModels = list.map((e) => LevelModel.fromJson(e)).toList();
 
-      saveFlagLevels(levelModels, option);
+      saveLevels(levelModels, option);
       return levelModels;
     } else {
       List<String> response = await sharedPreferences.getStringList(option)!;
@@ -34,7 +34,7 @@ class LevelRepo {
     }
   }
 
-  Future<bool> saveFlagLevels(List<LevelModel> flags, String option) async {
+  Future<bool> saveLevels(List<LevelModel> flags, String option) async {
     List<String> saveFlags = [];
     flags.forEach((element) {
       return saveFlags.add(jsonEncode(element));

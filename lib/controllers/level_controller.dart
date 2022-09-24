@@ -13,6 +13,8 @@ class LevelController extends GetxController implements GetxService {
 
   List<LevelModel> _flagLevels = [];
   List<LevelModel> get getFlagLevels => _flagLevels;
+  List<LevelModel> _countriesLevels = [];
+  List<LevelModel> get getCountriesLevels => _countriesLevels;
 
   int getLevelAmount(List<LevelModel> levels) {
     int amount = 0;
@@ -65,6 +67,14 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       });
+    } else if (playOption == AppConstants.COUNTRIES) {
+      _countriesLevels.forEach((element) {
+        if (element == country) {
+          element.guessed = true;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      });
     }
 
     update();
@@ -73,6 +83,8 @@ class LevelController extends GetxController implements GetxService {
   List<LevelModel>? getList(String playOption) {
     if (playOption == AppConstants.FLAGS) {
       return _flagLevels;
+    } else if (playOption == AppConstants.COUNTRIES) {
+      return _countriesLevels;
     }
     return null;
   }
@@ -82,12 +94,13 @@ class LevelController extends GetxController implements GetxService {
   }
 
   Future<void> readLevels() async {
-    _flagLevels = await levelRepo.readFlagLevels(AppConstants.FLAGS);
+    _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS);
+    _countriesLevels = await levelRepo.readLevels(AppConstants.COUNTRIES);
     update();
   }
 
   Future<bool> saveLevels(String option) async {
     List<LevelModel> levelModels = getList(option)!;
-    return await levelRepo.saveFlagLevels(levelModels, option);
+    return await levelRepo.saveLevels(levelModels, option);
   }
 }

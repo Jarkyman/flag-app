@@ -53,7 +53,7 @@ class LevelPage extends StatelessWidget {
                       child: LevelCard(
                         guessed: levels[index].guessed!,
                         image:
-                            'assets/image/flags/${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}.png',
+                            'assets/image/${Get.arguments[0]}/${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}.png',
                       ),
                     ),
                   );

@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/image/
     - assets/image/flags/
+    - assets/image/countries/
     - assets/json/
     - assets/icon/
 

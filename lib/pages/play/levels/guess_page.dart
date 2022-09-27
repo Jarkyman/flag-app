@@ -7,12 +7,15 @@ import 'package:flag_app/widget/letter_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../controllers/country_controller.dart';
 import '../../../controllers/hint_controller.dart';
+import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
+import '../../../widget/ads/ad_banner_widget.dart';
 import '../../../widget/hint_bar.dart';
 import '../../../widget/hint_widget.dart';
 
@@ -33,11 +36,39 @@ class _GuessPageState extends State<GuessPage> {
   final int TILES_PR_ROW = 8;
   bool bombUsed = false;
 
+  BannerAd? _bannerAd;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     setInit();
+    createBannerAd();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
+
+  void createBannerAd() {
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          ad.dispose();
+        },
+      ),
+    ).load();
   }
 
   void setInit() {
@@ -374,6 +405,7 @@ class _GuessPageState extends State<GuessPage> {
                   padding: EdgeInsets.only(
                       top: Dimensions.height10, bottom: Dimensions.height10),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       country.guessed!
                           ? Container()
@@ -409,15 +441,19 @@ class _GuessPageState extends State<GuessPage> {
                       Hero(
                         tag:
                             '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
-                        child: Container(
-                          width: double.maxFinite,
-                          height: Dimensions.height20 * 14,
-                          margin: EdgeInsets.symmetric(
-                              horizontal: Dimensions.height20),
-                          decoration: BoxDecoration(),
-                          child: Image.asset(
-                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
-                            fit: BoxFit.contain,
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          alignment: Alignment.center,
+                          child: Container(
+                            //width: double.maxFinite,
+                            height: Dimensions.height20 * 13,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: Dimensions.height20),
+                            decoration: BoxDecoration(),
+                            child: Image.asset(
+                              'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -435,6 +471,8 @@ class _GuessPageState extends State<GuessPage> {
                                 ],
                               ),
                             ),
+                      if (_bannerAd != null)
+                        adBannerWidget(bannerAd: _bannerAd),
                     ],
                   ),
                 );

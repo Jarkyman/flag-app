@@ -9,10 +9,12 @@ import 'package:flag_app/repos/hint_repo.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:flag_app/repos/score_repo.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+  await MobileAds.instance.initialize();
 
   //Repo
   Get.lazyPut(() => CountryRepo());

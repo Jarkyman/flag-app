@@ -1,9 +1,10 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../helper/ad_helper.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../../helper/route_helper.dart';
 import '../../widget/hint_widget.dart';
 import '../../widget/menu_button.dart';
 
@@ -15,6 +16,46 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  RewardedAd? _rewardedAd;
+
+  @override
+  void initState() {
+    _loadRewardedAd();
+  }
+
+  @override
+  void dispose() {
+    _rewardedAd?.dispose();
+    super.dispose();
+  }
+
+  void _loadRewardedAd() {
+    RewardedAd.load(
+      adUnitId: AdHelper.rewardedAdUnitId,
+      request: AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              setState(() {
+                ad.dispose();
+                _rewardedAd = null;
+              });
+              _loadRewardedAd();
+            },
+          );
+
+          setState(() {
+            _rewardedAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load a rewarded ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +145,11 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                   MenuButton(
                     onTap: () {
-                      Get.find<HintController>().addHint(3);
+                      _rewardedAd?.show(
+                        onUserEarnedReward: (_, reward) {
+                          Get.find<HintController>().addHint(3);
+                        },
+                      );
                     },
                     title: 'Watch a video and get 3',
                   ),

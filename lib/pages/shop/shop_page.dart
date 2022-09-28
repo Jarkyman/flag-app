@@ -1,5 +1,6 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../helper/ad_helper.dart';
@@ -59,104 +60,109 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: Dimensions.width10, right: Dimensions.width10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      width: Dimensions.width20 * 2,
-                      height: Dimensions.height20 * 2,
-                      decoration: BoxDecoration(
-                        color: AppColors.mainColor.withOpacity(0.2),
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20 * 2),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.mainColor,
+      body: SwipeDetector(
+        onSwipeDown: (value) {
+          Get.back();
+        },
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    left: Dimensions.width10, right: Dimensions.width10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        width: Dimensions.width20 * 2,
+                        height: Dimensions.height20 * 2,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor.withOpacity(0.2),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20 * 2),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.close,
+                            color: AppColors.mainColor,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GetBuilder<HintController>(builder: (hintController) {
-                    return HintWidget(
-                      onTap: () {
-                        hintController.useHint(hintController.getHints);
-                      },
-                      icon: Icon(
-                        Icons.lightbulb_outline,
-                        color: AppColors.mainColor,
-                      ),
-                      num: hintController.getHints.toString(),
-                    );
-                  }),
-                ],
-              ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      for (int i = 1; i <= 10; i++) {
-                        Get.find<HintController>().addHint(5);
-                      }
-                    },
-                    title: 'Buy 50 hints',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      for (int i = 1; i <= 20; i++) {
-                        Get.find<HintController>().addHint(5);
-                      }
-                    },
-                    title: 'Buy 100 hints',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      for (int i = 1; i <= 100; i++) {
-                        Get.find<HintController>().addHint(5);
-                      }
-                    },
-                    title: 'Buy 500 hints',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      _rewardedAd?.show(
-                        onUserEarnedReward: (_, reward) {
-                          Get.find<HintController>().addHint(3);
+                    GetBuilder<HintController>(builder: (hintController) {
+                      return HintWidget(
+                        onTap: () {
+                          hintController.useHint(hintController.getHints);
                         },
+                        icon: Icon(
+                          Icons.lightbulb_outline,
+                          color: AppColors.mainColor,
+                        ),
+                        num: hintController.getHints.toString(),
                       );
-                    },
-                    title: 'Watch a video and get 3',
-                  ),
-                ],
+                    }),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        for (int i = 1; i <= 10; i++) {
+                          Get.find<HintController>().addHint(5);
+                        }
+                      },
+                      title: 'Buy 50 hints',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        for (int i = 1; i <= 20; i++) {
+                          Get.find<HintController>().addHint(5);
+                        }
+                      },
+                      title: 'Buy 100 hints',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        for (int i = 1; i <= 100; i++) {
+                          Get.find<HintController>().addHint(5);
+                        }
+                      },
+                      title: 'Buy 500 hints',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        _rewardedAd?.show(
+                          onUserEarnedReward: (_, reward) {
+                            Get.find<HintController>().addHint(3);
+                          },
+                        );
+                      },
+                      title: 'Watch a video and get 3',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

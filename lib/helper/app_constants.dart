@@ -6,6 +6,7 @@ class AppConstants {
   static const String FLAG_SCORE = 'flag-score';
   static const String FLAGS_SCORE = 'flags-score';
   static const String CAPITAL_SCORE = 'capital-score';
+  static const String COUNTRIES_SCORE = 'countries-score';
 
   // Hints
   static const String HINTS = 'hints';

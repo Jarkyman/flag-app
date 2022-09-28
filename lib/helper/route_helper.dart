@@ -1,5 +1,6 @@
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/pages/capital_page.dart';
+import 'package:flag_app/pages/countries_page.dart';
 import 'package:flag_app/pages/flag_page.dart';
 import 'package:flag_app/pages/play/levels/guess_page.dart';
 import 'package:flag_app/pages/play/levels/levels_list_page.dart';
@@ -22,6 +23,7 @@ class RouteHelper {
   static const String flagPage = '/flag-page';
   static const String flagsPage = '/flags-page';
   static const String capitalPage = '/capital-page';
+  static const String countriesPage = '/countries-page';
 
   static String getSplashPage() => '$splashPage';
   static String getInitial() => '$initial';
@@ -33,6 +35,7 @@ class RouteHelper {
   static String getFlagPage() => '$flagPage';
   static String getFlagsPage() => '$flagsPage';
   static String getCapitalPage() => '$capitalPage';
+  static String getCountriesPage() => '$countriesPage';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
@@ -52,5 +55,6 @@ class RouteHelper {
     GetPage(name: flagPage, page: () => FlagPage()),
     GetPage(name: flagsPage, page: () => FlagsPage()),
     GetPage(name: capitalPage, page: () => CapitalPage()),
+    GetPage(name: countriesPage, page: () => CountriesPage()),
   ];
 }

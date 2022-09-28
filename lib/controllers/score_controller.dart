@@ -14,6 +14,8 @@ class ScoreController extends GetxController implements GetxService {
   int get getFlagsScore => _flagsScore;
   int _capitalScore = 0;
   int get getCapitalScore => _capitalScore;
+  int _countriesScore = 0;
+  int get getCountriesScore => _countriesScore;
 
   Future<void> readAllScores() async {
     readFlagScore();
@@ -23,37 +25,37 @@ class ScoreController extends GetxController implements GetxService {
 
   Future<void> readFlagScore() async {
     _flagScore = await scoreRepo.readFlagScore();
-    print('############################################### Reading FLAG score');
   }
 
   Future<void> saveFlagScore(int score) async {
     _flagScore = score;
     scoreRepo.saveFlagScore(score);
-    print('############################################### Saving FLAG score');
   }
 
   Future<void> readFlagsScore() async {
     _flagsScore = await scoreRepo.readFlagsScore();
-    print(
-        '############################################### Reading FLAGS score');
   }
 
   Future<void> saveFlagsScore(int score) async {
     _flagsScore = score;
     scoreRepo.saveFlagsScore(score);
-    print('############################################### Saving FLAGS score');
   }
 
   Future<void> readCapitalScore() async {
     _capitalScore = await scoreRepo.readCapitalScore();
-    print(
-        '############################################### Reading CAPITAL score');
   }
 
   Future<void> saveCapitalScore(int score) async {
     _capitalScore = score;
     scoreRepo.saveCapitalScore(score);
-    print(
-        '############################################### Saving CAPITAL score');
+  }
+
+  Future<void> readCountriesScore() async {
+    _countriesScore = await scoreRepo.readCountriesScore();
+  }
+
+  Future<void> saveCountriesScore(int score) async {
+    _countriesScore = score;
+    scoreRepo.saveCountriesScore(score);
   }
 }

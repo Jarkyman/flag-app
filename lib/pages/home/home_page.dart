@@ -1,11 +1,7 @@
-import 'dart:io';
-
-import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
-import 'package:flag_app/models/country_model.dart';
 import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getFlagPage());
                     },
-                    title: 'Match the country',
+                    title: 'Witch country',
                   ),
                   SizedBox(
                     height: Dimensions.height20,
@@ -97,9 +93,18 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getFlagsPage());
                     },
-                    title: 'Match the flag',
+                    title: 'Match flags',
                   ),
                   SizedBox(
+                    height: Dimensions.height20,
+                  ),
+                  MenuButton(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getCountriesPage());
+                    },
+                    title: 'Match countries',
+                  ),
+                  /*SizedBox(
                     height: Dimensions.height20,
                   ),
                   MenuButton(
@@ -107,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                       Get.toNamed(RouteHelper.getCapitalPage());
                     },
                     title: 'Capitals',
-                  ),
+                  ),*/
                   SizedBox(
                     height: Dimensions.height20,
                   ),

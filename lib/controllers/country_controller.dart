@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flag_app/controllers/country_continent_controller.dart';
-import 'package:flag_app/models/country_continent_model.dart';
 import 'package:flag_app/models/country_model.dart';
 import 'package:flag_app/repos/country_repo.dart';
 import 'package:get/get.dart';

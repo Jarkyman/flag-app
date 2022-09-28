@@ -4,6 +4,7 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
+import 'package:flag_app/widget/popup/wrong_guess_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -15,16 +16,15 @@ import '../helper/route_helper.dart';
 import '../widget/ads/ad_banner_widget.dart';
 import '../widget/guess_button.dart';
 import '../widget/hint_widget.dart';
-import '../widget/popup/wrong_guess_dialog.dart';
 
-class FlagPage extends StatefulWidget {
-  const FlagPage({Key? key}) : super(key: key);
+class CountriesPage extends StatefulWidget {
+  const CountriesPage({Key? key}) : super(key: key);
 
   @override
-  State<FlagPage> createState() => _FlagPageState();
+  State<CountriesPage> createState() => _CountriesPageState();
 }
 
-class _FlagPageState extends State<FlagPage> {
+class _CountriesPageState extends State<CountriesPage> {
   late CountryModel selectedCountry;
   late List<CountryModel> countryOptions;
   List<bool> correctColor = [false, false, false, false];
@@ -48,11 +48,11 @@ class _FlagPageState extends State<FlagPage> {
       selectedCountry = Get.find<CountryController>().getACountry();
       countryOptions = Get.find<CountryController>()
           .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getFlagScore;
+      highScore = Get.find<ScoreController>().getCountriesScore;
       isLoading = false;
       isTryAgainUsed = false;
     });
-    print(Get.find<ScoreController>().getFlagScore);
+    print(Get.find<ScoreController>().getCountriesScore);
   }
 
   @override
@@ -134,7 +134,7 @@ class _FlagPageState extends State<FlagPage> {
         score++;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCountriesScore(highScore);
         }
       });
       generateCountries();
@@ -144,7 +144,7 @@ class _FlagPageState extends State<FlagPage> {
         wrongColor[selected] = true;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCountriesScore(highScore);
         }
       });
       wrongGuessDialog(
@@ -203,7 +203,7 @@ class _FlagPageState extends State<FlagPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Flags',
+          'Countries',
           style: TextStyle(
               fontSize: Dimensions.font26, color: AppColors.titleColor),
         ),
@@ -309,7 +309,7 @@ class _FlagPageState extends State<FlagPage> {
                               horizontal: Dimensions.height20),
                           decoration: BoxDecoration(),
                           child: Image.asset(
-                            'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
+                            'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}.png',
                             fit: BoxFit.contain,
                           ),
                         ),

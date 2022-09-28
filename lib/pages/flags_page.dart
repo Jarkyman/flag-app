@@ -2,16 +2,20 @@ import 'dart:math';
 
 import 'package:flag_app/helper/route_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controllers/country_controller.dart';
 import '../controllers/hint_controller.dart';
 import '../controllers/score_controller.dart';
+import '../helper/ad_helper.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../models/country_model.dart';
 import 'package:get/get.dart';
 
+import '../widget/ads/ad_banner_widget.dart';
 import '../widget/hint_widget.dart';
+import '../widget/popup/wrong_guess_dialog.dart';
 
 class FlagsPage extends StatefulWidget {
   const FlagsPage({Key? key}) : super(key: key);
@@ -30,6 +34,78 @@ class _FlagsPageState extends State<FlagsPage> {
   bool checkUsed = false;
   int score = 0;
   late int highScore;
+  bool isTryAgainUsed = false;
+
+  BannerAd? _bannerAd;
+  RewardedAd? _rewardedAd;
+
+  @override
+  void initState() {
+    super.initState();
+    createBannerAd();
+    _loadRewardedAd();
+    setState(() {
+      selectedCountry = Get.find<CountryController>().getACountry();
+      countryOptions = Get.find<CountryController>()
+          .generateCountries(selectedCountry.countryName.toString(), 6);
+      highScore = Get.find<ScoreController>().getFlagsScore;
+      isLoading = false;
+    });
+    print(Get.find<ScoreController>().getFlagsScore);
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    _rewardedAd?.dispose();
+    super.dispose();
+  }
+
+  void _loadRewardedAd() {
+    RewardedAd.load(
+      adUnitId: AdHelper.rewardedAdUnitId,
+      request: AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              setState(() {
+                ad.dispose();
+                _rewardedAd = null;
+              });
+              _loadRewardedAd();
+            },
+          );
+
+          setState(() {
+            _rewardedAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load a rewarded ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
+  void createBannerAd() {
+    BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          ad.dispose();
+        },
+      ),
+    ).load();
+  }
 
   void generateCountries() {
     setState(() {
@@ -69,10 +145,33 @@ class _FlagsPageState extends State<FlagsPage> {
           highScore = score;
           Get.find<ScoreController>().saveFlagsScore(highScore);
         }
-        generateCountries();
-        score = 0;
       });
+      wrongGuessDialog(
+        score: score,
+        isTryAgainUsed: isTryAgainUsed,
+        onTapConfirm: () {
+          _rewardedAd?.show(
+            onUserEarnedReward: (_, reward) {
+              generateCountries();
+              Get.close(1);
+              isTryAgainUsed = true;
+            },
+          );
+        },
+        onTapCancel: () {
+          wrongChoice(selected);
+          Get.close(1);
+        },
+      );
     }
+  }
+
+  void wrongChoice(int selected) {
+    setState(() {
+      generateCountries();
+      isTryAgainUsed = false;
+      score = 0;
+    });
   }
 
   int getCorrect() {
@@ -104,19 +203,6 @@ class _FlagsPageState extends State<FlagsPage> {
     });
 
     print(ran1.toString() + " / " + ran2.toString());
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      selectedCountry = Get.find<CountryController>().getACountry();
-      countryOptions = Get.find<CountryController>()
-          .generateCountries(selectedCountry.countryName.toString(), 6);
-      highScore = Get.find<ScoreController>().getFlagsScore;
-      isLoading = false;
-    });
-    print(Get.find<ScoreController>().getFlagsScore);
   }
 
   @override
@@ -305,6 +391,7 @@ class _FlagsPageState extends State<FlagsPage> {
                 }),
               ),
             ),
+            if (_bannerAd != null) adBannerWidget(bannerAd: _bannerAd),
           ],
         );
       }),

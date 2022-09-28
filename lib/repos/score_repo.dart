@@ -35,4 +35,14 @@ class ScoreRepo {
   Future<bool> saveCapitalScore(int score) async {
     return await sharedPreferences.setInt(AppConstants.CAPITAL_SCORE, score);
   }
+
+  Future<int> readCountriesScore() async {
+    int score =
+        await sharedPreferences.getInt(AppConstants.COUNTRIES_SCORE) ?? 0;
+    return score;
+  }
+
+  Future<bool> saveCountriesScore(int score) async {
+    return await sharedPreferences.setInt(AppConstants.COUNTRIES_SCORE, score);
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/models/level_model.dart';
+import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/empty_tile.dart';
 import 'package:flag_app/widget/letter_tile.dart';
 import 'package:flutter/material.dart';
@@ -372,111 +373,113 @@ class _GuessPageState extends State<GuessPage> {
         ),
         bottomNavigationBar:
             country.guessed! ? finishInfoBox() : BottomAppBar(),
-        body: SwipeDetector(
-          onSwipeRight: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] - 1;
+        body: BackgroundImage(
+          child: SwipeDetector(
+            onSwipeRight: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] - 1;
 
-            if (nextPageIndex > -1) {
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
-            }
-          },
-          onSwipeLeft: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] + 1;
-            if (nextPageIndex < levelList.length) {
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
-            }
-          },
-          child: SafeArea(
-            child: GetBuilder<LevelController>(
-              builder: (levelController) {
-                print('Type = ' + Get.arguments[0].toString());
-                print('Level = ' + Get.arguments[1].toString());
-                print('Flag index = ' + Get.arguments[2].toString());
+              if (nextPageIndex > -1) {
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            onSwipeLeft: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] + 1;
+              if (nextPageIndex < levelList.length) {
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            child: SafeArea(
+              child: GetBuilder<LevelController>(
+                builder: (levelController) {
+                  print('Type = ' + Get.arguments[0].toString());
+                  print('Level = ' + Get.arguments[1].toString());
+                  print('Flag index = ' + Get.arguments[2].toString());
 
-                return Padding(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height10, bottom: Dimensions.height10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      country.guessed!
-                          ? Container()
-                          : HintBar(
-                              tapHintOne: () {
-                                useFinishHint(5);
-                              },
-                              iconOne: Icon(
-                                Icons.check,
-                                color: AppColors.mainColor,
+                  return Padding(
+                    padding: EdgeInsets.only(
+                        top: Dimensions.height10, bottom: Dimensions.height10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        country.guessed!
+                            ? Container()
+                            : HintBar(
+                                tapHintOne: () {
+                                  useFinishHint(5);
+                                },
+                                iconOne: Icon(
+                                  Icons.check,
+                                  color: AppColors.mainColor,
+                                ),
+                                hintPriceOne: '5',
+                                tapHintTwo: () {
+                                  useBombHint(2);
+                                },
+                                iconTwo: ImageIcon(
+                                  AssetImage('assets/icon/bomb.png'),
+                                  color: AppColors.mainColor,
+                                  size: Dimensions.iconSize24,
+                                ),
+                                hintPriceTwo: '2',
+                                tapHintThree: () {
+                                  useFirstLetterHint(1);
+                                },
+                                iconThree: ImageIcon(
+                                  AssetImage('assets/icon/a.png'),
+                                  color: AppColors.mainColor,
+                                  size: Dimensions.iconSize24,
+                                ),
+                                hintPriceThree: '1',
                               ),
-                              hintPriceOne: '5',
-                              tapHintTwo: () {
-                                useBombHint(2);
-                              },
-                              iconTwo: ImageIcon(
-                                AssetImage('assets/icon/bomb.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
+                        SizedBox(height: Dimensions.height10),
+                        Hero(
+                          tag:
+                              '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            alignment: Alignment.center,
+                            child: Container(
+                              //width: double.maxFinite,
+                              height: Dimensions.height20 * 13,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: Dimensions.height20),
+                              decoration: BoxDecoration(),
+                              child: Image.asset(
+                                'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                                fit: BoxFit.cover,
                               ),
-                              hintPriceTwo: '2',
-                              tapHintThree: () {
-                                useFirstLetterHint(1);
-                              },
-                              iconThree: ImageIcon(
-                                AssetImage('assets/icon/a.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
-                              ),
-                              hintPriceThree: '1',
-                            ),
-                      SizedBox(height: Dimensions.height10),
-                      Hero(
-                        tag:
-                            '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
-                        child: FittedBox(
-                          fit: BoxFit.contain,
-                          alignment: Alignment.center,
-                          child: Container(
-                            //width: double.maxFinite,
-                            height: Dimensions.height20 * 13,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: Dimensions.height20),
-                            decoration: BoxDecoration(),
-                            child: Image.asset(
-                              'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
-                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      ),
-                      country.guessed!
-                          ? Expanded(
-                              child: guessTiles(correctLettersList, true),
-                            )
-                          : Expanded(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  guessTiles(lettersListAnswer, false),
-                                  tilesAtBottom(),
-                                ],
+                        country.guessed!
+                            ? Expanded(
+                                child: guessTiles(correctLettersList, true),
+                              )
+                            : Expanded(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    guessTiles(lettersListAnswer, false),
+                                    tilesAtBottom(),
+                                  ],
+                                ),
                               ),
-                            ),
-                      if (_bannerAd != null)
-                        adBannerWidget(bannerAd: _bannerAd),
-                    ],
-                  ),
-                );
-              },
+                        if (_bannerAd != null)
+                          adBannerWidget(bannerAd: _bannerAd),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ));

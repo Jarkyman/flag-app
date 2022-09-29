@@ -20,6 +20,7 @@ class MenuButton extends StatelessWidget {
         width: Dimensions.width30 * 10,
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
+          color: AppColors.correctColor.withOpacity(0.3),
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,

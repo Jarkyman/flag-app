@@ -4,6 +4,7 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
+import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -130,153 +131,149 @@ class _CapitalPageState extends State<CapitalPage> {
           }),
         ],
       ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : GetBuilder<CountryController>(
-              builder: (countryController) {
-                return Column(
-                  children: [
-                    Padding(
+      body: BackgroundImage(
+        child: SafeArea(
+          child: GetBuilder<CountryController>(
+            builder: (countryController) {
+              return Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: Dimensions.height10, bottom: Dimensions.height10),
+                    child: Padding(
                       padding: EdgeInsets.only(
-                          top: Dimensions.height10,
-                          bottom: Dimensions.height10),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: Dimensions.width10,
-                            right: Dimensions.width10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  GetBuilder<HintController>(
-                                      builder: (hintController) {
-                                    return HintWidget(
-                                      onTap: () {
-                                        if (hintController.getCorrect() &&
-                                            !checkUsed) {
-                                          hintController.useHint(3);
-                                          checkWin(selectedCountry.countryName!,
-                                              getCorrect());
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.check,
-                                        color: AppColors.mainColor,
-                                      ),
-                                      num: '3',
-                                    );
-                                  }),
-                                  SizedBox(
-                                    width: Dimensions.width10,
-                                  ),
-                                  GetBuilder<HintController>(
-                                      builder: (hintController) {
-                                    return HintWidget(
-                                      onTap: () {
-                                        if (hintController.getFiftyFifty() &&
-                                            !fiftyFiftyUsed) {
-                                          hintController.useHint(1);
-                                          getFiftyFifty();
-                                        }
-                                      },
-                                      icon: ImageIcon(
-                                        AssetImage(
-                                            'assets/icon/fifty_fifty.png'),
-                                        color: AppColors.mainColor,
-                                        size: Dimensions.iconSize24 * 1.4,
-                                      ),
-                                      num: '1',
-                                    );
-                                  }),
-                                ],
-                              ),
-                            ),
-                            GetBuilder<HintController>(
-                                builder: (hintController) {
-                              return HintWidget(
-                                onTap: () {
-                                  Get.toNamed(RouteHelper.getShopPage());
-                                },
-                                icon: Icon(
-                                  Icons.lightbulb_outline,
-                                  color: AppColors.mainColor,
+                          left: Dimensions.width10, right: Dimensions.width10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                GetBuilder<HintController>(
+                                    builder: (hintController) {
+                                  return HintWidget(
+                                    onTap: () {
+                                      if (hintController.getCorrect() &&
+                                          !checkUsed) {
+                                        hintController.useHint(3);
+                                        checkWin(selectedCountry.countryName!,
+                                            getCorrect());
+                                      }
+                                    },
+                                    icon: Icon(
+                                      Icons.check,
+                                      color: AppColors.mainColor,
+                                    ),
+                                    num: '3',
+                                  );
+                                }),
+                                SizedBox(
+                                  width: Dimensions.width10,
                                 ),
-                                num: hintController.getHints.toString(),
-                              );
-                            }),
-                          ],
-                        ),
+                                GetBuilder<HintController>(
+                                    builder: (hintController) {
+                                  return HintWidget(
+                                    onTap: () {
+                                      if (hintController.getFiftyFifty() &&
+                                          !fiftyFiftyUsed) {
+                                        hintController.useHint(1);
+                                        getFiftyFifty();
+                                      }
+                                    },
+                                    icon: ImageIcon(
+                                      AssetImage('assets/icon/fifty_fifty.png'),
+                                      color: AppColors.mainColor,
+                                      size: Dimensions.iconSize24 * 1.4,
+                                    ),
+                                    num: '1',
+                                  );
+                                }),
+                              ],
+                            ),
+                          ),
+                          GetBuilder<HintController>(builder: (hintController) {
+                            return HintWidget(
+                              onTap: () {
+                                Get.toNamed(RouteHelper.getShopPage());
+                              },
+                              icon: Icon(
+                                Icons.lightbulb_outline,
+                                color: AppColors.mainColor,
+                              ),
+                              num: hintController.getHints.toString(),
+                            );
+                          }),
+                        ],
                       ),
                     ),
-                    Container(
-                      height: Dimensions.height30 * 2,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: Dimensions.width10),
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text(
-                              selectedCountry.capital.toString(),
-                              style: TextStyle(
-                                fontSize: Dimensions.font26 * 2,
-                                fontWeight: FontWeight.bold,
-                              ),
+                  ),
+                  Container(
+                    height: Dimensions.height30 * 2,
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width10),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            selectedCountry.capital.toString(),
+                            style: TextStyle(
+                              fontSize: Dimensions.font26 * 2,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const Divider(
-                      height: 20,
-                      thickness: 2,
-                      indent: 20,
-                      endIndent: 20,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20 * 2,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: 4,
-                          itemBuilder: (context, index) {
-                            return GuessButton(
-                              color: correctColor[index]
-                                  ? AppColors.correctColor
-                                  : wrongColor[index]
-                                      ? Colors.red
-                                      : Colors.white,
-                              textColor: correctColor[index]
-                                  ? Colors.white
-                                  : wrongColor[index]
-                                      ? Colors.white
-                                      : AppColors.mainColor,
-                              borderColor: correctColor[index]
-                                  ? Colors.white
-                                  : wrongColor[index]
-                                      ? Colors.white
-                                      : AppColors.mainColor,
-                              country:
+                  ),
+                  const Divider(
+                    height: 20,
+                    thickness: 2,
+                    indent: 20,
+                    endIndent: 20,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                    height: Dimensions.height20 * 2,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return GuessButton(
+                            color: correctColor[index]
+                                ? AppColors.correctColor
+                                : wrongColor[index]
+                                    ? Colors.red
+                                    : Colors.white,
+                            textColor: correctColor[index]
+                                ? Colors.white
+                                : wrongColor[index]
+                                    ? Colors.white
+                                    : AppColors.mainColor,
+                            borderColor: correctColor[index]
+                                ? Colors.white
+                                : wrongColor[index]
+                                    ? Colors.white
+                                    : AppColors.mainColor,
+                            country:
+                                countryOptions[index].countryName.toString(),
+                            onTap: () {
+                              checkWin(
                                   countryOptions[index].countryName.toString(),
-                              onTap: () {
-                                checkWin(
-                                    countryOptions[index]
-                                        .countryName
-                                        .toString(),
-                                    index);
-                              },
-                            );
-                          }),
-                    ),
-                  ],
-                );
-              },
-            ),
+                                  index);
+                            },
+                          );
+                        }),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

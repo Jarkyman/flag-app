@@ -2,6 +2,7 @@ import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
+import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,112 +21,114 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: Dimensions.width10, right: Dimensions.width10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      print(Get.find<LevelController>().getFlagLevels);
-                    },
-                    child: Container(
-                      width: Dimensions.width20 * 2,
-                      height: Dimensions.height20 * 2,
-                      decoration: BoxDecoration(
-                        color: AppColors.mainColor.withOpacity(0.2),
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20 * 2),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.settings_outlined,
-                          color: AppColors.mainColor,
+      body: BackgroundImage(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    left: Dimensions.width10,
+                    right: Dimensions.width10,
+                    top: Dimensions.height10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: Dimensions.width20 * 2,
+                        height: Dimensions.height20 * 2,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor.withOpacity(0.2),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20 * 2),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.settings_outlined,
+                            color: AppColors.mainColor,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GetBuilder<HintController>(builder: (hintController) {
-                    return HintWidget(
+                    GetBuilder<HintController>(builder: (hintController) {
+                      return HintWidget(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getShopPage());
+                        },
+                        icon: Icon(
+                          Icons.lightbulb_outline,
+                          color: AppColors.mainColor,
+                        ),
+                        num: hintController.getHints.toString(),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getPlayPage());
+                      },
+                      title: 'Play',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getFlagPage());
+                      },
+                      title: 'Which flag',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getFlagsPage());
+                      },
+                      title: 'Match flags',
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getCountriesPage());
+                      },
+                      title: 'Which country',
+                    ),
+                    /*SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getCapitalPage());
+                      },
+                      title: 'Capitals',
+                    ),*/
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    MenuButton(
                       onTap: () {
                         Get.toNamed(RouteHelper.getShopPage());
                       },
-                      icon: Icon(
-                        Icons.lightbulb_outline,
-                        color: AppColors.mainColor,
-                      ),
-                      num: hintController.getHints.toString(),
-                    );
-                  }),
-                ],
+                      title: 'Shop',
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getPlayPage());
-                    },
-                    title: 'Play',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getFlagPage());
-                    },
-                    title: 'Witch country',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getFlagsPage());
-                    },
-                    title: 'Match flags',
-                  ),
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getCountriesPage());
-                    },
-                    title: 'Match countries',
-                  ),
-                  /*SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getCapitalPage());
-                    },
-                    title: 'Capitals',
-                  ),*/
-                  SizedBox(
-                    height: Dimensions.height20,
-                  ),
-                  MenuButton(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getShopPage());
-                    },
-                    title: 'Shop',
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

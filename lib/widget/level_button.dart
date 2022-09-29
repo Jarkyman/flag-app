@@ -26,6 +26,7 @@ class LevelButton extends StatelessWidget {
       child: Container(
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
+          color: AppColors.mainColor.withOpacity(0.4),
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,

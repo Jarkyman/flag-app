@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/repos/level_repo.dart';
+import 'package:flag_app/widget/popup/level_unlock_dialog.dart';
 import 'package:get/get.dart';
 
 import '../models/level_model.dart';
@@ -16,6 +17,24 @@ class LevelController extends GetxController implements GetxService {
   List<LevelModel> _countriesLevels = [];
   List<LevelModel> get getCountriesLevels => _countriesLevels;
 
+  bool isLevelUnlocked(int index, String option) {
+    int levelsToComplete = (index * 10) - 11;
+    int levelsCompleted = getFinishedLevels(option);
+    return levelsToComplete >= levelsCompleted;
+  }
+
+  int getFinishedLevel(String option) {
+    List<LevelModel> levels = getList(option)!;
+    int finishedLevel = 0;
+    int levelAmount = getLevelAmount2(option);
+    for (int i = 0; i < levelAmount; i++) {
+      if (isLevelUnlocked(i, option)) {
+        finishedLevel++;
+      }
+    }
+    return finishedLevel;
+  }
+
   int getFinishedLevels(String option) {
     List<LevelModel> levels = getList(option)!;
     int finishedLevels = 0;
@@ -25,6 +44,16 @@ class LevelController extends GetxController implements GetxService {
       }
     }
     return finishedLevels;
+  }
+
+  int getLevelAmount2(String option) {
+    int amount = 0;
+    getList(option)!.forEach((element) {
+      if (amount < element.level!) {
+        amount = element.level!;
+      }
+    });
+    return amount;
   }
 
   int getLevelAmount(List<LevelModel> levels) {

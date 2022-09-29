@@ -1,15 +1,12 @@
 import 'package:flag_app/controllers/level_controller.dart';
-import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/Top%20bar/app_bar_row.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/level_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controllers/hint_controller.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
-import '../../../widget/hint_widget.dart';
 
 class LevelsListPage extends StatelessWidget {
   const LevelsListPage({Key? key}) : super(key: key);
@@ -44,7 +41,8 @@ class LevelsListPage extends StatelessWidget {
                           int levelsToComplete = (index * 10) - 11;
                           int levelsCompleted = levelController
                               .getFinishedLevels(Get.arguments[0]);
-                          bool isLocked = levelsToComplete >= levelsCompleted;
+                          bool isLocked = levelController.isLevelUnlocked(
+                              index, Get.arguments[0]);
                           return Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: Dimensions.height10,

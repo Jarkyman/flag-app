@@ -15,7 +15,7 @@ import '../helper/ad_helper.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
 import '../widget/ads/ad_banner_widget.dart';
-import '../widget/guess_button.dart';
+import '../widget/buttons/guess_button.dart';
 import '../widget/hint_widget.dart';
 
 class CountriesPage extends StatefulWidget {

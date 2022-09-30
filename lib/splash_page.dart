@@ -62,7 +62,7 @@ class _SpalshPageState extends State<SplashScreen>
             scale: animation,
             child: Center(
               child: Image.asset(
-                'assets/image/flags.png',
+                'assets/image/flag_ball.png',
                 width: Dimensions.splashImg,
               ),
             ),

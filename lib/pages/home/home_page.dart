@@ -1,5 +1,4 @@
 import 'package:flag_app/controllers/hint_controller.dart';
-import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
 import 'package:flag_app/widget/background_image.dart';
@@ -8,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helper/route_helper.dart';
-import '../../widget/menu_button.dart';
+import '../../widget/buttons/menu_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,7 +33,9 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getSettingsPage());
+                      },
                       child: Container(
                         width: Dimensions.width20 * 2,
                         height: Dimensions.height20 * 2,

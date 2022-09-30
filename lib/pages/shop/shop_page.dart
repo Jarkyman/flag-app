@@ -5,11 +5,9 @@ import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../helper/ad_helper.dart';
-import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../widget/Top bar/app_bar_row_exit.dart';
-import '../../widget/hint_widget.dart';
-import '../../widget/menu_button.dart';
+import '../../widget/buttons/menu_button.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/background_image.dart';
@@ -16,9 +17,11 @@ import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
+import '../../../models/country_model.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
 import '../../../widget/hint_bar.dart';
 import '../../../widget/hint_widget.dart';
+import '../../../widget/info_column.dart';
 
 class GuessPage extends StatefulWidget {
   const GuessPage({Key? key}) : super(key: key);
@@ -82,6 +85,7 @@ class _GuessPageState extends State<GuessPage> {
     allLetters =
         generateRandomLetters(country.country!.toUpperCase().split(''));
     bombUsed = false;
+    print(lettersListAnswer[0].length);
   }
 
   void checkWin() {
@@ -105,7 +109,7 @@ class _GuessPageState extends State<GuessPage> {
 
     List<String> temp = result.split('');
     for (int i = 0; i < temp.length; i++) {
-      if (temp[i] == String.fromCharCode(8626)) {
+      if (temp[i] == String.fromCharCode(8626) || temp[i] == '/') {
         temp.remove(temp[i]);
       }
     }
@@ -148,6 +152,18 @@ class _GuessPageState extends State<GuessPage> {
       }
     }
 
+    if (lettersList.length > 1) {
+      for (int i = 0; i < lettersList.length - 1; i++) {
+        if ((lettersList[i].length + lettersList[i + 1].length) <= 7) {
+          lettersList[i].add('/');
+          lettersList[i].addAll(lettersList[i + 1]);
+          lettersList.removeAt(i + 1);
+        }
+      }
+    }
+
+    print(lettersList);
+
     return lettersList;
   }
 
@@ -156,7 +172,10 @@ class _GuessPageState extends State<GuessPage> {
 
     lettersList.forEach((words) {
       for (int i = 0; i < words.length; i++) {
-        if (words[i] == '-' || words[i] == String.fromCharCode(8626)) {
+        if (words[i] == '-' ||
+            words[i] == String.fromCharCode(8626) ||
+            words[i] == '/') {
+          print('HIT ${word[i]}');
         } else {
           words[i] = '';
         }
@@ -370,9 +389,16 @@ class _GuessPageState extends State<GuessPage> {
         appBar: AppBar(
           title: Text('${Get.arguments[0]}'),
           backgroundColor: AppColors.mainColor,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Get.find<LevelController>()
+                    .guessedRemove(Get.arguments[0], country);
+              },
+              child: Icon(Icons.refresh),
+            ),
+          ],
         ),
-        bottomNavigationBar:
-            country.guessed! ? finishInfoBox() : BottomAppBar(),
         body: BackgroundImage(
           child: SwipeDetector(
             onSwipeRight: (value) {
@@ -396,99 +422,150 @@ class _GuessPageState extends State<GuessPage> {
                 });
               }
             },
-            child: SafeArea(
-              child: GetBuilder<LevelController>(
-                builder: (levelController) {
-                  print('Type = ' + Get.arguments[0].toString());
-                  print('Level = ' + Get.arguments[1].toString());
-                  print('Flag index = ' + Get.arguments[2].toString());
+            child: GetBuilder<LevelController>(
+              builder: (levelController) {
+                print('Type = ' + Get.arguments[0].toString());
+                print('Level = ' + Get.arguments[1].toString());
+                print('Flag index = ' + Get.arguments[2].toString());
 
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        top: Dimensions.height10, bottom: Dimensions.height10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        country.guessed!
-                            ? Container()
-                            : HintBar(
-                                tapHintOne: () {
-                                  useFinishHint(5);
-                                },
-                                iconOne: Icon(
-                                  Icons.check,
-                                  color: AppColors.mainColor,
-                                ),
-                                hintPriceOne: '5',
-                                tapHintTwo: () {
-                                  useBombHint(2);
-                                },
-                                iconTwo: ImageIcon(
-                                  AssetImage('assets/icon/bomb.png'),
-                                  color: AppColors.mainColor,
-                                  size: Dimensions.iconSize24,
-                                ),
-                                hintPriceTwo: '2',
-                                tapHintThree: () {
-                                  useFirstLetterHint(1);
-                                },
-                                iconThree: ImageIcon(
-                                  AssetImage('assets/icon/a.png'),
-                                  color: AppColors.mainColor,
-                                  size: Dimensions.iconSize24,
-                                ),
-                                hintPriceThree: '1',
+                return Padding(
+                  padding: EdgeInsets.only(top: Dimensions.height10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      country.guessed!
+                          ? Container(
+                              height: Dimensions.height20 * 2,
+                            )
+                          : HintBar(
+                              tapHintOne: () {
+                                useFinishHint(5);
+                              },
+                              iconOne: Icon(
+                                Icons.check,
+                                color: AppColors.mainColor,
                               ),
-                        SizedBox(height: Dimensions.height10),
-                        Hero(
-                          tag:
-                              '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            alignment: Alignment.center,
-                            child: Container(
-                              //width: double.maxFinite,
-                              height: Dimensions.height20 * 13,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: Dimensions.height20),
-                              decoration: BoxDecoration(),
-                              child: Image.asset(
-                                'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
-                                fit: BoxFit.cover,
+                              hintPriceOne: '5',
+                              tapHintTwo: () {
+                                useBombHint(2);
+                              },
+                              iconTwo: ImageIcon(
+                                AssetImage('assets/icon/bomb.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
                               ),
+                              hintPriceTwo: '2',
+                              tapHintThree: () {
+                                useFirstLetterHint(1);
+                              },
+                              iconThree: ImageIcon(
+                                AssetImage('assets/icon/a.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceThree: '1',
                             ),
+                      SizedBox(height: Dimensions.height10),
+                      Hero(
+                        tag:
+                            '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
+                        child: Container(
+                          height: Dimensions.height20 * 10,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: Dimensions.height20),
+                          decoration: BoxDecoration(),
+                          child: Image.asset(
+                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        country.guessed!
-                            ? Expanded(
-                                child: guessTiles(correctLettersList, true),
-                              )
-                            : Expanded(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    guessTiles(lettersListAnswer, false),
-                                    tilesAtBottom(),
-                                  ],
-                                ),
+                      ),
+                      country.guessed!
+                          ? Expanded(
+                              child: guessTiles(correctLettersList, true),
+                            )
+                          : Expanded(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  guessTiles(lettersListAnswer, false),
+                                  tilesAtBottom(),
+                                ],
                               ),
-                        if (_bannerAd != null)
-                          adBannerWidget(bannerAd: _bannerAd),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                            ),
+                      finishInfoBox(
+                          Get.find<CountryController>()
+                              .getCountryByName(country.country!),
+                          !country.guessed!),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         ));
   }
 
-  Container finishInfoBox() {
-    return Container(
-      height: Dimensions.screenHeight / 4,
-      color: Colors.grey,
+  finishInfoBox(CountryModel country, bool isGuessed) {
+    var ad = adBannerWidget(bannerAd: _bannerAd);
+    print(country.countryCode!.toLowerCase());
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        !isGuessed
+            ? Container(
+                height: country.countryCode!.toLowerCase() == 'vc'
+                    ? Dimensions.screenHeight / 4.5
+                    : Dimensions.screenHeight / 3.4,
+                decoration: BoxDecoration(
+                  color: AppColors.mainColor.withOpacity(0.4),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Dimensions.radius30),
+                    topRight: Radius.circular(Dimensions.radius30),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      top: Dimensions.width20),
+                  child: Column(
+                    children: [
+                      InfoColumn(
+                        header: 'Continent',
+                        info: Get.find<CountryContinentController>()
+                            .getContinentNameByCountryModel(country),
+                      ),
+                      InfoColumn(
+                        header: 'Country',
+                        info: country.countryName!,
+                      ),
+                      InfoColumn(
+                        header: 'Capital',
+                        info: country.capital!,
+                      ),
+                      InfoColumn(
+                        header: 'Currency',
+                        info:
+                            '${country.currencyName!} (${country.currencyCode!})',
+                        divider: false,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : _bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4
+                ? Container(
+                    height: _bannerAd!.size.height.toDouble(),
+                  )
+                : Container(),
+        if (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
+          Positioned(
+            bottom: 0,
+            child: adBannerWidget(bannerAd: _bannerAd),
+          ),
+      ],
     );
   }
 
@@ -551,14 +628,18 @@ class _GuessPageState extends State<GuessPage> {
         words.length,
         (index) => answer[index] == ''
             ? EmptyTile()
-            : GestureDetector(
-                onTap: () {
-                  if (!isGuessed) {
-                    removeLetter(answer[index], index, wordIndex);
-                  }
-                },
-                child: LetterTile(letter: answer[index]),
-              ),
+            : answer[index] == '/'
+                ? Container(
+                    width: Dimensions.screenWidth / 10,
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      if (!isGuessed) {
+                        removeLetter(answer[index], index, wordIndex);
+                      }
+                    },
+                    child: LetterTile(letter: answer[index]),
+                  ),
       ),
     );
   }

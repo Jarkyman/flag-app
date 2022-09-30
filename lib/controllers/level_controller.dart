@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/repos/level_repo.dart';
-import 'package:flag_app/widget/popup/level_unlock_dialog.dart';
 import 'package:get/get.dart';
 
 import '../models/level_model.dart';
@@ -142,5 +139,31 @@ class LevelController extends GetxController implements GetxService {
   Future<bool> saveLevels(String option) async {
     List<LevelModel> levelModels = getList(option)!;
     return await levelRepo.saveLevels(levelModels, option);
+  }
+
+  /*
+  REMOVE CODE BELOW
+   */
+
+  void guessedRemove(String playOption, LevelModel country) {
+    if (playOption == AppConstants.FLAGS) {
+      _flagLevels.forEach((element) {
+        if (element == country) {
+          element.guessed = false;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      });
+    } else if (playOption == AppConstants.COUNTRIES) {
+      _countriesLevels.forEach((element) {
+        if (element == country) {
+          element.guessed = false;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      });
+    }
+
+    update();
   }
 }

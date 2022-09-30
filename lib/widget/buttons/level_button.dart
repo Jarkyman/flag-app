@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../helper/app_colors.dart';
-import '../helper/dimensions.dart';
+import '../../helper/app_colors.dart';
+import '../../helper/dimensions.dart';
 
 class LevelButton extends StatelessWidget {
   final VoidCallback onTap;

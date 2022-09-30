@@ -4,6 +4,7 @@ import 'package:flag_app/pages/countries_page.dart';
 import 'package:flag_app/pages/flag_page.dart';
 import 'package:flag_app/pages/play/levels/guess_page.dart';
 import 'package:flag_app/pages/play/levels/levels_list_page.dart';
+import 'package:flag_app/pages/settings_page.dart';
 import 'package:flag_app/pages/shop/shop_page.dart';
 import 'package:get/get.dart';
 import '../pages/flags_page.dart';
@@ -16,6 +17,7 @@ class RouteHelper {
   static const String splashPage = '/splash-page';
   static const String initial = '/';
   static const String shopPage = '/shop-page';
+  static const String settingsPage = '/settings-page';
   static const String playPage = '/play-page';
   static const String levelsListPage = '/levels_handeler-list-page';
   static const String levelPage = '/level-page';
@@ -28,6 +30,7 @@ class RouteHelper {
   static String getSplashPage() => '$splashPage';
   static String getInitial() => '$initial';
   static String getShopPage() => '$shopPage';
+  static String getSettingsPage() => '$settingsPage';
   static String getPlayPage() => '$playPage';
   static String getLevelsListPage() => '$levelsListPage';
   static String getLevelPage() => '$levelPage';
@@ -43,6 +46,10 @@ class RouteHelper {
     GetPage(
         name: shopPage,
         page: () => ShopPage(),
+        transition: Transition.downToUp),
+    GetPage(
+        name: settingsPage,
+        page: () => SettingsPage(),
         transition: Transition.downToUp),
     GetPage(
         name: playPage,

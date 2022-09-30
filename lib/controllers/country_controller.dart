@@ -58,6 +58,17 @@ class CountryController extends GetxController implements GetxService {
     return result;
   }
 
+  CountryModel getCountryByName(String countryName) {
+    CountryModel? country;
+
+    for (var element in _countries) {
+      if (element.countryName == countryName) {
+        country = element;
+      }
+    }
+    return country!;
+  }
+
   List<CountryModel> generateCountries(String selectedCountry, int amount) {
     if (_countries.isEmpty) {
       readCountries();

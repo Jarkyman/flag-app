@@ -57,9 +57,33 @@ class SettingsPage extends StatelessWidget {
                         height: Dimensions.height20,
                       ),
                       SettingsButton(
-                        title: 'Sound',
+                        title: 'Language',
                         onTap: () {},
-                        onSwitch: true,
+                        child: Container(),
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      GetBuilder<SoundController>(builder: (soundController) {
+                        return SettingsButton(
+                          title: 'Sound',
+                          onTap: () {
+                            soundController
+                                .soundSettingsSave(!soundController.getSoundOn);
+                          },
+                          child: Switch(
+                            value: soundController.getSoundOn,
+                            onChanged: (value) {
+                              soundController.soundSettingsSave(value);
+                            },
+                            activeColor: AppColors.mainColor,
+                            inactiveThumbColor: AppColors.mainColor,
+                            inactiveTrackColor: AppColors.textColorGray,
+                          ),
+                        );
+                      }),
+                      SizedBox(
+                        height: Dimensions.height20,
                       ),
                     ],
                   ),

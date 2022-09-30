@@ -7,13 +7,13 @@ import '../../helper/dimensions.dart';
 class SettingsButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final bool onSwitch;
-  const SettingsButton(
-      {Key? key,
-      required this.title,
-      required this.onTap,
-      required this.onSwitch})
-      : super(key: key);
+  final Widget child;
+  const SettingsButton({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +46,7 @@ class SettingsButton extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: Switch(
-                value: onSwitch,
-                onChanged: (value) {},
-                activeColor: AppColors.mainColor,
-                inactiveThumbColor: AppColors.mainColor,
-                inactiveTrackColor: AppColors.textColorGray,
-              ),
+              child: child,
             ),
           ],
         ),

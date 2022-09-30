@@ -9,6 +9,7 @@ import 'package:flag_app/repos/country_repo.dart';
 import 'package:flag_app/repos/hint_repo.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:flag_app/repos/score_repo.dart';
+import 'package:flag_app/repos/settings_repo.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,6 +24,7 @@ Future<void> init() async {
   Get.lazyPut(() => ScoreRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => HintRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => LevelRepo(sharedPreferences: sharedPreferences));
+  Get.lazyPut(() => SettingsRepo(sharedPreferences: sharedPreferences));
 
   //Controller
   Get.lazyPut(() => CountryController(countryRepo: Get.find()));
@@ -30,5 +32,5 @@ Future<void> init() async {
   Get.lazyPut(() => ScoreController(scoreRepo: Get.find()));
   Get.lazyPut(() => HintController(hintRepo: Get.find()));
   Get.lazyPut(() => LevelController(levelRepo: Get.find()));
-  Get.lazyPut(() => SoundController());
+  Get.lazyPut(() => SoundController(settingsRepo: Get.find()));
 }

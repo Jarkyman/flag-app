@@ -1,8 +1,10 @@
+import 'package:flag_app/repos/settings_repo.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:get/get.dart';
 
 class SoundController extends GetxController implements GetxService {
+  final SettingsRepo settingsRepo;
   Soundpool? pool;
   int? _clickId;
   int? _completeId;
@@ -10,15 +12,16 @@ class SoundController extends GetxController implements GetxService {
   int? _disabledId;
   int? _wrongId;
   int? _windId;
-  bool _soundOn = true;
+  late bool _soundOn;
 
   bool get getSoundOn => _soundOn;
 
-  SoundController() {
+  SoundController({required this.settingsRepo}) {
     init();
   }
 
   Future init() async {
+    soundSettingRead();
     pool = Soundpool.fromOptions();
     _clickId = await rootBundle
         .load('assets/sound/click.mp3')
@@ -50,6 +53,17 @@ class SoundController extends GetxController implements GetxService {
         .then((ByteData soundData) {
       return pool!.load(soundData);
     });
+  }
+
+  Future<void> soundSettingRead() async {
+    _soundOn = await settingsRepo.soundSettingRead();
+    update();
+  }
+
+  Future<void> soundSettingsSave(bool sound) async {
+    _soundOn = sound;
+    settingsRepo.soundSettingsSave(sound);
+    update();
   }
 
   clickSound() {

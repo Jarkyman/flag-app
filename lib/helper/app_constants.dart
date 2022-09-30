@@ -8,6 +8,10 @@ class AppConstants {
   static const String CAPITAL_SCORE = 'capital-score';
   static const String COUNTRIES_SCORE = 'countries-score';
 
+  // Settings
+  static const String LANGUAGE = 'language';
+  static const String SOUND = 'sound';
+
   // Hints
   static const String HINTS = 'hints';
 

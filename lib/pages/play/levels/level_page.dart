@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../controllers/country_controller.dart';
+import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/dimensions.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
@@ -59,6 +60,13 @@ class _LevelPageState extends State<LevelPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.find<SoundController>().clickSound();
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Text('Level ${Get.arguments[1]}'),
         backgroundColor: AppColors.mainColor,
       ),
@@ -92,6 +100,7 @@ class _LevelPageState extends State<LevelPage> {
                         children: List.generate(levels.length, (index) {
                           return GestureDetector(
                             onTap: () {
+                              Get.find<SoundController>().windSound();
                               Get.toNamed(RouteHelper.getGuessPage(),
                                   arguments: [
                                     //Get.arguments[0][index],

@@ -1,6 +1,8 @@
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../controllers/sound_controller.dart';
 
 class GuessButton extends StatelessWidget {
   String country;
@@ -27,7 +29,7 @@ class GuessButton extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: Dimensions.width30),
           width: double.maxFinite,
-          height: Dimensions.height20 * 3,
+          height: Dimensions.height20 * 2.8,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(Dimensions.radius10),

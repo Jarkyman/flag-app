@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controllers/hint_controller.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/ad_helper.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
@@ -128,6 +129,7 @@ class _FlagPageState extends State<FlagPage> {
 
   void checkWin(String country, int selected) {
     if (country == selectedCountry.countryName.toString()) {
+      Get.find<SoundController>().correctSound();
       correctColor[selected] = true;
       setState(() {
         checkUsed = true;
@@ -140,6 +142,7 @@ class _FlagPageState extends State<FlagPage> {
       });
       generateCountries();
     } else {
+      Get.find<SoundController>().wrongSound();
       setState(() {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
@@ -203,6 +206,13 @@ class _FlagPageState extends State<FlagPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.find<SoundController>().clickSound();
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Text(
           'Flags',
           style: TextStyle(
@@ -347,7 +357,9 @@ class _FlagPageState extends State<FlagPage> {
                           );
                         }),
                   ),
-                  if (_bannerAd != null) adBannerWidget(bannerAd: _bannerAd),
+                  _bannerAd != null
+                      ? adBannerWidget(bannerAd: _bannerAd)
+                      : Container(),
                 ],
               );
             },

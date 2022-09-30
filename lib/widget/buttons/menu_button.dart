@@ -1,6 +1,8 @@
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
+import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MenuButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -15,7 +17,10 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap();
+        Get.find<SoundController>().clickSound();
+      },
       child: Container(
         width: Dimensions.width30 * 10,
         height: Dimensions.height20 * 4,

@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controllers/hint_controller.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/ad_helper.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
@@ -128,6 +129,7 @@ class _CountriesPageState extends State<CountriesPage> {
 
   void checkWin(String country, int selected) {
     if (country == selectedCountry.countryName.toString()) {
+      Get.find<SoundController>().correctSound();
       correctColor[selected] = true;
       setState(() {
         checkUsed = true;
@@ -140,6 +142,7 @@ class _CountriesPageState extends State<CountriesPage> {
       });
       generateCountries();
     } else {
+      Get.find<SoundController>().wrongSound();
       setState(() {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
@@ -203,6 +206,13 @@ class _CountriesPageState extends State<CountriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.find<SoundController>().clickSound();
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Text(
           'Countries',
           style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 
@@ -18,7 +19,10 @@ class HintWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap();
+        Get.find<SoundController>().clickSound();
+      },
       child: Container(
         padding: EdgeInsets.only(
           left: Dimensions.width10,

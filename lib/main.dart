@@ -1,8 +1,4 @@
-import 'package:flag_app/controllers/country_continent_controller.dart';
-import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
-import 'package:flag_app/pages/flag_page.dart';
-import 'package:flag_app/pages/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;

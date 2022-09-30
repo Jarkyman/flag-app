@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
@@ -18,7 +19,10 @@ void wrongGuessDialog(
     confirm: isTryAgainUsed
         ? Container()
         : GestureDetector(
-            onTap: onTapConfirm,
+            onTap: () {
+              onTapConfirm();
+              Get.find<SoundController>().clickSound();
+            },
             child: Padding(
               padding: EdgeInsets.only(
                 left: Dimensions.width10,
@@ -48,7 +52,10 @@ void wrongGuessDialog(
             ),
           ),
     cancel: GestureDetector(
-      onTap: onTapCancel,
+      onTap: () {
+        onTapCancel();
+        Get.find<SoundController>().clickSound();
+      },
       child: Padding(
         padding: EdgeInsets.only(
           left: Dimensions.width10,

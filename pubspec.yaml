@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.15
   flutter_swipe_detector: ^2.0.0
   google_mobile_ads: ^1.2.0
+  soundpool: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/image/countries/
     - assets/json/
     - assets/icon/
+    - assets/sound/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

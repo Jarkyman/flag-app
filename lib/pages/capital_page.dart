@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/hint_controller.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
 import '../widget/buttons/guess_button.dart';
@@ -51,6 +52,7 @@ class _CapitalPageState extends State<CapitalPage> {
 
   void checkWin(String country, int selected) {
     if (country == selectedCountry.countryName.toString()) {
+      Get.find<SoundController>().correctSound();
       correctColor[selected] = true;
       setState(() {
         checkUsed = true;
@@ -63,6 +65,7 @@ class _CapitalPageState extends State<CapitalPage> {
       });
       generateCountries();
     } else {
+      Get.find<SoundController>().wrongSound();
       setState(() {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
@@ -116,6 +119,13 @@ class _CapitalPageState extends State<CapitalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.find<SoundController>().clickSound();
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Text(
           'Flags',
           style: TextStyle(

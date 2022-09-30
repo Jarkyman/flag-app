@@ -3,6 +3,7 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
+import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/repos/country_continent_repo.dart';
 import 'package:flag_app/repos/country_repo.dart';
 import 'package:flag_app/repos/hint_repo.dart';
@@ -29,4 +30,5 @@ Future<void> init() async {
   Get.lazyPut(() => ScoreController(scoreRepo: Get.find()));
   Get.lazyPut(() => HintController(hintRepo: Get.find()));
   Get.lazyPut(() => LevelController(levelRepo: Get.find()));
+  Get.lazyPut(() => SoundController());
 }

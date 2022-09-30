@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../controllers/hint_controller.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
@@ -45,7 +46,10 @@ class HintBar extends StatelessWidget {
               children: [
                 GetBuilder<HintController>(builder: (hintController) {
                   return HintWidget(
-                    onTap: tapHintOne,
+                    onTap: () {
+                      tapHintOne();
+                      Get.find<SoundController>().clickSound();
+                    },
                     icon: iconOne,
                     num: hintPriceOne,
                   );
@@ -55,7 +59,10 @@ class HintBar extends StatelessWidget {
                 ),
                 GetBuilder<HintController>(builder: (hintController) {
                   return HintWidget(
-                    onTap: tapHintTwo,
+                    onTap: () {
+                      tapHintTwo();
+                      Get.find<SoundController>().clickSound();
+                    },
                     icon: iconTwo,
                     num: hintPriceTwo,
                   );
@@ -65,7 +72,10 @@ class HintBar extends StatelessWidget {
                 ),
                 GetBuilder<HintController>(builder: (hintController) {
                   return HintWidget(
-                    onTap: tapHintThree,
+                    onTap: () {
+                      tapHintThree();
+                      Get.find<SoundController>().clickSound();
+                    },
                     icon: iconThree,
                     num: hintPriceThree,
                   );
@@ -76,6 +86,7 @@ class HintBar extends StatelessWidget {
           GetBuilder<HintController>(builder: (hintController) {
             return HintWidget(
               onTap: () {
+                Get.find<SoundController>().clickSound();
                 Get.toNamed(RouteHelper.getShopPage());
               },
               icon: Icon(

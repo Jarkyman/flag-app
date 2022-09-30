@@ -13,6 +13,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../controllers/country_controller.dart';
 import '../../../controllers/hint_controller.dart';
+import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
@@ -91,9 +92,18 @@ class _GuessPageState extends State<GuessPage> {
   void checkWin() {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
+      Get.find<SoundController>().completeSound();
       Get.find<LevelController>().guessed(Get.arguments[0], country);
     } else {
-      print('Wrong');
+      bool done = false;
+      for (int i = 0; i < lettersListAnswer.length; i++) {
+        if (!lettersListAnswer[i].contains('')) {
+          done = true;
+        }
+      }
+      if (done) {
+        Get.find<SoundController>().wrongSound();
+      }
     }
   }
 
@@ -378,6 +388,7 @@ class _GuessPageState extends State<GuessPage> {
         Get.find<LevelController>().guessed(Get.arguments[0], country);
       });
       Get.find<HintController>().useHint(hints);
+      Get.find<SoundController>().completeSound();
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
@@ -387,6 +398,13 @@ class _GuessPageState extends State<GuessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.find<SoundController>().windSound();
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new),
+          ),
           title: Text('${Get.arguments[0]}'),
           backgroundColor: AppColors.mainColor,
           actions: [
@@ -406,6 +424,7 @@ class _GuessPageState extends State<GuessPage> {
               nextPageIndex = Get.arguments[2] - 1;
 
               if (nextPageIndex > -1) {
+                Get.find<SoundController>().windSound();
                 setState(() {
                   Get.arguments[2] = nextPageIndex;
                   setInit();
@@ -416,6 +435,7 @@ class _GuessPageState extends State<GuessPage> {
               int nextPageIndex = Get.arguments[2];
               nextPageIndex = Get.arguments[2] + 1;
               if (nextPageIndex < levelList.length) {
+                Get.find<SoundController>().windSound();
                 setState(() {
                   Get.arguments[2] = nextPageIndex;
                   setInit();

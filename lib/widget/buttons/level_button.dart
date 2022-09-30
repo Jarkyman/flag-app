@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import 'package:get/get.dart';
 
 class LevelButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -22,7 +24,10 @@ class LevelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap();
+        Get.find<SoundController>().clickSound();
+      },
       child: Container(
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(

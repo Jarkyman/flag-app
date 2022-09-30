@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
@@ -15,7 +16,10 @@ void levelUnlockDialog(
     radius: 30,
     barrierDismissible: false,
     confirm: GestureDetector(
-      onTap: onTapCancel,
+      onTap: () {
+        onTapCancel();
+        Get.find<SoundController>().clickSound();
+      },
       child: Padding(
         padding: EdgeInsets.only(
           left: Dimensions.width10,
@@ -36,7 +40,10 @@ void levelUnlockDialog(
       ),
     ),
     cancel: GestureDetector(
-      onTap: onTapConfirm,
+      onTap: () {
+        onTapConfirm();
+        Get.find<SoundController>().clickSound();
+      },
       child: Padding(
         padding: EdgeInsets.only(
           left: Dimensions.width10,

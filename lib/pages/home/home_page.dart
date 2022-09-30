@@ -6,6 +6,7 @@ import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/sound_controller.dart';
 import '../../helper/route_helper.dart';
 import '../../widget/buttons/menu_button.dart';
 
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        Get.find<SoundController>().clickSound();
                         Get.toNamed(RouteHelper.getSettingsPage());
                       },
                       child: Container(

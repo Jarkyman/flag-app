@@ -8,6 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../controllers/country_controller.dart';
 import '../controllers/hint_controller.dart';
 import '../controllers/score_controller.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/ad_helper.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
@@ -127,6 +128,7 @@ class _FlagsPageState extends State<FlagsPage> {
 
   void checkWin(String country, int selected) {
     if (country == selectedCountry.countryName.toString()) {
+      Get.find<SoundController>().correctSound();
       correctColor[selected] = true;
       setState(() {
         checkUsed = true;
@@ -139,6 +141,7 @@ class _FlagsPageState extends State<FlagsPage> {
         generateCountries();
       });
     } else {
+      Get.find<SoundController>().wrongSound();
       setState(() {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
@@ -210,6 +213,13 @@ class _FlagsPageState extends State<FlagsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.find<SoundController>().clickSound();
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
         title: Text(
           'Flags',
           style: TextStyle(

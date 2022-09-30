@@ -2,6 +2,7 @@ import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
+import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
@@ -15,6 +16,7 @@ class SettingsPage extends StatelessWidget {
       body: BackgroundImage(
         child: SwipeDetector(
           onSwipeDown: (value) {
+            Get.find<SoundController>().windSound();
             Get.back();
           },
           child: SafeArea(
@@ -26,6 +28,7 @@ class SettingsPage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: GestureDetector(
                       onTap: () {
+                        Get.find<SoundController>().clickSound();
                         Get.back();
                       },
                       child: Container(

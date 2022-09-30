@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/hint_controller.dart';
+import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../hint_widget.dart';
@@ -23,6 +24,7 @@ class AppBarRowExit extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              Get.find<SoundController>().clickSound();
               Get.back();
             },
             child: Container(
@@ -43,6 +45,7 @@ class AppBarRowExit extends StatelessWidget {
           GetBuilder<HintController>(builder: (hintController) {
             return HintWidget(
               onTap: () {
+                Get.find<SoundController>().clickSound();
                 hintController.useHint(hintController.getHints);
               },
               icon: Icon(

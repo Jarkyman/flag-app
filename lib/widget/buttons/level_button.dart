@@ -26,7 +26,11 @@ class LevelButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         onTap();
-        Get.find<SoundController>().clickSound();
+        if (isLocked) {
+          Get.find<SoundController>().disabledSound();
+        } else {
+          Get.find<SoundController>().clickSound();
+        }
       },
       child: Container(
         height: Dimensions.height20 * 4,

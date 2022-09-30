@@ -56,7 +56,7 @@ class LevelsListPage extends StatelessWidget {
                                 } else {
                                   Get.snackbar(
                                     'Unlock more levels',
-                                    'You need to unlock ${levelsToComplete - levelsCompleted + 1} to unlock next level',
+                                    'You need to unlock ${levelsToComplete - levelsCompleted + 1} to unlock level ${index + 1}',
                                     backgroundColor:
                                         AppColors.wrongColor.withOpacity(0.3),
                                   );

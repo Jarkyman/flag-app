@@ -21,6 +21,7 @@ class ScoreController extends GetxController implements GetxService {
     readFlagScore();
     readFlagsScore();
     readCapitalScore();
+    readCountriesScore();
   }
 
   Future<void> readFlagScore() async {

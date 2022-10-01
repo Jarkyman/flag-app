@@ -10,6 +10,7 @@ class CountryController extends GetxController implements GetxService {
 
   CountryController({required this.countryRepo});
 
+  int _countryCount = 0;
   List<CountryModel> _countries = [];
   List<CountryModel> get getCountries => _countries;
 
@@ -22,6 +23,7 @@ class CountryController extends GetxController implements GetxService {
         .readCountries()
         .then((value) => removeUnUsed());
     update();
+    _countries.shuffle();
   }
 
   void removeUnUsed() {
@@ -33,8 +35,6 @@ class CountryController extends GetxController implements GetxService {
         }
       });
     });
-
-    print(result.length);
     _countries = result;
   }
 
@@ -52,10 +52,19 @@ class CountryController extends GetxController implements GetxService {
     if (_countries.isEmpty) {
       readCountries();
     }
-    List<CountryModel> all = _countries;
-    all.shuffle();
-    CountryModel result = all[1];
+    if (_countryCount == 0) {
+      _countries.shuffle();
+    }
+    CountryModel result = _countries[_countryCount];
+    _countryCount++;
+    if (_countryCount >= _countries.length) {
+      _countryCount = 0;
+    }
     return result;
+  }
+
+  void resetCount() {
+    _countryCount = 0;
   }
 
   CountryModel getCountryByName(String countryName) {
@@ -78,13 +87,11 @@ class CountryController extends GetxController implements GetxService {
     List<CountryModel> result = [];
     int count = amount - 2;
 
-    all.shuffle();
-
-    _countries.forEach((country) {
+    for (var country in _countries) {
       if (country.countryName == selectedCountry) {
         result.add(country);
       }
-    });
+    }
 
     for (int i = 0; i <= count; i++) {
       if (all[i].countryName == selectedCountry) {

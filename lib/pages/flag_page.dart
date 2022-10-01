@@ -165,6 +165,7 @@ class _FlagPageState extends State<FlagPage> {
         },
         onTapCancel: () {
           wrongChoice(selected);
+          Get.find<CountryController>().resetCount();
           Get.close(1);
         },
       );

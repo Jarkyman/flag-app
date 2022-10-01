@@ -54,7 +54,6 @@ class _CountriesPageState extends State<CountriesPage> {
       isLoading = false;
       isTryAgainUsed = false;
     });
-    print(Get.find<ScoreController>().getCountriesScore);
   }
 
   @override
@@ -165,6 +164,7 @@ class _CountriesPageState extends State<CountriesPage> {
         },
         onTapCancel: () {
           wrongChoice(selected);
+          Get.find<CountryController>().resetCount();
           Get.close(1);
         },
       );

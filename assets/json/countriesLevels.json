@@ -943,5 +943,18 @@
     "Country": "Laos",
     "guessed": false,
     "level": 10
-  }
+  },{
+  "Country": "Marshall Islands",
+  "guessed": false,
+  "level": 10
+},
+  {
+    "Country": "Micronesia",
+    "guessed": false,
+    "level": 10
+  },{
+  "Country": "Tuvalu",
+  "guessed": false,
+  "level": 10
+}
 ]

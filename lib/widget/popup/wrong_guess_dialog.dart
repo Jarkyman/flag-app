@@ -16,6 +16,7 @@ void wrongGuessDialog(
     backgroundColor: Colors.white,
     radius: 30,
     barrierDismissible: false,
+    onWillPop: () async => false,
     confirm: isTryAgainUsed
         ? Container()
         : GestureDetector(

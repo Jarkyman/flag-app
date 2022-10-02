@@ -84,7 +84,9 @@ class CountryController extends GetxController implements GetxService {
       readCountries(Get.locale!);
     }
 
-    List<CountryModel> all = _countries;
+    List<CountryModel> all = [];
+    all.addAll(_countries);
+    all.shuffle();
     List<CountryModel> result = [];
     int count = amount - 2;
 

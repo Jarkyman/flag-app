@@ -23,8 +23,15 @@
       "Capitals": "Capitals",
       "Flag": "Flag",
       "Countries": "Countries",
+      "Coat of arms": "Coat of arms",
       "Score:": "Score:",
-      "High score:": "High score:"
+      "High score:": "High score:",
+      "_Levels": "Levels page",
+      "Level": "level",
+      "Unlock more levels": "Unlock more levels",
+      "You need to finish": "You need to unlock",
+      "more, to unlock leve": "to unlock level",
+      "more, to unlock leve2": ""
     }
   },
   {
@@ -51,8 +58,15 @@
       "Capitals": "Hovedstader",
       "Flag": "Flag",
       "Countries": "Lande",
+      "Coat of arms": "Våbenskjold",
       "Score:": "Score:",
-      "High score:": "Højeste score:"
+      "High score:": "Højeste score:",
+      "_Levels": "Levels page",
+      "Level": "Niveau",
+      "Unlock more levels": "Lås op for flere niveauer",
+      "You need to finish": "Du skal afslutte",
+      "more, to unlock leve": "mere for at låse niveau",
+      "more, to unlock leve2": "op"
     }
   }
 ]

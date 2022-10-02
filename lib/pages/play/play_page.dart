@@ -30,7 +30,7 @@ class PlayPage extends StatelessWidget {
                         Get.toNamed(RouteHelper.getLevelsListPage(),
                             arguments: [AppConstants.FLAGS]);
                       },
-                      title: 'Flags',
+                      title: 'Flags'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -40,7 +40,7 @@ class PlayPage extends StatelessWidget {
                         Get.toNamed(RouteHelper.getLevelsListPage(),
                             arguments: [AppConstants.COUNTRIES]);
                       },
-                      title: 'Countries',
+                      title: 'Countries'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -49,7 +49,7 @@ class PlayPage extends StatelessWidget {
                       onTap: () {
                         //Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [AppConstants.COAT_OF_ARMS]);
                       },
-                      title: 'Coat of arms',
+                      title: 'Coat of arms'.tr,
                     ),
                   ],
                 ),

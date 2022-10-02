@@ -55,14 +55,18 @@ class LevelsListPage extends StatelessWidget {
                                       arguments: [Get.arguments[0], index + 1]);
                                 } else {
                                   Get.snackbar(
-                                    'Unlock more levels',
-                                    'You need to unlock ${levelsToComplete - levelsCompleted + 1} to unlock level ${index + 1}',
+                                    'Unlock more levels'.tr,
+                                    'You need to finish'.tr +
+                                        ' ${levelsToComplete - levelsCompleted + 1} ' +
+                                        'more, to unlock leve'.tr +
+                                        ' ${index + 1} ' +
+                                        'more, to unlock leve2'.tr,
                                     backgroundColor:
                                         AppColors.wrongColor.withOpacity(0.3),
                                   );
                                 }
                               },
-                              title: 'Level ${index + 1}',
+                              title: 'Level'.tr + ' ${index + 1}',
                               numOfDone: numOfDone,
                               numTotal: numTotal,
                             ),

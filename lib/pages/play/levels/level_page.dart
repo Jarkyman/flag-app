@@ -67,7 +67,7 @@ class _LevelPageState extends State<LevelPage> {
           },
           icon: Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text('Level ${Get.arguments[1]}'),
+        title: Text('Level'.tr + ' ${Get.arguments[1]}'),
         backgroundColor: AppColors.mainColor,
       ),
       body: BackgroundImage(

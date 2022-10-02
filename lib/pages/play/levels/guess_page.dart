@@ -405,7 +405,7 @@ class _GuessPageState extends State<GuessPage> {
             },
             icon: Icon(Icons.arrow_back_ios_new),
           ),
-          title: Text('${Get.arguments[0]}'),
+          title: Text('${Get.arguments[0]}'.tr),
           backgroundColor: AppColors.mainColor,
           actions: [
             GestureDetector(
@@ -549,20 +549,20 @@ class _GuessPageState extends State<GuessPage> {
                   child: Column(
                     children: [
                       InfoColumn(
-                        header: 'Continent',
+                        header: 'Continent'.tr,
                         info: Get.find<CountryContinentController>()
                             .getContinentNameByCountryModel(country),
                       ),
                       InfoColumn(
-                        header: 'Country',
+                        header: 'Country'.tr,
                         info: country.countryName!,
                       ),
                       InfoColumn(
-                        header: 'Capital',
+                        header: 'Capital'.tr,
                         info: country.capital!,
                       ),
                       InfoColumn(
-                        header: 'Currency',
+                        header: 'Currency'.tr,
                         info:
                             '${country.currencyName!} (${country.currencyCode!})',
                         divider: false,

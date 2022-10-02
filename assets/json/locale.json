@@ -31,7 +31,12 @@
       "Unlock more levels": "Unlock more levels",
       "You need to finish": "You need to unlock",
       "more, to unlock leve": "to unlock level",
-      "more, to unlock leve2": ""
+      "more, to unlock leve2": "",
+      "_guess page": "Guess page",
+      "Continent": "Continent",
+      "Country": "Country",
+      "Capital": "Capital",
+      "Currency": "Currency"
     }
   },
   {
@@ -66,7 +71,12 @@
       "Unlock more levels": "Lås op for flere niveauer",
       "You need to finish": "Du skal afslutte",
       "more, to unlock leve": "mere for at låse niveau",
-      "more, to unlock leve2": "op"
+      "more, to unlock leve2": "op",
+      "_guess page": "Guess page",
+      "Continent": "Kontinent",
+      "Country": "Land",
+      "Capital": "Hovedstad",
+      "Currency": "Møntfod"
     }
   }
 ]

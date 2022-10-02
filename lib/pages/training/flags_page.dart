@@ -5,20 +5,20 @@ import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../controllers/country_controller.dart';
-import '../controllers/hint_controller.dart';
-import '../controllers/score_controller.dart';
-import '../controllers/sound_controller.dart';
-import '../helper/ad_helper.dart';
-import '../helper/app_colors.dart';
-import '../helper/dimensions.dart';
-import '../models/country_model.dart';
+import '../../controllers/country_controller.dart';
+import '../../controllers/hint_controller.dart';
+import '../../controllers/score_controller.dart';
+import '../../controllers/sound_controller.dart';
+import '../../helper/ad_helper.dart';
+import '../../helper/app_colors.dart';
+import '../../helper/dimensions.dart';
+import '../../models/country_model.dart';
 import 'package:get/get.dart';
 
-import '../widget/Top bar/hint_bar.dart';
-import '../widget/ads/ad_banner_widget.dart';
-import '../widget/hint_widget.dart';
-import '../widget/popup/wrong_guess_dialog.dart';
+import '../../widget/Top bar/hint_bar.dart';
+import '../../widget/ads/ad_banner_widget.dart';
+import '../../widget/hint_widget.dart';
+import '../../widget/popup/wrong_guess_dialog.dart';
 
 class FlagsPage extends StatefulWidget {
   const FlagsPage({Key? key}) : super(key: key);

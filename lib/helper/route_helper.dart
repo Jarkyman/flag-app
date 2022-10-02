@@ -1,13 +1,12 @@
-import 'package:flag_app/helper/app_constants.dart';
-import 'package:flag_app/pages/capital_page.dart';
-import 'package:flag_app/pages/countries_page.dart';
-import 'package:flag_app/pages/flag_page.dart';
+import 'package:flag_app/pages/training/capital_page.dart';
+import 'package:flag_app/pages/training/countries_page.dart';
 import 'package:flag_app/pages/play/levels/guess_page.dart';
 import 'package:flag_app/pages/play/levels/levels_list_page.dart';
 import 'package:flag_app/pages/settings_page.dart';
 import 'package:flag_app/pages/shop/shop_page.dart';
 import 'package:get/get.dart';
-import '../pages/flags_page.dart';
+import '../pages/training/flag_page.dart';
+import '../pages/training/flags_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/play/levels/level_page.dart';
 import '../pages/play/play_page.dart';

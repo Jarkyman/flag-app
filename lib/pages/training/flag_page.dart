@@ -4,30 +4,28 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
-import 'package:flag_app/widget/Top%20bar/hint_bar.dart';
-import 'package:flag_app/widget/background_image.dart';
-import 'package:flag_app/widget/popup/wrong_guess_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../controllers/hint_controller.dart';
-import '../controllers/sound_controller.dart';
-import '../helper/ad_helper.dart';
-import '../helper/dimensions.dart';
-import '../helper/route_helper.dart';
-import '../widget/ads/ad_banner_widget.dart';
-import '../widget/buttons/guess_button.dart';
-import '../widget/hint_widget.dart';
+import '../../controllers/hint_controller.dart';
+import '../../controllers/sound_controller.dart';
+import '../../helper/ad_helper.dart';
+import '../../helper/dimensions.dart';
+import '../../widget/Top bar/hint_bar.dart';
+import '../../widget/ads/ad_banner_widget.dart';
+import '../../widget/background_image.dart';
+import '../../widget/buttons/guess_button.dart';
+import '../../widget/popup/wrong_guess_dialog.dart';
 
-class CountriesPage extends StatefulWidget {
-  const CountriesPage({Key? key}) : super(key: key);
+class FlagPage extends StatefulWidget {
+  const FlagPage({Key? key}) : super(key: key);
 
   @override
-  State<CountriesPage> createState() => _CountriesPageState();
+  State<FlagPage> createState() => _FlagPageState();
 }
 
-class _CountriesPageState extends State<CountriesPage> {
+class _FlagPageState extends State<FlagPage> {
   late CountryModel selectedCountry;
   late List<CountryModel> countryOptions;
   List<bool> correctColor = [false, false, false, false];
@@ -51,10 +49,11 @@ class _CountriesPageState extends State<CountriesPage> {
       selectedCountry = Get.find<CountryController>().getACountry();
       countryOptions = Get.find<CountryController>()
           .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getCountriesScore;
+      highScore = Get.find<ScoreController>().getFlagScore;
       isLoading = false;
       isTryAgainUsed = false;
     });
+    print(Get.find<ScoreController>().getFlagScore);
   }
 
   @override
@@ -137,7 +136,7 @@ class _CountriesPageState extends State<CountriesPage> {
         score++;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveCountriesScore(highScore);
+          Get.find<ScoreController>().saveFlagScore(highScore);
         }
       });
       generateCountries();
@@ -148,7 +147,7 @@ class _CountriesPageState extends State<CountriesPage> {
         wrongColor[selected] = true;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveCountriesScore(highScore);
+          Get.find<ScoreController>().saveFlagScore(highScore);
         }
       });
       wrongGuessDialog(
@@ -224,7 +223,7 @@ class _CountriesPageState extends State<CountriesPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Countries'.tr,
+          'Flags'.tr,
           style: TextStyle(
               fontSize: Dimensions.font26, color: AppColors.titleColor),
         ),
@@ -271,7 +270,7 @@ class _CountriesPageState extends State<CountriesPage> {
                           EdgeInsets.symmetric(horizontal: Dimensions.height20),
                       decoration: BoxDecoration(),
                       child: Image.asset(
-                        'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}.png',
+                        'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -314,7 +313,9 @@ class _CountriesPageState extends State<CountriesPage> {
                           );
                         }),
                   ),
-                  if (_bannerAd != null) adBannerWidget(bannerAd: _bannerAd),
+                  _bannerAd != null
+                      ? adBannerWidget(bannerAd: _bannerAd)
+                      : Container(),
                 ],
               );
             },

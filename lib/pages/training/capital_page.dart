@@ -4,30 +4,26 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
+import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../controllers/hint_controller.dart';
-import '../controllers/sound_controller.dart';
-import '../helper/ad_helper.dart';
-import '../helper/dimensions.dart';
-import '../helper/route_helper.dart';
-import '../widget/Top bar/hint_bar.dart';
-import '../widget/ads/ad_banner_widget.dart';
-import '../widget/background_image.dart';
-import '../widget/buttons/guess_button.dart';
-import '../widget/hint_widget.dart';
-import '../widget/popup/wrong_guess_dialog.dart';
+import '../../controllers/hint_controller.dart';
+import '../../controllers/sound_controller.dart';
+import '../../helper/dimensions.dart';
+import '../../helper/route_helper.dart';
+import '../../widget/Top bar/hint_bar.dart';
+import '../../widget/buttons/guess_button.dart';
+import '../../widget/hint_widget.dart';
 
-class FlagPage extends StatefulWidget {
-  const FlagPage({Key? key}) : super(key: key);
+class CapitalPage extends StatefulWidget {
+  const CapitalPage({Key? key}) : super(key: key);
 
   @override
-  State<FlagPage> createState() => _FlagPageState();
+  State<CapitalPage> createState() => _CapitalPageState();
 }
 
-class _FlagPageState extends State<FlagPage> {
+class _CapitalPageState extends State<CapitalPage> {
   late CountryModel selectedCountry;
   late List<CountryModel> countryOptions;
   List<bool> correctColor = [false, false, false, false];
@@ -37,79 +33,6 @@ class _FlagPageState extends State<FlagPage> {
   bool checkUsed = false;
   int score = 0;
   late int highScore;
-  bool isTryAgainUsed = false;
-
-  BannerAd? _bannerAd;
-  RewardedAd? _rewardedAd;
-
-  @override
-  void initState() {
-    super.initState();
-    createBannerAd();
-    _loadRewardedAd();
-    setState(() {
-      selectedCountry = Get.find<CountryController>().getACountry();
-      countryOptions = Get.find<CountryController>()
-          .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getFlagScore;
-      isLoading = false;
-      isTryAgainUsed = false;
-    });
-    print(Get.find<ScoreController>().getFlagScore);
-  }
-
-  @override
-  void dispose() {
-    _bannerAd?.dispose();
-    _rewardedAd?.dispose();
-    super.dispose();
-  }
-
-  void _loadRewardedAd() {
-    RewardedAd.load(
-      adUnitId: AdHelper.rewardedAdUnitId,
-      request: AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              setState(() {
-                ad.dispose();
-                _rewardedAd = null;
-              });
-              _loadRewardedAd();
-            },
-          );
-
-          setState(() {
-            _rewardedAd = ad;
-          });
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load a rewarded ad: ${err.message}');
-        },
-      ),
-    );
-  }
-
-  void createBannerAd() {
-    BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          ad.dispose();
-        },
-      ),
-    ).load();
-  }
 
   void generateCountries() {
     setState(() {
@@ -121,8 +44,8 @@ class _FlagPageState extends State<FlagPage> {
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
-        fiftyFiftyUsed = false;
         checkUsed = false;
+        fiftyFiftyUsed = false;
       });
       isLoading = false;
     });
@@ -138,7 +61,7 @@ class _FlagPageState extends State<FlagPage> {
         score++;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCapitalScore(highScore);
         }
       });
       generateCountries();
@@ -149,36 +72,12 @@ class _FlagPageState extends State<FlagPage> {
         wrongColor[selected] = true;
         if (score > highScore) {
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveCapitalScore(highScore);
         }
+        generateCountries();
+        score = 0;
       });
-      wrongGuessDialog(
-        score: score,
-        isTryAgainUsed: isTryAgainUsed,
-        onTapConfirm: () {
-          _rewardedAd?.show(
-            onUserEarnedReward: (_, reward) {
-              generateCountries();
-              Get.close(1);
-              isTryAgainUsed = true;
-            },
-          );
-        },
-        onTapCancel: () {
-          wrongChoice(selected);
-          Get.find<CountryController>().resetCount();
-          Get.close(1);
-        },
-      );
     }
-  }
-
-  void wrongChoice(int selected) {
-    setState(() {
-      generateCountries();
-      isTryAgainUsed = false;
-      score = 0;
-    });
   }
 
   int getCorrect() {
@@ -214,6 +113,19 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    setState(() {
+      selectedCountry = Get.find<CountryController>().getACountry();
+      countryOptions = Get.find<CountryController>()
+          .generateCountries(selectedCountry.countryName.toString(), 4);
+      highScore = Get.find<ScoreController>().getCapitalScore;
+      isLoading = false;
+    });
+    print(Get.find<ScoreController>().getCapitalScore);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -225,7 +137,7 @@ class _FlagPageState extends State<FlagPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Flags'.tr,
+          'Capitals'.tr,
           style: TextStyle(
               fontSize: Dimensions.font26, color: AppColors.titleColor),
         ),
@@ -244,7 +156,6 @@ class _FlagPageState extends State<FlagPage> {
           child: GetBuilder<CountryController>(
             builder: (countryController) {
               return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   HintBar(
                       tapHintOne: () {
@@ -264,21 +175,34 @@ class _FlagPageState extends State<FlagPage> {
                       ),
                       hintPriceOne: '3',
                       hintPriceTwo: '1'),
-                  Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      //height: Dimensions.height20 * 14,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
-                        fit: BoxFit.contain,
+                  Container(
+                    height: Dimensions.height30 * 2,
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width10),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            selectedCountry.capital.toString(),
+                            style: TextStyle(
+                              fontSize: Dimensions.font26 * 2,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
+                  const Divider(
+                    height: 20,
+                    thickness: 2,
+                    indent: 20,
+                    endIndent: 20,
+                    color: Colors.grey,
+                  ),
                   SizedBox(
-                    height: Dimensions.height10,
+                    height: Dimensions.height20 * 2,
                   ),
                   Expanded(
                     child: ListView.builder(
@@ -304,20 +228,13 @@ class _FlagPageState extends State<FlagPage> {
                             country:
                                 countryOptions[index].countryName.toString(),
                             onTap: () {
-                              if (!wrongColor[index]) {
-                                checkWin(
-                                    countryOptions[index]
-                                        .countryName
-                                        .toString(),
-                                    index);
-                              }
+                              checkWin(
+                                  countryOptions[index].countryName.toString(),
+                                  index);
                             },
                           );
                         }),
                   ),
-                  _bannerAd != null
-                      ? adBannerWidget(bannerAd: _bannerAd)
-                      : Container(),
                 ],
               );
             },

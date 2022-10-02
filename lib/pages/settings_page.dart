@@ -57,13 +57,13 @@ class SettingsPage extends StatelessWidget {
                         height: Dimensions.height20,
                       ),
                       SettingsButton(
-                        title: 'Language',
+                        title: 'Language'.tr,
                         onTap: () {},
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
                           child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/image/flags/gb.png'),
+                            backgroundImage: AssetImage(
+                                'assets/image/flags/${Get.locale.toString().split("_")[1].toLowerCase()}.png'),
                           ),
                         ),
                       ),
@@ -72,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                       GetBuilder<SoundController>(builder: (soundController) {
                         return SettingsButton(
-                          title: 'Sound',
+                          title: 'Sound'.tr,
                           onTap: () {
                             soundController
                                 .soundSettingsSave(!soundController.getSoundOn);
@@ -126,7 +126,7 @@ class SettingsPage extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'Credits',
+                    'Credits'.tr,
                     style: TextStyle(color: AppColors.textColorGray),
                   ),
                 ),

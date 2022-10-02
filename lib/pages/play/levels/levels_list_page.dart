@@ -58,9 +58,9 @@ class LevelsListPage extends StatelessWidget {
                                     'Unlock more levels'.tr,
                                     'You need to finish'.tr +
                                         ' ${levelsToComplete - levelsCompleted + 1} ' +
-                                        'more, to unlock leve'.tr +
+                                        'more, to unlock level'.tr +
                                         ' ${index + 1} ' +
-                                        'more, to unlock leve2'.tr,
+                                        'more, to unlock level2'.tr,
                                     backgroundColor:
                                         AppColors.wrongColor.withOpacity(0.3),
                                   );

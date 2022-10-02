@@ -145,7 +145,7 @@ class _CapitalPageState extends State<CapitalPage> {
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
             return Text(
-              'Score:'.tr + ' $score \n' + 'High score:'.tr + ' $highScore ',
+              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
               style: TextStyle(fontSize: Dimensions.font16),
             );
           }),

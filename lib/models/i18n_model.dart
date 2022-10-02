@@ -6,7 +6,7 @@ class I18nModel {
   I18nModel({this.name, this.code, this.texts});
 
   I18nModel.fromJson(Map<String, dynamic> json) {
-    name = json['country'];
+    name = json['language'];
     code = json['country_code'];
     if (json['texts'] != null) {
       texts = Map<String, String>.from(json['texts']);

@@ -84,7 +84,7 @@ class _ShopPageState extends State<ShopPage> {
                             Get.find<HintController>().addHint(5);
                           }
                         },
-                        title: 'Buy 50 hints',
+                        title: 'Buy 50 hints'.tr,
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -95,7 +95,7 @@ class _ShopPageState extends State<ShopPage> {
                             Get.find<HintController>().addHint(5);
                           }
                         },
-                        title: 'Buy 100 hints',
+                        title: 'Buy 100 hints'.tr,
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -106,7 +106,7 @@ class _ShopPageState extends State<ShopPage> {
                             Get.find<HintController>().addHint(5);
                           }
                         },
-                        title: 'Buy 500 hints',
+                        title: 'Buy 500 hints'.tr,
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -120,7 +120,7 @@ class _ShopPageState extends State<ShopPage> {
                             },
                           );
                         },
-                        title: 'Watch a video and get 3',
+                        title: 'Watch video (3 hints)'.tr,
                       ),
                     ],
                   ),

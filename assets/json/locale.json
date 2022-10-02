@@ -1,30 +1,52 @@
 [
   {
-    "country": "English",
+    "language": "English",
     "country_code": "en_US",
     "texts": {
+      "_HomePage": "Home Page",
       "Play": "Play",
       "Which flag": "Which flag",
       "Match flags": "Match flags",
       "Which country": "Which country",
       "Shop": "shop",
+      "_Settings": "Settings",
       "Language" : "Language",
       "Sound": "Sound",
-      "Credits": "Credits"
+      "Credits": "Credits",
+      "_Shop": "Shop Page",
+      "Buy 50 hints": "Buy 50 hints",
+      "Buy 100 hints": "Buy 100 hints",
+      "Buy 500 hints": "Buy 500 hints",
+      "Watch video (3 hints)": "Watch video (3 hints)",
+      "_Training": "Training page",
+      "Flags": "Flags",
+      "Score: ": "Score: ",
+      "High score: ": "High score: "
     }
   },
   {
-    "country": "Arabic",
+    "language": "Dansk",
     "country_code": "da_DK",
     "texts": {
+      "_HomePage": "Home Page",
       "Play": "Spil",
       "Which flag": "Hvilket flag",
       "Match flags": "Match flags",
       "Which country": "Hvilket land",
       "Shop": "Butik",
+      "_Settings": "Settings",
       "Language": "Sprog",
       "Sound": "lyd",
-      "Credits": "Krediteringer"
+      "Credits": "Krediteringer",
+      "_Shop": "Shop Page",
+      "Buy 50 hints": "Køb 50 hints",
+      "Buy 100 hints": "Køb 100 hints",
+      "Buy 500 hints": "Køb 500 hints",
+      "Watch video (3 hints)": "Se video (3 hints)",
+      "_Training": "Training page",
+      "Flags": "Flag",
+      "Score: ": "Score: ",
+      "High score: ": "Højeste score: "
     }
   }
 ]

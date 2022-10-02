@@ -13,6 +13,7 @@ import '../controllers/sound_controller.dart';
 import '../helper/ad_helper.dart';
 import '../helper/dimensions.dart';
 import '../helper/route_helper.dart';
+import '../widget/Top bar/hint_bar.dart';
 import '../widget/ads/ad_banner_widget.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/guess_button.dart';
@@ -184,23 +185,32 @@ class _FlagPageState extends State<FlagPage> {
     return countryOptions.indexOf(selectedCountry);
   }
 
-  void getFiftyFifty() {
-    int correct = getCorrect();
-    wrongColor = [false, false, false, false];
-    Random ran = Random();
-    int ran1 = ran.nextInt(4);
-    int ran2 = ran.nextInt(4);
-    while (ran1 == correct || ran1 == ran2 || ran2 == correct) {
-      ran1 = ran.nextInt(4);
-      ran2 = ran.nextInt(4);
+  void useCorrectHint(hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
+      Get.find<HintController>().useHint(hints);
+      checkWin(selectedCountry.countryName!, getCorrect());
     }
-    setState(() {
-      wrongColor[ran1] = true;
-      wrongColor[ran2] = true;
-      fiftyFiftyUsed = true;
-    });
+  }
 
-    print(ran1.toString() + " / " + ran2.toString());
+  void useFiftyFiftyHint(int hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) &&
+        !fiftyFiftyUsed) {
+      Get.find<HintController>().useHint(hints);
+      int correct = getCorrect();
+      wrongColor = [false, false, false, false];
+      Random ran = Random();
+      int ran1 = ran.nextInt(4);
+      int ran2 = ran.nextInt(4);
+      while (ran1 == correct || ran1 == ran2 || ran2 == correct) {
+        ran1 = ran.nextInt(4);
+        ran2 = ran.nextInt(4);
+      }
+      setState(() {
+        wrongColor[ran1] = true;
+        wrongColor[ran2] = true;
+        fiftyFiftyUsed = true;
+      });
+    }
   }
 
   @override
@@ -236,7 +246,25 @@ class _FlagPageState extends State<FlagPage> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  HintBar(
+                      tapHintOne: () {
+                        useCorrectHint(3);
+                      },
+                      tapHintTwo: () {
+                        useFiftyFiftyHint(1);
+                      },
+                      iconOne: Icon(
+                        Icons.check,
+                        color: AppColors.mainColor,
+                      ),
+                      iconTwo: ImageIcon(
+                        AssetImage('assets/icon/fifty_fifty.png'),
+                        color: AppColors.mainColor,
+                        size: Dimensions.iconSize24 * 1.4,
+                      ),
+                      hintPriceOne: '3',
+                      hintPriceTwo: '1'),
+                  /*Padding(
                     padding: EdgeInsets.only(
                         top: Dimensions.height10, bottom: Dimensions.height10),
                     child: Padding(
@@ -274,7 +302,7 @@ class _FlagPageState extends State<FlagPage> {
                                     builder: (hintController) {
                                   return HintWidget(
                                     onTap: () {
-                                      if (hintController.getFiftyFifty() &&
+                                      if (hintController.useFiftyFiftyHint() &&
                                           !fiftyFiftyUsed) {
                                         hintController.useHint(1);
                                         getFiftyFifty();
@@ -306,7 +334,7 @@ class _FlagPageState extends State<FlagPage> {
                         ],
                       ),
                     ),
-                  ),
+                  ),*/
                   Expanded(
                     child: Container(
                       width: double.maxFinite,

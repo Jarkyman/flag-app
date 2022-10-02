@@ -4,6 +4,7 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
+import 'package:flag_app/widget/Top%20bar/hint_bar.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/popup/wrong_guess_dialog.dart';
 import 'package:flutter/material.dart';
@@ -183,23 +184,32 @@ class _CountriesPageState extends State<CountriesPage> {
     return countryOptions.indexOf(selectedCountry);
   }
 
-  void getFiftyFifty() {
-    int correct = getCorrect();
-    wrongColor = [false, false, false, false];
-    Random ran = Random();
-    int ran1 = ran.nextInt(4);
-    int ran2 = ran.nextInt(4);
-    while (ran1 == correct || ran1 == ran2 || ran2 == correct) {
-      ran1 = ran.nextInt(4);
-      ran2 = ran.nextInt(4);
+  void useCorrectHint(hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
+      Get.find<HintController>().useHint(hints);
+      checkWin(selectedCountry.countryName!, getCorrect());
     }
-    setState(() {
-      wrongColor[ran1] = true;
-      wrongColor[ran2] = true;
-      fiftyFiftyUsed = true;
-    });
+  }
 
-    print(ran1.toString() + " / " + ran2.toString());
+  void useFiftyFiftyHint(int hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) &&
+        !fiftyFiftyUsed) {
+      Get.find<HintController>().useHint(hints);
+      int correct = getCorrect();
+      wrongColor = [false, false, false, false];
+      Random ran = Random();
+      int ran1 = ran.nextInt(4);
+      int ran2 = ran.nextInt(4);
+      while (ran1 == correct || ran1 == ran2 || ran2 == correct) {
+        ran1 = ran.nextInt(4);
+        ran2 = ran.nextInt(4);
+      }
+      setState(() {
+        wrongColor[ran1] = true;
+        wrongColor[ran2] = true;
+        fiftyFiftyUsed = true;
+      });
+    }
   }
 
   @override
@@ -235,7 +245,25 @@ class _CountriesPageState extends State<CountriesPage> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  HintBar(
+                      tapHintOne: () {
+                        useCorrectHint(3);
+                      },
+                      tapHintTwo: () {
+                        useFiftyFiftyHint(1);
+                      },
+                      iconOne: Icon(
+                        Icons.check,
+                        color: AppColors.mainColor,
+                      ),
+                      iconTwo: ImageIcon(
+                        AssetImage('assets/icon/fifty_fifty.png'),
+                        color: AppColors.mainColor,
+                        size: Dimensions.iconSize24 * 1.4,
+                      ),
+                      hintPriceOne: '3',
+                      hintPriceTwo: '1'),
+                  /*Padding(
                     padding: EdgeInsets.only(
                         top: Dimensions.height10, bottom: Dimensions.height10),
                     child: Padding(
@@ -252,12 +280,7 @@ class _CountriesPageState extends State<CountriesPage> {
                                     builder: (hintController) {
                                   return HintWidget(
                                     onTap: () {
-                                      if (hintController.getCorrect() &&
-                                          !checkUsed) {
-                                        hintController.useHint(3);
-                                        checkWin(selectedCountry.countryName!,
-                                            getCorrect());
-                                      }
+                                      useCorrectHint(3);
                                     },
                                     icon: Icon(
                                       Icons.check,
@@ -273,11 +296,7 @@ class _CountriesPageState extends State<CountriesPage> {
                                     builder: (hintController) {
                                   return HintWidget(
                                     onTap: () {
-                                      if (hintController.getFiftyFifty() &&
-                                          !fiftyFiftyUsed) {
-                                        hintController.useHint(1);
-                                        getFiftyFifty();
-                                      }
+                                      useFiftyFiftyHint(1);
                                     },
                                     icon: ImageIcon(
                                       AssetImage('assets/icon/fifty_fifty.png'),
@@ -305,7 +324,7 @@ class _CountriesPageState extends State<CountriesPage> {
                         ],
                       ),
                     ),
-                  ),
+                  ),*/
                   Expanded(
                     child: Container(
                       width: double.maxFinite,

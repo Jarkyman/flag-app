@@ -655,7 +655,7 @@
     "level": 7
   },
   {
-    "Country": "Guinea",
+    "Country": "Micronesia",
     "guessed": false,
     "level": 7
   },
@@ -810,7 +810,7 @@
     "level": 9
   },
   {
-    "Country": "Nepal",
+    "Country": "Democratic Republic of Congo",
     "guessed": false,
     "level": 9
   },
@@ -943,18 +943,30 @@
     "Country": "Laos",
     "guessed": false,
     "level": 10
-  },{
-  "Country": "Marshall Islands",
-  "guessed": false,
-  "level": 10
-},
+  },
   {
-    "Country": "Micronesia",
+    "Country": "Marshall Islands",
     "guessed": false,
     "level": 10
-  },{
-  "Country": "Tuvalu",
-  "guessed": false,
-  "level": 10
-}
+  },
+  {
+    "Country": "Guinea",
+    "guessed": false,
+    "level": 10
+  },
+  {
+    "Country": "Tuvalu",
+    "guessed": false,
+    "level": 10
+  },
+  {
+    "Country": "Nepal",
+    "guessed": false,
+    "level": 10
+  },
+  {
+    "Country": "Saint Vincent and the Grenadines",
+    "guessed": false,
+    "level": 10
+  }
 ]

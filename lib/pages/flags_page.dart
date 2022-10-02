@@ -15,6 +15,7 @@ import '../helper/dimensions.dart';
 import '../models/country_model.dart';
 import 'package:get/get.dart';
 
+import '../widget/Top bar/hint_bar.dart';
 import '../widget/ads/ad_banner_widget.dart';
 import '../widget/hint_widget.dart';
 import '../widget/popup/wrong_guess_dialog.dart';
@@ -183,31 +184,40 @@ class _FlagsPageState extends State<FlagsPage> {
     return countryOptions.indexOf(selectedCountry);
   }
 
-  void getFiftyFifty() {
-    int correct = getCorrect();
-    wrongColor = [false, false, false, false, false, false];
-    Random ran = Random();
-    int ran1 = ran.nextInt(6);
-    int ran2 = ran.nextInt(6);
-    int ran3 = ran.nextInt(6);
-    while (ran1 == correct ||
-        ran1 == ran2 ||
-        ran2 == correct ||
-        ran1 == ran3 ||
-        ran2 == ran3 ||
-        ran3 == correct) {
-      ran1 = ran.nextInt(6);
-      ran2 = ran.nextInt(6);
-      ran3 = ran.nextInt(6);
+  void useCorrectHint(hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
+      Get.find<HintController>().useHint(hints);
+      checkWin(selectedCountry.countryName!, getCorrect());
     }
-    setState(() {
-      wrongColor[ran1] = true;
-      wrongColor[ran2] = true;
-      wrongColor[ran3] = true;
-      fiftyFiftyUsed = true;
-    });
+  }
 
-    print(ran1.toString() + " / " + ran2.toString());
+  void useFiftyFiftyHint(int hints) {
+    if (Get.find<HintController>().checkIfEnoughHints(hints) &&
+        !fiftyFiftyUsed) {
+      Get.find<HintController>().useHint(hints);
+      int correct = getCorrect();
+      wrongColor = [false, false, false, false, false, false];
+      Random ran = Random();
+      int ran1 = ran.nextInt(6);
+      int ran2 = ran.nextInt(6);
+      int ran3 = ran.nextInt(6);
+      while (ran1 == correct ||
+          ran1 == ran2 ||
+          ran2 == correct ||
+          ran1 == ran3 ||
+          ran2 == ran3 ||
+          ran3 == correct) {
+        ran1 = ran.nextInt(6);
+        ran2 = ran.nextInt(6);
+        ran3 = ran.nextInt(6);
+      }
+      setState(() {
+        wrongColor[ran1] = true;
+        wrongColor[ran2] = true;
+        wrongColor[ran3] = true;
+        fiftyFiftyUsed = true;
+      });
+    }
   }
 
   @override
@@ -241,7 +251,25 @@ class _FlagsPageState extends State<FlagsPage> {
           child: GetBuilder<CountryController>(builder: (countryController) {
             return Column(
               children: [
-                Padding(
+                HintBar(
+                    tapHintOne: () {
+                      useCorrectHint(3);
+                    },
+                    tapHintTwo: () {
+                      useFiftyFiftyHint(1);
+                    },
+                    iconOne: Icon(
+                      Icons.check,
+                      color: AppColors.mainColor,
+                    ),
+                    iconTwo: ImageIcon(
+                      AssetImage('assets/icon/fifty_fifty.png'),
+                      color: AppColors.mainColor,
+                      size: Dimensions.iconSize24 * 1.4,
+                    ),
+                    hintPriceOne: '3',
+                    hintPriceTwo: '1'),
+                /*Padding(
                   padding: EdgeInsets.only(
                       top: Dimensions.height10, bottom: Dimensions.height10),
                   child: Padding(
@@ -279,7 +307,7 @@ class _FlagsPageState extends State<FlagsPage> {
                                   builder: (hintController) {
                                 return HintWidget(
                                   onTap: () {
-                                    if (hintController.getFiftyFifty() &&
+                                    if (hintController.useFiftyFiftyHint() &&
                                         !fiftyFiftyUsed) {
                                       hintController.useHint(1);
                                       getFiftyFifty();
@@ -311,7 +339,7 @@ class _FlagsPageState extends State<FlagsPage> {
                       ],
                     ),
                   ),
-                ),
+                ),*/
                 Container(
                   height: Dimensions.height30 * 2,
                   child: Center(

@@ -4,8 +4,8 @@ import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/background_image.dart';
-import 'package:flag_app/widget/empty_tile.dart';
-import 'package:flag_app/widget/letter_tile.dart';
+import 'package:flag_app/widget/tiles/empty_tile.dart';
+import 'package:flag_app/widget/tiles/letter_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
-import '../../../widget/hint_bar.dart';
+import '../../../widget/Top bar/hint_bar.dart';
 import '../../../widget/hint_widget.dart';
 import '../../../widget/info_column.dart';
 
@@ -448,78 +448,74 @@ class _GuessPageState extends State<GuessPage> {
                 print('Level = ' + Get.arguments[1].toString());
                 print('Flag index = ' + Get.arguments[2].toString());
 
-                return Padding(
-                  padding: EdgeInsets.only(top: Dimensions.height10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      country.guessed!
-                          ? Container(
-                              height: Dimensions.height20 * 2,
-                            )
-                          : HintBar(
-                              tapHintOne: () {
-                                useFinishHint(5);
-                              },
-                              iconOne: Icon(
-                                Icons.check,
-                                color: AppColors.mainColor,
-                              ),
-                              hintPriceOne: '5',
-                              tapHintTwo: () {
-                                useBombHint(2);
-                              },
-                              iconTwo: ImageIcon(
-                                AssetImage('assets/icon/bomb.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
-                              ),
-                              hintPriceTwo: '2',
-                              tapHintThree: () {
-                                useFirstLetterHint(1);
-                              },
-                              iconThree: ImageIcon(
-                                AssetImage('assets/icon/a.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
-                              ),
-                              hintPriceThree: '1',
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    country.guessed!
+                        ? Container(
+                            height: Dimensions.height20 * 2,
+                          )
+                        : HintBar(
+                            tapHintOne: () {
+                              useFinishHint(5);
+                            },
+                            iconOne: Icon(
+                              Icons.check,
+                              color: AppColors.mainColor,
                             ),
-                      SizedBox(height: Dimensions.height10),
-                      Hero(
-                        tag:
-                            '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
-                        child: Container(
-                          height: Dimensions.height20 * 10,
-                          margin: EdgeInsets.symmetric(
-                              horizontal: Dimensions.height20),
-                          decoration: BoxDecoration(),
-                          child: Image.asset(
-                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
-                            fit: BoxFit.cover,
+                            hintPriceOne: '5',
+                            tapHintTwo: () {
+                              useBombHint(2);
+                            },
+                            iconTwo: ImageIcon(
+                              AssetImage('assets/icon/bomb.png'),
+                              color: AppColors.mainColor,
+                              size: Dimensions.iconSize24,
+                            ),
+                            hintPriceTwo: '2',
+                            tapHintThree: () {
+                              useFirstLetterHint(1);
+                            },
+                            iconThree: ImageIcon(
+                              AssetImage('assets/icon/a.png'),
+                              color: AppColors.mainColor,
+                              size: Dimensions.iconSize24,
+                            ),
+                            hintPriceThree: '1',
                           ),
+                    SizedBox(height: Dimensions.height10),
+                    Hero(
+                      tag:
+                          '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
+                      child: Container(
+                        height: Dimensions.height20 * 10,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.height20),
+                        decoration: BoxDecoration(),
+                        child: Image.asset(
+                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      country.guessed!
-                          ? Expanded(
-                              child: guessTiles(correctLettersList, true),
-                            )
-                          : Expanded(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  guessTiles(lettersListAnswer, false),
-                                  tilesAtBottom(),
-                                ],
-                              ),
+                    ),
+                    country.guessed!
+                        ? Expanded(
+                            child: guessTiles(correctLettersList, true),
+                          )
+                        : Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                guessTiles(lettersListAnswer, false),
+                                tilesAtBottom(),
+                              ],
                             ),
-                      finishInfoBox(
-                          Get.find<CountryController>()
-                              .getCountryByName(country.country!),
-                          !country.guessed!),
-                    ],
-                  ),
+                          ),
+                    finishInfoBox(
+                        Get.find<CountryController>()
+                            .getCountryByName(country.country!),
+                        !country.guessed!),
+                  ],
                 );
               },
             ),

@@ -1,42 +1,44 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/hint_controller.dart';
-import '../controllers/sound_controller.dart';
-import '../helper/app_colors.dart';
-import '../helper/dimensions.dart';
-import '../helper/route_helper.dart';
-import 'hint_widget.dart';
+import '../../controllers/hint_controller.dart';
+import '../../controllers/sound_controller.dart';
+import '../../helper/app_colors.dart';
+import '../../helper/dimensions.dart';
+import '../../helper/route_helper.dart';
+import '../hint_widget.dart';
 
 class HintBar extends StatelessWidget {
   final VoidCallback tapHintOne;
   final VoidCallback tapHintTwo;
-  final VoidCallback tapHintThree;
+  final VoidCallback? tapHintThree;
   final Widget iconOne;
   final Widget iconTwo;
-  final Widget iconThree;
+  final Widget? iconThree;
   final String hintPriceOne;
   final String hintPriceTwo;
-  final String hintPriceThree;
+  final String? hintPriceThree;
 
   const HintBar({
     Key? key,
     required this.tapHintOne,
     required this.tapHintTwo,
-    required this.tapHintThree,
+    this.tapHintThree,
     required this.iconOne,
     required this.iconTwo,
-    required this.iconThree,
+    this.iconThree,
     required this.hintPriceOne,
     required this.hintPriceTwo,
-    required this.hintPriceThree,
+    this.hintPriceThree,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+      padding: EdgeInsets.only(
+          left: Dimensions.width10,
+          right: Dimensions.width10,
+          top: Dimensions.height10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -48,7 +50,6 @@ class HintBar extends StatelessWidget {
                   return HintWidget(
                     onTap: () {
                       tapHintOne();
-                      Get.find<SoundController>().clickSound();
                     },
                     icon: iconOne,
                     num: hintPriceOne,
@@ -61,7 +62,6 @@ class HintBar extends StatelessWidget {
                   return HintWidget(
                     onTap: () {
                       tapHintTwo();
-                      Get.find<SoundController>().clickSound();
                     },
                     icon: iconTwo,
                     num: hintPriceTwo,
@@ -70,16 +70,18 @@ class HintBar extends StatelessWidget {
                 SizedBox(
                   width: Dimensions.width10,
                 ),
-                GetBuilder<HintController>(builder: (hintController) {
-                  return HintWidget(
-                    onTap: () {
-                      tapHintThree();
-                      Get.find<SoundController>().clickSound();
-                    },
-                    icon: iconThree,
-                    num: hintPriceThree,
-                  );
-                }),
+                if (iconThree != null &&
+                    tapHintThree != null &&
+                    hintPriceThree != null)
+                  GetBuilder<HintController>(builder: (hintController) {
+                    return HintWidget(
+                      onTap: () {
+                        tapHintThree!();
+                      },
+                      icon: iconThree!,
+                      num: hintPriceThree!,
+                    );
+                  }),
               ],
             ),
           ),

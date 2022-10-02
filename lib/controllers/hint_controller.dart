@@ -1,3 +1,4 @@
+import 'package:flag_app/helper/route_helper.dart';
 import 'package:get/get.dart';
 import '../repos/hint_repo.dart';
 
@@ -37,20 +38,11 @@ class HintController extends GetxController implements GetxService {
     }
   }
 
-  bool getCorrect() {
-    if (_hints >= 3) {
+  bool checkIfEnoughHints(int hints) {
+    if (_hints >= hints) {
       return true;
     } else {
-      Get.snackbar('No hints', 'Buy more hints');
-      return false;
-    }
-  }
-
-  bool getFiftyFifty() {
-    if (_hints >= 1) {
-      return true;
-    } else {
-      Get.snackbar('No hints', 'Buy more hints');
+      Get.toNamed(RouteHelper.getShopPage());
       return false;
     }
   }

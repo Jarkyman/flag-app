@@ -3,8 +3,8 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
+import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
-import 'package:flag_app/helper/LocaleHandler.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<HintController>().readHints();
     await Get.find<LevelController>().readAllLevels();
     await Get.find<SoundController>().init();
-    await LocaleHandler.initLanguages();
+    await Get.find<SettingsController>().languageSettingRead();
   }
 
   @override

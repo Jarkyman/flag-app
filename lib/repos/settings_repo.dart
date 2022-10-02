@@ -11,7 +11,7 @@ class SettingsRepo {
 
   Future<String> languageSettingRead() async {
     String language =
-        await sharedPreferences.getString(AppConstants.LANGUAGE) ?? 'en';
+        await sharedPreferences.getString(AppConstants.LANGUAGE) ?? 'en_US';
     return language;
   }
 

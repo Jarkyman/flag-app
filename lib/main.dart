@@ -1,5 +1,5 @@
 import 'package:flag_app/controllers/score_controller.dart';
-import 'package:flag_app/helper/LocaleHandler.dart';
+import 'package:flag_app/helper/locale_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     ]);
     return GetMaterialApp(
       translations: LocaleHandler(),
-      locale: Locale('da', 'DK'),
+      locale: Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

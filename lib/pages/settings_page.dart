@@ -1,3 +1,4 @@
+import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
@@ -6,9 +7,10 @@ import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
+import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,9 @@ class SettingsPage extends StatelessWidget {
                       ),
                       SettingsButton(
                         title: 'Language'.tr,
-                        onTap: () {},
+                        onTap: () {
+                          buildLanguageDialog();
+                        },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
                           child: CircleAvatar(

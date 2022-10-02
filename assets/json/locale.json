@@ -36,7 +36,8 @@
       "Continent": "Continent",
       "Country": "Country",
       "Capital": "Capital",
-      "Currency": "Currency"
+      "Currency": "Currency",
+      "Choose Your Language": "Choose Your Language"
     }
   },
   {
@@ -76,7 +77,8 @@
       "Continent": "Kontinent",
       "Country": "Land",
       "Capital": "Hovedstad",
-      "Currency": "Valuta"
+      "Currency": "Valuta",
+      "Choose Your Language": "Vælg dit sprog"
     }
   },
   {
@@ -116,7 +118,8 @@
       "Continent": "Kontinent",
       "Country": "Land",
       "Capital": "Huvudstad",
-      "Currency": "Valuta"
+      "Currency": "Valuta",
+      "Choose Your Language": "Välj ditt språk"
     }
   },
   {
@@ -156,7 +159,8 @@
       "Continent": "Kontinent",
       "Country": "Land",
       "Capital": "Huvudstad",
-      "Currency": "Valuta"
+      "Currency": "Valuta",
+      "Choose Your Language": "Velg ditt språk"
     }
   },
   {
@@ -196,7 +200,8 @@
       "Continent": "Continente",
       "Country": "País",
       "Capital": "Capital",
-      "Currency": "Valuta"
+      "Currency": "Valuta",
+      "Choose Your Language": "Elige tu idioma"
     }
   }
 ]

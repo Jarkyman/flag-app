@@ -20,8 +20,11 @@
       "Watch video (3 hints)": "Watch video (3 hints)",
       "_Training": "Training page",
       "Flags": "Flags",
-      "Score: ": "Score: ",
-      "High score: ": "High score: "
+      "Capitals": "Capitals",
+      "Flag": "Flag",
+      "Countries": "Countries",
+      "Score:": "Score:",
+      "High score:": "High score:"
     }
   },
   {
@@ -45,8 +48,11 @@
       "Watch video (3 hints)": "Se video (3 hints)",
       "_Training": "Training page",
       "Flags": "Flag",
-      "Score: ": "Score: ",
-      "High score: ": "Højeste score: "
+      "Capitals": "Hovedstader",
+      "Flag": "Flag",
+      "Countries": "Lande",
+      "Score:": "Score:",
+      "High score:": "Højeste score:"
     }
   }
 ]

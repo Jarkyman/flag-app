@@ -224,7 +224,7 @@ class _CountriesPageState extends State<CountriesPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Countries',
+          'Countries'.tr,
           style: TextStyle(
               fontSize: Dimensions.font26, color: AppColors.titleColor),
         ),
@@ -232,7 +232,7 @@ class _CountriesPageState extends State<CountriesPage> {
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
             return Text(
-              'Score: $score \nHigh score: $highScore ',
+              'Score:'.tr + ' $score \n' + 'High score:'.tr + ' $highScore ',
               style: TextStyle(fontSize: Dimensions.font16),
             );
           }),
@@ -263,68 +263,6 @@ class _CountriesPageState extends State<CountriesPage> {
                       ),
                       hintPriceOne: '3',
                       hintPriceTwo: '1'),
-                  /*Padding(
-                    padding: EdgeInsets.only(
-                        top: Dimensions.height10, bottom: Dimensions.height10),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: Dimensions.width10, right: Dimensions.width10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                GetBuilder<HintController>(
-                                    builder: (hintController) {
-                                  return HintWidget(
-                                    onTap: () {
-                                      useCorrectHint(3);
-                                    },
-                                    icon: Icon(
-                                      Icons.check,
-                                      color: AppColors.mainColor,
-                                    ),
-                                    num: '3',
-                                  );
-                                }),
-                                SizedBox(
-                                  width: Dimensions.width10,
-                                ),
-                                GetBuilder<HintController>(
-                                    builder: (hintController) {
-                                  return HintWidget(
-                                    onTap: () {
-                                      useFiftyFiftyHint(1);
-                                    },
-                                    icon: ImageIcon(
-                                      AssetImage('assets/icon/fifty_fifty.png'),
-                                      color: AppColors.mainColor,
-                                      size: Dimensions.iconSize24 * 1.4,
-                                    ),
-                                    num: '1',
-                                  );
-                                }),
-                              ],
-                            ),
-                          ),
-                          GetBuilder<HintController>(builder: (hintController) {
-                            return HintWidget(
-                              onTap: () {
-                                Get.toNamed(RouteHelper.getShopPage());
-                              },
-                              icon: Icon(
-                                Icons.lightbulb_outline,
-                                color: AppColors.mainColor,
-                              ),
-                              num: hintController.getHints.toString(),
-                            );
-                          }),
-                        ],
-                      ),
-                    ),
-                  ),*/
                   Expanded(
                     child: Container(
                       width: double.maxFinite,

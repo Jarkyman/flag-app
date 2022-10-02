@@ -11,8 +11,8 @@ void wrongGuessDialog(
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel}) {
   Get.defaultDialog(
-    title: 'Wrong country',
-    middleText: 'You score is $score',
+    title: 'Wrong country'.tr,
+    middleText: 'You score is'.tr + ' $score',
     backgroundColor: Colors.white,
     radius: 30,
     barrierDismissible: false,
@@ -46,7 +46,7 @@ void wrongGuessDialog(
                     SizedBox(
                       width: Dimensions.width5,
                     ),
-                    const Text('Get one more try'),
+                    Text('Get one more try'.tr),
                   ],
                 ),
               ),
@@ -72,8 +72,8 @@ void wrongGuessDialog(
               color: AppColors.mainColor,
             ),
           ),
-          child: const Center(
-            child: Text('Try Again'),
+          child: Center(
+            child: Text('Try Again'.tr),
           ),
         ),
       ),

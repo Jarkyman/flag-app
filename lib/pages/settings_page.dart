@@ -1,4 +1,3 @@
-import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
@@ -7,6 +6,7 @@ import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
+import '../widget/buttons/custom_close_button.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -24,33 +24,7 @@ class SettingsPage extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(Dimensions.height10),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.find<SoundController>().clickSound();
-                        Get.back();
-                      },
-                      child: Container(
-                        width: Dimensions.width20 * 2,
-                        height: Dimensions.height20 * 2,
-                        decoration: BoxDecoration(
-                          color: AppColors.mainColor.withOpacity(0.2),
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius20 * 2),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.close,
-                            color: AppColors.mainColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                CustomCloseButton(),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -27,9 +27,8 @@ class _SplashPageState extends State<SplashScreen>
   late AnimationController controller;
 
   Future<void> _loadResource() async {
-    print('Get.locale! = ${Get.locale!}');
     await Get.find<CountryController>().readCountries(Get.locale!);
-    await Get.find<CountryContinentController>().readCountries();
+    await Get.find<CountryContinentController>().readCountries(Get.locale!);
     await Get.find<ScoreController>().readAllScores();
     await Get.find<HintController>().readHints();
     await Get.find<LevelController>().readAllLevels();

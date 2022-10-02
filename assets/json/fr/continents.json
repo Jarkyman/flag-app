@@ -1,0 +1,777 @@
+[
+  {
+    "Continent": "Afrique",
+    "Pays": "Algérie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Angola"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Bénin"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Botswana"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Burkina Faso"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Burundi"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Cameroun"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Cap-Vert"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "République centrafricaine"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Tchad"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Comores"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Congo"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "République démocratique du Congo"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Djibouti"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Egypte"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Guinée équatoriale"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Erythrée"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Ethiopie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Gabon"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Gambie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Ghana"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Guinée"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Guinée-Bissau"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Côte d'Ivoire"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Kenya"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Lesotho"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Liberia"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Libye"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Madagascar"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Malawi"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Mali"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Mauritanie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Maurice"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Maroc"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Mozambique"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Namibie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Niger"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Nigeria"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Rwanda"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Sao Tomé-et-Principe"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Sénégal"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Seychelles"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Sierra Leone"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Somalie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Afrique du Sud"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Soudan du Sud"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Soudan"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Eswatini"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Tanzanie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Togo"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Tunisie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Ouganda"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Zambie"
+  },
+  {
+    "Continent": "Afrique",
+    "Pays": "Zimbabwe"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Afghanistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Bahreïn"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Bangladesh"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Bhoutan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Brunéi Darussalam"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Myanmar"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Cambodge"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Chine"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Timor-Leste"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Inde"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Indonésie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Iran"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Irak"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Israël"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Japon"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Jordanie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Kazakhstan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays":"Corée du Nord"
+  },
+  {
+    "Continent": "Asie",
+    "Pays":"Corée du Sud"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Koweït"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Kirghizistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Laos"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Liban"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Malaisie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Maldives"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Mongolie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Népal"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Oman"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Pakistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Philippines"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Qatar"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Russie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Arabie saoudite"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Singapour"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Sri Lanka"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Syrie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Tadjikistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Thaïlande"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Turquie"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Turkménistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Émirats Arabes Unis"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Ouzbékistan"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Vietnam"
+  },
+  {
+    "Continent": "Asie",
+    "Pays": "Yémen"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Albanie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Andorre"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Arménie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Autriche"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Azerbaïdjan"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Biélorussie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Belgique"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Bosnie-Herzégovine"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Bulgarie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Croatie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Chypre"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Tchéquie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Danemark"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Estonie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Finlande"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "France"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Géorgie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Allemagne"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Grèce"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Hongrie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Islande"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Irlande"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Italie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Lettonie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Liechtenstein"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Lituanie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Luxembourg"
+  },
+  {
+    "Continent": "Europe",
+    "Pays":"Macédoine du Nord"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Malte"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Moldavie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Monaco"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Monténégro"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Pays-Bas"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Norvège"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Pologne"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Portugal"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Roumanie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Saint-Marin"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Serbie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Slovaquie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Slovénie"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Espagne"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Suède"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Suisse"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Ukraine"
+  },
+  {
+    "Continent": "Europe",
+    "Pays":"Royaume-Uni"
+  },
+  {
+    "Continent": "Europe",
+    "Pays": "Cité du Vatican"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Antigua - et-Barbuda"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Bahamas"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Barbade"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Belize"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Canada"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Costa Rica"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Cuba"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Dominique"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "République dominicaine"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "El Salvador"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Grenade"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Guatemala"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Haïti"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Honduras"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Jamaïque"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Mexique"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Nicaragua"
+  },{
+  "Continent": "Amérique du Nord",
+  "Pays": "Panama"
+},
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Saint-Kitts - et-Nevis"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Sainte-Lucie"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Saint-Vincent-et-les Grenadines"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays": "Trinité-et-Tobago"
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Pays" :" États-Unis"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Australie"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Fidji"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Kiribati"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Îles Marshall"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Micronésie"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Nauru"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Nouvelle-Zélande"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Palau"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Papouasie-Nouvelle-Guinée"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Samoa"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Îles Salomon"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Tonga"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Tuvalu"
+  },
+  {
+    "Continent": "Océanie",
+    "Pays": "Vanuatu"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Argentine"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Bolivie"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Brésil"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Chili"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Colombie"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Équateur"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Guyana"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Paraguay"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Pérou"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Suriname"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Uruguay"
+  },
+  {
+    "Continent": "Amérique du Sud",
+    "Pays": "Venezuela"
+  }
+]

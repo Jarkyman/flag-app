@@ -21,7 +21,7 @@ class CountryController extends GetxController implements GetxService {
     _countries = [];
     _countries = list.map((e) => CountryModel.fromJson(e)).toList();
     Get.find<CountryContinentController>()
-        .readCountries()
+        .readCountries(Get.locale!)
         .then((value) => removeUnUsed());
     update();
     _countries.shuffle();

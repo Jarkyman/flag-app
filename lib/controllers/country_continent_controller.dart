@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flag_app/models/country_continent_model.dart';
 import 'package:flag_app/models/country_model.dart';
@@ -13,8 +14,8 @@ class CountryContinentController extends GetxController implements GetxService {
   List<CountryContinentModel> _countries = [];
   List<CountryContinentModel> get getCountries => _countries;
 
-  Future<void> readCountries() async {
-    final list = json.decode(await continentRepo.readCountryContinent())
+  Future<void> readCountries(Locale locale) async {
+    final list = json.decode(await continentRepo.readCountryContinent(locale))
         as List<dynamic>;
     _countries = [];
     _countries = list.map((e) => CountryContinentModel.fromJson(e)).toList();

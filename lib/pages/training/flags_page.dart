@@ -232,7 +232,7 @@ class _FlagsPageState extends State<FlagsPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Flags',
+          'Flags'.tr,
           style: TextStyle(
               fontSize: Dimensions.font26, color: AppColors.titleColor),
         ),

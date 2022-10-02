@@ -1,0 +1,777 @@
+[
+  {
+    "Continente":"África",
+    "Country":"Argélia"
+  },
+  {
+    "Continente":"África",
+    "Country":"Angola"
+  },
+  {
+    "Continente":"África",
+    "Country":"Benim"
+  },
+  {
+    "Continente":"África",
+    "Country":"Botsuana"
+  },
+  {
+    "Continente":"África",
+    "Country": "Burkina Faso"
+  },
+  {
+    "Continente":"África",
+    "Country":"Burundi"
+  },
+  {
+    "Continente":"África",
+    "Country":"Camarões"
+  },
+  {
+    "Continente":"África",
+    "Country": "Cabo Verde"
+  },
+  {
+    "Continente":"África",
+    "Country":"República Centro-Africana"
+  },
+  {
+    "Continente":"África",
+    "Country": "Chade"
+  },
+  {
+    "Continente":"África",
+    "Country":"Comores"
+  },
+  {
+    "Continente":"África",
+    "Country":"Congo"
+  },
+  {
+    "Continente":"África",
+    "Country": "República Democrática do Congo"
+  },
+  {
+    "Continente":"África",
+    "Country": "Djibouti"
+  },
+  {
+    "Continente":"África",
+    "Country": "Egipto"
+  },
+  {
+    "Continente":"África",
+    "Country":"Guiné Equatorial"
+  },
+  {
+    "Continente":"África",
+    "Country": "Eritreia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Etiópia"
+  },
+  {
+    "Continente":"África",
+    "Country":"Gabão"
+  },
+  {
+    "Continente":"África",
+    "Country": "Gâmbia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Gana"
+  },
+  {
+    "Continente":"África",
+    "Country":"Guiné"
+  },
+  {
+    "Continente":"África",
+    "Country": "Guiné-Bissau"
+  },
+  {
+    "Continente":"África",
+    "Country": "Costa Do Marfim"
+  },
+  {
+    "Continente":"África",
+    "Country": "Quénia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Lesoto"
+  },
+  {
+    "Continente":"África",
+    "Country":"Libéria"
+  },
+  {
+    "Continente":"África",
+    "Country": "Líbia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Madagáscar"
+  },
+  {
+    "Continente":"África",
+    "Country": "Malawi"
+  },
+  {
+    "Continente":"África",
+    "Country": "Mali"
+  },
+  {
+    "Continente":"África",
+    "Country": "Mauritânia"
+  },
+  {
+    "Continente":"África",
+    "Country":"Maurícia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Marrocos"
+  },
+  {
+    "Continente":"África",
+    "Country":"Moçambique"
+  },
+  {
+    "Continente":"África",
+    "Country":"Namíbia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Níger"
+  },
+  {
+    "Continente":"África",
+    "Country":"Nigéria"
+  },
+  {
+    "Continente":"África",
+    "Country":"Ruanda"
+  },
+  {
+    "Continente":"África",
+    "Country": "São Tomé e Príncipe"
+  },
+  {
+    "Continente":"África",
+    "Country":"Senegal"
+  },
+  {
+    "Continente":"África",
+    "Country": "Seychelles"
+  },
+  {
+    "Continente":"África",
+    "Country": "Serra Leoa"
+  },
+  {
+    "Continente":"África",
+    "Country":"Somália"
+  },
+  {
+    "Continente":"África",
+    "Country":"África Do Sul"
+  },
+  {
+    "Continente":"África",
+    "Country": "Sudão Do Sul"
+  },
+  {
+    "Continente":"África",
+    "Country": "Sudão"
+  },
+  {
+    "Continente":"África",
+    "Country": "Eswatini"
+  },
+  {
+    "Continente":"África",
+    "Country": "Tanzânia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Togo"
+  },
+  {
+    "Continente":"África",
+    "Country": "Tunísia"
+  },
+  {
+    "Continente":"África",
+    "Country":"Uganda"
+  },
+  {
+    "Continente":"África",
+    "Country": "Zâmbia"
+  },
+  {
+    "Continente":"África",
+    "Country": "Zimbabué"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Afeganistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Barém"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Bangladesh"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Butão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Brunei Darussalam"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Myanmar"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Camboja"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"China"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Timor-Leste"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Índia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Indonésia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Irão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Iraque"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Israel"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Japão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Jordânia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Cazaquistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Coreia Do Norte"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Coreia Do Sul"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Kuwait"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Quirguistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Laos"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Líbano"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Malásia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Maldivas"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Mongólia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Nepal"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Omã"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Paquistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Filipinas"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Catar"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Rússia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Arábia Saudita"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Singapura"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Sri Lanka"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Síria"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Tajiquistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Tailândia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country":"Turquia"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Turquemenistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Emirados Árabes Unidos"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Usbequistão"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Vietname"
+  },
+  {
+    "Continente":"Ásia",
+    "Country": "Iémen"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Albânia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Andorra"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Arménia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Áustria"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Azerbaijão"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Bielorrússia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Bélgica"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Bósnia E Herzegovina"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Bulgária"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Croácia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Chipre"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "República Checa"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Dinamarca"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Estónia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Finlândia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"França"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Geórgia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Alemanha"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Grécia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Hungria"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Islândia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Irlanda"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Itália"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Letónia"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Liechtenstein"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Lituânia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Luxemburgo"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Macedónia Do Norte"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Malta"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Moldávia"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Mónaco"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Montenegro"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Países Baixos"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Noruega"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Polónia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Portugal"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Roménia"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "San Marino"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Sérvia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Eslováquia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Eslovénia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Espanha"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Suécia"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Suíça"
+  },
+  {
+    "Continente":"Europa",
+    "Country":"Ucrânia"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Reino Unido"
+  },
+  {
+    "Continente":"Europa",
+    "Country": "Cidade Do Vaticano"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Antígua E Barbuda"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Bahamas"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Barbados"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Belize"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Canadá"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Costa Rica"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Cuba"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Dominica"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"República Dominicana"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "El Salvador"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Granada"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Guatemala"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Haiti"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Honduras"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"Jamaica"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country":"México"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Nicarágua"
+  },{
+  "Continente": "América Do Norte",
+  "Country":"Panamá"
+},
+  {
+    "Continente": "América Do Norte",
+    "Country": "São Cristóvão e Nevis"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Santa Lúcia"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "São Vicente e Granadinas"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Trinidad E Tobago"
+  },
+  {
+    "Continente": "América Do Norte",
+    "Country": "Estados Unidos"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Austrália"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Fiji"
+  },
+  {
+    "Continente": "Oceania",
+    "Country": "Kiribati"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Ilhas Marshall"
+  },
+  {
+    "Continente": "Oceania",
+    "Country": "Micronésia"
+  },
+  {
+    "Continente": "Oceania",
+    "Country": "Nauru"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":" Nova Zelândia"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Palau"
+  },
+  {
+    "Continente": "Oceania",
+    "Country": "Papua Nova Guiné"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Samoa"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Ilhas Salomão"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Tonga"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Tuvalu"
+  },
+  {
+    "Continente": "Oceania",
+    "Country":"Vanuatu"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country": "Argentina"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Bolívia"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Brasil"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Chile"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Colômbia"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Equador"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Guiana"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Paraguai"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Peru"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Suriname"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Uruguai"
+  },
+  {
+    "Continente": "América Do Sul",
+    "Country":"Venezuela"
+  }
+]

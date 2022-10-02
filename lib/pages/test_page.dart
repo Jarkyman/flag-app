@@ -29,7 +29,7 @@ class _TestPageState extends State<TestPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Get.find<CountryController>().readCountries().then((value) {
+    Get.find<CountryController>().readCountries(Get.locale!).then((value) {
       generateCountries();
     });
   }

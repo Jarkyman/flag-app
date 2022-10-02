@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/models/country_model.dart';
@@ -14,9 +15,9 @@ class CountryController extends GetxController implements GetxService {
   List<CountryModel> _countries = [];
   List<CountryModel> get getCountries => _countries;
 
-  Future<void> readCountries() async {
+  Future<void> readCountries(Locale locale) async {
     final list =
-        json.decode(await countryRepo.readCountries()) as List<dynamic>;
+        json.decode(await countryRepo.readCountries(locale)) as List<dynamic>;
     _countries = [];
     _countries = list.map((e) => CountryModel.fromJson(e)).toList();
     Get.find<CountryContinentController>()
@@ -50,7 +51,7 @@ class CountryController extends GetxController implements GetxService {
 
   CountryModel getACountry() {
     if (_countries.isEmpty) {
-      readCountries();
+      readCountries(Get.locale!);
     }
     if (_countryCount == 0) {
       _countries.shuffle();
@@ -80,7 +81,7 @@ class CountryController extends GetxController implements GetxService {
 
   List<CountryModel> generateCountries(String selectedCountry, int amount) {
     if (_countries.isEmpty) {
-      readCountries();
+      readCountries(Get.locale!);
     }
 
     List<CountryModel> all = _countries;

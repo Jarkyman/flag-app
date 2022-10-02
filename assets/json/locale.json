@@ -29,8 +29,8 @@
       "_Levels": "Levels page",
       "Level": "level",
       "Unlock more levels": "Unlock more levels",
-      "You need to finish": "You need to unlock",
-      "more, to unlock level": "more, to unlock leve",
+      "You need to finish": "You need to finish",
+      "more, to unlock level": "more, to unlock level",
       "more, to unlock level2": "",
       "_guess page": "Guess page",
       "Continent": "Continent",
@@ -76,7 +76,7 @@
       "Continent": "Kontinent",
       "Country": "Land",
       "Capital": "Hovedstad",
-      "Currency": "Møntfod"
+      "Currency": "Valuta"
     }
   },
   {
@@ -109,14 +109,54 @@
       "_Levels": "Levels page",
       "Level": "Nivå",
       "Unlock more levels": "Lås upp fler nivåer",
-      "You need to finish": "Du måste låsa upp",
+      "You need to finish": "Du måste avsluta",
       "more, to unlock level": "till för att låsa upp nivå",
       "more, to unlock level2": "",
       "_guess page": "Guess page",
       "Continent": "Kontinent",
       "Country": "Land",
       "Capital": "Huvudstad",
-      "Currency": "Myntfot"
+      "Currency": "Valuta"
+    }
+  },
+  {
+    "language": "Norsk",
+    "country_code": "nb_NO",
+    "texts": {
+      "_HomePage": "Home Page",
+      "Play": "Spille",
+      "Which flag": "Hvilket flagg",
+      "Match flags": "Match flagg",
+      "Which country": "Hvilket land",
+      "Shop": "butikk",
+      "_Settings": "Settings",
+      "Language" : "Språk",
+      "Sound": "Lyd",
+      "Credits": "Studiepoeng",
+      "_Shop": "Shop Page",
+      "Buy 50 hints": "Kjøp 50 hints",
+      "Buy 100 hints": "Kjøp 100 hints",
+      "Buy 500 hints": "Kjøp 500 hints",
+      "Watch video (3 hints)": "Se på video (3 hints)",
+      "_Training": "Training page",
+      "Flags": "Flagg",
+      "Capitals": "Kapitaler",
+      "Flag": "Flagg",
+      "Countries": "Land",
+      "Coat of arms": "Våpenskjold",
+      "Score": "Score",
+      "Record": "Rekord",
+      "_Levels": "Levels page",
+      "Level": "nivå",
+      "Unlock more levels": "Lås opp flere nivåer",
+      "You need to finish": "Du må fullføre",
+      "more, to unlock level": "til for å låse opp nivå",
+      "more, to unlock level2": "",
+      "_guess page": "Guess page",
+      "Continent": "Kontinent",
+      "Country": "Land",
+      "Capital": "Huvudstad",
+      "Currency": "Valuta"
     }
   },
   {
@@ -156,7 +196,7 @@
       "Continent": "Continente",
       "Country": "País",
       "Capital": "Capital",
-      "Currency": "Moneda"
+      "Currency": "Valuta"
     }
   }
 ]

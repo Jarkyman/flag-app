@@ -1,0 +1,24 @@
+[
+  {
+    "country": "English",
+    "country_code": "en_US",
+    "texts": {
+      "Play": "Play",
+      "Which flag": "Which flag",
+      "Match flags": "Match flags",
+      "Which country": "Which country",
+      "Shop": "shop"
+    }
+  },
+  {
+    "country": "Arabic",
+    "country_code": "da_DK",
+    "texts": {
+      "Play": "Spil",
+      "Which flag": "Hvilket flag",
+      "Match flags": "Match flags",
+      "Which country": "Hvilket land",
+      "Shop": "Butik"
+    }
+  }
+]

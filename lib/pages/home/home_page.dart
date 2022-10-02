@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getPlayPage());
                       },
-                      title: 'Play',
+                      title: 'Play'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getFlagPage());
                       },
-                      title: 'Which flag',
+                      title: 'Which flag'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getFlagsPage());
                       },
-                      title: 'Match flags',
+                      title: 'Match flags'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getCountriesPage());
                       },
-                      title: 'Which country',
+                      title: 'Which country'.tr,
                     ),
                     /*SizedBox(
                       height: Dimensions.height20,
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getShopPage());
                       },
-                      title: 'Shop',
+                      title: 'Shop'.tr,
                     ),
                   ],
                 ),

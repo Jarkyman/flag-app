@@ -1,3 +1,5 @@
+import 'package:flag_app/controllers/country_continent_controller.dart';
+import 'package:flag_app/controllers/country_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../controllers/settings_controller.dart';
@@ -13,6 +15,8 @@ final List locale = [
 ];
 updateLanguage(Locale locale) {
   Get.back();
+  Get.find<CountryContinentController>().readCountries(locale);
+  Get.find<CountryController>().readCountries(locale);
   Get.find<SettingsController>().languageSettingsSave(locale.toString());
 }
 

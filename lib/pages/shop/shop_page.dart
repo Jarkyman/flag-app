@@ -1,4 +1,5 @@
 import 'package:flag_app/controllers/hint_controller.dart';
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
@@ -113,7 +114,7 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () {
-                          //UNLOCK
+                          Get.find<ShopController>().levelsUnlockSave(true);
                         },
                         title: 'Unlock all levels'.tr,
                       ),

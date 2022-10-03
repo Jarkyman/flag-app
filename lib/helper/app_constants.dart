@@ -8,6 +8,10 @@ class AppConstants {
   static const String CAPITAL_SCORE = 'capital-score';
   static const String COUNTRIES_SCORE = 'countries-score';
 
+  // Shop
+  static const String UNLOCK_LEVELS = 'unlock-levels';
+  static const String ADS_REMOVE = 'ads-remove';
+
   // Settings
   static const String LANGUAGE = 'language';
   static const String SOUND = 'sound';

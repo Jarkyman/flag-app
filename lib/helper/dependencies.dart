@@ -4,6 +4,7 @@ import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/repos/country_continent_repo.dart';
 import 'package:flag_app/repos/country_repo.dart';
@@ -11,6 +12,7 @@ import 'package:flag_app/repos/hint_repo.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:flag_app/repos/score_repo.dart';
 import 'package:flag_app/repos/settings_repo.dart';
+import 'package:flag_app/repos/shop_repo.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +31,7 @@ Future<void> init() async {
   Get.lazyPut(() => HintRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => LevelRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => SettingsRepo(sharedPreferences: sharedPreferences));
+  Get.lazyPut(() => ShopRepo(sharedPreferences: sharedPreferences));
 
   //Controller
   Get.lazyPut(() => CountryController(countryRepo: Get.find()));
@@ -38,4 +41,5 @@ Future<void> init() async {
   Get.lazyPut(() => LevelController(levelRepo: Get.find()));
   Get.lazyPut(() => SoundController(settingsRepo: Get.find()));
   Get.lazyPut(() => SettingsController(settingsRepo: Get.find()));
+  Get.lazyPut(() => ShopController(shopRepo: Get.find()));
 }

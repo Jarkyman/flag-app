@@ -1,4 +1,5 @@
 import 'package:flag_app/controllers/level_controller.dart';
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/widget/Top%20bar/app_bar_row.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
@@ -43,14 +44,20 @@ class LevelsListPage extends StatelessWidget {
                               .getFinishedLevels(Get.arguments[0]);
                           bool isLocked = levelController.isLevelUnlocked(
                               index, Get.arguments[0]);
+                          bool levelsUnlock =
+                              Get.find<ShopController>().isLevelsUnlocked;
+                          bool locked = true;
+                          if (levelsUnlock) {
+                            locked = false;
+                          }
                           return Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: Dimensions.height10,
                                 horizontal: Dimensions.width10),
                             child: LevelButton(
-                              isLocked: isLocked,
+                              isLocked: locked,
                               onTap: () {
-                                if (!isLocked) {
+                                if (!isLocked || levelsUnlock) {
                                   Get.toNamed(RouteHelper.getLevelPage(),
                                       arguments: [Get.arguments[0], index + 1]);
                                 } else {

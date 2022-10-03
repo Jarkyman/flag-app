@@ -4,6 +4,7 @@ import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +35,7 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<LevelController>().readAllLevels();
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
+    await Get.find<ShopController>().loadShopSettings();
   }
 
   @override

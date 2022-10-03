@@ -18,6 +18,11 @@ class ShopController extends GetxController implements GetxService {
   bool _adsRemoved = false;
   bool get isAdsRemoved => _adsRemoved;
 
+  Future<void> loadShopSettings() async {
+    levelsUnlockRead();
+    removeAdsRead();
+  }
+
   Future<void> levelsUnlockRead() async {
     _levelsUnlocked = await shopRepo.levelsUnlockRead();
   }

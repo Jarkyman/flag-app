@@ -6,6 +6,7 @@ import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/level_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/route_helper.dart';
 import '../../widget/buttons/menu_button.dart';
@@ -18,6 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(Get.find<LevelController>().getList('Countries')![1].country);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

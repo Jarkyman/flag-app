@@ -70,6 +70,15 @@ flutter:
     - assets/image/flags/
     - assets/image/countries/
     - assets/json/
+    - assets/json/br/
+    - assets/json/de/
+    - assets/json/dk/
+    - assets/json/es/
+    - assets/json/fr/
+    - assets/json/no/
+    - assets/json/pt/
+    - assets/json/se/
+    - assets/json/us/
     - assets/icon/
     - assets/sound/
 

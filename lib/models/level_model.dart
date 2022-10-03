@@ -7,15 +7,15 @@ class LevelModel {
 
   LevelModel.fromJson(Map<String, dynamic> json) {
     country = json['Country'];
-    guessed = json['guessed'];
-    level = json['level'];
+    guessed = json['Guessed'] ?? false;
+    level = json['Level'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Country'] = this.country;
-    data['guessed'] = this.guessed;
-    data['level'] = this.level;
+    data['Guessed'] = this.guessed;
+    data['Level'] = this.level;
     return data;
   }
 }

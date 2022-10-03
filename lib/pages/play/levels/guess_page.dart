@@ -78,8 +78,8 @@ class _GuessPageState extends State<GuessPage> {
 
   void setInit() {
     levels = Get.find<LevelController>().getList(Get.arguments[0])!;
-    levelList =
-        Get.find<LevelController>().getLevelList(Get.arguments[1], levels);
+    levelList = Get.find<LevelController>()
+        .getLevelList(Get.arguments[1], Get.arguments[0]);
     country = levelList[Get.arguments[2]];
     correctLettersList = getCorrectLettersList(country.country!);
     lettersListAnswer = getLettersListEmpty(country.country!);

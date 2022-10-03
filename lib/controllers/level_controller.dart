@@ -63,9 +63,9 @@ class LevelController extends GetxController implements GetxService {
     return amount;
   }
 
-  List<LevelModel> getLevelList(int level, List<LevelModel> levelList) {
+  List<LevelModel> getLevelList(int level, String playOption) {
     List<LevelModel> levelListResult = [];
-    levelList.forEach((element) {
+    getList(playOption)!.forEach((element) {
       if (element.level == level) {
         levelListResult.add(element);
       }
@@ -131,8 +131,10 @@ class LevelController extends GetxController implements GetxService {
   }
 
   Future<void> readLevels() async {
-    _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS);
-    _countriesLevels = await levelRepo.readLevels(AppConstants.COUNTRIES);
+    print('ReadLevels' + Get.locale!.toString());
+    _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!);
+    _countriesLevels =
+        await levelRepo.readLevels(AppConstants.COUNTRIES, Get.locale!);
     update();
   }
 

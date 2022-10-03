@@ -21,7 +21,7 @@ class CountryController extends GetxController implements GetxService {
     _countries = [];
     _countries = list.map((e) => CountryModel.fromJson(e)).toList();
     Get.find<CountryContinentController>()
-        .readCountries(Get.locale!)
+        .readCountries(locale)
         .then((value) => removeUnUsed());
     update();
     _countries.shuffle();
@@ -42,7 +42,8 @@ class CountryController extends GetxController implements GetxService {
   String getCountryCode(String country) {
     String countryCode = 'error';
     _countries.forEach((element) {
-      if (country == element.countryName) {
+      //print(country.toLowerCase() + ' ==' + element.countryName!.toLowerCase());
+      if (country.toLowerCase() == element.countryName!.toLowerCase()) {
         countryCode = element.countryCode!;
       }
     });

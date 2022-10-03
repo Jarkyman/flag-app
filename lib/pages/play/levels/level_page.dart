@@ -28,6 +28,9 @@ class _LevelPageState extends State<LevelPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print(Get.locale!);
+    print(Get.find<CountryController>().getCountries[1].currencyName);
+    print(Get.find<LevelController>().getList(Get.arguments[0])![1].country);
     createBannerAd();
   }
 
@@ -87,8 +90,7 @@ class _LevelPageState extends State<LevelPage> {
                       print('Type = ' + Get.arguments[0].toString());
                       print('Level = ' + Get.arguments[1].toString());
                       List<LevelModel> levels = levelController.getLevelList(
-                          Get.arguments[1],
-                          levelController.getList(Get.arguments[0])!);
+                          Get.arguments[1], Get.arguments[0]);
                       return GridView.count(
                         childAspectRatio: 6 / 5,
                         mainAxisSpacing: Dimensions.height20,
@@ -98,6 +100,9 @@ class _LevelPageState extends State<LevelPage> {
                         crossAxisCount: 4,
                         // Generate 100 widgets that display their index in the List.
                         children: List.generate(levels.length, (index) {
+                          print(
+                              '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}');
+                          print(levels[index].country!);
                           return GestureDetector(
                             onTap: () {
                               Get.find<SoundController>().windSound();

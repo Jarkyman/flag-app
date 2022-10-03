@@ -1,0 +1,778 @@
+[
+  {
+    "Country": "Japan",
+    "Level": 1
+  },
+  {
+    "Country": "Uruguay",
+    "Level": 1
+  },
+  {
+    "Country": "Finland",
+    "Level": 1
+  },
+  {
+    "Country": "Salomonøerne",
+    "Level": 1
+  },
+  {
+    "Country": "Fiji",
+    "Level": 1
+  },
+  {
+    "Country": "Iran",
+    "Level": 1
+  },
+  {
+    "Country": "Tyskland",
+    "Level": 1
+  },
+  {
+    "Country": "Danmark",
+    "Level": 1
+  },
+  {
+    "Country": "Sierra Leone",
+    "Level": 1
+  },
+  {
+    "Country": "Den Demokratiske Republik Congo",
+    "Level": 10
+  },
+  {
+    "Country": "Thailand",
+    "Level": 1
+  },
+  {
+    "Country": "Marokko",
+    "Level": 1
+  },
+  {
+    "Country": "Vietnam",
+    "Level": 1
+  },
+  {
+    "Country": "Portugal",
+    "Level": 1
+  },
+  {
+    "Country": "Cuba",
+    "Level": 1
+  },
+  {
+    "Country": "Danmark",
+    "Level": 1
+  },
+  {
+    "Country": "Usbekistan",
+    "Level": 1
+  },
+  {
+    "Country": "Mauretanien",
+    "Level": 1
+  },
+  {
+    "Country": "El Salvador",
+    "Level": 1
+  },
+  {
+    "Country": "Argentina",
+    "Level": 1
+  },
+  {
+    "Country": "Den Dominikanske Republik",
+    "Level": 2
+  },
+  {
+    "Country": "Timor-Leste",
+    "Level": 2
+  },
+  {
+    "Country": "Serbien",
+    "Level": 2
+  },
+  {
+    "Country": "Ecuador",
+    "Level": 2
+  },
+  {
+    "Country": "Island",
+    "Level": 2
+  },
+  {
+    "Country": "Den Centralafrikanske Republik",
+    "Level": 2
+  },
+  {
+    "Country": "Syrien",
+    "Level": 2
+  },
+  {
+    "Country": "Nauru",
+    "Level": 2
+  },
+  {
+    "Country": "Norge",
+    "Level": 2
+  },
+  {
+    "Country": "Jordan",
+    "Level": 2
+  },
+  {
+    "Country": "Nigeria",
+    "Level": 2
+  },
+  {
+    "Country": "Costa Rica",
+    "Level": 2
+  },
+  {
+    "Country": "Tyrkiet",
+    "Level": 2
+  },
+  {
+    "Country": "Sverige",
+    "Level": 2
+  },
+  {
+    "Country": "Australien",
+    "Level": 2
+  },
+  {
+    "Country": "Israel",
+    "Level": 2
+  },
+  {
+    "Country": "Tchad",
+    "Level": 2
+  },
+  {
+    "Country": "Danmark",
+    "Level": 2
+  },
+  {
+    "Country": "Danmark",
+    "Level": 2
+  },
+  {
+    "Country": "Sydsudan",
+    "Level": 2
+  },
+  {
+    "Country": "Somalia",
+    "Level": 3
+  },
+  {
+    "Country": "Canada",
+    "Level": 3
+  },
+  {
+    "Country": "Estland",
+    "Level": 3
+  },
+  {
+    "Country": "Brasilien",
+    "Level": 3
+  },
+  {
+    "Country": "Kiribati",
+    "Level": 3
+  },
+  {
+    "Country": "Montenegro",
+    "Level": 3
+  },
+  {
+    "Country": "Danmark",
+    "Level": 3
+  },
+  {
+    "Country": "Danmark",
+    "Level": 3
+  },
+  {
+    "Country": "Albanien",
+    "Level": 3
+  },
+  {
+    "Country": "Guinea-Bissau",
+    "Level": 3
+  },
+  {
+    "Country": "Cypern",
+    "Level": 3
+  },
+  {
+    "Country": "Barbados",
+    "Level": 3
+  },
+  {
+    "Country": "Filippinerne",
+    "Level": 3
+  },
+  {
+    "Country": "Danmark",
+    "Level": 3
+  },
+  {
+    "Country": "Comorerne",
+    "Level": 3
+  },
+  {
+    "Country": "Malaysia",
+    "Level": 3
+  },
+  {
+    "Country": "Nepal",
+    "Level": 3
+  },
+  {
+    "Country": "Tuvalu",
+    "Level": 3
+  },
+  {
+    "Country": "Kina",
+    "Level": 3
+  },
+  {
+    "Country": "Colombia",
+    "Level": 3
+  },
+  {
+    "Country": "Sydkorea",
+    "Level": 4
+  },
+  {
+    "Country": "Egypten",
+    "Level": 4
+  },
+  {
+    "Country": "Saint Lucia",
+    "Level": 4
+  },
+  {
+    "Country": "Djibouti",
+    "Level": 4
+  },
+  {
+    "Country": "Sudan",
+    "Level": 4
+  },
+  {
+    "Country": "Bosnien-Hercegovina",
+    "Level": 9
+  },
+  {
+    "Country": "Kasakhstan",
+    "Level": 4
+  },
+  {
+    "Country": "Letland",
+    "Level": 4
+  },
+  {
+    "Country": "Grenada",
+    "Level": 4
+  },
+  {
+    "Country": "Italien",
+    "Level": 4
+  },
+  {
+    "Country": "Maldiverne",
+    "Level": 4
+  },
+  {
+    "Country": "Irak",
+    "Level": 4
+  },
+  {
+    "Country": "Libyen",
+    "Level": 4
+  },
+  {
+    "Country": "Aserbajdsjan",
+    "Level": 4
+  },
+  {
+    "Country": "Bangladesh",
+    "Level": 4
+  },
+  {
+    "Country": "Samoa",
+    "Level": 4
+  },
+  {
+    "Country": "Mali",
+    "Level": 4
+  },
+  {
+    "Country": "Bulgarien",
+    "Level": 4
+  },
+  {
+    "Country": "Burkina Faso",
+    "Level": 4
+  },
+  {
+    "Country": "Seychellerne",
+    "Level": 4
+  },
+  {
+    "Country": " Elfenbenskysten",
+    "Level": 5
+  },
+  {
+    "Country": "Bhutan",
+    "Level": 5
+  },
+  {
+    "Country": "Kirgisistan",
+    "Level": 5
+  },
+  {
+    "Country": "Polen",
+    "Level": 5
+  },
+  {
+    "Country": "Liberia",
+    "Level": 5
+  },
+  {
+    "Country": "Guyana",
+    "Level": 5
+  },
+  {
+    "Country": "Peru",
+    "Level": 5
+  },
+  {
+    "Country": "Danmark",
+    "Level": 5
+  },
+  {
+    "Country": "Forenede Arabiske Emirater",
+    "Level": 5
+  },
+  {
+    "Country": "Bahamas",
+    "Level": 5
+  },
+  {
+    "Country": "Bahrain",
+    "Level": 5
+  },
+  {
+    "Country": "Tunesien",
+    "Level": 5
+  },
+  {
+    "Country": "Ghana",
+    "Level": 5
+  },
+  {
+    "Country": "Lesotho",
+    "Level": 5
+  },
+  {
+    "Country": "Congo",
+    "Level": 5
+  },
+  {
+    "Country": "Moldova",
+    "Level": 5
+  },
+  {
+    "Country": "Cambodja",
+    "Level": 5
+  },
+  {
+    "Country": "Andorra",
+    "Level": 5
+  },
+  {
+    "Country": "Danmark",
+    "Level": 5
+  },
+  {
+    "Country": "Haiti",
+    "Level": 5
+  },
+  {
+    "Country": "Mauritius",
+    "Level": 6
+  },
+  {
+    "Country": "Hviderusland",
+    "Level": 6
+  },
+  {
+    "Country": "Saudi-Arabien",
+    "Level": 6
+  },
+  {
+    "Country": "Indonesien",
+    "Level": 6
+  },
+  {
+    "Country": "Malta",
+    "Level": 6
+  },
+  {
+    "Country": "Bolivia",
+    "Level": 6
+  },
+  {
+    "Country": "Danmark",
+    "Level": 6
+  },
+  {
+    "Country": "San Marino",
+    "Level": 6
+  },
+  {
+    "Country": "Uganda",
+    "Level": 6
+  },
+  {
+    "Country": "Saint Vincent og Grenadinerne",
+    "Level": 10
+  },
+  {
+    "Country": "Tonga",
+    "Level": 6
+  },
+  {
+    "Country": "Eritrea",
+    "Level": 6
+  },
+  {
+    "Country": "Guinea",
+    "Level": 6
+  },
+  {
+    "Country": "Monaco",
+    "Level": 6
+  },
+  {
+    "Country": "Grækenland",
+    "Level": 6
+  },
+  {
+    "Country": "Danmark",
+    "Level": 6
+  },
+  {
+    "Country": "Sri Lanka",
+    "Level": 6
+  },
+  {
+    "Country": "Kenya",
+    "Level": 6
+  },
+  {
+    "Country": "Tjekkiet",
+    "Level": 6
+  },
+  {
+    "Country": "Mikronesien",
+    "Level": 6
+  },
+  {
+    "Country": "Benin",
+    "Level": 7
+  },
+  {
+    "Country": "Madagaskar",
+    "Level": 7
+  },
+  {
+    "Country": "Oman",
+    "Level": 7
+  },
+  {
+    "Country": "Danmark",
+    "Level": 7
+  },
+  {
+    "Country": "Angola",
+    "Level": 7
+  },
+  {
+    "Country": "Surinam",
+    "Level": 7
+  },
+  {
+    "Country": "Algeriet",
+    "Level": 7
+  },
+  {
+    "Country": "Sydafrika",
+    "Level": 7
+  },
+  {
+    "Country": "Burundi",
+    "Level": 7
+  },
+  {
+    "Country": "Tadsjikistan",
+    "Level": 7
+  },
+  {
+    "Country": "Togo",
+    "Level": 7
+  },
+  {
+    "Country": "Namibia",
+    "Level": 7
+  },
+  {
+    "Country": "USA",
+    "Level": 7
+  },
+  {
+    "Country": "Dominica",
+    "Level": 7
+  },
+  {
+    "Country": "Honduras",
+    "Level": 7
+  },
+  {
+    "Country": "Georgien",
+    "Level": 7
+  },
+  {
+    "Country": "Rumænien",
+    "Level": 7
+  },
+  {
+    "Country": "Danmark",
+    "Level": 7
+  },
+  {
+    "Country": "Spanien",
+    "Level": 7
+  },
+  {
+    "Country": "Cameroun",
+    "Level": 7
+  },
+  {
+    "Country": "Mongoliet",
+    "Level": 8
+  },
+  {
+    "Country": "Slovakiet",
+    "Level": 8
+  },
+  {
+    "Country": "Esatini",
+    "Level": 8
+  },
+  {
+    "Country": "Etiopien",
+    "Level": 8
+  },
+  {
+    "Country": "Gabon",
+    "Level": 8
+  },
+  {
+    "Country": "Singapore",
+    "Level": 8
+  },
+  {
+    "Country": "Kap Verde",
+    "Level": 8
+  },
+  {
+    "Country": "Belgien",
+    "Level": 8
+  },
+  {
+    "Country": " Nordmakedonien",
+    "Level": 8
+  },
+  {
+    "Country": "Palau",
+    "Level": 8
+  },
+  {
+    "Country": "Myanmar",
+    "Level": 8
+  },
+  {
+    "Country": "Østrig",
+    "Level": 8
+  },
+  {
+    "Country": "Afghanistan",
+    "Level": 8
+  },
+  {
+    "Country": "Yemen",
+    "Level": 8
+  },
+  {
+    "Country": "Antigua og Barbuda",
+    "Level": 8
+  },
+  {
+    "Country": "Saint Kitts og Nevis",
+    "Level": 8
+  },
+  {
+    "Country": "Danmark",
+    "Level": 8
+  },
+  {
+    "Country": "Chile",
+    "Level": 8
+  },
+  {
+    "Country": "Kroatien",
+    "Level": 8
+  },
+  {
+    "Country": "Trinidad og Tobago",
+    "Level": 10
+  },
+  {
+    "Country": "Ækvatorialguinea",
+    "Level": 9
+  },
+  {
+    "Country": "Indien",
+    "Level": 9
+  },
+  {
+    "Country": "Armenien",
+    "Level": 9
+  },
+  {
+    "Country": "Vatikanstaten",
+    "Level": 9
+  },
+  {
+    "Country": "Ukraine",
+    "Level": 9
+  },
+  {
+    "Country": "Det Forenede Kongerige",
+    "Level": 9
+  },
+  {
+    "Country": "Libanon",
+    "Level": 9
+  },
+  {
+    "Country": "Nicaragua",
+    "Level": 9
+  },
+  {
+    "Country": "Dansk",
+    "Level": 9
+  },
+  {
+    "Country": "Irland",
+    "Level": 9
+  },
+  {
+    "Country": "Turkmenistan",
+    "Level": 9
+  },
+  {
+    "Country": "Jamaica",
+    "Level": 4
+  },
+  {
+    "Country": "Senegal",
+    "Level": 9
+  },
+  {
+    "Country": "Slovenien",
+    "Level": 9
+  },
+  {
+    "Country": "Liechtenstein",
+    "Level": 9
+  },
+  {
+    "Country": "Brunei Darussalam",
+    "Level": 9
+  },
+  {
+    "Country": "Nordkorea",
+    "Level": 9
+  },
+  {
+    "Country": "Laos",
+    "Level": 9
+  },
+  {
+    "Country": "Gambia",
+    "Level": 9
+  },
+  {
+    "Country": "Niger",
+    "Level": 9
+  },
+  {
+    "Country": "Danmark",
+    "Level": 10
+  },
+  {
+    "Country": "Holland",
+    "Level": 10
+  },
+  {
+    "Country": "Frankrig",
+    "Level": 10
+  },
+  {
+    "Country": "Marshalløerne",
+    "Level": 10
+  },
+  {
+    "Country": "Ungarn",
+    "Level": 10
+  },
+  {
+    "Country": "Pakistan",
+    "Level": 6
+  },
+  {
+    "Country": "Guatemala",
+    "Level": 10
+  },
+  {
+    "Country": "Litauen",
+    "Level": 10
+  },
+  {
+    "Country": "Papua Ny Guinea",
+    "Level": 10
+  },
+  {
+    "Country": "Paraguay",
+    "Level": 1
+  },
+  {
+    "Country": "Panama",
+    "Level": 10
+  },
+  {
+    "Country": "Vanuatu",
+    "Level": 10
+  },
+  {
+    "Country": "Rusland",
+    "Level": 8
+  },
+  {
+    "Country": "Sao Tome og Principe",
+    "Level": 10
+  }
+]

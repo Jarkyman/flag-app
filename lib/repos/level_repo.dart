@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flag_app/models/level_model.dart';
 import 'package:flutter/services.dart';
@@ -13,25 +14,30 @@ class LevelRepo {
     required this.sharedPreferences,
   });
 
-  Future<List<LevelModel>> readLevels(String option) async {
-    if (await sharedPreferences.getStringList(option) == null) {
-      final String response = await rootBundle
-          .loadString('assets/json/${option.toLowerCase()}Levels.json');
+  Future<List<LevelModel>> readLevels(String option, Locale locale) async {
+    final String response = await rootBundle.loadString(
+        'assets/json/${locale.toString().split('_')[1].toLowerCase()}/${option.toLowerCase()}Levels.json');
 
-      final list = json.decode(response) as List<dynamic>;
-      List<LevelModel> levelModels = [];
-      levelModels = list.map((e) => LevelModel.fromJson(e)).toList();
+    final list = json.decode(response) as List<dynamic>;
+    List<LevelModel> levelModels = [];
+    levelModels = list.map((e) => LevelModel.fromJson(e)).toList();
 
-      saveLevels(levelModels, option);
-      return levelModels;
-    } else {
-      List<String> response = await sharedPreferences.getStringList(option)!;
-      List<LevelModel> levelModels = [];
+    if (await sharedPreferences.getStringList(option) != null) {
+      List<String> responsePref =
+          await sharedPreferences.getStringList(option)!;
+      List<LevelModel> levelModelPref = [];
+      responsePref.forEach((element) {
+        levelModelPref.add(LevelModel.fromJson(jsonDecode(element)));
+      });
 
-      response.forEach((element) =>
-          levelModels.add(LevelModel.fromJson(jsonDecode(element))));
-      return levelModels;
+      for (int i = 0; i < levelModels.length; i++) {
+        if (levelModelPref[i].guessed!) {
+          levelModels[i].guessed = true;
+        }
+      }
     }
+
+    return levelModels;
   }
 
   Future<bool> saveLevels(List<LevelModel> flags, String option) async {

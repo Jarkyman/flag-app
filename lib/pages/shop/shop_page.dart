@@ -113,6 +113,15 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () {
+                          //UNLOCK
+                        },
+                        title: 'Unlock all levels'.tr,
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      MenuButton(
+                        onTap: () {
                           _rewardedAd?.show(
                             onUserEarnedReward: (_, reward) {
                               Get.find<HintController>().addHint(3);

@@ -521,7 +521,7 @@
   },
   {
     "country_code": "CF",
-    "country_name": "Centralafrikanska republiken",
+    "country_name": "Centralafrikanska Republiken",
     "capital": " Bangui",
     "country_demonym": " Centralafrikaner",
     "total_area": 622984,
@@ -781,7 +781,7 @@
   },
   {
     "country_code": "DO",
-    "country_name": "Dominikanska republiken",
+    "country_name": "Dominikanska Republiken",
     "capital": " Santo Domingo",
     "country_demonym": " Dominikaner",
     "total_area": 48670,
@@ -2055,7 +2055,7 @@
   },
   {
     "country_code": "MZ",
-    "country_name": "Moçambique",
+    "country_name": "Mocambique",
     "capital": " Maputo",
     "country_demonym": " Moçambikaner",
     "total_area": 799380,

@@ -21,6 +21,7 @@ class ShopController extends GetxController implements GetxService {
   Future<void> loadShopSettings() async {
     levelsUnlockRead();
     removeAdsRead();
+    update();
   }
 
   Future<void> levelsUnlockRead() async {
@@ -30,6 +31,7 @@ class ShopController extends GetxController implements GetxService {
   Future<void> levelsUnlockSave(bool unlock) async {
     _levelsUnlocked = unlock;
     await shopRepo.levelsUnlockSave(unlock);
+    update();
   }
 
   Future<void> removeAdsRead() async {
@@ -39,5 +41,6 @@ class ShopController extends GetxController implements GetxService {
   Future<void> removeAdsSave(bool removeAds) async {
     _adsRemoved = removeAds;
     await shopRepo.levelsUnlockSave(removeAds);
+    update();
   }
 }

@@ -14,7 +14,7 @@
   },
   {
     "country_code": "AE",
-    "country_name": "De forente arabiske emirater",
+    "country_name": "De Forente Arabiske Emirater",
     "capital": " Abu Dhabi",
     "country_demonym": " Emirians",
     "total_area": 83600,
@@ -196,7 +196,7 @@
   },
   {
     "country_code": "AZ",
-    "country_name": "aserbajdsjan",
+    "country_name": "Aserbajdsjan",
     "capital": " baku",
     "country_demonym": " aserbajdsjanere",
     "total_area": 86600,
@@ -508,7 +508,7 @@
   },
   {
     "country_code": "CD",
-    "country_name": "Den demokratiske republikken Kongo",
+    "country_name": "Den Demokratiske Republikken Kongo",
     "capital": "Kinshasa",
     "country_demonym": "kongolesisk",
     "total_area": 2344858,
@@ -521,7 +521,7 @@
   },
   {
     "country_code": "CF",
-    "country_name": "Den sentralafrikanske republikk",
+    "country_name": "Den Sentralafrikanske Republikk",
     "capital": " Bangui",
     "country_demonym": " Sentralafrikanere",
     "total_area": 622984,
@@ -781,7 +781,7 @@
   },
   {
     "country_code": "DO",
-    "country_name": "Dominikanske republikk",
+    "country_name": "Dominikanske Republikk",
     "capital": " Santo Domingo",
     "country_demonym": " Dominikanere",
     "total_area": 48670,
@@ -2276,7 +2276,7 @@
   },
   {
     "country_code": "PG",
-    "country_name": "Papua Ny Guinea",
+    "country_name": "Papua Ny-Guinea",
     "capital": " Port Moresby",
     "country_demonym": " Papua Ny Guinea",
     "total_area": 462840,
@@ -2861,7 +2861,7 @@
   },
   {
     "country_code": "TL",
-    "country_name": "Timor-Leste",
+    "country_name": "Øst-Timor",
     "capital": "Dili",
     "country_demonym": "Timoresisk",
     "total_area": 14874,
@@ -3017,7 +3017,7 @@
   },
   {
     "country_code": "US",
-    "country_name": "USA",
+    "country_name": "Forente Stater",
     "capital": " Washington, D.C.",
     "country_demonym": " amerikanere",
     "total_area": 9826675,

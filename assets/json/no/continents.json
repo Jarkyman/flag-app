@@ -61,7 +61,7 @@
   },
   {
     "Continent":"Africa",
-    "Country":"Equatorial Guinea"
+    "Country":"Ekvatorial-Guinea"
   },
   {
     "Continent":"Africa",
@@ -157,7 +157,7 @@
   },
   {
     "Continent":"Africa",
-    "Country": "Sao Tome Og Principe"
+    "Country": "Sao Tome og Principe"
   },
   {
     "Continent":"Africa",
@@ -345,7 +345,7 @@
   },
   {
     "Continent":"Asia",
-    "Country": "Saudi Arabia"
+    "Country": "Saudi-Arabia"
   },
   {
     "Continent":"Asia",
@@ -421,7 +421,7 @@
   },
   {
     "Continent":"Europe",
-    "Country": "Bosnia and Herzegovina"
+    "Country": "Bosnia-Hercegovina"
   },
   {
     "Continent":"Europe",
@@ -477,7 +477,7 @@
   },
   {
     "Continent":"Europe",
-    "Country":"Ireland"
+    "Country":"Irland"
   },
   {
     "Continent":"Europe",
@@ -581,7 +581,7 @@
   },
   {
     "Continent": "Nord-Amerika",
-    "Country": "Antigua Og Barbuda"
+    "Country": "Antigua og Barbuda"
   },
   {
     "Continent": "Nord-Amerika",
@@ -613,7 +613,7 @@
   },
   {
     "Continent": "Nord-Amerika",
-    "Country":"Dominican Republic"
+    "Country":"Dominikanske Republikk"
   },
   {
     "Continent": "Nord-Amerika",
@@ -652,7 +652,7 @@
 },
   {
     "Continent": "Nord-Amerika",
-    "Country": "Saint Kitts Og Nevis"
+    "Country": "Saint Kitts og Nevis"
   },
   {
     "Continent": "Nord-Amerika",
@@ -660,15 +660,15 @@
   },
   {
     "Continent": "Nord-Amerika",
-    "Country": "Saint Vincent Og Grenadinene"
+    "Country": "Saint Vincent og Grenadinene"
   },
   {
     "Continent": "Nord-Amerika",
-    "Country": "Trinidad Og Tobago"
+    "Country": "Trinidad og Tobago"
   },
   {
     "Continent": "Nord-Amerika",
-    "Country":"United States"
+    "Country":"Forente Stater"
   },
   {
     "Continent":"Oceania",

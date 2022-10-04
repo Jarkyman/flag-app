@@ -142,6 +142,10 @@ class _GuessPageState extends State<GuessPage> {
       if (wordSplit.length > TILES_PR_ROW) {
         List<String> temp = [];
         int maxLength = TILES_PR_ROW - 2;
+        if (wordSplit.contains('-') &&
+            wordSplit.indexOf('-') + 1 <= TILES_PR_ROW) {
+          maxLength = wordSplit.indexOf('-') + 1;
+        }
         for (int i = 0; i < wordSplit.length; i++) {
           if (temp.length == maxLength || temp.contains('-')) {
             if (!wordSplit.contains('-')) {

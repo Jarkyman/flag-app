@@ -49,6 +49,8 @@ class LevelsListPage extends StatelessWidget {
                           bool locked = true;
                           if (levelsUnlock) {
                             locked = false;
+                          } else if (!isLocked) {
+                            locked = false;
                           }
                           return Padding(
                             padding: EdgeInsets.symmetric(

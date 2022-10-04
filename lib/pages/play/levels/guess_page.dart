@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flag_app/controllers/country_continent_controller.dart';
@@ -38,7 +39,7 @@ class _GuessPageState extends State<GuessPage> {
   late List<List<String>> correctLettersList;
   late List<List<String>> lettersListAnswer;
   late List<String> allLetters;
-  final int TILES_PR_ROW = 8;
+  final int TILES_PR_ROW = 9;
   bool bombUsed = false;
 
   BannerAd? _bannerAd;
@@ -86,6 +87,7 @@ class _GuessPageState extends State<GuessPage> {
     allLetters =
         generateRandomLetters(country.country!.toUpperCase().split(''));
     bombUsed = false;
+    print(jsonEncode(country));
   }
 
   void checkWin() {
@@ -141,7 +143,7 @@ class _GuessPageState extends State<GuessPage> {
         List<String> temp = [];
         int maxLength = TILES_PR_ROW - 2;
         for (int i = 0; i < wordSplit.length; i++) {
-          if (temp.length == maxLength) {
+          if (temp.length == maxLength || temp.contains('-')) {
             if (!wordSplit.contains('-')) {
               temp.add(String.fromCharCode(8626));
             }
@@ -156,7 +158,14 @@ class _GuessPageState extends State<GuessPage> {
           }
         }
         if (temp.isNotEmpty) {
-          lettersList.add(temp);
+          if (temp.length <= 2) {
+            if (lettersList.last.contains(String.fromCharCode(8626))) {
+              lettersList.last.remove(String.fromCharCode(8626));
+            }
+            lettersList.last.addAll(temp);
+          } else {
+            lettersList.add(temp);
+          }
         }
       } else {
         lettersList.add(word.split(''));
@@ -165,7 +174,8 @@ class _GuessPageState extends State<GuessPage> {
 
     if (lettersList.length > 1) {
       for (int i = 0; i < lettersList.length - 1; i++) {
-        if ((lettersList[i].length + lettersList[i + 1].length) <= 7) {
+        if ((lettersList[i].length + lettersList[i + 1].length) <=
+            TILES_PR_ROW - 1) {
           lettersList[i].add('/');
           lettersList[i].addAll(lettersList[i + 1]);
           lettersList.removeAt(i + 1);

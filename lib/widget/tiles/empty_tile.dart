@@ -7,8 +7,8 @@ class EmptyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimensions.screenWidth / 10,
-      width: Dimensions.screenWidth / 10,
+      height: Dimensions.screenWidth / 12,
+      width: Dimensions.screenWidth / 12,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(

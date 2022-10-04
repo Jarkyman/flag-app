@@ -2030,15 +2030,15 @@
   {
     "country_code": "MX",
     "country_name": "Mexico",
-    "capital": " Mexico City",
-    "country_demonym": " mexicanere",
+    "capital": "Mexico City",
+    "country_demonym": "mexicanere",
     "total_area": 1964375,
     "population": 128932753,
     "currency_code": "MXN",
-    "currency_name": " mexicansk peso",
+    "currency_name": "mexicansk peso",
     "currency_symbol": "$",
     "lang_code": "ES",
-    "lang_name": " spansk"
+    "lang_name": "spansk"
   },
   {
     "country_code": "MY",

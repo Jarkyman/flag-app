@@ -508,7 +508,7 @@
   },
   {
     "country_code": "CD",
-    "country_name": "Den Demokratiske Republik Congo",
+    "country_name": "Demokratiske Republik Congo",
     "capital": " Kinshasa",
     "country_demonym": " congolesisk",
     "total_area": 2344858,
@@ -521,7 +521,7 @@
   },
   {
     "country_code": "CF",
-    "country_name": "Centralafrikanske republik",
+    "country_name": "Den Centralafrikanske Republik",
     "capital": " Bangui",
     "country_demonym": " Centralafrikanere",
     "total_area": 622984,
@@ -781,7 +781,7 @@
   },
   {
     "country_code": "DO",
-    "country_name": "Dominikanske Republik",
+    "country_name": "Den Dominikanske Republik",
     "capital": " Santo Domingo",
     "country_demonym": " Dominikanere",
     "total_area": 48670,

@@ -443,7 +443,7 @@
   },
   {
     "country_code": "BW",
-    "country_name": "Botswana",
+    "country_name": "Botsuana",
     "capital": "Gaborone",
     "country_demonym": "Motsuana",
     "total_area": 581730,
@@ -716,7 +716,7 @@
   },
   {
     "country_code": "CZ",
-    "country_name": "Chequia",
+    "country_name": "República Checa",
     "capital": "Praga",
     "country_demonym": "Checos",
     "total_area": 78867,
@@ -1548,7 +1548,7 @@
   },
   {
     "country_code": "KN",
-    "country_name": "Saint Kitts y Nevis",
+    "country_name": "San Cristóbal y Nieves",
     "capital": "Basseterre",
     "country_demonym": "Kittitians o Nevisians",
     "total_area": 261,
@@ -1613,7 +1613,7 @@
   },
   {
     "country_code": "KZ",
-    "country_name": "Kazajstán",
+    "country_name": "Kazajistán",
     "capital": " Astaná",
     "country_demonym": " kazajstán",
     "total_area": 2724900,
@@ -1704,7 +1704,7 @@
   },
   {
     "country_code": "LS",
-    "country_name": "Lesotho",
+    "country_name": "Lesoto",
     "capital": "Maseru",
     "country_demonym": "Basotho",
     "total_area": 30355,
@@ -2146,7 +2146,7 @@
   },
   {
     "country_code": "NL",
-    "country_name": "Holanda",
+    "country_name": "Países Bajos",
     "capital": "Amsterdam",
     "country_demonym": "Neerlandeses",
     "total_area": 41543,

@@ -86,7 +86,6 @@ class _GuessPageState extends State<GuessPage> {
     allLetters =
         generateRandomLetters(country.country!.toUpperCase().split(''));
     bombUsed = false;
-    print(lettersListAnswer[0].length);
   }
 
   void checkWin() {
@@ -149,7 +148,9 @@ class _GuessPageState extends State<GuessPage> {
             lettersList.add(temp);
             temp = [];
             temp.add(wordSplit[i]);
-            maxLength += 2;
+            if (temp.length >= 8) {
+              maxLength += 2;
+            }
           } else {
             temp.add(wordSplit[i]);
           }
@@ -185,7 +186,6 @@ class _GuessPageState extends State<GuessPage> {
         if (words[i] == '-' ||
             words[i] == String.fromCharCode(8626) ||
             words[i] == '/') {
-          print('HIT ${word[i]}');
         } else {
           words[i] = '';
         }
@@ -525,7 +525,6 @@ class _GuessPageState extends State<GuessPage> {
 
   finishInfoBox(CountryModel country, bool isGuessed) {
     var ad = adBannerWidget(bannerAd: _bannerAd);
-    print(country.countryCode!.toLowerCase());
     return Stack(
       alignment: Alignment.center,
       children: [

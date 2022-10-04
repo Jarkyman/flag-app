@@ -137,9 +137,9 @@ class _GuessPageState extends State<GuessPage> {
     List<List<String>> lettersList = [];
     for (var word in words) {
       List<String> wordSplit = word.split('');
-      if (wordSplit.length > 8) {
+      if (wordSplit.length > TILES_PR_ROW) {
         List<String> temp = [];
-        int maxLength = 6;
+        int maxLength = TILES_PR_ROW - 2;
         for (int i = 0; i < wordSplit.length; i++) {
           if (temp.length == maxLength) {
             if (!wordSplit.contains('-')) {
@@ -148,7 +148,7 @@ class _GuessPageState extends State<GuessPage> {
             lettersList.add(temp);
             temp = [];
             temp.add(wordSplit[i]);
-            if (temp.length >= 8) {
+            if (temp.length >= TILES_PR_ROW) {
               maxLength += 2;
             }
           } else {

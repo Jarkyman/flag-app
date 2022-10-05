@@ -11,10 +11,8 @@ import 'package:get/get.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/dimensions.dart';
-import '../../helper/route_helper.dart';
 import '../../widget/Top bar/hint_bar.dart';
 import '../../widget/buttons/guess_button.dart';
-import '../../widget/hint_widget.dart';
 
 class CapitalPage extends StatefulWidget {
   const CapitalPage({Key? key}) : super(key: key);

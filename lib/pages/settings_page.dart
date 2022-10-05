@@ -2,6 +2,7 @@ import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
+
 import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';

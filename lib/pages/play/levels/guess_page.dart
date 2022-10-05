@@ -20,9 +20,8 @@ import '../../../helper/app_colors.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
-import '../../../widget/ads/ad_banner_widget.dart';
 import '../../../widget/Top bar/hint_bar.dart';
-import '../../../widget/hint_widget.dart';
+import '../../../widget/ads/ad_banner_widget.dart';
 import '../../../widget/info_column.dart';
 
 class GuessPage extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
@@ -8,6 +9,7 @@ class SettingsButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final Widget child;
+
   const SettingsButton({
     Key? key,
     required this.title,

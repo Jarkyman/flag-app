@@ -1,8 +1,6 @@
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../controllers/sound_controller.dart';
 
 class GuessButton extends StatelessWidget {
   String country;

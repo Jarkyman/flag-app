@@ -1,15 +1,14 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../controllers/hint_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../../helper/route_helper.dart';
 import '../hint_widget.dart';
 
-class AppBarRow extends StatelessWidget {
-  const AppBarRow({
+class AppBarRowExit extends StatelessWidget {
+  const AppBarRowExit({
     Key? key,
   }) : super(key: key);
 
@@ -26,7 +25,6 @@ class AppBarRow extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Get.find<SoundController>().clickSound();
-
               Get.back();
             },
             child: Container(
@@ -38,7 +36,7 @@ class AppBarRow extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.arrow_back_ios,
+                  Icons.close,
                   color: AppColors.mainColor,
                 ),
               ),
@@ -48,7 +46,7 @@ class AppBarRow extends StatelessWidget {
             return HintWidget(
               onTap: () {
                 Get.find<SoundController>().clickSound();
-                Get.toNamed(RouteHelper.getShopPage());
+                hintController.useHint(hintController.getHints);
               },
               icon: Icon(
                 Icons.lightbulb_outline,

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
@@ -6,10 +7,9 @@ import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
-import 'package:get/get.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'controllers/country_continent_controller.dart';
 import 'helper/dimensions.dart';

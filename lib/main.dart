@@ -1,10 +1,11 @@
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/locale_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import 'helper/dependencies.dart' as dep;
 import 'helper/route_helper.dart';
-import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

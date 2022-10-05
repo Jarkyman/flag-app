@@ -33,18 +33,23 @@ class _FlagPageState extends State<FlagPage> {
   bool isLoading = true;
   bool fiftyFiftyUsed = false;
   bool checkUsed = false;
+  late int selected;
   int score = 0;
   late int highScore;
   bool isTryAgainUsed = false;
 
+  Random random = Random();
+
   BannerAd? _bannerAd;
   RewardedAd? _rewardedAd;
+  InterstitialAd? _interstitialAd;
 
   @override
   void initState() {
     super.initState();
     createBannerAd();
     _loadRewardedAd();
+    _loadInterstitialAd();
     setState(() {
       selectedCountry = Get.find<CountryController>().getACountry();
       countryOptions = Get.find<CountryController>()
@@ -60,7 +65,32 @@ class _FlagPageState extends State<FlagPage> {
   void dispose() {
     _bannerAd?.dispose();
     _rewardedAd?.dispose();
+    _interstitialAd?.dispose();
     super.dispose();
+  }
+
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              openWrongDialog();
+              _loadInterstitialAd();
+            },
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
   }
 
   void _loadRewardedAd() {
@@ -127,6 +157,7 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   void checkWin(String country, int selected) {
+    this.selected = selected;
     if (country == selectedCountry.countryName.toString()) {
       Get.find<SoundController>().correctSound();
       correctColor[selected] = true;
@@ -150,25 +181,36 @@ class _FlagPageState extends State<FlagPage> {
           Get.find<ScoreController>().saveFlagScore(highScore);
         }
       });
-      wrongGuessDialog(
-        score: score,
-        isTryAgainUsed: isTryAgainUsed,
-        onTapConfirm: () {
-          _rewardedAd?.show(
-            onUserEarnedReward: (_, reward) {
-              generateCountries();
-              Get.close(1);
-              isTryAgainUsed = true;
-            },
-          );
-        },
-        onTapCancel: () {
-          wrongChoice(selected);
-          Get.find<CountryController>().resetCount();
-          Get.close(1);
-        },
-      );
+      Duration(milliseconds: 500).delay(() {
+        int randomInt = random.nextInt(3);
+        if (_interstitialAd != null && randomInt == 2) {
+          _interstitialAd?.show();
+        } else {
+          openWrongDialog();
+        }
+      });
     }
+  }
+
+  void openWrongDialog() {
+    wrongGuessDialog(
+      score: score,
+      isTryAgainUsed: isTryAgainUsed,
+      onTapConfirm: () {
+        _rewardedAd?.show(
+          onUserEarnedReward: (_, reward) {
+            generateCountries();
+            Get.close(1);
+            isTryAgainUsed = true;
+          },
+        );
+      },
+      onTapCancel: () {
+        wrongChoice(selected);
+        Get.find<CountryController>().resetCount();
+        Get.close(1);
+      },
+    );
   }
 
   void wrongChoice(int selected) {

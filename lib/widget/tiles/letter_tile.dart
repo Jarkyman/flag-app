@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class LetterTile extends StatelessWidget {
   final String letter;
+
   const LetterTile({Key? key, required this.letter}) : super(key: key);
 
   @override

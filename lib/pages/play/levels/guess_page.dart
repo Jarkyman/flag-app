@@ -41,7 +41,10 @@ class _GuessPageState extends State<GuessPage> {
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
 
+  Random random = Random();
+
   BannerAd? _bannerAd;
+  InterstitialAd? _interstitialAd;
 
   @override
   void initState() {
@@ -54,7 +57,32 @@ class _GuessPageState extends State<GuessPage> {
   @override
   void dispose() {
     _bannerAd?.dispose();
+    _interstitialAd?.dispose();
     super.dispose();
+  }
+
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Get.find<SoundController>().windSound();
+              Get.back();
+            },
+          );
+
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
   }
 
   void createBannerAd() {
@@ -77,6 +105,7 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void setInit() {
+    _loadInterstitialAd();
     levels = Get.find<LevelController>().getList(Get.arguments[0])!;
     levelList = Get.find<LevelController>()
         .getLevelList(Get.arguments[1], Get.arguments[0]);
@@ -422,8 +451,13 @@ class _GuessPageState extends State<GuessPage> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Get.find<SoundController>().windSound();
-              Get.back();
+              int randomInt = random.nextInt(4);
+              if (_interstitialAd != null && randomInt == 3) {
+                _interstitialAd?.show();
+              } else {
+                Get.find<SoundController>().windSound();
+                Get.back();
+              }
             },
             icon: Icon(Icons.arrow_back_ios_new),
           ),

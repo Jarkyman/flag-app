@@ -10,8 +10,10 @@ class LevelController extends GetxController implements GetxService {
   LevelController({required this.levelRepo});
 
   List<LevelModel> _flagLevels = [];
+
   List<LevelModel> get getFlagLevels => _flagLevels;
   List<LevelModel> _countriesLevels = [];
+
   List<LevelModel> get getCountriesLevels => _countriesLevels;
 
   bool isLevelUnlocked(int index, String option) {

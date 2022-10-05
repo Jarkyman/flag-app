@@ -13,6 +13,7 @@ class CountryController extends GetxController implements GetxService {
 
   int _countryCount = 0;
   List<CountryModel> _countries = [];
+
   List<CountryModel> get getCountries => _countries;
 
   Future<void> readCountries(Locale locale) async {

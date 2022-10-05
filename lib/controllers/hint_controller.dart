@@ -1,5 +1,6 @@
 import 'package:flag_app/helper/route_helper.dart';
 import 'package:get/get.dart';
+
 import '../repos/hint_repo.dart';
 
 class HintController extends GetxController implements GetxService {
@@ -10,6 +11,7 @@ class HintController extends GetxController implements GetxService {
   });
 
   int _hints = 0;
+
   int get getHints => _hints;
 
   Future<void> readHints() async {

@@ -1,8 +1,3 @@
-import 'dart:ui';
-
-import 'package:flag_app/controllers/country_controller.dart';
-import 'package:flag_app/controllers/level_controller.dart';
-import 'package:flag_app/repos/settings_repo.dart';
 import 'package:get/get.dart';
 
 import '../repos/shop_repo.dart';
@@ -13,9 +8,11 @@ class ShopController extends GetxController implements GetxService {
   ShopController({required this.shopRepo});
 
   bool _levelsUnlocked = false;
+
   bool get isLevelsUnlocked => _levelsUnlocked;
 
   bool _adsRemoved = false;
+
   bool get isAdsRemoved => _adsRemoved;
 
   Future<void> loadShopSettings() async {

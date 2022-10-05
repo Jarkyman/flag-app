@@ -12,6 +12,7 @@ class CountryContinentController extends GetxController implements GetxService {
   CountryContinentController({required this.continentRepo});
 
   List<CountryContinentModel> _countries = [];
+
   List<CountryContinentModel> get getCountries => _countries;
 
   Future<void> readCountries(Locale locale) async {

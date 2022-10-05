@@ -9,12 +9,16 @@ class ScoreController extends GetxController implements GetxService {
   });
 
   int _flagScore = 0;
+
   int get getFlagScore => _flagScore;
   int _flagsScore = 0;
+
   int get getFlagsScore => _flagsScore;
   int _capitalScore = 0;
+
   int get getCapitalScore => _capitalScore;
   int _countriesScore = 0;
+
   int get getCountriesScore => _countriesScore;
 
   Future<void> readAllScores() async {

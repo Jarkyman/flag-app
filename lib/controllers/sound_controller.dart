@@ -1,7 +1,7 @@
 import 'package:flag_app/repos/settings_repo.dart';
 import 'package:flutter/services.dart';
-import 'package:soundpool/soundpool.dart';
 import 'package:get/get.dart';
+import 'package:soundpool/soundpool.dart';
 
 class SoundController extends GetxController implements GetxService {
   final SettingsRepo settingsRepo;

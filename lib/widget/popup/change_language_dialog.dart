@@ -10,7 +10,7 @@ import '../../helper/dimensions.dart';
 final List locale = [
   {'name': 'English', 'locale': Locale('en', 'US')},
   {'name': 'Dansk', 'locale': Locale('da', 'DK')},
-  {'name': 'Svensk', 'locale': Locale('sv', 'SE')},
+  {'name': 'Svenska', 'locale': Locale('sv', 'SE')},
   {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
   {'name': 'Español', 'locale': Locale('es', 'ES')},
 ];

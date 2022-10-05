@@ -321,6 +321,15 @@ class _GuessPageState extends State<GuessPage> {
     }
   }
 
+  String firstLetterUpperCase(String word) {
+    List<String> wordList = word.split('');
+    while (wordList[0] == ' ') {
+      wordList.removeAt(0);
+    }
+    wordList[0] = wordList[0].toUpperCase();
+    return wordList.join('');
+  }
+
   void useFirstLetterHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
       String letter = '';
@@ -563,21 +572,22 @@ class _GuessPageState extends State<GuessPage> {
                     children: [
                       InfoColumn(
                         header: 'Continent'.tr,
-                        info: Get.find<CountryContinentController>()
-                            .getContinentNameByCountryModel(country),
+                        info: firstLetterUpperCase(
+                            Get.find<CountryContinentController>()
+                                .getContinentNameByCountryModel(country)),
                       ),
                       InfoColumn(
                         header: 'Country'.tr,
-                        info: country.countryName!,
+                        info: firstLetterUpperCase(country.countryName!),
                       ),
                       InfoColumn(
                         header: 'Capital'.tr,
-                        info: country.capital!,
+                        info: firstLetterUpperCase(country.capital!),
                       ),
                       InfoColumn(
                         header: 'Currency'.tr,
                         info:
-                            '${country.currencyName!} (${country.currencyCode!})',
+                            '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
                         divider: false,
                       ),
                     ],

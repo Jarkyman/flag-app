@@ -1,8 +1,9 @@
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../controllers/settings_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
@@ -14,6 +15,7 @@ final List locale = [
   {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
   {'name': 'Español', 'locale': Locale('es', 'ES')},
 ];
+
 updateLanguage(Locale locale) {
   Get.back();
   Get.find<SettingsController>().languageSettingsSave(locale.toString());

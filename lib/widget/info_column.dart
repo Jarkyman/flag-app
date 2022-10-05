@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../helper/app_colors.dart';
 
 class InfoColumn extends StatelessWidget {

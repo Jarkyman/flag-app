@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+
 import '../helper/app_colors.dart';
 
 class BackgroundImage extends StatelessWidget {
   final Widget child;
+
   const BackgroundImage({Key? key, required this.child}) : super(key: key);
 
   @override

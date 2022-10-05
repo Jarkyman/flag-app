@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:ui';
 
-import 'package:flag_app/repos/settings_repo.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 

@@ -85,6 +85,7 @@ class _ShopPageState extends State<ShopPage> {
                           for (int i = 1; i <= 10; i++) {
                             Get.find<HintController>().addHint(5);
                           }
+                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 50 hints'.tr,
                       ),
@@ -96,6 +97,7 @@ class _ShopPageState extends State<ShopPage> {
                           for (int i = 1; i <= 20; i++) {
                             Get.find<HintController>().addHint(5);
                           }
+                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 100 hints'.tr,
                       ),
@@ -107,6 +109,7 @@ class _ShopPageState extends State<ShopPage> {
                           for (int i = 1; i <= 100; i++) {
                             Get.find<HintController>().addHint(5);
                           }
+                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 500 hints'.tr,
                       ),
@@ -116,8 +119,20 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () {
                           Get.find<ShopController>().levelsUnlockSave(true);
+                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Unlock all levels'.tr,
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      MenuButton(
+                        onTap: () {
+                          Get.find<ShopController>().removeAdsSave(true);
+                          Get.find<SoundController>().completeSound();
+                          debugPrint('Removed adds');
+                        },
+                        title: 'Remove ads'.tr,
                       ),
                       SizedBox(
                         height: Dimensions.height20,

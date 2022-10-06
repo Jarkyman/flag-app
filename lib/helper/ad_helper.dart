@@ -1,23 +1,33 @@
 import 'dart:io';
+import 'package:flag_app/controllers/shop_controller.dart';
+import 'package:get/get.dart';
 
 class AdHelper {
   static String get bannerAdUnitId {
-    if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/6300978111'; //ca-app-pub-9894760850635221/2351369277
-    } else if (Platform.isIOS) {
-      return 'ca-app-pub-3940256099942544/2934735716'; //ca-app-pub-9894760850635221/2622546602
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      if (Platform.isAndroid) {
+        return 'ca-app-pub-3940256099942544/6300978111'; //ca-app-pub-9894760850635221/2351369277
+      } else if (Platform.isIOS) {
+        return 'ca-app-pub-3940256099942544/2934735716'; //ca-app-pub-9894760850635221/2622546602
+      } else {
+        throw new UnsupportedError('Unsupported platform');
+      }
     } else {
-      throw new UnsupportedError('Unsupported platform');
+      return 'No ad banner';
     }
   }
 
   static String get interstitialAdUnitId {
-    if (Platform.isAndroid) {
-      return "ca-app-pub-3940256099942544/1033173712"; //ca-app-pub-9894760850635221/5907470901
-    } else if (Platform.isIOS) {
-      return "ca-app-pub-3940256099942544/4411468910"; //ca-app-pub-9894760850635221/6348084916
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      if (Platform.isAndroid) {
+        return "ca-app-pub-3940256099942544/1033173712"; //ca-app-pub-9894760850635221/5907470901
+      } else if (Platform.isIOS) {
+        return "ca-app-pub-3940256099942544/4411468910"; //ca-app-pub-9894760850635221/6348084916
+      } else {
+        throw new UnsupportedError("Unsupported platform");
+      }
     } else {
-      throw new UnsupportedError("Unsupported platform");
+      return "no ad interstitialAd";
     }
   }
 

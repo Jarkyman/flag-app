@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:purchases_flutter/models/purchases_configuration.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../repos/shop_repo.dart';
 
@@ -15,10 +17,30 @@ class ShopController extends GetxController implements GetxService {
 
   bool get isAdsRemoved => _adsRemoved;
 
+  final _configuration =
+      PurchasesConfiguration('appl_eEHKYOTQjTUkCIilqUeqEzETXQj');
+
+  get getPurchasesConfiguration => _configuration;
+
   Future<void> loadShopSettings() async {
     levelsUnlockRead();
     removeAdsRead();
+    Purchases.addCustomerInfoUpdateListener(
+      (_) => updateCustomerStatus(),
+    );
     update();
+  }
+
+  Future updateCustomerStatus() async {
+    final customerInfo = await Purchases.getCustomerInfo();
+    final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
+    final entitlementAds = customerInfo.entitlements.active['remove_ads'];
+
+    bool isUnlock = entitlementUnlock != null;
+    bool isAdsRemove = entitlementAds != null;
+
+    levelsUnlockSave(isUnlock);
+    removeAdsSave(isAdsRemove);
   }
 
   Future<void> levelsUnlockRead() async {

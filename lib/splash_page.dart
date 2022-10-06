@@ -10,6 +10,7 @@ import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'controllers/country_continent_controller.dart';
 import 'helper/dimensions.dart';
@@ -36,6 +37,8 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
     await Get.find<ShopController>().loadShopSettings();
+    await Purchases.configure(
+        Get.find<ShopController>().getPurchasesConfiguration);
   }
 
   @override

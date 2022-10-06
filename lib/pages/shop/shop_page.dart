@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
@@ -81,7 +82,8 @@ class _ShopPageState extends State<ShopPage> {
                         height: Dimensions.height20,
                       ),
                       MenuButton(
-                        onTap: () {
+                        onTap: () async {
+                          await Purchases.purchaseProduct('flags_50_hints');
                           for (int i = 1; i <= 10; i++) {
                             Get.find<HintController>().addHint(5);
                           }
@@ -93,7 +95,8 @@ class _ShopPageState extends State<ShopPage> {
                         height: Dimensions.height20,
                       ),
                       MenuButton(
-                        onTap: () {
+                        onTap: () async {
+                          await Purchases.purchaseProduct('flags_100_hints');
                           for (int i = 1; i <= 20; i++) {
                             Get.find<HintController>().addHint(5);
                           }
@@ -105,7 +108,8 @@ class _ShopPageState extends State<ShopPage> {
                         height: Dimensions.height20,
                       ),
                       MenuButton(
-                        onTap: () {
+                        onTap: () async {
+                          await Purchases.purchaseProduct('flags_500_hints');
                           for (int i = 1; i <= 100; i++) {
                             Get.find<HintController>().addHint(5);
                           }
@@ -117,7 +121,9 @@ class _ShopPageState extends State<ShopPage> {
                         height: Dimensions.height20,
                       ),
                       MenuButton(
-                        onTap: () {
+                        onTap: () async {
+                          await Purchases.purchaseProduct(
+                              'flags_unlock_levels');
                           Get.find<ShopController>().levelsUnlockSave(true);
                           Get.find<SoundController>().completeSound();
                         },
@@ -127,10 +133,15 @@ class _ShopPageState extends State<ShopPage> {
                         height: Dimensions.height20,
                       ),
                       MenuButton(
-                        onTap: () {
-                          Get.find<ShopController>().removeAdsSave(true);
-                          Get.find<SoundController>().completeSound();
-                          debugPrint('Removed adds');
+                        onTap: () async {
+                          try {
+                            await Purchases.purchaseProduct('flags_remove_ads');
+                            Get.find<ShopController>().removeAdsSave(true);
+                            Get.find<SoundController>().completeSound();
+                            debugPrint('Removed adds');
+                          } catch (e) {
+                            debugPrint('Failed to purchase product.');
+                          }
                         },
                         title: 'Remove ads'.tr,
                       ),

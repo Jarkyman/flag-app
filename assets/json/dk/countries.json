@@ -19,8 +19,8 @@
     "country_demonym": " Emirians",
     "total_area": 83600,
     "population": 9890402,
-    "currency_code": "AED",
-    "currency_name": " De Forenede Arabiske Emirater Dirham",
+    "currency_code": "UAE",
+    "currency_name": "Dirham",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
     "lang_name": " Arabisk"
@@ -33,7 +33,7 @@
     "total_area": 652230,
     "population": 38928346,
     "currency_code": "AFN",
-    "currency_name": " afghansk afghani",
+    "currency_name": "Afghansk afghani",
     "currency_symbol": "؋",
     "lang_code": "FA",
     "lang_name": " perser"
@@ -592,7 +592,7 @@
     "total_area": 756102,
     "population": 19116201,
     "currency_code": "CLP",
-    "currency_name": "chilensk peso",
+    "currency_name": "Chilensk peso",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "spansk"
@@ -605,7 +605,7 @@
     "total_area": 475440,
     "population": 26545863,
     "currency_code": "XAF",
-    "currency_name": " Cfa Franc Beac",
+    "currency_name": "Cfa Franc Beac",
     "currency_symbol": "FCFA",
     "lang_code": "FR",
     "lang_name": " Fransk"
@@ -618,7 +618,7 @@
     "total_area": 9596961,
     "population": 1439323776,
     "currency_code": "CNY",
-    "currency_name": " kinesisk yuan renminbi",
+    "currency_name": "kinesisk yuan",
     "currency_symbol": "¥",
     "lang_code": "ZH",
     "lang_name": " kinesisk"
@@ -644,7 +644,7 @@
     "total_area": 51100,
     "population": 5094118,
     "currency_code": "CRC",
-    "currency_name": " Costa Rica Colon",
+    "currency_name": "Costa Rica Colon",
     "currency_symbol": "₡",
     "lang_code": "ES",
     "lang_name": " Spansk"
@@ -852,7 +852,7 @@
     "total_area": 266000,
     "population": 597339,
     "currency_code": "MAD",
-    "currency_name": " marokkansk dirham",
+    "currency_name": "Marokkansk dirham",
     "currency_symbol": "DH",
     "lang_code": "ES",
     "lang_name": " spansk"
@@ -1775,7 +1775,7 @@
     "total_area": 446550,
     "population": 36910560,
     "currency_code": "MAD",
-    "currency_name": " marokkansk dirham",
+    "currency_name": "Marokkansk dirham",
     "currency_symbol": "DH",
     "lang_code": "AR",
     "lang_name": " arabisk"
@@ -3088,7 +3088,7 @@
     "total_area": 912050,
     "population": 28435940,
     "currency_code": "VEF",
-    "currency_name": " venezuelansk Bolivar Fuerte",
+    "currency_name": "Venezuelansk bolívar",
     "currency_symbol": "Bs.S.",
     "lang_code": "ES",
     "lang_name": " spansk"

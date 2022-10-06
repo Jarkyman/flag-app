@@ -19,8 +19,8 @@
     "country_demonym": " Emirians",
     "total_area": 83600,
     "population": 9890402,
-    "currency_code": "AED",
-    "currency_name": " De forente arabiske emirater dirham",
+    "currency_code": "UAE",
+    "currency_name": "Dirham",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
     "lang_name": " arabisk"
@@ -618,7 +618,7 @@
     "total_area": 9596961,
     "population": 1439323776,
     "currency_code": "CNY",
-    "currency_name": " kinesisk yuan renminbi",
+    "currency_name": "Kinesisk yuan",
     "currency_symbol": "¥",
     "lang_code": "ZH",
     "lang_name": " kinesisk"
@@ -644,7 +644,7 @@
     "total_area": 51100,
     "population": 5094118,
     "currency_code": "CRC",
-    "currency_name": " Costa Rica Colon",
+    "currency_name": "Costa Rica Colon",
     "currency_symbol": "₡",
     "lang_code": "ES",
     "lang_name": " Spansk"
@@ -657,7 +657,7 @@
     "total_area": 110860,
     "population": 11326616,
     "currency_code": "CUC",
-    "currency_name": " Cubansk konvertibel peso",
+    "currency_name": "Cubansk konvertibel peso",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": " spansk"
@@ -930,7 +930,7 @@
     "total_area": 12173,
     "population": 3480,
     "currency_code": "FKP",
-    "currency_name": " Falkland Islands Pound",
+    "currency_name": "Falkland Islands Pound",
     "currency_symbol": "£",
     "lang_code": "EN",
     "lang_name": " engelsk"
@@ -3088,7 +3088,7 @@
     "total_area": 912050,
     "population": 28435940,
     "currency_code": "VEF",
-    "currency_name": " venezuelansk Bolivar Fuerte",
+    "currency_name": "Venezuelansk bolívar",
     "currency_symbol": "Bs.S.",
     "lang_code": "ES",
     "lang_name": " spansk"

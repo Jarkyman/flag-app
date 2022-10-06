@@ -19,8 +19,8 @@
     "country_demonym": "Emirianos",
     "total_area": 83600,
     "population": 9890402,
-    "currency_code": "AED",
-    "currency_name": "Dirham dos Emirados Árabes Unidos",
+    "currency_code": "UEA",
+    "currency_name": "Dirham",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -618,7 +618,7 @@
     "total_area": 9596961,
     "population": 1439323776,
     "currency_code": "CNY",
-    "currency_name": "Chinês Yuan Renminbi",
+    "currency_name": "Yuan chinês",
     "currency_symbol": "¥",
     "lang_code": "ZH",
     "lang_name": "Chinês"
@@ -3088,7 +3088,7 @@
     "total_area": 912050,
     "population": 28435940,
     "currency_code": "VEF",
-    "currency_name": "Bolívar Fuerte venezuelano",
+    "currency_name": "Bolívar venezuelano",
     "currency_symbol": "Bs.S.",
     "lang_code": "ES",
     "lang_name": "Espanhol"

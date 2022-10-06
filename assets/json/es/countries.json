@@ -19,8 +19,8 @@
     "country_demonym": " Emirians",
     "total_area": 83600,
     "population": 9890402,
-    "currency_code": "AED",
-    "currency_name": " Dírham de los Emiratos Árabes Unidos",
+    "currency_code": "UAE",
+    "currency_name": "Dirham",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
     "lang_name": " Árabe"
@@ -215,7 +215,7 @@
     "total_area": 51197,
     "population": 3280819,
     "currency_code": "BAM",
-    "currency_name": " marco convertible",
+    "currency_name": "Marco convertible",
     "currency_symbol": "KM",
     "lang_code": "HR",
     "lang_name": " croata"
@@ -228,7 +228,7 @@
     "total_area": 430,
     "population": 287375,
     "currency_code": "USD",
-    "currency_name": "dólar estadounidense",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "inglés"
@@ -618,7 +618,7 @@
     "total_area": 9596961,
     "population": 1439323776,
     "currency_code": "CNY",
-    "currency_name": " Yuan renminbi chino",
+    "currency_name": "Yuanes chinos",
     "currency_symbol": "¥",
     "lang_code": "ZH",
     "lang_name": " chino"
@@ -813,7 +813,7 @@
     "total_area": 283561,
     "population": 17643054,
     "currency_code": "USD",
-    "currency_name": "dólar estadounidense",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "español"
@@ -930,7 +930,7 @@
     "total_area": 12173,
     "population": 3480,
     "currency_code": "FKP",
-    "currency_name": "Libra de las Islas Malvinas",
+    "currency_name": "Libra malvinense",
     "currency_symbol": "£",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -1190,7 +1190,7 @@
     "total_area": 544,
     "population": 168775,
     "currency_code": "USD",
-    "currency_name": "dólar estadounidense",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "inglés"
@@ -1775,7 +1775,7 @@
     "total_area": 446550,
     "population": 36910560,
     "currency_code": "MAD",
-    "currency_name": " Dirham marroquí",
+    "currency_name": "Dirham marroquí",
     "currency_symbol": "DH",
     "lang_code": "AR",
     "lang_name": " árabe"
@@ -1931,7 +1931,7 @@
     "total_area": 464,
     "population": 57559,
     "currency_code": "USD",
-    "currency_name": " Dólar de los Estados Unidos",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": " Inglés"
@@ -2282,7 +2282,7 @@
     "total_area": 462840,
     "population": 8947024,
     "currency_code": "PGK",
-    "currency_name": "Kina de Papúa Nueva Guinea",
+    "currency_name": "Papúa China",
     "currency_symbol": "K",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2399,7 +2399,7 @@
     "total_area": 459,
     "population": 18094,
     "currency_code": "USD",
-    "currency_name": "dólar estadounidense",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "inglés"
@@ -2485,12 +2485,12 @@
   {
     "country_code": "RW",
     "country_name": "Ruanda",
-    "capital": " Kigali",
-    "country_demonym": " ruandeses",
+    "capital": "Kigali",
+    "country_demonym": "ruandeses",
     "total_area": 26338,
     "population": 12952218,
     "currency_code": "RWF",
-    "currency_name": " franco ruandés",
+    "currency_name": "Franco ruandés",
     "currency_symbol": "FRw",
     "lang_code": "FR",
     "lang_name": " francés"
@@ -2498,7 +2498,7 @@
   {
     "country_code": "SA",
     "country_name": "Arabia Saudita",
-    "capital": " Riyadh",
+    "capital": "Riyadh",
     "country_demonym": " saudíes",
     "total_area": 2149690,
     "population": 34813871,
@@ -2516,7 +2516,7 @@
     "total_area": 28896,
     "population": 686884,
     "currency_code": "SBD",
-    "currency_name": " Dólar de las Islas Salomón",
+    "currency_name": "Dólar salomonense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": " Inglés"
@@ -3023,7 +3023,7 @@
     "total_area": 9826675,
     "population": 331002651,
     "currency_code": "USD",
-    "currency_name": "estadounidenses",
+    "currency_name": "Dólar estadounidense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "dólar estadounidense"
@@ -3088,7 +3088,7 @@
     "total_area": 912050,
     "population": 28435940,
     "currency_code": "VEF",
-    "currency_name": "Venezolano Bolívar Fuerte",
+    "currency_name": "Bolívar venezolano",
     "currency_symbol": "Bs.S.",
     "lang_code": "ES",
     "lang_name": "Español"

@@ -463,7 +463,7 @@ class _GuessPageState extends State<GuessPage> {
           ),
           title: Text('${Get.arguments[0]}'.tr),
           backgroundColor: AppColors.mainColor,
-          actions: [
+          /*actions: [
             GestureDetector(
               onTap: () {
                 Get.find<LevelController>()
@@ -471,7 +471,7 @@ class _GuessPageState extends State<GuessPage> {
               },
               child: Icon(Icons.refresh),
             ),
-          ],
+          ],*/ //Reset level
         ),
         body: BackgroundImage(
           child: SwipeDetector(

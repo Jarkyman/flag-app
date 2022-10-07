@@ -37,6 +37,7 @@ class _FlagPageState extends State<FlagPage> {
   int score = 0;
   late int highScore;
   bool isTryAgainUsed = false;
+  bool isDelay = false;
 
   Random random = Random();
 
@@ -151,12 +152,14 @@ class _FlagPageState extends State<FlagPage> {
         isLoading = false;
         fiftyFiftyUsed = false;
         checkUsed = false;
+        isDelay = false;
       });
       isLoading = false;
     });
   }
 
   void checkWin(String country, int selected) {
+    isDelay = true;
     this.selected = selected;
     if (country == selectedCountry.countryName.toString()) {
       Get.find<SoundController>().correctSound();
@@ -344,12 +347,14 @@ class _FlagPageState extends State<FlagPage> {
                             country:
                                 countryOptions[index].countryName.toString(),
                             onTap: () {
-                              if (!wrongColor[index]) {
-                                checkWin(
-                                    countryOptions[index]
-                                        .countryName
-                                        .toString(),
-                                    index);
+                              if (!isDelay) {
+                                if (!wrongColor[index]) {
+                                  checkWin(
+                                      countryOptions[index]
+                                          .countryName
+                                          .toString(),
+                                      index);
+                                }
                               }
                             },
                           );

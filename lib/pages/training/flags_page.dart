@@ -36,6 +36,7 @@ class _FlagsPageState extends State<FlagsPage> {
   int score = 0;
   late int highScore;
   bool isTryAgainUsed = false;
+  bool isDelay = false;
 
   Random random = Random();
 
@@ -149,12 +150,14 @@ class _FlagsPageState extends State<FlagsPage> {
         isLoading = false;
         fiftyFiftyUsed = false;
         checkUsed = false;
+        isDelay = false;
       });
       isLoading = false;
     });
   }
 
   void checkWin(String country, int selected) {
+    isDelay = true;
     this.selected = selected;
     if (country == selectedCountry.countryName.toString()) {
       Get.find<SoundController>().correctSound();
@@ -291,94 +294,24 @@ class _FlagsPageState extends State<FlagsPage> {
             return Column(
               children: [
                 HintBar(
-                    tapHintOne: () {
-                      useCorrectHint(3);
-                    },
-                    tapHintTwo: () {
-                      useFiftyFiftyHint(1);
-                    },
-                    iconOne: Icon(
-                      Icons.check,
-                      color: AppColors.mainColor,
-                    ),
-                    iconTwo: ImageIcon(
-                      AssetImage('assets/icon/fifty_fifty.png'),
-                      color: AppColors.mainColor,
-                      size: Dimensions.iconSize24 * 1.4,
-                    ),
-                    hintPriceOne: '3',
-                    hintPriceTwo: '1'),
-                /*Padding(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height10, bottom: Dimensions.height10),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: Dimensions.width10, right: Dimensions.width10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              GetBuilder<HintController>(
-                                  builder: (hintController) {
-                                return HintWidget(
-                                  onTap: () {
-                                    if (hintController.getCorrect() &&
-                                        !checkUsed) {
-                                      hintController.useHint(3);
-                                      checkWin(selectedCountry.countryName!,
-                                          getCorrect());
-                                    }
-                                  },
-                                  icon: Icon(
-                                    Icons.check,
-                                    color: AppColors.mainColor,
-                                  ),
-                                  num: '3',
-                                );
-                              }),
-                              SizedBox(
-                                width: Dimensions.width10,
-                              ),
-                              GetBuilder<HintController>(
-                                  builder: (hintController) {
-                                return HintWidget(
-                                  onTap: () {
-                                    if (hintController.useFiftyFiftyHint() &&
-                                        !fiftyFiftyUsed) {
-                                      hintController.useHint(1);
-                                      getFiftyFifty();
-                                    }
-                                  },
-                                  icon: ImageIcon(
-                                    AssetImage('assets/icon/fifty_fifty.png'),
-                                    color: AppColors.mainColor,
-                                    size: Dimensions.iconSize24 * 1.4,
-                                  ),
-                                  num: '1',
-                                );
-                              }),
-                            ],
-                          ),
-                        ),
-                        GetBuilder<HintController>(builder: (hintController) {
-                          return HintWidget(
-                            onTap: () {
-                              Get.toNamed(RouteHelper.getShopPage());
-                            },
-                            icon: Icon(
-                              Icons.lightbulb_outline,
-                              color: AppColors.mainColor,
-                            ),
-                            num: hintController.getHints.toString(),
-                          );
-                        }),
-                      ],
-                    ),
+                  tapHintOne: () {
+                    useCorrectHint(3);
+                  },
+                  tapHintTwo: () {
+                    useFiftyFiftyHint(1);
+                  },
+                  iconOne: Icon(
+                    Icons.check,
+                    color: AppColors.mainColor,
                   ),
-                ),*/
+                  iconTwo: ImageIcon(
+                    AssetImage('assets/icon/fifty_fifty.png'),
+                    color: AppColors.mainColor,
+                    size: Dimensions.iconSize24 * 1.4,
+                  ),
+                  hintPriceOne: '3',
+                  hintPriceTwo: '1',
+                ),
                 Container(
                   height: Dimensions.height30 * 2,
                   child: Center(
@@ -417,8 +350,11 @@ class _FlagsPageState extends State<FlagsPage> {
                     children: List.generate(6, (index) {
                       return GestureDetector(
                         onTap: () {
-                          checkWin(countryOptions[index].countryName.toString(),
-                              index);
+                          if (!isDelay) {
+                            checkWin(
+                                countryOptions[index].countryName.toString(),
+                                index);
+                          }
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width / 2 -

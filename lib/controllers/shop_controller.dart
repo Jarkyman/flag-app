@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:purchases_flutter/models/purchases_configuration.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -17,10 +19,20 @@ class ShopController extends GetxController implements GetxService {
 
   bool get isAdsRemoved => _adsRemoved;
 
-  final _configuration =
+  final _configurationAppl =
       PurchasesConfiguration('appl_eEHKYOTQjTUkCIilqUeqEzETXQj');
 
-  get getPurchasesConfiguration => _configuration;
+  final _configurationGoog =
+      PurchasesConfiguration('goog_aFvMfMgfGuwqMGeaReDwwGbqbTE');
+
+  get getPurchasesConfiguration {
+    if (Platform.isAndroid) {
+      return _configurationGoog;
+    } else if (Platform.isIOS) {
+      return _configurationAppl;
+    }
+    return null;
+  }
 
   Future<void> loadShopSettings() async {
     levelsUnlockRead();

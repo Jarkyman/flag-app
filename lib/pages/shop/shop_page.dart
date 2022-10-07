@@ -61,6 +61,11 @@ class _ShopPageState extends State<ShopPage> {
     );
   }
 
+  void purchaseErrorSnackbar() {
+    Get.snackbar('Purchase failed'.tr, 'Failed to buy, try again later'.tr,
+        backgroundColor: Colors.red.withOpacity(0.4));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,11 +88,16 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () async {
-                          await Purchases.purchaseProduct('flags_50_hints');
-                          for (int i = 1; i <= 10; i++) {
-                            Get.find<HintController>().addHint(5);
+                          try {
+                            await Purchases.purchaseProduct('flags_50_hints');
+                            for (int i = 1; i <= 10; i++) {
+                              Get.find<HintController>().addHint(5);
+                            }
+                            Get.find<SoundController>().completeSound();
+                          } catch (e) {
+                            debugPrint('Failed to purchase product.');
+                            purchaseErrorSnackbar();
                           }
-                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 50 hints'.tr,
                       ),
@@ -96,11 +106,16 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () async {
-                          await Purchases.purchaseProduct('flags_100_hints');
-                          for (int i = 1; i <= 20; i++) {
-                            Get.find<HintController>().addHint(5);
+                          try {
+                            await Purchases.purchaseProduct('flags_100_hints');
+                            for (int i = 1; i <= 20; i++) {
+                              Get.find<HintController>().addHint(5);
+                            }
+                            Get.find<SoundController>().completeSound();
+                          } catch (e) {
+                            debugPrint('Failed to purchase product.');
+                            purchaseErrorSnackbar();
                           }
-                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 100 hints'.tr,
                       ),
@@ -109,11 +124,16 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () async {
-                          await Purchases.purchaseProduct('flags_500_hints');
-                          for (int i = 1; i <= 100; i++) {
-                            Get.find<HintController>().addHint(5);
+                          try {
+                            await Purchases.purchaseProduct('flags_500_hints');
+                            for (int i = 1; i <= 100; i++) {
+                              Get.find<HintController>().addHint(5);
+                            }
+                            Get.find<SoundController>().completeSound();
+                          } catch (e) {
+                            debugPrint('Failed to purchase product.');
+                            purchaseErrorSnackbar();
                           }
-                          Get.find<SoundController>().completeSound();
                         },
                         title: 'Buy 500 hints'.tr,
                       ),
@@ -122,10 +142,15 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       MenuButton(
                         onTap: () async {
-                          await Purchases.purchaseProduct(
-                              'flags_unlock_levels');
-                          Get.find<ShopController>().levelsUnlockSave(true);
-                          Get.find<SoundController>().completeSound();
+                          try {
+                            await Purchases.purchaseProduct(
+                                'flags_unlock_levels');
+                            Get.find<ShopController>().levelsUnlockSave(true);
+                            Get.find<SoundController>().completeSound();
+                          } catch (e) {
+                            debugPrint('Failed to purchase product.');
+                            purchaseErrorSnackbar();
+                          }
                         },
                         title: 'Unlock all levels'.tr,
                       ),
@@ -141,6 +166,7 @@ class _ShopPageState extends State<ShopPage> {
                             debugPrint('Removed adds');
                           } catch (e) {
                             debugPrint('Failed to purchase product.');
+                            purchaseErrorSnackbar();
                           }
                         },
                         title: 'Remove ads'.tr,

@@ -44,10 +44,7 @@ class AppBarRowExit extends StatelessWidget {
           ),
           GetBuilder<HintController>(builder: (hintController) {
             return HintWidget(
-              onTap: () {
-                Get.find<SoundController>().clickSound();
-                hintController.useHint(hintController.getHints);
-              },
+              onTap: () {},
               icon: Icon(
                 Icons.lightbulb_outline,
                 color: AppColors.mainColor,

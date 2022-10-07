@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 class MenuButton extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
+  final bool active;
 
   const MenuButton({
     Key? key,
     required this.onTap,
     required this.title,
+    this.active = true,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class MenuButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,
-            color: AppColors.mainColor,
+            color: active ? AppColors.mainColor : AppColors.textColorGray,
           ),
         ),
         child: Center(

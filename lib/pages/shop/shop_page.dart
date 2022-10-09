@@ -29,6 +29,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
     _loadRewardedAd();
+    //print(products[0]);
   }
 
   String getProductPriceFromIdentifier(String identifier) {
@@ -101,18 +102,24 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_50_hints');
+                            await Purchases.purchaseProduct('flags_50_hints_9');
                             for (int i = 1; i <= 10; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product.');
+                              purchaseErrorSnackbar();
+                            }
                           }
                         },
                         title: 'Buy 50 hints'.tr,
-                        price: getProductPriceFromIdentifier('flags_50_hints'),
+                        price:
+                            getProductPriceFromIdentifier('flags_50_hints_9'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -120,18 +127,25 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_100_hints');
+                            await Purchases.purchaseProduct(
+                                'flags_100_hints_17');
                             for (int i = 1; i <= 20; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product.');
+                              purchaseErrorSnackbar();
+                            }
                           }
                         },
                         title: 'Buy 100 hints'.tr,
-                        price: getProductPriceFromIdentifier('flags_100_hints'),
+                        price:
+                            getProductPriceFromIdentifier('flags_100_hints_17'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -139,18 +153,26 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_500_hints');
+                            await Purchases.purchaseProduct(
+                                'flags_500_hints_79');
                             for (int i = 1; i <= 100; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product. ');
+                              purchaseErrorSnackbar();
+                            }
+                            print(PurchasesErrorCode.values.toString());
                           }
                         },
                         title: 'Buy 500 hints'.tr,
-                        price: getProductPriceFromIdentifier('flags_500_hints'),
+                        price:
+                            getProductPriceFromIdentifier('flags_500_hints_79'),
                       ),
                       /*SizedBox(
                         height: Dimensions.height20,

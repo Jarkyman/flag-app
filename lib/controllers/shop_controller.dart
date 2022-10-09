@@ -20,11 +20,11 @@ class ShopController extends GetxController implements GetxService {
   bool get isAdsRemoved => _adsRemoved;
 
   final List<String> _productsIds = [
-    'flags_50_hints',
-    'flags_100_hints',
-    'flags_500_hints',
-    'flags_unlock_levels',
-    'flags_remove_ads'
+    'flags_50_hints_9',
+    'flags_100_hints_17',
+    'flags_500_hints_79',
+    //'flags_unlock_levels',
+    //'flags_remove_ads'
   ];
 
   late List<StoreProduct> _products;

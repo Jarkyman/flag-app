@@ -36,8 +36,8 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<LevelController>().readAllLevels();
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
-    await Get.find<ShopController>().loadShopSettings();
     await Get.find<ShopController>().initPlatformState();
+    await Get.find<ShopController>().loadShopSettings();
   }
 
   @override

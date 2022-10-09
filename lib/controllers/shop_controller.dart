@@ -34,6 +34,9 @@ class ShopController extends GetxController implements GetxService {
   Future<void> loadShopSettings() async {
     levelsUnlockRead();
     removeAdsRead();
+    Purchases.addCustomerInfoUpdateListener(
+      (_) => updateCustomerStatus(),
+    );
     _products = await Purchases.getProducts(_productsIds);
     update();
   }

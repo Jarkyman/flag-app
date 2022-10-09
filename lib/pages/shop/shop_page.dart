@@ -152,7 +152,7 @@ class _ShopPageState extends State<ShopPage> {
                         title: 'Buy 500 hints'.tr,
                         price: getProductPriceFromIdentifier('flags_500_hints'),
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -178,10 +178,12 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Unlock all levels'.tr,
-                        price: getProductPriceFromIdentifier(
-                            'flags_unlock_levels'),
-                      ),
-                      SizedBox(
+                        price: !Get.find<ShopController>().isLevelsUnlocked
+                            ? getProductPriceFromIdentifier(
+                                'flags_unlock_levels')
+                            : '',
+                      ),*/
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -208,9 +210,10 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Remove ads'.tr,
-                        price:
-                            getProductPriceFromIdentifier('flags_remove_ads'),
-                      ),
+                        price: !Get.find<ShopController>().isLevelsUnlocked
+                            ? getProductPriceFromIdentifier('flags_remove_ads')
+                            : '',
+                      ),*/
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -225,7 +228,7 @@ class _ShopPageState extends State<ShopPage> {
                         },
                         title: 'Watch video (3 hints)'.tr,
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -238,7 +241,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Restore Purchases'.tr,
-                      ),
+                      ),*/
                     ],
                   ),
                 ),

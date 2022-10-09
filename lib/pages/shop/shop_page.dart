@@ -3,6 +3,7 @@ import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -23,10 +24,20 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   RewardedAd? _rewardedAd;
+  List<StoreProduct> products = Get.find<ShopController>().getProducts;
 
   @override
   void initState() {
     _loadRewardedAd();
+  }
+
+  String getProductPriceFromIdentifier(String identifier) {
+    for (var product in products) {
+      if (product.identifier == identifier) {
+        return product.priceString;
+      }
+    }
+    return '';
   }
 
   @override
@@ -101,6 +112,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 50 hints'.tr,
+                        price: getProductPriceFromIdentifier('flags_50_hints'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -119,6 +131,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 100 hints'.tr,
+                        price: getProductPriceFromIdentifier('flags_100_hints'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -137,6 +150,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 500 hints'.tr,
+                        price: getProductPriceFromIdentifier('flags_500_hints'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -164,6 +178,8 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Unlock all levels'.tr,
+                        price: getProductPriceFromIdentifier(
+                            'flags_unlock_levels'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -192,6 +208,8 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Remove ads'.tr,
+                        price:
+                            getProductPriceFromIdentifier('flags_remove_ads'),
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -206,6 +224,20 @@ class _ShopPageState extends State<ShopPage> {
                           );
                         },
                         title: 'Watch video (3 hints)'.tr,
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      MenuButton(
+                        onTap: () async {
+                          try {
+                            // PurchaserInfo restoredInfo = await Purchases.restoreTransactions();
+                            // ... check restored purchaserInfo to see if entitlement is now active
+                          } on PlatformException catch (e) {
+                            // Error restoring purchases
+                          }
+                        },
+                        title: 'Restore Purchases'.tr,
                       ),
                     ],
                   ),

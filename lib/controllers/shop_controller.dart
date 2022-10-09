@@ -19,28 +19,37 @@ class ShopController extends GetxController implements GetxService {
 
   bool get isAdsRemoved => _adsRemoved;
 
-  final _configurationAppl =
-      PurchasesConfiguration('appl_eEHKYOTQjTUkCIilqUeqEzETXQj');
+  final List<String> _productsIds = [
+    'flags_50_hints',
+    'flags_100_hints',
+    'flags_500_hints',
+    'flags_unlock_levels',
+    'flags_remove_ads'
+  ];
 
-  final _configurationGoog =
-      PurchasesConfiguration('goog_aFvMfMgfGuwqMGeaReDwwGbqbTE');
+  late List<StoreProduct> _products;
 
-  get getPurchasesConfiguration {
-    if (Platform.isAndroid) {
-      return _configurationGoog;
-    } else if (Platform.isIOS) {
-      return _configurationAppl;
-    }
-    return null;
-  }
+  List<StoreProduct> get getProducts => _products;
 
   Future<void> loadShopSettings() async {
     levelsUnlockRead();
     removeAdsRead();
-    Purchases.addCustomerInfoUpdateListener(
-      (_) => updateCustomerStatus(),
-    );
+    _products = await Purchases.getProducts(_productsIds);
     update();
+  }
+
+  Future<void> initPlatformState() async {
+    await Purchases.setDebugLogsEnabled(true);
+
+    PurchasesConfiguration? configuration;
+    if (Platform.isAndroid) {
+      configuration =
+          PurchasesConfiguration("goog_aFvMfMgfGuwqMGeaReDwwGbqbTE");
+    } else if (Platform.isIOS) {
+      configuration =
+          PurchasesConfiguration("appl_eEHKYOTQjTUkCIilqUeqEzETXQj");
+    }
+    await Purchases.configure(configuration!);
   }
 
   Future updateCustomerStatus() async {

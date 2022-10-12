@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:animated_widgets/widgets/rotation_animated.dart';
+import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/models/level_model.dart';
@@ -40,6 +42,7 @@ class _GuessPageState extends State<GuessPage> {
   late List<String> allLetters;
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
+  bool shakeTile = false;
 
   Random random = Random();
 
@@ -131,7 +134,13 @@ class _GuessPageState extends State<GuessPage> {
         }
       }
       if (done) {
+        shakeTile = true;
         Get.find<SoundController>().wrongSound();
+        Duration(milliseconds: 500).delay(() {
+          setState(() {
+            shakeTile = false;
+          });
+        });
       }
     }
   }
@@ -704,13 +713,19 @@ class _GuessPageState extends State<GuessPage> {
                 ? Container(
                     width: Dimensions.screenWidth / 10,
                   )
-                : GestureDetector(
-                    onTap: () {
-                      if (!isGuessed) {
-                        removeLetter(answer[index], index, wordIndex);
-                      }
-                    },
-                    child: LetterTile(letter: answer[index]),
+                : ShakeAnimatedWidget(
+                    enabled: shakeTile,
+                    duration: Duration(milliseconds: 500),
+                    shakeAngle: Rotation.deg(z: 40),
+                    curve: Curves.linear,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (!isGuessed) {
+                          removeLetter(answer[index], index, wordIndex);
+                        }
+                      },
+                      child: LetterTile(letter: answer[index]),
+                    ),
                   ),
       ),
     );

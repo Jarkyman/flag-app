@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shake/shake.dart';
 
 import '../../../controllers/country_controller.dart';
 import '../../../controllers/hint_controller.dart';
@@ -46,6 +47,8 @@ class _GuessPageState extends State<GuessPage> {
 
   Random random = Random();
 
+  late ShakeDetector detector;
+
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
 
@@ -55,12 +58,20 @@ class _GuessPageState extends State<GuessPage> {
     super.initState();
     setInit();
     createBannerAd();
+    detector = ShakeDetector.autoStart(
+      onPhoneShake: () {
+        setState(() {
+          allLetters.shuffle();
+        });
+      },
+    );
   }
 
   @override
   void dispose() {
     _bannerAd?.dispose();
     _interstitialAd?.dispose();
+    detector.stopListening();
     super.dispose();
   }
 

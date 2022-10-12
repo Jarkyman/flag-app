@@ -1,6 +1,7 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,13 +33,14 @@ class _ShopPageState extends State<ShopPage> {
     //print(products[0]);
   }
 
-  String getProductPriceFromIdentifier(String identifier) {
+  StoreProduct getProductFromIdentifier(String identifier) {
+    StoreProduct? result;
     for (var product in products) {
       if (product.identifier == identifier) {
-        return product.priceString;
+        result = product;
       }
     }
-    return '';
+    return result!;
   }
 
   @override
@@ -118,8 +120,9 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 50 hints'.tr,
-                        price:
-                            getProductPriceFromIdentifier('flags_50_hints_9'),
+                        price: getProductFromIdentifier('flags_50_hints_9')
+                                .priceString ??
+                            '',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -127,8 +130,12 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct(
-                                'flags_100_hints_17');
+                            print('start');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.HUNDRED_HINTS,
+                                    type: PurchaseType.inapp);
+                            print('Purchase info: ' + customerInfo.toString());
                             for (int i = 1; i <= 20; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -141,11 +148,15 @@ class _ShopPageState extends State<ShopPage> {
                               debugPrint('Failed to purchase product.');
                               purchaseErrorSnackbar();
                             }
+                          } catch (e) {
+                            print(e.toString());
                           }
                         },
                         title: 'Buy 100 hints'.tr,
                         price:
-                            getProductPriceFromIdentifier('flags_100_hints_17'),
+                            getProductFromIdentifier(AppConstants.HUNDRED_HINTS)
+                                    .priceString ??
+                                '',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -171,8 +182,9 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 500 hints'.tr,
-                        price:
-                            getProductPriceFromIdentifier('flags_500_hints_79'),
+                        price: getProductFromIdentifier('flags_500_hints_79')
+                                .priceString ??
+                            '',
                       ),
                       /*SizedBox(
                         height: Dimensions.height20,

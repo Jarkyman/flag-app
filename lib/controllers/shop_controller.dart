@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:get/get.dart';
-import 'package:purchases_flutter/models/purchases_configuration.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../repos/shop_repo.dart';
@@ -20,24 +20,26 @@ class ShopController extends GetxController implements GetxService {
   bool get isAdsRemoved => _adsRemoved;
 
   final List<String> _productsIds = [
-    'flags_50_hints_9',
-    'flags_100_hints_17',
-    'flags_500_hints_79',
+    AppConstants.FIFTY_HINTS,
+    AppConstants.HUNDRED_HINTS,
+    AppConstants.FIVEHUNDRED_HINTS,
     //'flags_unlock_levels',
     //'flags_remove_ads'
   ];
 
-  late List<StoreProduct> _products;
+  List<StoreProduct> _products = [];
 
   List<StoreProduct> get getProducts => _products;
 
   Future<void> loadShopSettings() async {
+    await initPlatformState();
     levelsUnlockRead();
     removeAdsRead();
-    Purchases.addCustomerInfoUpdateListener(
+    /*Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
-    );
+    );*/
     _products = await Purchases.getProducts(_productsIds);
+    print(_products);
     update();
   }
 
@@ -55,7 +57,7 @@ class ShopController extends GetxController implements GetxService {
     await Purchases.configure(configuration!);
   }
 
-  Future updateCustomerStatus() async {
+  /*Future updateCustomerStatus() async {
     final customerInfo = await Purchases.getCustomerInfo();
     final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
     final entitlementAds = customerInfo.entitlements.active['remove_ads'];
@@ -65,7 +67,7 @@ class ShopController extends GetxController implements GetxService {
 
     levelsUnlockSave(isUnlock);
     removeAdsSave(isAdsRemove);
-  }
+  }*/
 
   Future<void> levelsUnlockRead() async {
     _levelsUnlocked = await shopRepo.levelsUnlockRead();

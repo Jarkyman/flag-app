@@ -142,6 +142,8 @@ class _GuessPageState extends State<GuessPage> {
       for (int i = 0; i < lettersListAnswer.length; i++) {
         if (!lettersListAnswer[i].contains('')) {
           done = true;
+        } else {
+          done = false;
         }
       }
       if (done) {

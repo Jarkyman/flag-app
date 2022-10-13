@@ -103,6 +103,15 @@ class _LevelPageState extends State<LevelPage> {
                           print(
                               '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}');
                           print(levels[index].country!);
+                          String countryCodeImg =
+                              '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}';
+                          if ((countryCodeImg == 'ni' ||
+                                  countryCodeImg == 'py' ||
+                                  countryCodeImg == 'sv') &&
+                              levels[index].guessed!) {
+                            countryCodeImg =
+                                '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}-full';
+                          }
                           return GestureDetector(
                             onTap: () {
                               Get.find<SoundController>().windSound();
@@ -115,12 +124,11 @@ class _LevelPageState extends State<LevelPage> {
                                   ]);
                             },
                             child: Hero(
-                              tag:
-                                  '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}',
+                              tag: '${countryCodeImg.toLowerCase()}',
                               child: LevelCard(
                                 guessed: levels[index].guessed!,
                                 image:
-                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}.png',
+                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
                               ),
                             ),
                           );

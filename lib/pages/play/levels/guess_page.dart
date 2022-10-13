@@ -524,6 +524,16 @@ class _GuessPageState extends State<GuessPage> {
                 print('Level = ' + Get.arguments[1].toString());
                 print('Flag index = ' + Get.arguments[2].toString());
 
+                String countryCodeImg =
+                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                if ((countryCodeImg == 'ni' ||
+                        countryCodeImg == 'py' ||
+                        countryCodeImg == 'sv') &&
+                    country.guessed!) {
+                  countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                }
+
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -561,15 +571,14 @@ class _GuessPageState extends State<GuessPage> {
                           ),
                     SizedBox(height: Dimensions.height10),
                     Hero(
-                      tag:
-                          '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}',
+                      tag: '${countryCodeImg.toLowerCase()}',
                       child: Container(
                         height: Dimensions.height20 * 10,
                         margin: EdgeInsets.symmetric(
                             horizontal: Dimensions.height20),
                         decoration: BoxDecoration(),
                         child: Image.asset(
-                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}.png',
+                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
                           fit: BoxFit.cover,
                         ),
                       ),

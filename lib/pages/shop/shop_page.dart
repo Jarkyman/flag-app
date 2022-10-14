@@ -104,7 +104,11 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_50_hints_9');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.FIFTY_HINTS,
+                                    type: PurchaseType.inapp);
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 10; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -120,9 +124,10 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 50 hints'.tr,
-                        price: getProductFromIdentifier('flags_50_hints_9')
-                                .priceString ??
-                            '',
+                        price:
+                            getProductFromIdentifier(AppConstants.FIFTY_HINTS)
+                                    .priceString ??
+                                '',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -130,12 +135,11 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            print('start');
                             CustomerInfo customerInfo =
                                 await Purchases.purchaseProduct(
                                     AppConstants.HUNDRED_HINTS,
                                     type: PurchaseType.inapp);
-                            print('Purchase info: ' + customerInfo.toString());
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 20; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -148,8 +152,6 @@ class _ShopPageState extends State<ShopPage> {
                               debugPrint('Failed to purchase product.');
                               purchaseErrorSnackbar();
                             }
-                          } catch (e) {
-                            print(e.toString());
                           }
                         },
                         title: 'Buy 100 hints'.tr,
@@ -164,8 +166,11 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct(
-                                'flags_500_hints_79');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.FIVEHUNDRED_HINTS,
+                                    type: PurchaseType.inapp);
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 100; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -178,11 +183,11 @@ class _ShopPageState extends State<ShopPage> {
                               debugPrint('Failed to purchase product. ');
                               purchaseErrorSnackbar();
                             }
-                            print(PurchasesErrorCode.values.toString());
                           }
                         },
                         title: 'Buy 500 hints'.tr,
-                        price: getProductFromIdentifier('flags_500_hints_79')
+                        price: getProductFromIdentifier(
+                                    AppConstants.FIVEHUNDRED_HINTS)
                                 .priceString ??
                             '',
                       ),

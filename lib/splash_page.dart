@@ -7,6 +7,7 @@ import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
+import 'package:flag_app/helper/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,8 +38,11 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
     await Get.find<ShopController>().loadShopSettings();
-    await Purchases.configure(
-        Get.find<ShopController>().getPurchasesConfiguration);
+    if (controller.isCompleted) {
+      Get.offNamed(RouteHelper.getInitial());
+    } else {
+      Timer(Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInitial()));
+    }
   }
 
   @override
@@ -46,17 +50,10 @@ class _SplashPageState extends State<SplashScreen>
     super.initState();
     //TODO: ADD timer to match end of load
     _loadResource();
-    /*.then((value) {
-      Get.offNamed(RouteHelper.getInitial());
-      dispose();
-    });*/
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 3))
           ..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-
-    Timer(Duration(seconds: 3, milliseconds: 300),
-        () => Get.offNamed(RouteHelper.getInitial()));
   }
 
   @override
@@ -66,13 +63,26 @@ class _SplashPageState extends State<SplashScreen>
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ScaleTransition(
-            scale: animation,
-            child: Center(
-              child: Image.asset(
-                'assets/image/flag_ball.png',
-                width: Dimensions.splashImg,
-              ),
+          Expanded(
+            child: Stack(
+              children: [
+                ScaleTransition(
+                  scale: animation,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/image/flag_ball.png',
+                      width: Dimensions.splashImg,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 25,
+                  right: 25,
+                  child: CircularProgressIndicator(
+                    color: AppColors.mainColor,
+                  ),
+                )
+              ],
             ),
           ),
         ],

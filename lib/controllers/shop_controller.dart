@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:get/get.dart';
-import 'package:purchases_flutter/models/purchases_configuration.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../repos/shop_repo.dart';
@@ -19,31 +19,45 @@ class ShopController extends GetxController implements GetxService {
 
   bool get isAdsRemoved => _adsRemoved;
 
-  final _configurationAppl =
-      PurchasesConfiguration('appl_eEHKYOTQjTUkCIilqUeqEzETXQj');
+  final List<String> _productsIds = [
+    AppConstants.FIFTY_HINTS,
+    AppConstants.HUNDRED_HINTS,
+    AppConstants.FIVEHUNDRED_HINTS,
+    //'flags_unlock_levels',
+    //'flags_remove_ads'
+  ];
 
-  final _configurationGoog =
-      PurchasesConfiguration('goog_aFvMfMgfGuwqMGeaReDwwGbqbTE');
+  List<StoreProduct> _products = [];
 
-  get getPurchasesConfiguration {
-    if (Platform.isAndroid) {
-      return _configurationGoog;
-    } else if (Platform.isIOS) {
-      return _configurationAppl;
-    }
-    return null;
-  }
+  List<StoreProduct> get getProducts => _products;
 
   Future<void> loadShopSettings() async {
+    await initPlatformState();
     levelsUnlockRead();
     removeAdsRead();
-    Purchases.addCustomerInfoUpdateListener(
+    /*Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
-    );
+    );*/
+    _products = await Purchases.getProducts(_productsIds);
+    print(_products);
     update();
   }
 
-  Future updateCustomerStatus() async {
+  Future<void> initPlatformState() async {
+    await Purchases.setDebugLogsEnabled(true);
+
+    PurchasesConfiguration? configuration;
+    if (Platform.isAndroid) {
+      configuration =
+          PurchasesConfiguration("goog_aFvMfMgfGuwqMGeaReDwwGbqbTE");
+    } else if (Platform.isIOS) {
+      configuration =
+          PurchasesConfiguration("appl_eEHKYOTQjTUkCIilqUeqEzETXQj");
+    }
+    await Purchases.configure(configuration!);
+  }
+
+  /*Future updateCustomerStatus() async {
     final customerInfo = await Purchases.getCustomerInfo();
     final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
     final entitlementAds = customerInfo.entitlements.active['remove_ads'];
@@ -53,7 +67,7 @@ class ShopController extends GetxController implements GetxService {
 
     levelsUnlockSave(isUnlock);
     removeAdsSave(isAdsRemove);
-  }
+  }*/
 
   Future<void> levelsUnlockRead() async {
     _levelsUnlocked = await shopRepo.levelsUnlockRead();

@@ -10,7 +10,7 @@ class HintRepo {
   });
 
   Future<int> readHints() async {
-    int score = await sharedPreferences.getInt(AppConstants.HINTS) ?? 0;
+    int score = await sharedPreferences.getInt(AppConstants.HINTS) ?? 3;
     return score;
   }
 

@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 1.1.1+4
+version: 1.1.2+4
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -20,6 +20,8 @@ dependencies:
   google_mobile_ads: ^1.2.0
   soundpool: ^2.3.0
   purchases_flutter: ^4.3.0
+  animated_widgets: ^1.1.0
+  shake: ^2.1.0
 
 dev_dependencies:
   flutter_test:

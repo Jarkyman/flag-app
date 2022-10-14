@@ -10,8 +10,15 @@ import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
 import '../../../widget/buttons/level_button.dart';
 
-class LevelsListPage extends StatelessWidget {
+class LevelsListPage extends StatefulWidget {
   const LevelsListPage({Key? key}) : super(key: key);
+
+  @override
+  State<LevelsListPage> createState() => _LevelsListPageState();
+}
+
+class _LevelsListPageState extends State<LevelsListPage> {
+  bool isSnackOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +71,22 @@ class LevelsListPage extends StatelessWidget {
                                   Get.toNamed(RouteHelper.getLevelPage(),
                                       arguments: [Get.arguments[0], index + 1]);
                                 } else {
-                                  Get.snackbar(
-                                    'Unlock more levels'.tr,
-                                    'You need to finish'.tr +
-                                        ' ${levelsToComplete - levelsCompleted + 1} ' +
-                                        'more, to unlock level'.tr +
-                                        ' ${index + 1} ' +
-                                        'more, to unlock level2'.tr,
-                                    backgroundColor:
-                                        AppColors.wrongColor.withOpacity(0.3),
-                                  );
+                                  if (!isSnackOpen) {
+                                    isSnackOpen = true;
+                                    Duration(seconds: 3).delay(() {
+                                      isSnackOpen = false;
+                                    });
+                                    Get.snackbar(
+                                      'Unlock more levels'.tr,
+                                      'You need to finish'.tr +
+                                          ' ${levelsToComplete - levelsCompleted + 1} ' +
+                                          'more, to unlock level'.tr +
+                                          ' ${index + 1} ' +
+                                          'more, to unlock level2'.tr,
+                                      backgroundColor:
+                                          AppColors.wrongColor.withOpacity(0.3),
+                                    );
+                                  }
                                 }
                               },
                               title: 'Level'.tr + ' ${index + 1}',

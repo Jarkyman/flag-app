@@ -1,8 +1,10 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -23,10 +25,22 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   RewardedAd? _rewardedAd;
+  List<StoreProduct> products = Get.find<ShopController>().getProducts;
 
   @override
   void initState() {
     _loadRewardedAd();
+    //print(products[0]);
+  }
+
+  StoreProduct getProductFromIdentifier(String identifier) {
+    StoreProduct? result;
+    for (var product in products) {
+      if (product.identifier == identifier) {
+        result = product;
+      }
+    }
+    return result!;
   }
 
   @override
@@ -90,17 +104,30 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_50_hints');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.FIFTY_HINTS,
+                                    type: PurchaseType.inapp);
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 10; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product.');
+                              purchaseErrorSnackbar();
+                            }
                           }
                         },
                         title: 'Buy 50 hints'.tr,
+                        price:
+                            getProductFromIdentifier(AppConstants.FIFTY_HINTS)
+                                    .priceString ??
+                                '',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -108,17 +135,30 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_100_hints');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.HUNDRED_HINTS,
+                                    type: PurchaseType.inapp);
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 20; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product.');
+                              purchaseErrorSnackbar();
+                            }
                           }
                         },
                         title: 'Buy 100 hints'.tr,
+                        price:
+                            getProductFromIdentifier(AppConstants.HUNDRED_HINTS)
+                                    .priceString ??
+                                '',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -126,19 +166,32 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            await Purchases.purchaseProduct('flags_500_hints');
+                            CustomerInfo customerInfo =
+                                await Purchases.purchaseProduct(
+                                    AppConstants.FIVEHUNDRED_HINTS,
+                                    type: PurchaseType.inapp);
+                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 100; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
-                          } catch (e) {
-                            debugPrint('Failed to purchase product.');
-                            purchaseErrorSnackbar();
+                          } on PlatformException catch (e) {
+                            var errorCode =
+                                PurchasesErrorHelper.getErrorCode(e);
+                            if (errorCode !=
+                                PurchasesErrorCode.purchaseCancelledError) {
+                              debugPrint('Failed to purchase product. ');
+                              purchaseErrorSnackbar();
+                            }
                           }
                         },
                         title: 'Buy 500 hints'.tr,
+                        price: getProductFromIdentifier(
+                                    AppConstants.FIVEHUNDRED_HINTS)
+                                .priceString ??
+                            '',
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -164,8 +217,12 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Unlock all levels'.tr,
-                      ),
-                      SizedBox(
+                        price: !Get.find<ShopController>().isLevelsUnlocked
+                            ? getProductPriceFromIdentifier(
+                                'flags_unlock_levels')
+                            : '',
+                      ),*/
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -192,7 +249,10 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Remove ads'.tr,
-                      ),
+                        price: !Get.find<ShopController>().isLevelsUnlocked
+                            ? getProductPriceFromIdentifier('flags_remove_ads')
+                            : '',
+                      ),*/
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -207,6 +267,20 @@ class _ShopPageState extends State<ShopPage> {
                         },
                         title: 'Watch video (3 hints)'.tr,
                       ),
+                      /*SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      MenuButton(
+                        onTap: () async {
+                          try {
+                            // PurchaserInfo restoredInfo = await Purchases.restoreTransactions();
+                            // ... check restored purchaserInfo to see if entitlement is now active
+                          } on PlatformException catch (e) {
+                            // Error restoring purchases
+                          }
+                        },
+                        title: 'Restore Purchases'.tr,
+                      ),*/
                     ],
                   ),
                 ),

@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 class MenuButton extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
+  final String price;
   final bool active;
 
   const MenuButton({
     Key? key,
     required this.onTap,
     required this.title,
+    this.price = '',
     this.active = true,
   }) : super(key: key);
 
@@ -35,12 +37,27 @@ class MenuButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: Dimensions.font20,
-              fontWeight: FontWeight.w500,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (price != '') Expanded(child: Container()),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: Dimensions.font20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              if (price != '') Expanded(child: Container()),
+              if (price != '')
+                Text(
+                  price + ' ',
+                  style: TextStyle(
+                    fontSize: Dimensions.font20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+            ],
           ),
         ),
       ),

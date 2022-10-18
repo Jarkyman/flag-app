@@ -1,5 +1,6 @@
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/helper/route_helper.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/background_image.dart';
@@ -95,10 +96,7 @@ class _LevelPageState extends State<LevelPage> {
                         childAspectRatio: 6 / 5,
                         mainAxisSpacing: Dimensions.height20,
                         crossAxisSpacing: Dimensions.height20,
-                        // Create a grid with 2 columns. If you change the scrollDirection to
-                        // horizontal, this produces 2 rows.
                         crossAxisCount: 4,
-                        // Generate 100 widgets that display their index in the List.
                         children: List.generate(levels.length, (index) {
                           print(
                               '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}');
@@ -108,7 +106,8 @@ class _LevelPageState extends State<LevelPage> {
                           if ((countryCodeImg == 'ni' ||
                                   countryCodeImg == 'py' ||
                                   countryCodeImg == 'sv') &&
-                              levels[index].guessed!) {
+                              levels[index].guessed! &&
+                              Get.arguments[0] == AppConstants.FLAGS) {
                             countryCodeImg =
                                 '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}-full';
                           }

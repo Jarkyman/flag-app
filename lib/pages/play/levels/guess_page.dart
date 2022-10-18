@@ -20,6 +20,7 @@ import '../../../controllers/hint_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
+import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
@@ -531,7 +532,8 @@ class _GuessPageState extends State<GuessPage> {
                 if ((countryCodeImg == 'ni' ||
                         countryCodeImg == 'py' ||
                         countryCodeImg == 'sv') &&
-                    country.guessed!) {
+                    country.guessed! &&
+                    Get.arguments[0] == AppConstants.FLAGS) {
                   countryCodeImg =
                       '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                 }

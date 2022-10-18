@@ -19,8 +19,6 @@ class LevelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isCountry = option == AppConstants.COUNTRIES;
     return Container(
-      height: Dimensions.height20,
-      width: Dimensions.width45,
       decoration: !isCountry
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radius15),

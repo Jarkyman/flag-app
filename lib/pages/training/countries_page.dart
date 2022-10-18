@@ -267,16 +267,27 @@ class _CountriesPageState extends State<CountriesPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Countries'.tr,
+          score.toString(),
           style: TextStyle(
-              fontSize: Dimensions.font26, color: AppColors.titleColor),
+              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
         ),
         backgroundColor: AppColors.mainColor,
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
-            return Text(
-              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
-              style: TextStyle(fontSize: Dimensions.font16),
+            return Row(
+              children: [
+                Icon(Icons.star),
+                SizedBox(
+                  width: Dimensions.width5 / 2,
+                ),
+                Text(
+                  highScore.toString(),
+                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
+                ),
+                SizedBox(
+                  width: Dimensions.width5,
+                ),
+              ],
             );
           }),
         ],

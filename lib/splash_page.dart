@@ -11,7 +11,6 @@ import 'package:flag_app/helper/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 
 import 'controllers/country_continent_controller.dart';
 import 'helper/dimensions.dart';

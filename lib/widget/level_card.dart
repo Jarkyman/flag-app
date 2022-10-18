@@ -24,11 +24,12 @@ class LevelCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.radius15),
               image: guessed
                   ? DecorationImage(
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitHeight,
                       image: AssetImage(image),
                     )
                   : DecorationImage(
-                      fit: BoxFit.cover,
+                      alignment: Alignment.center,
+                      fit: BoxFit.fitHeight,
                       colorFilter: const ColorFilter.matrix(<double>[
                         0.2126,
                         0.7152,

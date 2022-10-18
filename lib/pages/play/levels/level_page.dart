@@ -128,6 +128,7 @@ class _LevelPageState extends State<LevelPage> {
                                 guessed: levels[index].guessed!,
                                 image:
                                     'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                option: Get.arguments[0],
                               ),
                             ),
                           );

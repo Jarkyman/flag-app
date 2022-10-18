@@ -32,7 +32,7 @@ void buildLanguageDialog() {
     content: Flexible(
       child: SingleChildScrollView(
         child: Container(
-          width: double.maxFinite,
+          width: Dimensions.width45 * 6,
           child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

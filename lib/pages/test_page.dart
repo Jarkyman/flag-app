@@ -52,7 +52,8 @@ class _TestPageState extends State<TestPage> {
                     decoration: BoxDecoration(),
                     child: Image.asset(
                       //'assets/image/flags/${countries[count].countryCode.toString().toLowerCase()}.png',
-                      'assets/image/countries/${countries[count].countryCode.toString().toLowerCase()}-full.png',
+                      //'assets/image/countries/${countries[count].countryCode.toString().toLowerCase()}-full.png',
+                      'assets/image/coat of arms/${countries[count].countryCode.toString().toLowerCase()}.png',
                       fit: BoxFit.contain,
                     ),
                   ),

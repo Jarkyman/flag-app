@@ -8,6 +8,7 @@ import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
+import 'package:flag_app/pages/test_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,8 @@ class _SplashPageState extends State<SplashScreen>
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {
-      Timer(Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInitial()));
+      //Timer(Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInitial()));
+      Timer(Duration(seconds: 3), () => Get.off(TestPage()));
     }
   }
 

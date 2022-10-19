@@ -25,7 +25,7 @@ class CountryController extends GetxController implements GetxService {
         .readCountries(locale)
         .then((value) => removeUnUsed());
     update();
-    _countries.shuffle();
+    //_countries.shuffle();
   }
 
   void removeUnUsed() {
@@ -38,6 +38,19 @@ class CountryController extends GetxController implements GetxService {
       });
     });
     _countries = result;
+  }
+
+  List<CountryModel> getTestObj() {
+    List<CountryModel> result = [];
+    Get.find<CountryContinentController>().getCountries.forEach((continent) {
+      _countries.forEach((country) {
+        if (country.countryName == continent.country) {
+          result.add(country);
+        }
+      });
+    });
+    print('Test Obj ' + result.length.toString());
+    return result;
   }
 
   String getCountryCode(String country) {

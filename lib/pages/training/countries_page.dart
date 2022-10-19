@@ -325,7 +325,7 @@ class _CountriesPageState extends State<CountriesPage> {
                           EdgeInsets.symmetric(horizontal: Dimensions.height20),
                       decoration: BoxDecoration(),
                       child: Image.asset(
-                        'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}.png',
+                        'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}-full.png',
                         fit: BoxFit.contain,
                       ),
                     ),

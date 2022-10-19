@@ -537,6 +537,10 @@ class _GuessPageState extends State<GuessPage> {
                   countryCodeImg =
                       '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                 }
+                if (Get.arguments[0] == AppConstants.COUNTRIES) {
+                  countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                }
 
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

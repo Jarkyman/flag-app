@@ -22,6 +22,7 @@ class AppConstants {
   // Levels
   static const String FLAGS = 'Flags';
   static const String COUNTRIES = 'Countries';
+  static const String COC = 'Coat of arms';
 
   //In app ids
   static const String FIFTY_HINTS = 'flags_50_hints_9';

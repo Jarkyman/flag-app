@@ -324,9 +324,25 @@ class _CountriesPageState extends State<CountriesPage> {
                       margin:
                           EdgeInsets.symmetric(horizontal: Dimensions.height20),
                       decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}-full.png',
-                        fit: BoxFit.contain,
+                      child: Center(
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius15),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius15),
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}-full.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

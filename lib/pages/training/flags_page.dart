@@ -377,8 +377,12 @@ class _FlagsPageState extends State<FlagsPage> {
                           child: Stack(
                             children: [
                               Center(
-                                child: Image.asset(
-                                  'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius10),
+                                  child: Image.asset(
+                                    'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
+                                  ),
                                 ),
                               ),
                               Center(

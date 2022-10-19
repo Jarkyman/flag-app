@@ -319,15 +319,24 @@ class _FlagPageState extends State<FlagPage> {
                       hintPriceOne: '3',
                       hintPriceTwo: '1'),
                   Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      //height: Dimensions.height20 * 14,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
-                        fit: BoxFit.contain,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: Dimensions.height10),
+                      child: Container(
+                        width: double.maxFinite,
+                        //height: Dimensions.height20 * 14,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.height20),
+                        decoration: BoxDecoration(),
+                        child: Center(
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius15),
+                            child: Image.asset(
+                              'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

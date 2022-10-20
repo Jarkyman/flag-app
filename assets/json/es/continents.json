@@ -646,10 +646,11 @@
   {
     "Continent": "América del Norte",
     "Country": "Nicaragua"
-  },{
-  "Continent": "América del Norte",
-  "Country": "Panamá"
-},
+  },
+  {
+    "Continent": "América del Norte",
+    "Country": "Panamá"
+  },
   {
     "Continent": "América del Norte",
     "Country": "San Cristóbal y Nieves"

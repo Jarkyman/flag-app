@@ -25,7 +25,7 @@ class CountryController extends GetxController implements GetxService {
         .readCountries(locale)
         .then((value) => removeUnUsed());
     update();
-    //_countries.shuffle();
+    _countries.shuffle();
   }
 
   void removeUnUsed() {

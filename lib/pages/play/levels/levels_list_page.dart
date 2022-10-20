@@ -35,6 +35,8 @@ class _LevelsListPageState extends State<LevelsListPage> {
                 child: GetBuilder<LevelController>(
                   builder: (levelController) {
                     print('Type =' + Get.arguments[0]);
+                    print(levelController.getLevelAmount(
+                        levelController.getList(Get.arguments[0])!));
                     return ListView.builder(
                         itemCount: levelController.getLevelAmount(
                             levelController.getList(Get.arguments[0])!),

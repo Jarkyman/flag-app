@@ -119,7 +119,6 @@ class _SplashPageState extends State<SplashScreen>
     try {
       return await rootBundle.load(path);
     } catch (_) {
-      print(path);
       return null;
     }
   }

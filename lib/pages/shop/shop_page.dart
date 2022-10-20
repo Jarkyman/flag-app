@@ -127,7 +127,7 @@ class _ShopPageState extends State<ShopPage> {
                         price:
                             getProductFromIdentifier(AppConstants.FIFTY_HINTS)
                                     ?.priceString ??
-                                '',
+                                '#',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -158,7 +158,7 @@ class _ShopPageState extends State<ShopPage> {
                         price:
                             getProductFromIdentifier(AppConstants.HUNDRED_HINTS)
                                     ?.priceString ??
-                                '',
+                                '#',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -189,7 +189,7 @@ class _ShopPageState extends State<ShopPage> {
                         price: getProductFromIdentifier(
                                     AppConstants.FIVEHUNDRED_HINTS)
                                 ?.priceString ??
-                            '',
+                            '#',
                       ),
                       /*SizedBox(
                         height: Dimensions.height20,

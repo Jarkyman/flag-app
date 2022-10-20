@@ -37,7 +37,9 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<LevelController>().readAllLevels();
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
+    print('lang done');
     await Get.find<ShopController>().loadShopSettings();
+    print('shop done');
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {

@@ -33,14 +33,15 @@ class _ShopPageState extends State<ShopPage> {
     //print(products[0]);
   }
 
-  StoreProduct getProductFromIdentifier(String identifier) {
+  StoreProduct? getProductFromIdentifier(String identifier) {
     StoreProduct? result;
+    print(products);
     for (var product in products) {
       if (product.identifier == identifier) {
         result = product;
       }
     }
-    return result!;
+    return result;
   }
 
   @override
@@ -126,7 +127,7 @@ class _ShopPageState extends State<ShopPage> {
                         title: 'Buy 50 hints'.tr,
                         price:
                             getProductFromIdentifier(AppConstants.FIFTY_HINTS)
-                                    .priceString ??
+                                    ?.priceString ??
                                 '',
                       ),
                       SizedBox(
@@ -157,7 +158,7 @@ class _ShopPageState extends State<ShopPage> {
                         title: 'Buy 100 hints'.tr,
                         price:
                             getProductFromIdentifier(AppConstants.HUNDRED_HINTS)
-                                    .priceString ??
+                                    ?.priceString ??
                                 '',
                       ),
                       SizedBox(
@@ -188,7 +189,7 @@ class _ShopPageState extends State<ShopPage> {
                         title: 'Buy 500 hints'.tr,
                         price: getProductFromIdentifier(
                                     AppConstants.FIVEHUNDRED_HINTS)
-                                .priceString ??
+                                ?.priceString ??
                             '',
                       ),
                       /*SizedBox(
@@ -222,7 +223,7 @@ class _ShopPageState extends State<ShopPage> {
                                 'flags_unlock_levels')
                             : '',
                       ),*/
-                      /*SizedBox(
+                      SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -230,8 +231,7 @@ class _ShopPageState extends State<ShopPage> {
                         onTap: () async {
                           if (!Get.find<ShopController>().isLevelsUnlocked) {
                             try {
-                              await Purchases.purchaseProduct(
-                                  'flags_remove_ads');
+                              //await Purchases.purchaseProduct('flags_remove_ads');
                               Get.find<ShopController>().removeAdsSave(true);
                               Get.find<SoundController>().completeSound();
                               debugPrint('Removed adds');
@@ -250,9 +250,12 @@ class _ShopPageState extends State<ShopPage> {
                         },
                         title: 'Remove ads'.tr,
                         price: !Get.find<ShopController>().isLevelsUnlocked
-                            ? getProductPriceFromIdentifier('flags_remove_ads')
-                            : '',
-                      ),*/
+                            ? getProductFromIdentifier(
+                                        AppConstants.UNLOCK_LEVELS)
+                                    ?.priceString ??
+                                '0.00 \$'
+                            : 'un',
+                      ),
                       SizedBox(
                         height: Dimensions.height20,
                       ),

@@ -297,6 +297,8 @@ class _FlagPageState extends State<FlagPage> {
         child: SafeArea(
           child: GetBuilder<CountryController>(
             builder: (countryController) {
+              String imgCode =
+                  selectedCountry.countryCode.toString().toLowerCase();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -332,7 +334,7 @@ class _FlagPageState extends State<FlagPage> {
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius10),
                             child: Image.asset(
-                              'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
+                              'assets/image/flags/$imgCode.png',
                               fit: BoxFit.contain,
                             ),
                           ),

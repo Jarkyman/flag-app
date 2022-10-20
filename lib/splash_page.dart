@@ -102,13 +102,13 @@ class _SplashPageState extends State<SplashScreen>
       String coc =
           'assets/image/${AppConstants.COC.toLowerCase()}/${cc.toLowerCase().removeAllWhitespace}.png';
       if (await myLoadAsset(flag) != null) {
-        await precacheImage(AssetImage(flag), context);
+        precacheImage(AssetImage(flag), context);
       }
       if (await myLoadAsset(country) != null) {
-        await precacheImage(AssetImage(country), context);
+        precacheImage(AssetImage(country), context);
       }
       if (await myLoadAsset(coc) != null) {
-        await precacheImage(AssetImage(coc), context);
+        precacheImage(AssetImage(coc), context);
       }
     }
 

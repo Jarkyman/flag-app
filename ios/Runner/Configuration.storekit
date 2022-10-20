@@ -1,0 +1,63 @@
+{
+  "identifier" : "E111EEA9",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "E43F13E8",
+      "localizations" : [
+        {
+          "description" : "This package will give you 50 hints.",
+          "displayName" : "50 Hints",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "flags_50_hints_9",
+      "referenceName" : "50 Hints",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "34F6D81C",
+      "localizations" : [
+        {
+          "description" : "This package will give you 100 hints.",
+          "displayName" : "100 Hints",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "flags_100_hints_17",
+      "referenceName" : "100 Hintys",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "8.99",
+      "familyShareable" : false,
+      "internalID" : "86355411",
+      "localizations" : [
+        {
+          "description" : "This package will give you 500 hints.",
+          "displayName" : "500",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "flags_500_hints_79",
+      "referenceName" : "500 Hints",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 2
+  }
+}

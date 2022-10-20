@@ -274,16 +274,27 @@ class _FlagsPageState extends State<FlagsPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Flags'.tr,
+          score.toString(),
           style: TextStyle(
-              fontSize: Dimensions.font26, color: AppColors.titleColor),
+              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
         ),
         backgroundColor: AppColors.mainColor,
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
-            return Text(
-              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
-              style: TextStyle(fontSize: Dimensions.font16),
+            return Row(
+              children: [
+                Icon(Icons.star),
+                SizedBox(
+                  width: Dimensions.width5 / 2,
+                ),
+                Text(
+                  highScore.toString(),
+                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
+                ),
+                SizedBox(
+                  width: Dimensions.width5,
+                ),
+              ],
             );
           }),
         ],
@@ -366,8 +377,12 @@ class _FlagsPageState extends State<FlagsPage> {
                           child: Stack(
                             children: [
                               Center(
-                                child: Image.asset(
-                                  'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius10),
+                                  child: Image.asset(
+                                    'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
+                                  ),
                                 ),
                               ),
                               Center(

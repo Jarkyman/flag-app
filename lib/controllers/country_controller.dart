@@ -40,10 +40,22 @@ class CountryController extends GetxController implements GetxService {
     _countries = result;
   }
 
+  List<CountryModel> getTestObj() {
+    List<CountryModel> result = [];
+    Get.find<CountryContinentController>().getCountries.forEach((continent) {
+      _countries.forEach((country) {
+        if (country.countryName == continent.country) {
+          result.add(country);
+        }
+      });
+    });
+    print('Test Obj ' + result.length.toString());
+    return result;
+  }
+
   String getCountryCode(String country) {
     String countryCode = 'error';
     _countries.forEach((element) {
-      //print(country.toLowerCase() + ' ==' + element.countryName!.toLowerCase());
       if (country.toLowerCase() == element.countryName!.toLowerCase()) {
         countryCode = element.countryCode!;
       }

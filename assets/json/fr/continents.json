@@ -285,11 +285,11 @@
   },
   {
     "Continent": "Asie",
-    "Country":"Corée du Nord"
+    "Country": "Corée du Nord"
   },
   {
     "Continent": "Asie",
-    "Country":"Corée du Sud"
+    "Country": "Corée du Sud"
   },
   {
     "Continent": "Asie",
@@ -501,7 +501,7 @@
   },
   {
     "Continent": "Europe",
-    "Country":"Macédoine du Nord"
+    "Country": "Macédoine du Nord"
   },
   {
     "Continent": "Europe",
@@ -573,7 +573,7 @@
   },
   {
     "Continent": "Europe",
-    "Country":"Royaume-Uni"
+    "Country": "Royaume-Uni"
   },
   {
     "Continent": "Europe",
@@ -646,10 +646,11 @@
   {
     "Continent": "Amérique du Nord",
     "Country": "Nicaragua"
-  },{
-  "Continent": "Amérique du Nord",
-  "Country": "Panama"
-},
+  },
+  {
+    "Continent": "Amérique du Nord",
+    "Country": "Panama"
+  },
   {
     "Continent": "Amérique du Nord",
     "Country": "Saint-Kitts - et-Nevis"
@@ -668,7 +669,7 @@
   },
   {
     "Continent": "Amérique du Nord",
-    "Country":" États-Unis"
+    "Country": " États-Unis"
   },
   {
     "Continent": "Océanie",

@@ -267,16 +267,27 @@ class _CountriesPageState extends State<CountriesPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Countries'.tr,
+          score.toString(),
           style: TextStyle(
-              fontSize: Dimensions.font26, color: AppColors.titleColor),
+              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
         ),
         backgroundColor: AppColors.mainColor,
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
-            return Text(
-              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
-              style: TextStyle(fontSize: Dimensions.font16),
+            return Row(
+              children: [
+                Icon(Icons.star),
+                SizedBox(
+                  width: Dimensions.width5 / 2,
+                ),
+                Text(
+                  highScore.toString(),
+                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
+                ),
+                SizedBox(
+                  width: Dimensions.width5,
+                ),
+              ],
             );
           }),
         ],
@@ -313,9 +324,25 @@ class _CountriesPageState extends State<CountriesPage> {
                       margin:
                           EdgeInsets.symmetric(horizontal: Dimensions.height20),
                       decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}.png',
-                        fit: BoxFit.contain,
+                      child: Center(
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius15),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius15),
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}-full.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

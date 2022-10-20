@@ -39,10 +39,8 @@ class ShopController extends GetxController implements GetxService {
     /*Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
     );*/
-    print('before load');
     _products =
         await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
-    print('after load');
     print(_products);
     update();
   }

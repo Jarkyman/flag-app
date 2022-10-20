@@ -1,6 +1,5 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
-import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +191,7 @@ class _ShopPageState extends State<ShopPage> {
                                 ?.priceString ??
                             '',
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -223,7 +222,7 @@ class _ShopPageState extends State<ShopPage> {
                                     ?.priceString ??
                                 '0.00 \$'
                             : 'un',
-                      ),
+                      ),*/
                       /*SizedBox(
                         height: Dimensions.height20,
                       ),

@@ -1,3 +1,4 @@
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,10 @@ class LevelController extends GetxController implements GetxService {
   List<LevelModel> _countriesLevels = [];
 
   List<LevelModel> get getCountriesLevels => _countriesLevels;
+
+  List<LevelModel> _cocLevels = [];
+
+  List<LevelModel> get getCocLevels => _cocLevels;
 
   bool isLevelUnlocked(int index, String option) {
     int levelsToComplete = (index * 10) - 11;
@@ -114,6 +119,16 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       });
+      print('country amount = ${_cocLevels.length}');
+    } else if (playOption == AppConstants.COC) {
+      _cocLevels.forEach((element) {
+        if (element == country) {
+          element.guessed = true;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      });
+      print('coc amount = ${_cocLevels.length}');
     }
 
     update();
@@ -124,6 +139,8 @@ class LevelController extends GetxController implements GetxService {
       return _flagLevels;
     } else if (playOption == AppConstants.COUNTRIES) {
       return _countriesLevels;
+    } else if (playOption == AppConstants.COC) {
+      return _cocLevels;
     }
     return null;
   }
@@ -137,6 +154,7 @@ class LevelController extends GetxController implements GetxService {
     _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!);
     _countriesLevels =
         await levelRepo.readLevels(AppConstants.COUNTRIES, Get.locale!);
+    _cocLevels = await levelRepo.readLevels(AppConstants.COC, Get.locale!);
     update();
   }
 
@@ -160,6 +178,14 @@ class LevelController extends GetxController implements GetxService {
       });
     } else if (playOption == AppConstants.COUNTRIES) {
       _countriesLevels.forEach((element) {
+        if (element == country) {
+          element.guessed = false;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      });
+    } else if (playOption == AppConstants.COC) {
+      _cocLevels.forEach((element) {
         if (element == country) {
           element.guessed = false;
           //country.guessed = true;

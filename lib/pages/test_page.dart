@@ -1,3 +1,4 @@
+import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class _TestPageState extends State<TestPage> {
 
   void generateCountries() {
     setState(() {
-      countries = Get.find<CountryController>().getCountries;
+      countries = Get.find<CountryController>().getTestObj();
       isLoading = false;
     });
   }
@@ -28,9 +29,7 @@ class _TestPageState extends State<TestPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Get.find<CountryController>().readCountries(Get.locale!).then((value) {
-      generateCountries();
-    });
+    generateCountries();
   }
 
   @override
@@ -38,76 +37,80 @@ class _TestPageState extends State<TestPage> {
     return Scaffold(
       body: isLoading
           ? CircularProgressIndicator()
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '$count / ${countries[count].countryCode} - ${countries[count].countryName}',
-                  style: TextStyle(fontSize: 30),
-                ),
-                Container(
-                  width: double.maxFinite,
-                  height: 300,
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(),
-                  child: Image.asset(
-                    'assets/image/flags/${countries[count].countryCode.toString().toLowerCase()}.png',
-                    fit: BoxFit.contain,
+          : BackgroundImage(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '$count/${countries.length} - ${countries[count].countryCode} - ${countries[count].countryName}',
+                    style: TextStyle(fontSize: 30),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      count++;
-                    });
-                  },
-                  child: Text('NEXT'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      count--;
-                    });
-                  },
-                  child: Text('BACK'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      count = 0;
-                    });
-                  },
-                  child: Text('RESET'),
-                ),
-                TextField(
-                  onSubmitted: (value) {
-                    setState(() {
-                      count = int.parse(value);
-                    });
-                  },
-                  controller: textEditingController,
-                  decoration: InputDecoration(
-                    hintText: 'count',
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        width: 1.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        width: 1.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                  Container(
+                    width: double.maxFinite,
+                    height: 300,
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(),
+                    child: Image.asset(
+                      //'assets/image/flags/${countries[count].countryCode.toString().toLowerCase()}.png',
+                      //'assets/image/countries/${countries[count].countryCode.toString().toLowerCase()}-full.png',
+                      'assets/image/coat of arms/${countries[count].countryCode.toString().toLowerCase()}.png',
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ),
-              ],
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        count++;
+                      });
+                    },
+                    child: Text('NEXT'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        count--;
+                      });
+                    },
+                    child: Text('BACK'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        count = 0;
+                      });
+                    },
+                    child: Text('RESET'),
+                  ),
+                  TextField(
+                    onSubmitted: (value) {
+                      setState(() {
+                        count = int.parse(value);
+                      });
+                    },
+                    controller: textEditingController,
+                    decoration: InputDecoration(
+                      hintText: 'count',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          width: 1.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          width: 1.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
     );
   }

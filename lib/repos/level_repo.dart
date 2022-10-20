@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flag_app/models/level_model.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LevelRepo {
@@ -14,7 +15,7 @@ class LevelRepo {
 
   Future<List<LevelModel>> readLevels(String option, Locale locale) async {
     final String response = await rootBundle.loadString(
-        'assets/json/${locale.toString().split('_')[1].toLowerCase()}/${option.toLowerCase()}Levels.json');
+        'assets/json/${locale.toString().split('_')[1].toLowerCase()}/${option.toLowerCase().removeAllWhitespace}Levels.json');
 
     final list = json.decode(response) as List<dynamic>;
     List<LevelModel> levelModels = [];
@@ -34,7 +35,6 @@ class LevelRepo {
         }
       }
     }
-
     return levelModels;
   }
 

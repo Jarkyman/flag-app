@@ -426,10 +426,11 @@
   {
     "Continent": "Europa",
     "Country": "Bulgarien"
-  },{
-  "Continent": "Europa",
-  "Country": "Kroatien"
-},
+  },
+  {
+    "Continent": "Europa",
+    "Country": "Kroatien"
+  },
   {
     "Continent": "Europa",
     "Country": "Zypern"

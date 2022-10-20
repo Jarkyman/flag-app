@@ -1,10 +1,10 @@
 [
   {
-    "Country":"Togo",
+    "Country": "Togo",
     "Level": 8
   },
   {
-    "Country":"Belgien",
+    "Country": "Belgien",
     "Level": 1
   },
   {
@@ -12,7 +12,7 @@
     "Level": 2
   },
   {
-    "Country":"Mali",
+    "Country": "Mali",
     "Level": 1
   },
   {
@@ -44,7 +44,7 @@
     "Level": 1
   },
   {
-    "Country":"Polen",
+    "Country": "Polen",
     "Level": 1
   },
   {
@@ -68,7 +68,7 @@
     "Level": 9
   },
   {
-    "Country":"Cypern",
+    "Country": "Cypern",
     "Level": 1
   },
   {
@@ -76,11 +76,11 @@
     "Level": 1
   },
   {
-    "Country":"Syrien",
+    "Country": "Syrien",
     "Level": 1
   },
   {
-    "Country":"Libanon",
+    "Country": "Libanon",
     "Level": 5
   },
   {
@@ -108,15 +108,15 @@
     "Level": 9
   },
   {
-    "Country":"Lettland",
+    "Country": "Lettland",
     "Level": 2
   },
   {
-    "Country":"Kroatien",
+    "Country": "Kroatien",
     "Level": 2
   },
   {
-    "Country":"Kap Verde",
+    "Country": "Kap Verde",
     "Level": 9
   },
   {
@@ -128,7 +128,7 @@
     "Level": 2
   },
   {
-    "Country":"Brasilien",
+    "Country": "Brasilien",
     "Level": 2
   },
   {
@@ -140,11 +140,11 @@
     "Level": 2
   },
   {
-    "Country":"Malta",
+    "Country": "Malta",
     "Level": 2
   },
   {
-    "Country":"Benin",
+    "Country": "Benin",
     "Level": 2
   },
   {
@@ -164,7 +164,7 @@
     "Level": 3
   },
   {
-    "Country":"Ukraina",
+    "Country": "Ukraina",
     "Level": 3
   },
   {
@@ -176,7 +176,7 @@
     "Level": 3
   },
   {
-    "Country":"Venezuela",
+    "Country": "Venezuela",
     "Level": 3
   },
   {
@@ -192,11 +192,11 @@
     "Level": 3
   },
   {
-    "Country":"Palau",
+    "Country": "Palau",
     "Level": 3
   },
   {
-    "Country":"Grekland",
+    "Country": "Grekland",
     "Level": 3
   },
   {
@@ -208,11 +208,11 @@
     "Level": 10
   },
   {
-    "Country":"Etiopien",
+    "Country": "Etiopien",
     "Level": 3
   },
   {
-    "Country":"Colombia",
+    "Country": "Colombia",
     "Level": 3
   },
   {
@@ -260,11 +260,11 @@
     "Level": 4
   },
   {
-    "Country":"Australien",
+    "Country": "Australien",
     "Level": 4
   },
   {
-    "Country":"Tonga",
+    "Country": "Tonga",
     "Level": 4
   },
   {
@@ -288,7 +288,7 @@
     "Level": 4
   },
   {
-    "Country":"Monaco",
+    "Country": "Monaco",
     "Level": 4
   },
   {
@@ -328,11 +328,11 @@
     "Level": 5
   },
   {
-    "Country":"Egypten",
+    "Country": "Egypten",
     "Level": 5
   },
   {
-    "Country":"Ryssland",
+    "Country": "Ryssland",
     "Level": 2
   },
   {
@@ -356,7 +356,7 @@
     "Level": 5
   },
   {
-    "Country":"Bulgarien",
+    "Country": "Bulgarien",
     "Level": 5
   },
   {
@@ -368,7 +368,7 @@
     "Level": 5
   },
   {
-    "Country":"Vatikanstaten",
+    "Country": "Vatikanstaten",
     "Level": 5
   },
   {
@@ -384,7 +384,7 @@
     "Level": 5
   },
   {
-    "Country":"Slovakien",
+    "Country": "Slovakien",
     "Level": 5
   },
   {
@@ -412,7 +412,7 @@
     "Level": 6
   },
   {
-    "Country":"Spanien",
+    "Country": "Spanien",
     "Level": 1
   },
   {
@@ -420,11 +420,11 @@
     "Level": 6
   },
   {
-    "Country":"Tjeckien",
+    "Country": "Tjeckien",
     "Level": 6
   },
   {
-    "Country":"Kenya",
+    "Country": "Kenya",
     "Level": 6
   },
   {
@@ -432,7 +432,7 @@
     "Level": 6
   },
   {
-    "Country":"Maldiverna",
+    "Country": "Maldiverna",
     "Level": 6
   },
   {
@@ -460,19 +460,19 @@
     "Level": 6
   },
   {
-    "Country":"Kazakstan",
+    "Country": "Kazakstan",
     "Level": 6
   },
   {
-    "Country":"Jordanien",
+    "Country": "Jordanien",
     "Level": 6
   },
   {
-    "Country":"Ungern",
+    "Country": "Ungern",
     "Level": 6
   },
   {
-    "Country":"Kuba",
+    "Country": "Kuba",
     "Level": 6
   },
   {
@@ -480,15 +480,15 @@
     "Level": 6
   },
   {
-    "Country":"Mongoliet",
+    "Country": "Mongoliet",
     "Level": 7
   },
   {
-    "Country":"Thailand",
+    "Country": "Thailand",
     "Level": 7
   },
   {
-    "Country":"Indien",
+    "Country": "Indien",
     "Level": 7
   },
   {
@@ -496,7 +496,7 @@
     "Level": 7
   },
   {
-    "Country":"Tyskland",
+    "Country": "Tyskland",
     "Level": 1
   },
   {
@@ -532,11 +532,11 @@
     "Level": 7
   },
   {
-    "Country":"Finland",
+    "Country": "Finland",
     "Level": 7
   },
   {
-    "Country":"Estland",
+    "Country": "Estland",
     "Level": 7
   },
   {
@@ -560,11 +560,11 @@
     "Level": 7
   },
   {
-    "Country":"Montenegro",
+    "Country": "Montenegro",
     "Level": 8
   },
   {
-    "Country":"USA",
+    "Country": "USA",
     "Level": 1
   },
   {
@@ -572,7 +572,7 @@
     "Level": 8
   },
   {
-    "Country":"Armenien",
+    "Country": "Armenien",
     "Level": 8
   },
   {
@@ -592,11 +592,11 @@
     "Level": 8
   },
   {
-    "Country":"Italien",
+    "Country": "Italien",
     "Level": 2
   },
   {
-    "Country":"Portugal",
+    "Country": "Portugal",
     "Level": 3
   },
   {
@@ -608,7 +608,7 @@
     "Level": 8
   },
   {
-    "Country":"Qatar",
+    "Country": "Qatar",
     "Level": 8
   },
   {
@@ -620,7 +620,7 @@
     "Level": 8
   },
   {
-    "Country":"Peru",
+    "Country": "Peru",
     "Level": 8
   },
   {
@@ -636,15 +636,15 @@
     "Level": 8
   },
   {
-    "Country":"Moldavien",
+    "Country": "Moldavien",
     "Level": 8
   },
   {
-    "Country":"Kanada",
+    "Country": "Kanada",
     "Level": 2
   },
   {
-    "Country":"Mexiko",
+    "Country": "Mexiko",
     "Level": 2
   },
   {
@@ -680,15 +680,15 @@
     "Level": 9
   },
   {
-    "Country":"Kina",
+    "Country": "Kina",
     "Level": 2
   },
   {
-    "Country":"Frankrike",
+    "Country": "Frankrike",
     "Level": 1
   },
   {
-    "Country":"Singapore",
+    "Country": "Singapore",
     "Level": 9
   },
   {
@@ -700,7 +700,7 @@
     "Level": 9
   },
   {
-    "Country":"Turkiet",
+    "Country": "Turkiet",
     "Level": 1
   },
   {
@@ -728,7 +728,7 @@
     "Level": 10
   },
   {
-    "Country":"Fiji",
+    "Country": "Fiji",
     "Level": 10
   },
   {
@@ -764,7 +764,7 @@
     "Level": 3
   },
   {
-    "Country":"Panama",
+    "Country": "Panama",
     "Level": 10
   },
   {
@@ -772,7 +772,7 @@
     "Level": 10
   },
   {
-    "Country":"Norge",
+    "Country": "Norge",
     "Level": 10
   }
 ]

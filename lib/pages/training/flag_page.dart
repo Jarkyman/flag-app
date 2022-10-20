@@ -268,16 +268,27 @@ class _FlagPageState extends State<FlagPage> {
           icon: Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          'Flags'.tr,
+          score.toString(),
           style: TextStyle(
-              fontSize: Dimensions.font26, color: AppColors.titleColor),
+              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
         ),
         backgroundColor: AppColors.mainColor,
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
-            return Text(
-              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
-              style: TextStyle(fontSize: Dimensions.font16),
+            return Row(
+              children: [
+                Icon(Icons.star),
+                SizedBox(
+                  width: Dimensions.width5 / 2,
+                ),
+                Text(
+                  highScore.toString(),
+                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
+                ),
+                SizedBox(
+                  width: Dimensions.width5,
+                ),
+              ],
             );
           }),
         ],
@@ -286,6 +297,8 @@ class _FlagPageState extends State<FlagPage> {
         child: SafeArea(
           child: GetBuilder<CountryController>(
             builder: (countryController) {
+              String imgCode =
+                  selectedCountry.countryCode.toString().toLowerCase();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -308,15 +321,24 @@ class _FlagPageState extends State<FlagPage> {
                       hintPriceOne: '3',
                       hintPriceTwo: '1'),
                   Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      //height: Dimensions.height20 * 14,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      decoration: BoxDecoration(),
-                      child: Image.asset(
-                        'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
-                        fit: BoxFit.contain,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: Dimensions.height10),
+                      child: Container(
+                        width: double.maxFinite,
+                        //height: Dimensions.height20 * 14,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.height20),
+                        decoration: BoxDecoration(),
+                        child: Center(
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius10),
+                            child: Image.asset(
+                              'assets/image/flags/$imgCode.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -46,12 +46,13 @@ class PlayPage extends StatelessWidget {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    /*MenuButton(
+                    MenuButton(
                       onTap: () {
-                        //Get.toNamed(RouteHelper.getLevelsListPage(), arguments: [AppConstants.COAT_OF_ARMS]);
+                        Get.toNamed(RouteHelper.getLevelsListPage(),
+                            arguments: [AppConstants.COC]);
                       },
                       title: 'Coat of arms'.tr,
-                    ),*/
+                    ),
                   ],
                 ),
               ),

@@ -20,6 +20,7 @@ import '../../../controllers/hint_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
+import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
@@ -44,6 +45,7 @@ class _GuessPageState extends State<GuessPage> {
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
   bool shakeTile = false;
+  bool removeCountry = false;
 
   Random random = Random();
 
@@ -528,13 +530,25 @@ class _GuessPageState extends State<GuessPage> {
 
                 String countryCodeImg =
                     '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
-                if ((countryCodeImg == 'ni' ||
-                        countryCodeImg == 'py' ||
-                        countryCodeImg == 'sv') &&
-                    country.guessed!) {
+                String countryCodeImgCountry =
+                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
+                    country.guessed! &&
+                    Get.arguments[0] == AppConstants.FLAGS) {
                   countryCodeImg =
                       '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                 }
+                if (Get.arguments[0] == AppConstants.COUNTRIES) {
+                  countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                }
+                if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
+                    country.guessed! &&
+                    Get.arguments[0] == AppConstants.COC) {
+                  countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                }
+                ;
 
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -572,19 +586,86 @@ class _GuessPageState extends State<GuessPage> {
                             hintPriceThree: '1',
                           ),
                     SizedBox(height: Dimensions.height10),
-                    Hero(
-                      tag: '${countryCodeImg.toLowerCase()}',
-                      child: Container(
-                        height: Dimensions.height20 * 10,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Dimensions.height20),
-                        decoration: BoxDecoration(),
-                        child: Image.asset(
-                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    Get.arguments[0] == AppConstants.COUNTRIES
+                        ? Container(
+                            height: Dimensions.height20 * 10,
+                            child: Stack(
+                              children: [
+                                Hero(
+                                  tag: '${countryCodeImgCountry.toLowerCase()}',
+                                  /*flightShuttleBuilder:
+                                      ((flightContext, animation, _, __, ___) {
+                                    animation.addStatusListener((status) {
+                                      if (status == AnimationStatus.completed) {
+                                        setState(() {
+                                          removeCountry = true;
+                                          print('hero done');
+                                        });
+                                      } else if (status ==
+                                          AnimationStatus.dismissed) {
+                                        setState(() {
+                                          removeCountry = false;
+                                          print('hero dismiss');
+                                        });
+                                      }
+                                    });
+                                    return Container();
+                                  }),*/
+                                  child: Center(
+                                    child: Image.asset(
+                                        'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
+                                        fit: BoxFit.contain,
+                                        color: Colors.transparent),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    height: Dimensions.height20 * 10,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: Dimensions.height20),
+                                    decoration: BoxDecoration(),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            Dimensions.radius15),
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                            Dimensions.radius15),
+                                        child: Image.asset(
+                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Hero(
+                            tag: '${countryCodeImg.toLowerCase()}',
+                            child: Container(
+                              height: Dimensions.height20 * 10,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: Dimensions.height20),
+                              decoration: BoxDecoration(),
+                              child: Center(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius10),
+                                  child: Image.asset(
+                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                     country.guessed!
                         ? Expanded(
                             child: guessTiles(correctLettersList, true),
@@ -663,11 +744,14 @@ class _GuessPageState extends State<GuessPage> {
                     height: _bannerAd!.size.height.toDouble(),
                   )
                 : Container(),
-        if (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
-          Positioned(
-            bottom: 0,
-            child: adBannerWidget(bannerAd: _bannerAd),
-          ),
+        (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
+            ? Positioned(
+                bottom: 0,
+                child: adBannerWidget(bannerAd: _bannerAd),
+              )
+            : Container(
+                height: Dimensions.height20,
+              ),
       ],
     );
   }

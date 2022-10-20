@@ -766,11 +766,13 @@
   {
     "Country": "Vanuatu",
     "Level": 10
-  }, {
+  },
+  {
     "Country": "Russia",
     "Level": 8
-  },{
-  "Country": "Sao Tome and Principe",
-  "Level": 10
-}
+  },
+  {
+    "Country": "Sao Tome and Principe",
+    "Level": 10
+  }
 ]

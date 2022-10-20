@@ -111,8 +111,6 @@ class _SplashPageState extends State<SplashScreen>
         precacheImage(AssetImage(coc), context);
       }
     }
-
-    print('done load img');
   }
 
   Future myLoadAsset(String path) async {

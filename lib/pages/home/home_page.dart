@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(Get.find<LevelController>().getList('Countries')![1].country);
   }
 
   @override

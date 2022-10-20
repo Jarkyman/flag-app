@@ -56,7 +56,6 @@ class CountryController extends GetxController implements GetxService {
   String getCountryCode(String country) {
     String countryCode = 'error';
     _countries.forEach((element) {
-      //print(country.toLowerCase() + ' ==' + element.countryName!.toLowerCase());
       if (country.toLowerCase() == element.countryName!.toLowerCase()) {
         countryCode = element.countryCode!;
       }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:animated_widgets/widgets/rotation_animated.dart';
@@ -45,6 +46,7 @@ class _GuessPageState extends State<GuessPage> {
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
   bool shakeTile = false;
+  bool removeCountry = false;
 
   Random random = Random();
 
@@ -529,6 +531,8 @@ class _GuessPageState extends State<GuessPage> {
 
                 String countryCodeImg =
                     '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                String countryCodeImgCountry =
+                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
                 if ((countryCodeImg == 'ni' ||
                         countryCodeImg == 'py' ||
                         countryCodeImg == 'sv') &&
@@ -578,19 +582,86 @@ class _GuessPageState extends State<GuessPage> {
                             hintPriceThree: '1',
                           ),
                     SizedBox(height: Dimensions.height10),
-                    Hero(
-                      tag: '${countryCodeImg.toLowerCase()}',
-                      child: Container(
-                        height: Dimensions.height20 * 10,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Dimensions.height20),
-                        decoration: BoxDecoration(),
-                        child: Image.asset(
-                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    Get.arguments[0] == AppConstants.COUNTRIES
+                        ? Container(
+                            height: Dimensions.height20 * 10,
+                            child: Stack(
+                              children: [
+                                Hero(
+                                  tag: '${countryCodeImgCountry.toLowerCase()}',
+                                  /*flightShuttleBuilder:
+                                      ((flightContext, animation, _, __, ___) {
+                                    animation.addStatusListener((status) {
+                                      if (status == AnimationStatus.completed) {
+                                        setState(() {
+                                          removeCountry = true;
+                                          print('hero done');
+                                        });
+                                      } else if (status ==
+                                          AnimationStatus.dismissed) {
+                                        setState(() {
+                                          removeCountry = false;
+                                          print('hero dismiss');
+                                        });
+                                      }
+                                    });
+                                    return Container();
+                                  }),*/
+                                  child: Center(
+                                    child: Image.asset(
+                                        'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
+                                        fit: BoxFit.contain,
+                                        color: Colors.transparent),
+                                  ),
+                                ),
+                                Center(
+                                  child: Container(
+                                    height: Dimensions.height20 * 10,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: Dimensions.height20),
+                                    decoration: BoxDecoration(),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            Dimensions.radius15),
+                                        border: Border.all(
+                                          width: 1,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                            Dimensions.radius15),
+                                        child: Image.asset(
+                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Hero(
+                            tag: '${countryCodeImg.toLowerCase()}',
+                            child: Container(
+                              height: Dimensions.height20 * 10,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: Dimensions.height20),
+                              decoration: BoxDecoration(),
+                              child: Center(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius10),
+                                  child: Image.asset(
+                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                     country.guessed!
                         ? Expanded(
                             child: guessTiles(correctLettersList, true),

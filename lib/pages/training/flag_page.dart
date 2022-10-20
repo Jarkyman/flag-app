@@ -330,7 +330,7 @@ class _FlagPageState extends State<FlagPage> {
                         child: Center(
                           child: ClipRRect(
                             borderRadius:
-                                BorderRadius.circular(Dimensions.radius15),
+                                BorderRadius.circular(Dimensions.radius10),
                             child: Image.asset(
                               'assets/image/flags/${selectedCountry.countryCode.toString().toLowerCase()}.png',
                               fit: BoxFit.contain,

@@ -739,11 +739,14 @@ class _GuessPageState extends State<GuessPage> {
                     height: _bannerAd!.size.height.toDouble(),
                   )
                 : Container(),
-        if (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
-          Positioned(
-            bottom: 0,
-            child: adBannerWidget(bannerAd: _bannerAd),
-          ),
+        (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
+            ? Positioned(
+                bottom: 0,
+                child: adBannerWidget(bannerAd: _bannerAd),
+              )
+            : Container(
+                height: Dimensions.height20,
+              ),
       ],
     );
   }

@@ -192,7 +192,7 @@ class _ShopPageState extends State<ShopPage> {
                                 ?.priceString ??
                             '',
                       ),
-                      /*SizedBox(
+                      SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -200,8 +200,7 @@ class _ShopPageState extends State<ShopPage> {
                         onTap: () async {
                           if (!Get.find<ShopController>().isLevelsUnlocked) {
                             try {
-                              await Purchases.purchaseProduct(
-                                  'flags_unlock_levels');
+                              //await Purchases.purchaseProduct(AppConstants.UNLOCK_LEVELS);
                               Get.find<ShopController>().levelsUnlockSave(true);
                               Get.find<SoundController>().completeSound();
                             } catch (e) {
@@ -219,11 +218,13 @@ class _ShopPageState extends State<ShopPage> {
                         },
                         title: 'Unlock all levels'.tr,
                         price: !Get.find<ShopController>().isLevelsUnlocked
-                            ? getProductPriceFromIdentifier(
-                                'flags_unlock_levels')
-                            : '',
-                      ),*/
-                      SizedBox(
+                            ? getProductFromIdentifier(
+                                        AppConstants.UNLOCK_LEVELS)
+                                    ?.priceString ??
+                                '0.00 \$'
+                            : 'un',
+                      ),
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -231,7 +232,7 @@ class _ShopPageState extends State<ShopPage> {
                         onTap: () async {
                           if (!Get.find<ShopController>().isLevelsUnlocked) {
                             try {
-                              //await Purchases.purchaseProduct('flags_remove_ads');
+                              //await Purchases.purchaseProduct(AppConstants.ADS_REMOVE);
                               Get.find<ShopController>().removeAdsSave(true);
                               Get.find<SoundController>().completeSound();
                               debugPrint('Removed adds');
@@ -251,11 +252,11 @@ class _ShopPageState extends State<ShopPage> {
                         title: 'Remove ads'.tr,
                         price: !Get.find<ShopController>().isLevelsUnlocked
                             ? getProductFromIdentifier(
-                                        AppConstants.UNLOCK_LEVELS)
+                                        AppConstants.ADS_REMOVE)
                                     ?.priceString ??
                                 '0.00 \$'
                             : 'un',
-                      ),
+                      ),*/
                       SizedBox(
                         height: Dimensions.height20,
                       ),

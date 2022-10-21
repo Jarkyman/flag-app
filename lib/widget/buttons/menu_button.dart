@@ -66,7 +66,7 @@ class MenuButton extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (loading && price == '#')
+              if (loading)
                 Padding(
                   padding: EdgeInsets.only(right: Dimensions.width10),
                   child: CircularProgressIndicator(

@@ -288,6 +288,7 @@ class _ShopPageState extends State<ShopPage> {
                           );
                         },
                         active: isAdLoaded,
+                        loading: !isAdLoaded,
                         disable: !isAdLoaded,
                         title: 'Watch video (3 hints)'.tr,
                       ),

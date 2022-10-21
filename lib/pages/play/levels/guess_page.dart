@@ -498,31 +498,31 @@ class _GuessPageState extends State<GuessPage> {
             ),
           ],*/ //Reset level
         ),
-        body: BackgroundImage(
-          child: SwipeDetector(
-            onSwipeRight: (value) {
-              int nextPageIndex = Get.arguments[2];
-              nextPageIndex = Get.arguments[2] - 1;
+        body: SwipeDetector(
+          onSwipeRight: (value) {
+            int nextPageIndex = Get.arguments[2];
+            nextPageIndex = Get.arguments[2] - 1;
 
-              if (nextPageIndex > -1) {
-                Get.find<SoundController>().windSound();
-                setState(() {
-                  Get.arguments[2] = nextPageIndex;
-                  setInit();
-                });
-              }
-            },
-            onSwipeLeft: (value) {
-              int nextPageIndex = Get.arguments[2];
-              nextPageIndex = Get.arguments[2] + 1;
-              if (nextPageIndex < levelList.length) {
-                Get.find<SoundController>().windSound();
-                setState(() {
-                  Get.arguments[2] = nextPageIndex;
-                  setInit();
-                });
-              }
-            },
+            if (nextPageIndex > -1) {
+              Get.find<SoundController>().windSound();
+              setState(() {
+                Get.arguments[2] = nextPageIndex;
+                setInit();
+              });
+            }
+          },
+          onSwipeLeft: (value) {
+            int nextPageIndex = Get.arguments[2];
+            nextPageIndex = Get.arguments[2] + 1;
+            if (nextPageIndex < levelList.length) {
+              Get.find<SoundController>().windSound();
+              setState(() {
+                Get.arguments[2] = nextPageIndex;
+                setInit();
+              });
+            }
+          },
+          child: BackgroundImage(
             child: GetBuilder<LevelController>(
               builder: (levelController) {
                 print('Type = ' + Get.arguments[0].toString());

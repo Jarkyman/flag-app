@@ -9,6 +9,7 @@ class MenuButton extends StatelessWidget {
   final String title;
   final String price;
   final bool active;
+  final bool loading;
 
   const MenuButton({
     Key? key,
@@ -16,6 +17,7 @@ class MenuButton extends StatelessWidget {
     required this.title,
     this.price = '',
     this.active = true,
+    this.loading = false,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class MenuButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (price != '' && price == '#') Expanded(child: Container()),
+              if (price != '' || price == '#') Expanded(child: Container()),
               Text(
                 title,
                 style: TextStyle(
@@ -48,20 +50,30 @@ class MenuButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (price != '' && price == '#') Expanded(child: Container()),
+              if (price != '' || price == '#') Expanded(child: Container()),
               if (price != '' && price != '#')
-                Text(
-                  price + ' ',
-                  style: TextStyle(
-                    fontSize: Dimensions.font20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              if (price == '#')
                 Padding(
                   padding: EdgeInsets.only(right: Dimensions.width10),
-                  child: Icon(Icons.not_interested_outlined),
+                  child: Text(
+                    price,
+                    style: TextStyle(
+                      fontSize: Dimensions.font20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
+              if (loading && price == '#')
+                Padding(
+                  padding: EdgeInsets.only(right: Dimensions.width10),
+                  child: CircularProgressIndicator(
+                    color: AppColors.mainColor,
+                    strokeWidth: 2.0,
+                  ),
+                ),
+              if (price == '#' && !loading)
+                Padding(
+                    padding: EdgeInsets.only(right: Dimensions.width10),
+                    child: Icon(Icons.not_interested_outlined)),
             ],
           ),
         ),

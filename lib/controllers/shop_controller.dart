@@ -21,16 +21,20 @@ class ShopController extends GetxController implements GetxService {
   bool get isAdsRemoved => _adsRemoved;
 
   final List<String> _productsIds = [
-    AppConstants.FIFTY_HINTS,
-    AppConstants.HUNDRED_HINTS,
-    AppConstants.FIVEHUNDRED_HINTS,
+    AppConstants.TEN_HINTS,
+    AppConstants.TWENTYFIVE_HINTS,
+    AppConstants.SIXTY_HINTS,
     //'flags_unlock_levels',
     //'flags_remove_ads'
   ];
 
   List<StoreProduct> _products = [];
 
-  List<StoreProduct> get getProducts => _products;
+  Future<List<StoreProduct>> get getProducts async {
+    _products =
+        await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
+    return _products;
+  }
 
   Future<void> loadShopSettings() async {
     await initPlatformState();

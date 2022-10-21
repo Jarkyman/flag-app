@@ -24,12 +24,23 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   RewardedAd? _rewardedAd;
-  List<StoreProduct> products = Get.find<ShopController>().getProducts;
+  List<StoreProduct> products = [];
+  bool loadingProduct = true;
 
   @override
   void initState() {
+    super.initState();
     _loadRewardedAd();
+    _loadProducts();
     //print(products[0]);
+  }
+
+  void _loadProducts() async {
+    products = await Get.find<ShopController>().getProducts;
+    print(products);
+    setState(() {
+      loadingProduct = false;
+    });
   }
 
   StoreProduct? getProductFromIdentifier(String identifier) {
@@ -124,6 +135,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 10 hints'.tr,
+                        loading: loadingProduct,
                         price: getProductFromIdentifier(AppConstants.TEN_HINTS)
                                 ?.priceString ??
                             '#',
@@ -154,6 +166,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 25 hints'.tr,
+                        loading: loadingProduct,
                         price: getProductFromIdentifier(
                                     AppConstants.TWENTYFIVE_HINTS)
                                 ?.priceString ??
@@ -185,6 +198,7 @@ class _ShopPageState extends State<ShopPage> {
                           }
                         },
                         title: 'Buy 60 hints'.tr,
+                        loading: loadingProduct,
                         price:
                             getProductFromIdentifier(AppConstants.SIXTY_HINTS)
                                     ?.priceString ??

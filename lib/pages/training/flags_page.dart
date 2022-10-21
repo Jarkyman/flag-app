@@ -373,7 +373,6 @@ class _FlagsPageState extends State<FlagsPage> {
                           margin: EdgeInsets.symmetric(
                             horizontal: Dimensions.height10,
                           ),
-                          decoration: BoxDecoration(),
                           child: Stack(
                             children: [
                               Center(

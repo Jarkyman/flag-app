@@ -323,7 +323,6 @@ class _CountriesPageState extends State<CountriesPage> {
                       //height: Dimensions.height20 * 14,
                       margin:
                           EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      decoration: BoxDecoration(),
                       child: Center(
                         child: ClipRRect(
                           borderRadius:

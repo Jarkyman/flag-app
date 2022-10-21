@@ -328,7 +328,6 @@ class _FlagPageState extends State<FlagPage> {
                         //height: Dimensions.height20 * 14,
                         margin: EdgeInsets.symmetric(
                             horizontal: Dimensions.height20),
-                        decoration: BoxDecoration(),
                         child: Center(
                           child: ClipRRect(
                             borderRadius:

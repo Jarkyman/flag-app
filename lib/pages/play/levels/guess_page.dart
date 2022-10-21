@@ -140,15 +140,16 @@ class _GuessPageState extends State<GuessPage> {
       Get.find<SoundController>().completeSound();
       Get.find<LevelController>().guessed(Get.arguments[0], country);
     } else {
-      bool done = false;
+      bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
-        if (!lettersListAnswer[i].contains('')) {
+        if (!lettersListAnswer[i].contains('') && done) {
           done = true;
         } else {
           done = false;
         }
       }
       if (done) {
+        done = false;
         shakeTile = true;
         Get.find<SoundController>().wrongSound();
         Duration(milliseconds: 500).delay(() {
@@ -351,7 +352,7 @@ class _GuessPageState extends State<GuessPage> {
   void removeLetter(String letter, int index, int wordIndex) {
     bool isDone = false;
 
-    if (letter != '-') {
+    if (letter != '-' && letter != String.fromCharCode(8626)) {
       for (int i = 0; i < allLetters.length; i++) {
         setState(() {
           if (allLetters[i] == '') {
@@ -638,7 +639,7 @@ class _GuessPageState extends State<GuessPage> {
                                             Dimensions.radius15),
                                         child: Image.asset(
                                           'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                          fit: BoxFit.contain,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),

@@ -274,6 +274,7 @@ class _CountriesPageState extends State<CountriesPage> {
           },
           icon: Icon(Icons.arrow_back_ios_new),
         ),
+        centerTitle: true,
         title: Text(
           score.toString(),
           style: TextStyle(

@@ -282,6 +282,7 @@ class _FlagsPageState extends State<FlagsPage> {
           },
           icon: Icon(Icons.arrow_back_ios_new),
         ),
+        centerTitle: true,
         title: Text(
           score.toString(),
           style: TextStyle(

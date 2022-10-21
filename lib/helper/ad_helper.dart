@@ -35,7 +35,7 @@ class AdHelper {
     if (Platform.isAndroid) {
       return 'ca-app-pub-9894760850635221/7336102646'; //"ca-app-pub-3940256099942544/5224354917"; //ca-app-pub-9894760850635221/7336102646
     } else if (Platform.isIOS) {
-      return 'ca-app-pub-3940256099942544/1712485313'; //"ca-app-pub-3940256099942544/1712485313"; //ca-app-pub-9894760850635221/9272000845
+      return 'ca-app-pub-9894760850635221/9272000845'; //"ca-app-pub-3940256099942544/1712485313"; //ca-app-pub-9894760850635221/9272000845
     } else {
       throw new UnsupportedError("Unsupported platform");
     }

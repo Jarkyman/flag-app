@@ -38,6 +38,7 @@ class _FlagPageState extends State<FlagPage> {
   late int highScore;
   bool isTryAgainUsed = false;
   bool isDelay = false;
+  bool isAdLoaded = false;
 
   Random random = Random();
 
@@ -82,7 +83,6 @@ class _FlagPageState extends State<FlagPage> {
               _loadInterstitialAd();
             },
           );
-
           setState(() {
             _interstitialAd = ad;
           });
@@ -109,12 +109,18 @@ class _FlagPageState extends State<FlagPage> {
               _loadRewardedAd();
             },
           );
+          setState(() {
+            isAdLoaded = true;
+          });
 
           setState(() {
             _rewardedAd = ad;
           });
         },
         onAdFailedToLoad: (err) {
+          setState(() {
+            isAdLoaded = false;
+          });
           print('Failed to load a rewarded ad: ${err.message}');
         },
       ),
@@ -199,6 +205,7 @@ class _FlagPageState extends State<FlagPage> {
     wrongGuessDialog(
       score: score,
       isTryAgainUsed: isTryAgainUsed,
+      adLoaded: isAdLoaded,
       onTapConfirm: () {
         _rewardedAd?.show(
           onUserEarnedReward: (_, reward) {

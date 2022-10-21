@@ -38,6 +38,7 @@ class _CountriesPageState extends State<CountriesPage> {
   late int highScore;
   bool isTryAgainUsed = false;
   bool isDelay = false;
+  bool isAdLoaded = false;
 
   Random random = Random();
 
@@ -108,12 +109,18 @@ class _CountriesPageState extends State<CountriesPage> {
               _loadRewardedAd();
             },
           );
+          setState(() {
+            isAdLoaded = true;
+          });
 
           setState(() {
             _rewardedAd = ad;
           });
         },
         onAdFailedToLoad: (err) {
+          setState(() {
+            isAdLoaded = false;
+          });
           print('Failed to load a rewarded ad: ${err.message}');
         },
       ),
@@ -198,6 +205,7 @@ class _CountriesPageState extends State<CountriesPage> {
     wrongGuessDialog(
       score: score,
       isTryAgainUsed: isTryAgainUsed,
+      adLoaded: isAdLoaded,
       onTapConfirm: () {
         _rewardedAd?.show(
           onUserEarnedReward: (_, reward) {

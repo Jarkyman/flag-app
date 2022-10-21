@@ -5,11 +5,13 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
-void wrongGuessDialog(
-    {required int score,
-    required bool isTryAgainUsed,
-    required VoidCallback onTapConfirm,
-    required VoidCallback onTapCancel}) {
+void wrongGuessDialog({
+  required int score,
+  required bool isTryAgainUsed,
+  required VoidCallback onTapConfirm,
+  required VoidCallback onTapCancel,
+  bool adLoaded = false,
+}) {
   Get.defaultDialog(
     title: 'Wrong country'.tr,
     middleText: 'You score is'.tr + ' $score',
@@ -36,7 +38,9 @@ void wrongGuessDialog(
                   borderRadius: BorderRadius.circular(Dimensions.radius15),
                   border: Border.all(
                     width: 2,
-                    color: AppColors.mainColor,
+                    color: adLoaded
+                        ? AppColors.mainColor
+                        : AppColors.textColorGray,
                   ),
                 ),
                 child: Row(
@@ -46,7 +50,13 @@ void wrongGuessDialog(
                     SizedBox(
                       width: Dimensions.width5,
                     ),
-                    Text('Get one more try'.tr),
+                    Text(
+                      'Get one more try'.tr,
+                      style: TextStyle(
+                        color:
+                            adLoaded ? Colors.black : AppColors.textColorGray,
+                      ),
+                    ),
                   ],
                 ),
               ),

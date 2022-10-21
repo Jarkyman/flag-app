@@ -26,6 +26,7 @@ class _ShopPageState extends State<ShopPage> {
   RewardedAd? _rewardedAd;
   List<StoreProduct> products = [];
   bool loadingProduct = true;
+  bool isAdLoaded = false;
 
   @override
   void initState() {
@@ -75,12 +76,17 @@ class _ShopPageState extends State<ShopPage> {
               _loadRewardedAd();
             },
           );
-
+          setState(() {
+            isAdLoaded = true;
+          });
           setState(() {
             _rewardedAd = ad;
           });
         },
         onAdFailedToLoad: (err) {
+          setState(() {
+            isAdLoaded = false;
+          });
           print('Failed to load a rewarded ad: ${err.message}');
         },
       ),
@@ -281,6 +287,8 @@ class _ShopPageState extends State<ShopPage> {
                             },
                           );
                         },
+                        active: isAdLoaded,
+                        disable: !isAdLoaded,
                         title: 'Watch video (3 hints)'.tr,
                       ),
                       /*SizedBox(

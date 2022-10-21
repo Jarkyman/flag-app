@@ -25,6 +25,9 @@ class AppConstants {
   static const String COC = 'Coat of arms';
 
   //In app ids
+  static const String TEN_HINTS = 'flags_10_hints_9';
+  static const String TWENTYFIVE_HINTS = 'flags_25_hints_17';
+  static const String SIXTY_HINTS = 'flags_60_hints_35';
   static const String FIFTY_HINTS = 'flags_50_hints_9';
   static const String HUNDRED_HINTS = 'flags_100_hints_17';
   static const String FIVEHUNDRED_HINTS = 'flags_500_hints_79';

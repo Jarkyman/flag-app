@@ -40,7 +40,7 @@ class MenuButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (price != '' && price != '#') Expanded(child: Container()),
+              if (price != '' && price == '#') Expanded(child: Container()),
               Text(
                 title,
                 style: TextStyle(
@@ -48,7 +48,7 @@ class MenuButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (price != '' && price != '#') Expanded(child: Container()),
+              if (price != '' && price == '#') Expanded(child: Container()),
               if (price != '' && price != '#')
                 Text(
                   price + ' ',
@@ -57,7 +57,11 @@ class MenuButton extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-              if (price == '#') Icon(Icons.not_interested_outlined),
+              if (price == '#')
+                Padding(
+                  padding: EdgeInsets.only(right: Dimensions.width10),
+                  child: Icon(Icons.not_interested_outlined),
+                ),
             ],
           ),
         ),

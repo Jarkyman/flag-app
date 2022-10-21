@@ -106,10 +106,10 @@ class _ShopPageState extends State<ShopPage> {
                           try {
                             CustomerInfo customerInfo =
                                 await Purchases.purchaseProduct(
-                                    AppConstants.FIFTY_HINTS,
+                                    AppConstants.TEN_HINTS,
                                     type: PurchaseType.inapp);
                             debugPrint('Purchase info: $customerInfo');
-                            for (int i = 1; i <= 10; i++) {
+                            for (int i = 1; i <= 2; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
@@ -123,11 +123,10 @@ class _ShopPageState extends State<ShopPage> {
                             }
                           }
                         },
-                        title: 'Buy 50 hints'.tr,
-                        price:
-                            getProductFromIdentifier(AppConstants.FIFTY_HINTS)
-                                    ?.priceString ??
-                                '#',
+                        title: 'Buy 10 hints'.tr,
+                        price: getProductFromIdentifier(AppConstants.TEN_HINTS)
+                                ?.priceString ??
+                            '#',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -137,10 +136,10 @@ class _ShopPageState extends State<ShopPage> {
                           try {
                             CustomerInfo customerInfo =
                                 await Purchases.purchaseProduct(
-                                    AppConstants.HUNDRED_HINTS,
+                                    AppConstants.TWENTYFIVE_HINTS,
                                     type: PurchaseType.inapp);
                             debugPrint('Purchase info: $customerInfo');
-                            for (int i = 1; i <= 20; i++) {
+                            for (int i = 1; i <= 5; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
@@ -154,11 +153,11 @@ class _ShopPageState extends State<ShopPage> {
                             }
                           }
                         },
-                        title: 'Buy 100 hints'.tr,
-                        price:
-                            getProductFromIdentifier(AppConstants.HUNDRED_HINTS)
-                                    ?.priceString ??
-                                '#',
+                        title: 'Buy 25 hints'.tr,
+                        price: getProductFromIdentifier(
+                                    AppConstants.TWENTYFIVE_HINTS)
+                                ?.priceString ??
+                            '#',
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -168,10 +167,10 @@ class _ShopPageState extends State<ShopPage> {
                           try {
                             CustomerInfo customerInfo =
                                 await Purchases.purchaseProduct(
-                                    AppConstants.FIVEHUNDRED_HINTS,
+                                    AppConstants.SIXTY_HINTS,
                                     type: PurchaseType.inapp);
                             debugPrint('Purchase info: $customerInfo');
-                            for (int i = 1; i <= 100; i++) {
+                            for (int i = 1; i <= 12; i++) {
                               Get.find<HintController>().addHint(5);
                             }
                             Get.find<SoundController>().completeSound();
@@ -185,11 +184,11 @@ class _ShopPageState extends State<ShopPage> {
                             }
                           }
                         },
-                        title: 'Buy 500 hints'.tr,
-                        price: getProductFromIdentifier(
-                                    AppConstants.FIVEHUNDRED_HINTS)
-                                ?.priceString ??
-                            '#',
+                        title: 'Buy 60 hints'.tr,
+                        price:
+                            getProductFromIdentifier(AppConstants.SIXTY_HINTS)
+                                    ?.priceString ??
+                                '#',
                       ),
                       /*SizedBox(
                         height: Dimensions.height20,

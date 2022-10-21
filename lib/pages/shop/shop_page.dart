@@ -95,12 +95,12 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundImage(
-        child: SwipeDetector(
-          onSwipeDown: (value) {
-            Get.find<SoundController>().windSound();
-            Get.back();
-          },
+      body: SwipeDetector(
+        onSwipeDown: (value) {
+          Get.find<SoundController>().windSound();
+          Get.back();
+        },
+        child: BackgroundImage(
           child: SafeArea(
             child: Column(
               children: [

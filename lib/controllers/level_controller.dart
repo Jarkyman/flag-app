@@ -1,4 +1,3 @@
-import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:get/get.dart';
@@ -102,36 +101,127 @@ class LevelController extends GetxController implements GetxService {
     return finishedLevels;
   }
 
-  void guessed(String playOption, LevelModel country) {
+  void guessed(String playOption, LevelModel country, bool state) {
     if (playOption == AppConstants.FLAGS) {
-      _flagLevels.forEach((element) {
+      for (var element in _flagLevels) {
         if (element == country) {
           element.guessed = true;
           //country.guessed = true;
           saveLevels(playOption);
         }
-      });
+      }
     } else if (playOption == AppConstants.COUNTRIES) {
-      _countriesLevels.forEach((element) {
+      for (var element in _countriesLevels) {
         if (element == country) {
-          element.guessed = true;
+          element.guessed = state;
           //country.guessed = true;
           saveLevels(playOption);
         }
-      });
+      }
       print('country amount = ${_cocLevels.length}');
     } else if (playOption == AppConstants.COC) {
-      _cocLevels.forEach((element) {
+      for (var element in _cocLevels) {
         if (element == country) {
-          element.guessed = true;
+          element.guessed = state;
           //country.guessed = true;
           saveLevels(playOption);
         }
-      });
+      }
       print('coc amount = ${_cocLevels.length}');
     }
 
     update();
+  }
+
+  void saveBombUsed(String playOption, LevelModel country, bool state) {
+    if (playOption == AppConstants.FLAGS) {
+      for (var element in _flagLevels) {
+        if (element == country) {
+          element.bombUsed = state;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+    } else if (playOption == AppConstants.COUNTRIES) {
+      for (var element in _countriesLevels) {
+        if (element == country) {
+          element.bombUsed = state;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+      print('country amount = ${_cocLevels.length}');
+    } else if (playOption == AppConstants.COC) {
+      for (var element in _cocLevels) {
+        if (element == country) {
+          element.bombUsed = state;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+      print('coc amount = ${_cocLevels.length}');
+    }
+  }
+
+  void saveAnswerLetters(
+      String playOption, LevelModel country, List<List<String>> answerLetters) {
+    if (playOption == AppConstants.FLAGS) {
+      for (var element in _flagLevels) {
+        if (element == country) {
+          element.answerLetters = answerLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+    } else if (playOption == AppConstants.COUNTRIES) {
+      for (var element in _countriesLevels) {
+        if (element == country) {
+          element.answerLetters = answerLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+      print('country amount = ${_cocLevels.length}');
+    } else if (playOption == AppConstants.COC) {
+      for (var element in _cocLevels) {
+        if (element == country) {
+          element.answerLetters = answerLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+      print('coc amount = ${_cocLevels.length}');
+    }
+  }
+
+  void saveAllLetters(
+      String playOption, LevelModel country, List<String> allLetters) {
+    if (playOption == AppConstants.FLAGS) {
+      for (var element in _flagLevels) {
+        if (element == country) {
+          print('save allletters');
+          element.allLetters = allLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+    } else if (playOption == AppConstants.COUNTRIES) {
+      for (var element in _countriesLevels) {
+        if (element == country) {
+          element.allLetters = allLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+    } else if (playOption == AppConstants.COC) {
+      for (var element in _cocLevels) {
+        if (element == country) {
+          element.allLetters = allLetters;
+          //country.guessed = true;
+          saveLevels(playOption);
+        }
+      }
+    }
   }
 
   List<LevelModel>? getList(String playOption) {

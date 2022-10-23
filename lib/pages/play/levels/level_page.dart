@@ -29,9 +29,6 @@ class _LevelPageState extends State<LevelPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(Get.locale!);
-    print(Get.find<CountryController>().getCountries[1].currencyName);
-    print(Get.find<LevelController>().getList(Get.arguments[0])![1].country);
     createBannerAd();
   }
 

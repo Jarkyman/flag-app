@@ -9,20 +9,24 @@ class HintWidget extends StatelessWidget {
   final Widget icon;
   final String num;
   final VoidCallback onTap;
+  final bool disable;
 
   const HintWidget({
     Key? key,
     required this.icon,
     required this.onTap,
     required this.num,
+    this.disable = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onTap();
-        Get.find<SoundController>().clickSound();
+        if (!disable) {
+          onTap();
+          Get.find<SoundController>().clickSound();
+        }
       },
       child: Container(
         padding: EdgeInsets.only(
@@ -31,7 +35,9 @@ class HintWidget extends StatelessWidget {
         ),
         height: Dimensions.height20 * 2,
         decoration: BoxDecoration(
-          color: AppColors.mainColor.withOpacity(0.2),
+          color: !disable
+              ? AppColors.mainColor.withOpacity(0.2)
+              : AppColors.textColorGray.withOpacity(0.2),
           borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
         ),
         child: Row(

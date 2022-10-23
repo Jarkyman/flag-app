@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:animated_widgets/widgets/rotation_animated.dart';
@@ -121,24 +120,45 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void setInit() {
-    _loadInterstitialAd();
-    levels = Get.find<LevelController>().getList(Get.arguments[0])!;
-    levelList = Get.find<LevelController>()
-        .getLevelList(Get.arguments[1], Get.arguments[0]);
-    country = levelList[Get.arguments[2]];
-    correctLettersList = getCorrectLettersList(country.country!);
-    lettersListAnswer = getLettersListEmpty(country.country!);
-    allLetters =
-        generateRandomLetters(country.country!.toUpperCase().split(''));
-    bombUsed = false;
-    print(jsonEncode(country));
+    setState(() {
+      _loadInterstitialAd();
+      var levelController = Get.find<LevelController>();
+      levels = levelController.getList(Get.arguments[0])!;
+      levelList =
+          levelController.getLevelList(Get.arguments[1], Get.arguments[0]);
+      country = levelList[Get.arguments[2]];
+      correctLettersList = getCorrectLettersList(country.country!);
+      print(country.answerLetters!);
+      if (country.answerLetters!.isEmpty) {
+        print('Generate new answer');
+        lettersListAnswer = getLettersListEmpty(country.country!);
+      } else {
+        print('answer already generated');
+        lettersListAnswer = country.answerLetters!;
+      }
+      print('letters = ' + lettersListAnswer.toString());
+      if (country.allLetters!.isEmpty) {
+        print('Generate New allLetters');
+        allLetters =
+            generateRandomLetters(country.country!.toUpperCase().split(''));
+        levelController.saveAllLetters(Get.arguments[0], country, allLetters);
+      } else {
+        print('allLetters already generated');
+        allLetters = country.allLetters!;
+      }
+      if (country.bombUsed!) {
+        bombUsed = true;
+      } else {
+        bombUsed = false;
+      }
+    });
   }
 
   void checkWin() {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
       Get.find<SoundController>().completeSound();
-      Get.find<LevelController>().guessed(Get.arguments[0], country);
+      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
     } else {
       bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
@@ -239,8 +259,6 @@ class _GuessPageState extends State<GuessPage> {
         }
       }
     }
-
-    print(lettersList);
 
     return lettersList;
   }
@@ -347,6 +365,8 @@ class _GuessPageState extends State<GuessPage> {
       });
       checkWin();
     }
+    Get.find<LevelController>()
+        .saveAnswerLetters(Get.arguments[0], country, lettersListAnswer);
   }
 
   void removeLetter(String letter, int index, int wordIndex) {
@@ -450,6 +470,10 @@ class _GuessPageState extends State<GuessPage> {
         setState(() {
           allLetters = reducedLetters;
           bombUsed = true;
+          Get.find<LevelController>()
+              .saveBombUsed(Get.arguments[0], country, true);
+          Get.find<LevelController>()
+              .saveAllLetters(Get.arguments[0], country, allLetters);
         });
         Get.find<HintController>().useHint(hints);
       }
@@ -461,7 +485,7 @@ class _GuessPageState extends State<GuessPage> {
   void useFinishHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
       setState(() {
-        Get.find<LevelController>().guessed(Get.arguments[0], country);
+        Get.find<LevelController>().guessed(Get.arguments[0], country, true);
       });
       Get.find<HintController>().useHint(hints);
       Get.find<SoundController>().completeSound();
@@ -486,7 +510,6 @@ class _GuessPageState extends State<GuessPage> {
             },
             icon: Icon(Icons.arrow_back_ios_new),
           ),
-          title: Text('${Get.arguments[0]}'.tr),
           backgroundColor: AppColors.mainColor,
           /*actions: [
             GestureDetector(
@@ -549,8 +572,6 @@ class _GuessPageState extends State<GuessPage> {
                   countryCodeImg =
                       '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                 }
-                ;
-
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -568,7 +589,9 @@ class _GuessPageState extends State<GuessPage> {
                             ),
                             hintPriceOne: '5',
                             tapHintTwo: () {
-                              useBombHint(2);
+                              if (!bombUsed) {
+                                useBombHint(2);
+                              }
                             },
                             iconTwo: ImageIcon(
                               AssetImage('assets/icon/bomb.png'),
@@ -576,6 +599,7 @@ class _GuessPageState extends State<GuessPage> {
                               size: Dimensions.iconSize24,
                             ),
                             hintPriceTwo: '2',
+                            disableTwo: bombUsed,
                             tapHintThree: () {
                               useFirstLetterHint(1);
                             },

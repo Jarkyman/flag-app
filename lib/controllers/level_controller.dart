@@ -239,12 +239,14 @@ class LevelController extends GetxController implements GetxService {
     await readLevels();
   }
 
-  Future<void> readLevels() async {
+  Future<void> readLevels({bool reset = false}) async {
     print('ReadLevels' + Get.locale!.toString());
-    _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!);
-    _countriesLevels =
-        await levelRepo.readLevels(AppConstants.COUNTRIES, Get.locale!);
-    _cocLevels = await levelRepo.readLevels(AppConstants.COC, Get.locale!);
+    _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!,
+        reset: reset);
+    _countriesLevels = await levelRepo
+        .readLevels(AppConstants.COUNTRIES, Get.locale!, reset: reset);
+    _cocLevels =
+        await levelRepo.readLevels(AppConstants.COC, Get.locale!, reset: reset);
     update();
   }
 

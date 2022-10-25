@@ -13,7 +13,8 @@ class LevelRepo {
     required this.sharedPreferences,
   });
 
-  Future<List<LevelModel>> readLevels(String option, Locale locale) async {
+  Future<List<LevelModel>> readLevels(String option, Locale locale,
+      {bool reset = false, bool hardReset = false}) async {
     final String response = await rootBundle.loadString(
         'assets/json/${locale.toString().split('_')[1].toLowerCase()}/${option.toLowerCase().removeAllWhitespace}Levels.json');
     final list = json.decode(response) as List<dynamic>;
@@ -30,16 +31,18 @@ class LevelRepo {
         if (levelModelPref[i].guessed!) {
           levelModels[i].guessed = true;
         }
-        if (levelModelPref[i].allLetters != null ||
-            levelModelPref[i].allLetters!.isNotEmpty) {
-          levelModels[i].allLetters = levelModelPref[i].allLetters!;
-        }
-        if (levelModelPref[i].answerLetters != null ||
-            levelModelPref[i].answerLetters!.isNotEmpty) {
-          levelModels[i].answerLetters = levelModelPref[i].answerLetters!;
-        }
-        if (levelModelPref[i].bombUsed!) {
-          levelModels[i].bombUsed = true;
+        if (!reset) {
+          if (levelModelPref[i].allLetters != null ||
+              levelModelPref[i].allLetters!.isNotEmpty) {
+            levelModels[i].allLetters = levelModelPref[i].allLetters!;
+          }
+          if (levelModelPref[i].answerLetters != null ||
+              levelModelPref[i].answerLetters!.isNotEmpty) {
+            levelModels[i].answerLetters = levelModelPref[i].answerLetters!;
+          }
+          if (levelModelPref[i].bombUsed!) {
+            levelModels[i].bombUsed = true;
+          }
         }
       }
     }

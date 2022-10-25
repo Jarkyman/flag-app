@@ -54,6 +54,7 @@ void buildLanguageDialog() {
                   ),
                   onTap: () {
                     updateLanguage(locale[index]['locale']);
+                    Get.find<LevelController>().readLevels(reset: true);
                   },
                 );
               },

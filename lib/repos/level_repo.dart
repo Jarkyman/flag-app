@@ -31,6 +31,9 @@ class LevelRepo {
         if (levelModelPref[i].guessed!) {
           levelModels[i].guessed = true;
         }
+        if (levelModelPref[i].bombUsed!) {
+          levelModels[i].bombUsed = true;
+        }
         if (!reset) {
           if (levelModelPref[i].allLetters != null ||
               levelModelPref[i].allLetters!.isNotEmpty) {
@@ -39,9 +42,6 @@ class LevelRepo {
           if (levelModelPref[i].answerLetters != null ||
               levelModelPref[i].answerLetters!.isNotEmpty) {
             levelModels[i].answerLetters = levelModelPref[i].answerLetters!;
-          }
-          if (levelModelPref[i].bombUsed!) {
-            levelModels[i].bombUsed = true;
           }
         }
       }

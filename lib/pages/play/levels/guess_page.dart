@@ -128,28 +128,21 @@ class _GuessPageState extends State<GuessPage> {
           levelController.getLevelList(Get.arguments[1], Get.arguments[0]);
       country = levelList[Get.arguments[2]];
       correctLettersList = getCorrectLettersList(country.country!);
-      print(country.answerLetters!);
       if (country.answerLetters!.isEmpty) {
-        print('Generate new answer');
         lettersListAnswer = getLettersListEmpty(country.country!);
       } else {
-        print('answer already generated');
         lettersListAnswer = country.answerLetters!;
       }
-      print('letters = ' + lettersListAnswer.toString());
       if (country.allLetters!.isEmpty) {
-        print('Generate New allLetters');
         allLetters =
             generateRandomLetters(country.country!.toUpperCase().split(''));
         levelController.saveAllLetters(Get.arguments[0], country, allLetters);
       } else {
-        print('allLetters already generated');
         allLetters = country.allLetters!;
       }
+      bombUsed = false;
       if (country.bombUsed!) {
-        bombUsed = true;
-      } else {
-        bombUsed = false;
+        useBombStart();
       }
     });
   }
@@ -372,8 +365,6 @@ class _GuessPageState extends State<GuessPage> {
   void removeLetter(String letter, int index, int wordIndex) {
     bool isDone = false;
 
-    print('$letter / $index / $wordIndex');
-
     if (letter != '-' && letter != String.fromCharCode(8626)) {
       for (int i = 0; i < allLetters.length; i++) {
         setState(() {
@@ -440,7 +431,6 @@ class _GuessPageState extends State<GuessPage> {
       }
 
       if (allLetters.contains(letter)) {
-        print(allLetters);
         for (int i = 0; i < allLetters.length; i++) {
           if (allLetters[i] == letter) {
             index = i;
@@ -449,7 +439,6 @@ class _GuessPageState extends State<GuessPage> {
         putLetterInBox(letter, index);
         Get.find<HintController>().useHint(hints);
       } else if (usedLetters.contains(letter)) {
-        print('letter is in answer tiles');
         for (int i = 0; i < lettersListAnswer.length; i++) {
           if (lettersListAnswer[i].contains(letter)) {
             int letterIndex = lettersListAnswer[i].indexOf(letter);
@@ -472,6 +461,69 @@ class _GuessPageState extends State<GuessPage> {
     }
   }
 
+  void useBombStart() {
+    if (!bombUsed) {
+      List<String> reducedLetters = [];
+      List<String> tempAllList = [];
+      List<String> correctList =
+          country.country!.removeAllWhitespace.toUpperCase().split('');
+      List<String> usedLetters = [];
+      List<String> correctUsedLetters = [];
+
+      for (var use in lettersListAnswer) {
+        usedLetters.addAll(use);
+      }
+      usedLetters.removeWhere((element) => element == '');
+
+      for (var use in usedLetters) {
+        if (correctList.contains(use)) {
+          correctList.remove(use);
+        } else {
+          correctUsedLetters.add(use);
+        }
+      }
+
+      for (int i = 0; i < allLetters.length; i++) {
+        tempAllList.add(allLetters[i]);
+        reducedLetters.add('');
+      }
+
+      for (int j = 0; j < correctList.length; j++) {
+        int index = tempAllList.indexOf(correctList[j]);
+        tempAllList[index] = '';
+        reducedLetters[index] = correctList[j];
+      }
+
+      correctUsedLetters.remove(String.fromCharCode(8626));
+      correctUsedLetters.remove('-');
+
+      for (int i = 0; i < usedLetters.length; i++) {
+        bool tempDone = false;
+        if (correctUsedLetters.contains(usedLetters[i])) {
+          for (int j = 0; j < lettersListAnswer.length; j++) {
+            if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
+              for (int k = 0; k < lettersListAnswer[j].length; k++) {
+                if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
+                  lettersListAnswer[j][k] = '';
+                  tempDone = true;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      setState(() {
+        allLetters = reducedLetters;
+        bombUsed = true;
+        Get.find<LevelController>()
+            .saveBombUsed(Get.arguments[0], country, true);
+        Get.find<LevelController>()
+            .saveAllLetters(Get.arguments[0], country, allLetters);
+      });
+    }
+  }
+
   void useBombHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
       if (!bombUsed) {
@@ -481,7 +533,6 @@ class _GuessPageState extends State<GuessPage> {
             country.country!.removeAllWhitespace.toUpperCase().split('');
         List<String> usedLetters = [];
         List<String> correctUsedLetters = [];
-        bool isDone = false;
 
         for (var use in lettersListAnswer) {
           usedLetters.addAll(use);

@@ -451,13 +451,25 @@ class _GuessPageState extends State<GuessPage> {
         List<String> tempAllList = [];
         List<String> correctList =
             country.country!.removeAllWhitespace.toUpperCase().split('');
+        List<String> usedLetters = [];
+        List<String> correctUsedLetters = [];
         bool isDone = false;
 
-        for (int i = 0; i < allLetters.length; i++) {
-          tempAllList.add(allLetters[i]);
+        for (var use in lettersListAnswer) {
+          usedLetters.addAll(use);
+        }
+        usedLetters.removeWhere((element) => element == '');
+
+        for (var use in usedLetters) {
+          if (correctList.contains(use)) {
+            correctList.remove(use);
+          } else {
+            correctUsedLetters.add(use);
+          }
         }
 
         for (int i = 0; i < allLetters.length; i++) {
+          tempAllList.add(allLetters[i]);
           reducedLetters.add('');
         }
 
@@ -466,6 +478,35 @@ class _GuessPageState extends State<GuessPage> {
           tempAllList[index] = '';
           reducedLetters[index] = correctList[j];
         }
+
+        // TODO : fjern også i answer leters
+        print('reduce letters = $reducedLetters');
+        print('Used letters = $usedLetters');
+        print('Correct letters = $correctList');
+        print('Correct used letters = $correctUsedLetters');
+
+        correctUsedLetters.remove(String.fromCharCode(8626));
+        correctUsedLetters.remove('-');
+
+        for (int i = 0; i < usedLetters.length; i++) {
+          bool tempDone = false;
+          print('letter check = ${usedLetters[i]}');
+          if (correctUsedLetters.contains(usedLetters[i])) {
+            for (int j = 0; j < lettersListAnswer.length; j++) {
+              if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
+                for (int k = 0; k < lettersListAnswer[j].length; k++) {
+                  if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
+                    print('remove = ${lettersListAnswer[j][k]}');
+                    lettersListAnswer[j][k] = '';
+                    tempDone = true;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        print('Answer letters = $lettersListAnswer');
 
         setState(() {
           allLetters = reducedLetters;

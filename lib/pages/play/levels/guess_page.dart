@@ -372,6 +372,8 @@ class _GuessPageState extends State<GuessPage> {
   void removeLetter(String letter, int index, int wordIndex) {
     bool isDone = false;
 
+    print('$letter / $index / $wordIndex');
+
     if (letter != '-' && letter != String.fromCharCode(8626)) {
       for (int i = 0; i < allLetters.length; i++) {
         setState(() {
@@ -408,12 +410,17 @@ class _GuessPageState extends State<GuessPage> {
       String letter = '';
       int index = 0;
       bool isDone = false;
+      List<String> usedLetters = [];
+
+      for (var use in lettersListAnswer) {
+        usedLetters.addAll(use);
+      }
 
       for (int i = 0; i < lettersListAnswer.length; i++) {
         for (int j = 0; j < lettersListAnswer[i].length; j++) {
           if (lettersListAnswer[i][j] == '') {
-            isDone = true;
             letter = correctLettersList[i][j];
+            isDone = true;
             j = lettersListAnswer[i].length;
           } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
             for (int k = 0; k < allLetters.length; k++) {
@@ -432,13 +439,34 @@ class _GuessPageState extends State<GuessPage> {
         }
       }
 
-      for (int i = 0; i < allLetters.length; i++) {
-        if (allLetters[i] == letter) {
-          index = i;
+      if (allLetters.contains(letter)) {
+        print(allLetters);
+        for (int i = 0; i < allLetters.length; i++) {
+          if (allLetters[i] == letter) {
+            index = i;
+          }
+        }
+        putLetterInBox(letter, index);
+        Get.find<HintController>().useHint(hints);
+      } else if (usedLetters.contains(letter)) {
+        print('letter is in answer tiles');
+        for (int i = 0; i < lettersListAnswer.length; i++) {
+          if (lettersListAnswer[i].contains(letter)) {
+            int letterIndex = lettersListAnswer[i].indexOf(letter);
+            if (lettersListAnswer[i][letterIndex] !=
+                correctLettersList[i][letterIndex]) {
+              removeLetter(letter, letterIndex, i);
+              for (int j = 0; j < allLetters.length; j++) {
+                if (allLetters[j] == letter) {
+                  index = j;
+                }
+              }
+              putLetterInBox(letter, index);
+              Get.find<HintController>().useHint(hints);
+            }
+          }
         }
       }
-      putLetterInBox(letter, index);
-      Get.find<HintController>().useHint(hints);
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
@@ -479,24 +507,16 @@ class _GuessPageState extends State<GuessPage> {
           reducedLetters[index] = correctList[j];
         }
 
-        // TODO : fjern også i answer leters
-        print('reduce letters = $reducedLetters');
-        print('Used letters = $usedLetters');
-        print('Correct letters = $correctList');
-        print('Correct used letters = $correctUsedLetters');
-
         correctUsedLetters.remove(String.fromCharCode(8626));
         correctUsedLetters.remove('-');
 
         for (int i = 0; i < usedLetters.length; i++) {
           bool tempDone = false;
-          print('letter check = ${usedLetters[i]}');
           if (correctUsedLetters.contains(usedLetters[i])) {
             for (int j = 0; j < lettersListAnswer.length; j++) {
               if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
                 for (int k = 0; k < lettersListAnswer[j].length; k++) {
                   if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
-                    print('remove = ${lettersListAnswer[j][k]}');
                     lettersListAnswer[j][k] = '';
                     tempDone = true;
                   }
@@ -505,8 +525,6 @@ class _GuessPageState extends State<GuessPage> {
             }
           }
         }
-
-        print('Answer letters = $lettersListAnswer');
 
         setState(() {
           allLetters = reducedLetters;

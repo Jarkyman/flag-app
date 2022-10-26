@@ -16,6 +16,7 @@ import 'package:shake/shake.dart';
 
 import '../../../controllers/country_controller.dart';
 import '../../../controllers/hint_controller.dart';
+import '../../../controllers/review_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
@@ -616,6 +617,7 @@ class _GuessPageState extends State<GuessPage> {
               } else {
                 Get.find<SoundController>().windSound();
                 Get.back();
+                ReviewController.checkReviewPopup(context);
               }
             },
             icon: Icon(Icons.arrow_back_ios_new),

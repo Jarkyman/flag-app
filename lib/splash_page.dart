@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
+import 'package:flag_app/controllers/review_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
@@ -11,6 +12,7 @@ import 'package:flag_app/helper/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 import 'controllers/country_continent_controller.dart';
 import 'helper/dimensions.dart';
@@ -37,6 +39,13 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
     await Get.find<ShopController>().loadShopSettings();
+    await ReviewController.rateMyApp.init().then((_) {
+      for (var condition in ReviewController.rateMyApp.conditions) {
+        if (condition is DebuggableCondition) {
+          print(condition.valuesAsString);
+        }
+      }
+    });
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {

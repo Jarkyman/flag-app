@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../controllers/hint_controller.dart';
+import '../../controllers/review_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
@@ -196,6 +197,7 @@ class _CountriesPageState extends State<CountriesPage> {
           _interstitialAd?.show();
         } else {
           openWrongDialog();
+          ReviewController.checkReviewPopup(context);
         }
       });
     }

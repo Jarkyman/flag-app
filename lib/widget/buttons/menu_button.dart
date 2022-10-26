@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class MenuButton extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
+  final String subText;
   final String price;
   final bool active;
   final bool disable;
@@ -16,6 +17,7 @@ class MenuButton extends StatelessWidget {
     Key? key,
     required this.onTap,
     required this.title,
+    this.subText = '',
     this.price = '',
     this.active = true,
     this.loading = false,
@@ -42,44 +44,59 @@ class MenuButton extends StatelessWidget {
             color: active ? AppColors.mainColor : AppColors.textColorGray,
           ),
         ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (price != '' || price == '#') Expanded(child: Container()),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: Dimensions.font20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              if (price != '' || price == '#') Expanded(child: Container()),
-              if (price != '' && price != '#')
-                Padding(
-                  padding: EdgeInsets.only(right: Dimensions.width10),
-                  child: Text(
-                    price,
+        child: Stack(
+          children: [
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (price != '' || price == '#') Expanded(child: Container()),
+                  Text(
+                    title,
                     style: TextStyle(
                       fontSize: Dimensions.font20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  if (price != '' || price == '#') Expanded(child: Container()),
+                  if (price != '' && price != '#')
+                    Padding(
+                      padding: EdgeInsets.only(right: Dimensions.width10),
+                      child: Text(
+                        price,
+                        style: TextStyle(
+                          fontSize: Dimensions.font20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  if (loading)
+                    Padding(
+                      padding: EdgeInsets.only(right: Dimensions.width10),
+                      child: CircularProgressIndicator(
+                        color: AppColors.mainColor,
+                        strokeWidth: 2.0,
+                      ),
+                    ),
+                  if (price == '#' && !loading)
+                    Padding(
+                        padding: EdgeInsets.only(right: Dimensions.width10),
+                        child: Icon(Icons.not_interested_outlined)),
+                ],
+              ),
+            ),
+            Positioned(
+              right: 4,
+              top: 4,
+              child: Text(
+                subText,
+                style: TextStyle(
+                  color: AppColors.textColorGray,
+                  fontSize: Dimensions.font16,
                 ),
-              if (loading)
-                Padding(
-                  padding: EdgeInsets.only(right: Dimensions.width10),
-                  child: CircularProgressIndicator(
-                    color: AppColors.mainColor,
-                    strokeWidth: 2.0,
-                  ),
-                ),
-              if (price == '#' && !loading)
-                Padding(
-                    padding: EdgeInsets.only(right: Dimensions.width10),
-                    child: Icon(Icons.not_interested_outlined)),
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

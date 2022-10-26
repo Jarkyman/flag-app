@@ -1,3 +1,4 @@
+import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,6 +33,8 @@ class PlayPage extends StatelessWidget {
                             arguments: [AppConstants.FLAGS]);
                       },
                       title: 'Flags'.tr,
+                      subText:
+                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.FLAGS)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.FLAGS)}',
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -42,6 +45,8 @@ class PlayPage extends StatelessWidget {
                             arguments: [AppConstants.COUNTRIES]);
                       },
                       title: 'Countries'.tr,
+                      subText:
+                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.COUNTRIES)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.COUNTRIES)}',
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -52,6 +57,8 @@ class PlayPage extends StatelessWidget {
                             arguments: [AppConstants.COC]);
                       },
                       title: 'Coat of arms'.tr,
+                      subText:
+                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.COC)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.COC)}',
                     ),
                   ],
                 ),

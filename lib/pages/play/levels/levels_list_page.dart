@@ -44,7 +44,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
                                   levelController.getList(Get.arguments[0])!)
                               .toString();
                           String numTotal = levelController
-                              .getUnFinishedLevels(index + 1,
+                              .getAmountOfFieldsInLevels(index + 1,
                                   levelController.getList(Get.arguments[0])!)
                               .toString();
                           int levelsToComplete = (index * 10) - 11;

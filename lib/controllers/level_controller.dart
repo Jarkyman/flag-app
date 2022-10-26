@@ -81,23 +81,39 @@ class LevelController extends GetxController implements GetxService {
 
   int getFinishedLevelsForLevel(int level, List<LevelModel> levelList) {
     int finishedLevels = 0;
-    levelList.forEach((element) {
+    for (var element in levelList) {
       if (element.level == level) {
         if (element.guessed!) {
           finishedLevels++;
         }
       }
-    });
+    }
     return finishedLevels;
   }
 
-  int getUnFinishedLevels(int level, List<LevelModel> levelList) {
+  int getFinishedLevelsTotal(String playOption) {
+    List<LevelModel> levelList = getList(playOption)!;
     int finishedLevels = 0;
-    levelList.forEach((element) {
+    for (var element in levelList) {
+      if (element.guessed!) {
+        finishedLevels++;
+      }
+    }
+    return finishedLevels;
+  }
+
+  int getAmountOfLevelsTotal(String playOption) {
+    List<LevelModel> levelList = getList(playOption)!;
+    return levelList.length;
+  }
+
+  int getAmountOfFieldsInLevels(int level, List<LevelModel> levelList) {
+    int finishedLevels = 0;
+    for (var element in levelList) {
       if (element.level == level) {
         finishedLevels++;
       }
-    });
+    }
     return finishedLevels;
   }
 

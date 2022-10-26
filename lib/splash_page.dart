@@ -8,10 +8,8 @@ import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
-import 'package:flag_app/helper/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'controllers/country_continent_controller.dart';
@@ -35,7 +33,7 @@ class _SplashPageState extends State<SplashScreen>
     await Get.find<CountryContinentController>().readCountries(Get.locale!);
     await Get.find<ScoreController>().readAllScores();
     await Get.find<HintController>().readHints();
-    await Get.find<LevelController>().readAllLevels();
+    await Get.find<LevelController>().readLevels();
     await Get.find<SoundController>().init();
     await Get.find<SettingsController>().languageSettingRead();
     await Get.find<ShopController>().loadShopSettings();

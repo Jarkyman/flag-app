@@ -21,7 +21,7 @@ updateLanguage(Locale locale) {
   Get.find<SettingsController>().languageSettingsSave(locale.toString());
   Get.find<CountryContinentController>().readCountries(locale);
   Get.find<CountryController>().readCountries(Get.locale!);
-  Get.find<LevelController>().readAllLevels();
+  Get.find<LevelController>().readLevels();
 }
 
 void buildLanguageDialog() {

@@ -20,26 +20,17 @@ class LevelController extends GetxController implements GetxService {
 
   List<LevelModel> get getCocLevels => _cocLevels;
 
-  bool isLevelUnlocked(int index, String option) {
-    int levelsToComplete = (index * 10) - 11;
-    int levelsCompleted = getFinishedLevels(option);
-    return levelsToComplete >= levelsCompleted;
+  int getLevelsToComplete(int index) {
+    return (index * 10) - 11 + (index * 2);
   }
 
-  int getFinishedLevel(String option) {
-    List<LevelModel> levels = getList(option)!;
-    int finishedLevel = 0;
-    int levelAmount = getLevelAmount2(option);
-    for (int i = 0; i < levelAmount; i++) {
-      if (isLevelUnlocked(i, option)) {
-        finishedLevel++;
-      }
-    }
-    return finishedLevel;
+  bool isLevelUnlocked(int index, String playOption) {
+    int levelsCompleted = getFinishedLevels(playOption);
+    return getLevelsToComplete(index) >= levelsCompleted;
   }
 
-  int getFinishedLevels(String option) {
-    List<LevelModel> levels = getList(option)!;
+  int getFinishedLevels(String playOption) {
+    List<LevelModel> levels = getList(playOption)!;
     int finishedLevels = 0;
     for (var element in levels) {
       if (element.guessed!) {
@@ -49,17 +40,8 @@ class LevelController extends GetxController implements GetxService {
     return finishedLevels;
   }
 
-  int getLevelAmount2(String option) {
-    int amount = 0;
-    getList(option)!.forEach((element) {
-      if (amount < element.level!) {
-        amount = element.level!;
-      }
-    });
-    return amount;
-  }
-
-  int getLevelAmount(List<LevelModel> levels) {
+  int getLevelAmount(String playOption) {
+    List<LevelModel> levels = getList(playOption)!;
     int amount = 0;
     levels.forEach((element) {
       if (amount < element.level!) {
@@ -79,7 +61,8 @@ class LevelController extends GetxController implements GetxService {
     return levelListResult;
   }
 
-  int getFinishedLevelsForLevel(int level, List<LevelModel> levelList) {
+  int getFinishedLevelsForLevel(int level, String playOption) {
+    List<LevelModel> levelList = getList(playOption)!;
     int finishedLevels = 0;
     for (var element in levelList) {
       if (element.level == level) {
@@ -107,7 +90,8 @@ class LevelController extends GetxController implements GetxService {
     return levelList.length;
   }
 
-  int getAmountOfFieldsInLevels(int level, List<LevelModel> levelList) {
+  int getAmountOfFieldsInLevels(int level, String playOption) {
+    List<LevelModel> levelList = getList(playOption)!;
     int finishedLevels = 0;
     for (var element in levelList) {
       if (element.level == level) {
@@ -251,10 +235,6 @@ class LevelController extends GetxController implements GetxService {
     return null;
   }
 
-  Future<void> readAllLevels() async {
-    await readLevels();
-  }
-
   Future<void> readLevels({bool reset = false}) async {
     print('ReadLevels' + Get.locale!.toString());
     _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!,
@@ -269,39 +249,5 @@ class LevelController extends GetxController implements GetxService {
   Future<bool> saveLevels(String option) async {
     List<LevelModel> levelModels = getList(option)!;
     return await levelRepo.saveLevels(levelModels, option);
-  }
-
-  /*
-  REMOVE CODE BELOW
-   */
-
-  void guessedRemove(String playOption, LevelModel country) {
-    if (playOption == AppConstants.FLAGS) {
-      _flagLevels.forEach((element) {
-        if (element == country) {
-          element.guessed = false;
-          //country.guessed = true;
-          saveLevels(playOption);
-        }
-      });
-    } else if (playOption == AppConstants.COUNTRIES) {
-      _countriesLevels.forEach((element) {
-        if (element == country) {
-          element.guessed = false;
-          //country.guessed = true;
-          saveLevels(playOption);
-        }
-      });
-    } else if (playOption == AppConstants.COC) {
-      _cocLevels.forEach((element) {
-        if (element == country) {
-          element.guessed = false;
-          //country.guessed = true;
-          saveLevels(playOption);
-        }
-      });
-    }
-
-    update();
   }
 }

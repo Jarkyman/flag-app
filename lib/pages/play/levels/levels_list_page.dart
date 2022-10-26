@@ -36,24 +36,28 @@ class _LevelsListPageState extends State<LevelsListPage> {
                   builder: (levelController) {
                     print('Type =' + Get.arguments[0]);
                     return ListView.builder(
-                        itemCount: levelController.getLevelAmount(
-                            levelController.getList(Get.arguments[0])!),
+                        itemCount:
+                            levelController.getLevelAmount(Get.arguments[0]),
                         itemBuilder: (context, index) {
                           String numOfDone = levelController
-                              .getFinishedLevelsForLevel(index + 1,
-                                  levelController.getList(Get.arguments[0])!)
+                              .getFinishedLevelsForLevel(
+                                  index + 1, Get.arguments[0])
                               .toString();
+
                           String numTotal = levelController
-                              .getAmountOfFieldsInLevels(index + 1,
-                                  levelController.getList(Get.arguments[0])!)
+                              .getAmountOfFieldsInLevels(
+                                  index + 1, Get.arguments[0])
                               .toString();
-                          int levelsToComplete = (index * 10) - 11;
+
                           int levelsCompleted = levelController
                               .getFinishedLevels(Get.arguments[0]);
+
                           bool isLocked = levelController.isLevelUnlocked(
                               index, Get.arguments[0]);
+
                           bool levelsUnlock =
                               Get.find<ShopController>().isLevelsUnlocked;
+
                           bool locked = true;
                           if (levelsUnlock) {
                             locked = false;
@@ -79,7 +83,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
                                     Get.snackbar(
                                       'Unlock more levels'.tr,
                                       'You need to finish'.tr +
-                                          ' ${levelsToComplete - levelsCompleted + 1} ' +
+                                          ' ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ' +
                                           'more, to unlock level'.tr +
                                           ' ${index + 1} ' +
                                           'more, to unlock level2'.tr,

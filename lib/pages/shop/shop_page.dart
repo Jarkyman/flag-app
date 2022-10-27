@@ -233,8 +233,8 @@ class _ShopPageState extends State<ShopPage> {
                             }
                           } else {
                             Get.snackbar(
-                              'Levels unlocked',
-                              'You have already removed all levels',
+                              'Levels unlocked'.tr,
+                              'You have already removed all levels'.tr,
                               backgroundColor:
                                   AppColors.correctColor.withOpacity(0.4),
                             );

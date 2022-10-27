@@ -40,7 +40,7 @@
   },
   {
     "country_code": "AG",
-    "country_name": "Antigua-et-Barbuda",
+    "country_name": "Antigua et Barbuda",
     "capital": "Saint John's",
     "country_demonym": "Antiguais ou Barbudans",
     "total_area": 442,
@@ -352,7 +352,7 @@
   },
   {
     "country_code": "BN",
-    "country_name": "Brunei Darussalam",
+    "country_name": "Brunéi Darussalam",
     "capital": " Bandar Seri Begawan",
     "country_demonym": " Brunéiens",
     "total_area": 5765,
@@ -521,7 +521,7 @@
   },
   {
     "country_code": "CF",
-    "country_name": "République Centrafricaine",
+    "country_name": "République centrafricaine",
     "capital": " Bangui",
     "country_demonym": " Centrafricains",
     "total_area": 622984,
@@ -716,7 +716,7 @@
   },
   {
     "country_code": "CZ",
-    "country_name": "Tchéquie",
+    "country_name": "Tchèque",
     "capital": "Prague",
     "country_demonym": "Tchèques",
     "total_area": 78867,
@@ -1548,7 +1548,7 @@
   },
   {
     "country_code": "KN",
-    "country_name": "Saint-Kitts-et-Nevis",
+    "country_name": "Saint-Kitts et Nevis",
     "capital": " Basseterre",
     "country_demonym": " Kittitiens ou Névisiens",
     "total_area": 261,
@@ -2705,7 +2705,7 @@
   },
   {
     "country_code": "ST",
-    "country_name": "Sao Tome et Principe",
+    "country_name": "Sao tomé et principe",
     "capital": "Sao Tome",
     "country_demonym": "Sao Tomeans",
     "total_area": 964,

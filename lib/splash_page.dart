@@ -31,21 +31,39 @@ class _SplashPageState extends State<SplashScreen>
   late AnimationController controller;
 
   Future<void> _loadResource() async {
+    print('loading countries');
     await Get.find<CountryController>().readCountries(Get.locale!);
+    print('loaded countries');
+    print('loading continents');
     await Get.find<CountryContinentController>().readCountries(Get.locale!);
+    print('loaded continents');
+    print('loading score');
     await Get.find<ScoreController>().readAllScores();
+    print('loaded score');
+    print('loading hints');
     await Get.find<HintController>().readHints();
+    print('loaded hints');
+    print('loading levels');
     await Get.find<LevelController>().readLevels();
+    print('loaded countries');
+    print('loading sound');
     await Get.find<SoundController>().init();
+    print('loaded sound');
+    print('loaded settings');
     await Get.find<SettingsController>().languageSettingRead();
+    print('loaded settings');
+    print('loading shop');
     await Get.find<ShopController>().loadShopSettings();
-    await ReviewController.rateMyApp.init().then((_) {
+    print('loaded shop');
+    print('loading review');
+    ReviewController.rateMyApp.init().then((_) {
       for (var condition in ReviewController.rateMyApp.conditions) {
         if (condition is DebuggableCondition) {
           print(condition.valuesAsString);
         }
       }
     });
+    print('loaded review');
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {

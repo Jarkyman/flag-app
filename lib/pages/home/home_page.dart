@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getFlagPage());
                       },
-                      title: 'Which flag'.tr,
+                      title: 'Find flag'.tr,
                     ),
                     SizedBox(
                       height: Dimensions.height20,

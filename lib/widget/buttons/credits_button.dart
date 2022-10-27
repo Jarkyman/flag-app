@@ -20,7 +20,7 @@ class CreditsButton extends StatelessWidget {
       'get options on which country it is.\nTo practice your skills for the flags of the different countries'
       '\n\nYou have the option to complete levels with flags, countries, and coats of arms.'
       '\nAs you get through the different levels, you get better and better. See if you can complete all the levels.'
-      '\n\nLanguage in the app:\nEnglish\nDansk\nSvenska\nNorsk\nEspañol\n\n'
+      '\n\nLanguage in the app:\nEnglish\nDansk\nDeutsch\nSvenska\nNorsk\nEspañol\n\n'
       'If you find any errors or mistakes, please write to me at';
 
   final String emailAddress = 'hartvig.develop@gmail.com';

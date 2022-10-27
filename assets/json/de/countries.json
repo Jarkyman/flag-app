@@ -326,7 +326,7 @@
   },
   {
     "country_code": "BL",
-    "country_name": "St. Barthelemy",
+    "country_name": "St Barthelemy",
     "capital": "Gustavia",
     "country_demonym": "Barthelemois",
     "total_area": 21,
@@ -1548,7 +1548,7 @@
   },
   {
     "country_code": "KN",
-    "country_name": "St. Kitts und Nevis",
+    "country_name": "St Kitts und Nevis",
     "capital": "Basseterre",
     "country_demonym": "Kittitians oder Nevisians",
     "total_area": 261,
@@ -1652,7 +1652,7 @@
   },
   {
     "country_code": "LC",
-    "country_name": "St. Lucia",
+    "country_name": "St Lucia",
     "capital": "Castries",
     "country_demonym": "St. Lucian",
     "total_area": 616,
@@ -3069,7 +3069,7 @@
   },
   {
     "country_code": "VC",
-    "country_name": "Saint Vincent und die Grenadinen",
+    "country_name": "St Vincent und die Grenadinen",
     "capital": "Kingstown",
     "country_demonym": "Saint Vincentians",
     "total_area": 389,

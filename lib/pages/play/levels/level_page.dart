@@ -95,9 +95,6 @@ class _LevelPageState extends State<LevelPage> {
                         crossAxisSpacing: Dimensions.height20,
                         crossAxisCount: 4,
                         children: List.generate(levels.length, (index) {
-                          print(
-                              '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}');
-                          print(levels[index].country!);
                           String countryCodeImg =
                               '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}';
                           if ((countryCodeImg == 'ni' ||

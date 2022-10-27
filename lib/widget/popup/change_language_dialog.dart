@@ -9,11 +9,12 @@ import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
 final List locale = [
-  {'name': 'English', 'locale': Locale('en', 'US')},
   {'name': 'Dansk', 'locale': Locale('da', 'DK')},
-  {'name': 'Svenska', 'locale': Locale('sv', 'SE')},
-  {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
+  {'name': 'Deutsch', 'locale': Locale('de', 'DE')},
+  {'name': 'English', 'locale': Locale('en', 'US')},
   {'name': 'Español', 'locale': Locale('es', 'ES')},
+  {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
+  {'name': 'Svenska', 'locale': Locale('sv', 'SE')},
 ];
 
 updateLanguage(Locale locale) {

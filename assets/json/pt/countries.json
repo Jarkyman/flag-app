@@ -287,7 +287,7 @@
   },
   {
     "country_code": "BH",
-    "country_name": "Bahrein",
+    "country_name": "Barém",
     "capital": "Manama",
     "country_demonym": "Bahrainis",
     "total_area": 760,
@@ -313,7 +313,7 @@
   },
   {
     "country_code": "BJ",
-    "country_name": "Benin",
+    "country_name": "Benim",
     "capital": "Porto-Novo",
     "country_demonym": "Beninense",
     "total_area": 112622,
@@ -1392,7 +1392,7 @@
   },
   {
     "country_code": "IR",
-    "country_name": "Irã",
+    "country_name": "Irão",
     "capital": "Teerã",
     "country_demonym": "iranianos",
     "total_area": 1648195,
@@ -1574,7 +1574,7 @@
   },
   {
     "country_code": "KR",
-    "country_name": "Coreia do Sul",
+    "country_name": "Coréia do Sul",
     "capital": "Seul",
     "country_demonym": "Coreanos",
     "total_area": 99720,
@@ -1743,7 +1743,7 @@
   },
   {
     "country_code": "LV",
-    "country_name": "Letônia",
+    "country_name": "Letónia",
     "capital": "Riga",
     "country_demonym": "Letões",
     "total_area": 64589,
@@ -1782,9 +1782,9 @@
   },
   {
     "country_code": "MC",
-    "country_name": "Mônaco",
-    "capital": "Mônaco",
-    "country_demonym": "Mônacos",
+    "country_name": "Mónaco",
+    "capital": "Mónaco",
+    "country_demonym": "Mónacos",
     "total_area": 2,
     "population": 39242,
     "currency_code": "EUR",
@@ -1834,7 +1834,7 @@
   },
   {
     "country_code": "MG",
-    "country_name": "Madagascar",
+    "country_name": "Madagáscar",
     "capital": "Antananarivo",
     "country_demonym": "Malagasy",
     "total_area": 587041,
@@ -2315,7 +2315,7 @@
   },
   {
     "country_code": "PL",
-    "country_name": "Polônia",
+    "country_name": "Polónia",
     "capital": " Varsóvia",
     "country_demonym": " Poloneses",
     "total_area": 312685,
@@ -2419,13 +2419,13 @@
   },
   {
     "country_code": "QA",
-    "country_name": "Qatar",
+    "country_name": "Catar",
     "capital": "Doha",
     "country_demonym": "Qataris",
     "total_area": 11586,
     "population": 2881053,
     "currency_code": "QAR",
-    "currency_name": "Rial do Qatar",
+    "currency_name": "Rial do Catar",
     "currency_symbol": "QR",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -2445,7 +2445,7 @@
   },
   {
     "country_code": "RO",
-    "country_name": "Romênia",
+    "country_name": "Roménia",
     "capital": "Bucareste",
     "country_demonym": "Romenos",
     "total_area": 238391,
@@ -2454,7 +2454,7 @@
     "currency_name": "Nova Lei romena",
     "currency_symbol": "RON",
     "lang_code": "RO",
-    "lang_name": "Romênia"
+    "lang_name": "Roménia"
   },
   {
     "country_code": "RS",
@@ -2692,7 +2692,7 @@
   },
   {
     "country_code": "SS",
-    "country_name": "Sudão do Sul",
+    "country_name": "Sul do Sudão",
     "capital": "Juba",
     "country_demonym": "Sudão do Sul",
     "total_area": 644329,
@@ -3225,7 +3225,7 @@
   },
   {
     "country_code": "ZW",
-    "country_name": "Zimbábue",
+    "country_name": "Zimbabué",
     "capital": "Harare",
     "country_demonym": "Zimbábue",
     "total_area": 390757,

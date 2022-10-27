@@ -9,12 +9,14 @@ import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
 final List locale = [
+  {'name': 'Brasileiro', 'locale': Locale('pt', 'BR')},
   {'name': 'Dansk', 'locale': Locale('da', 'DK')},
   {'name': 'Deutsch', 'locale': Locale('de', 'DE')},
   {'name': 'English', 'locale': Locale('en', 'US')},
   {'name': 'Español', 'locale': Locale('es', 'ES')},
   {'name': 'Français', 'locale': Locale('fr', 'FR')},
   {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
+  {'name': 'Português', 'locale': Locale('pt', 'PT')},
   {'name': 'Svenska', 'locale': Locale('sv', 'SE')},
 ];
 
@@ -35,6 +37,7 @@ void buildLanguageDialog() {
       child: SingleChildScrollView(
         child: Container(
           width: Dimensions.width45 * 6,
+          //height: Dimensions.screenHeight / 2,
           child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

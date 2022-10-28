@@ -1,3 +1,4 @@
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/repos/level_repo.dart';
 import 'package:get/get.dart';
@@ -12,16 +13,94 @@ class LevelController extends GetxController implements GetxService {
   List<LevelModel> _flagLevels = [];
 
   List<LevelModel> get getFlagLevels => _flagLevels;
+  int _unlockedFlagLevels = 0;
+
+  int get getUnlockedFlagLevels => _unlockedFlagLevels;
+
   List<LevelModel> _countriesLevels = [];
 
   List<LevelModel> get getCountriesLevels => _countriesLevels;
+  int _unlockedCountryLevels = 0;
+
+  int get getUnlockedCountryLevels => _unlockedCountryLevels;
 
   List<LevelModel> _cocLevels = [];
 
   List<LevelModel> get getCocLevels => _cocLevels;
+  int _unlockedCOCLevels = 0;
+
+  int get getUnlockedCOCLevels => _unlockedCOCLevels;
+
+  void initUnlockedLevels() {
+    if (Get.find<ShopController>().isLevelsUnlocked) {
+      _unlockedFlagLevels = getLevelAmount(AppConstants.FLAGS);
+      _unlockedCountryLevels = getLevelAmount(AppConstants.COUNTRIES);
+      _unlockedCOCLevels = getLevelAmount(AppConstants.COC);
+    } else {
+      for (int i = 0; i < getLevelAmount(AppConstants.FLAGS); i++) {
+        if (!isLevelUnlocked(i, AppConstants.FLAGS)) {
+          _unlockedFlagLevels = i + 1;
+        }
+      }
+      for (int i = 0; i < getLevelAmount(AppConstants.COUNTRIES); i++) {
+        if (!isLevelUnlocked(i, AppConstants.COUNTRIES)) {
+          _unlockedCountryLevels = i + 1;
+        }
+      }
+      for (int i = 0; i < getLevelAmount(AppConstants.COC); i++) {
+        if (!isLevelUnlocked(i, AppConstants.COC)) {
+          _unlockedCOCLevels = i + 1;
+        }
+      }
+    }
+  }
+
+  bool isNewLevelUnlocked(String playOption) {
+    bool unlock = false;
+    int amount = 0;
+
+    for (int i = 0; i < getLevelAmount(playOption); i++) {
+      if (!isLevelUnlocked(i, playOption)) {
+        amount = i + 1;
+      }
+    }
+    if (amount > getUnlockedLevelsByOption(playOption)) {
+      _addToLevelUnlock(playOption);
+      unlock = true;
+      Get.snackbar(
+          'Level unlocked'.tr, 'Level'.tr + ' $amount ' + 'is unlocked'.tr);
+    }
+
+    return unlock;
+  }
+
+  void _addToLevelUnlock(String playOption) {
+    if (playOption == AppConstants.FLAGS) {
+      _unlockedFlagLevels += 1;
+    }
+    if (playOption == AppConstants.COUNTRIES) {
+      _unlockedCountryLevels += 1;
+    }
+    if (playOption == AppConstants.COC) {
+      _unlockedCOCLevels += 1;
+    }
+  }
+
+  int getUnlockedLevelsByOption(String playOption) {
+    if (playOption == AppConstants.FLAGS) {
+      return _unlockedFlagLevels;
+    }
+    if (playOption == AppConstants.COUNTRIES) {
+      return _unlockedCountryLevels;
+    }
+    if (playOption == AppConstants.COC) {
+      return _unlockedCOCLevels;
+    }
+    return 0;
+  }
 
   int getLevelsToComplete(int index) {
-    return (index * 10) - 11 + (index * 2);
+    return (index * 10) - 13 + (index * 2);
   }
 
   bool isLevelUnlocked(int index, String playOption) {

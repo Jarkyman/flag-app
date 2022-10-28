@@ -153,6 +153,7 @@ class _GuessPageState extends State<GuessPage> {
         country.country!.removeAllWhitespace.toUpperCase()) {
       Get.find<SoundController>().completeSound();
       Get.find<LevelController>().guessed(Get.arguments[0], country, true);
+      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
     } else {
       bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
@@ -595,11 +596,12 @@ class _GuessPageState extends State<GuessPage> {
 
   void useFinishHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
-      setState(() {
-        Get.find<LevelController>().guessed(Get.arguments[0], country, true);
-      });
+      //setState(() {
+      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
+      //});
       Get.find<HintController>().useHint(hints);
       Get.find<SoundController>().completeSound();
+      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
@@ -626,12 +628,10 @@ class _GuessPageState extends State<GuessPage> {
           /*actions: [
             GestureDetector(
               onTap: () {
-                Get.find<LevelController>()
-                    .guessedRemove(Get.arguments[0], country);
               },
-              child: Icon(Icons.refresh),
+              child: Icon(Icons.sports_volleyball_outlined),
             ),
-          ],*/ //Reset level
+          ],*/
         ),
         body: SwipeDetector(
           onSwipeRight: (value) {

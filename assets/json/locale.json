@@ -47,7 +47,9 @@
       "Country": "Country",
       "Capital": "Capital",
       "Currency": "Currency",
-      "Choose Your Language": "Choose Your Language"
+      "Choose Your Language": "Choose Your Language",
+      "Level unlocked": "Level unlocked",
+      "is unlocked": "is unlocked."
     }
   },
   {
@@ -98,7 +100,9 @@
       "Country": "Land",
       "Capital": "Hauptstadt",
       "Currency": "Währung",
-      "Choose Your Language": "Wähle deine Sprache"
+      "Choose Your Language": "Wähle deine Sprache",
+      "Level unlocked": "Niveau freigeschaltet",
+      "is unlocked": "ist entsperrt."
     }
   },
   {
@@ -149,7 +153,9 @@
       "Country": "Land",
       "Capital": "Hovedstad",
       "Currency": "Valuta",
-      "Choose Your Language": "Vælg dit sprog"
+      "Choose Your Language": "Vælg dit sprog",
+      "Level unlocked": "Niveau låst op",
+      "is unlocked": "er låst op."
     }
   },
   {
@@ -200,7 +206,9 @@
       "Country": "Land",
       "Capital": "Huvudstad",
       "Currency": "Valuta",
-      "Choose Your Language": "Välj ditt språk"
+      "Choose Your Language": "Välj ditt språk",
+      "Level unlocked": "Nivån är upplåst",
+      "is unlocked": "är upplåst."
     }
   },
   {
@@ -251,7 +259,9 @@
       "Country": "Land",
       "Capital": "Huvudstad",
       "Currency": "Valuta",
-      "Choose Your Language": "Velg ditt språk"
+      "Choose Your Language": "Velg ditt språk",
+      "Level unlocked": "Nivået er låst opp",
+      "is unlocked": "er låst opp."
     }
   },
   {
@@ -302,7 +312,9 @@
       "Country": "País",
       "Capital": "Capital",
       "Currency": "Valuta",
-      "Choose Your Language": "Elige tu idioma"
+      "Choose Your Language": "Elige tu idioma",
+      "Level unlocked": "El nivel está desbloqueado",
+      "is unlocked": "está desbloqueado."
     }
   },
   {
@@ -353,7 +365,9 @@
       "Country": "Pays",
       "Capital": "Ville capitale",
       "Currency": "Devise",
-      "Choose Your Language": "Choisissez votre langue"
+      "Choose Your Language": "Choisissez votre langue",
+      "Level unlocked": "Le niveau est débloqué",
+      "is unlocked": "est débloqué."
     }
   },
   {
@@ -404,7 +418,9 @@
       "Country": "País",
       "Capital": "Capital",
       "Currency": "Divisa",
-      "Choose Your Language": "Escolha seu idioma"
+      "Choose Your Language": "Escolha seu idioma",
+      "Level unlocked": "Nível é desbloqueado",
+      "is unlocked": "está desbloqueado."
     }
   },
   {
@@ -455,7 +471,9 @@
       "Country": "País",
       "Capital": "Capital",
       "Currency": "Divisa",
-      "Choose Your Language": "Escolha seu idioma"
+      "Choose Your Language": "Escolha seu idioma",
+      "Level unlocked": "Nível é desbloqueado",
+      "is unlocked": "está desbloqueado."
     }
   }
 ]

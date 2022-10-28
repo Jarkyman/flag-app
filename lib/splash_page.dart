@@ -45,6 +45,7 @@ class _SplashPageState extends State<SplashScreen>
     print('loaded hints');
     print('loading levels');
     await Get.find<LevelController>().readLevels();
+    Get.find<LevelController>().initUnlockedLevels();
     print('loaded countries');
     print('loading sound');
     await Get.find<SoundController>().init();
@@ -64,6 +65,12 @@ class _SplashPageState extends State<SplashScreen>
       }
     });
     print('loaded review');
+    print(
+        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedFlagLevels}');
+    print(
+        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCountryLevels}');
+    print(
+        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCOCLevels}');
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {

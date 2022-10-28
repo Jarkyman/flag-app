@@ -15,15 +15,15 @@
   {
     "country_code": "AE",
     "country_name": "Émirats Arabes Unis",
-    "capital": " Abu Dhabi",
-    "country_demonym": " Émiriens",
+    "capital": "Abu Dhabi",
+    "country_demonym": "Émiriens",
     "total_area": 83600,
     "population": 9890402,
     "currency_code": "UAE",
-    "currency_name": " Dirham",
+    "currency_name": "Dirham",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "AF",
@@ -54,15 +54,15 @@
   {
     "country_code": "AI",
     "country_name": "Anguilla",
-    "capital": " The Valley",
-    "country_demonym": " Anguillans",
+    "capital": "The Valley",
+    "country_demonym": "Anguillans",
     "total_area": 91,
     "population": 15003,
     "currency_code": "XCD",
     "currency_name": "Dollar des Caraïbes",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "AL",
@@ -197,15 +197,15 @@
   {
     "country_code": "AZ",
     "country_name": "Azerbaïdjan",
-    "capital": " Bakou",
-    "country_demonym": " Azerbaïdjanais",
+    "capital": "Bakou",
+    "country_demonym": "Azerbaïdjanais",
     "total_area": 86600,
     "population": 10139177,
     "currency_code": "AZN",
-    "currency_name": " Manat azerbaïdjanais",
+    "currency_name": "Manat azerbaïdjanais",
     "currency_symbol": "₼",
     "lang_code": "AZ",
-    "lang_name": " Azerbaïdjanais"
+    "lang_name": "Azerbaïdjanais"
   },
   {
     "country_code": "BA",
@@ -288,15 +288,15 @@
   {
     "country_code": "BH",
     "country_name": "Bahreïn",
-    "capital": " Manama",
-    "country_demonym": " Bahreïnis",
+    "capital": "Manama",
+    "country_demonym": "Bahreïnis",
     "total_area": 760,
     "population": 1701575,
     "currency_code": "BHD",
-    "currency_name": " Dinar bahreïni",
+    "currency_name": "Dinar bahreïni",
     "currency_symbol": "BD",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "BI",
@@ -353,15 +353,15 @@
   {
     "country_code": "BN",
     "country_name": "Brunéi Darussalam",
-    "capital": " Bandar Seri Begawan",
-    "country_demonym": " Brunéiens",
+    "capital": "Bandar Seri Begawan",
+    "country_demonym": "Brunéiens",
     "total_area": 5765,
     "population": 437479,
     "currency_code": "SGD",
-    "currency_name": " Dollar de Brunei",
+    "currency_name": "Dollar de Brunei",
     "currency_symbol": "$",
     "lang_code": "MS",
-    "lang_name": " Malais"
+    "lang_name": "Malais"
   },
   {
     "country_code": "BO",
@@ -418,15 +418,15 @@
   {
     "country_code": "BT",
     "country_name": "Bhoutan",
-    "capital": " Thimphu",
-    "country_demonym": " Bhoutanais",
+    "capital": "Thimphu",
+    "country_demonym": "Bhoutanais",
     "total_area": 38394,
     "population": 771608,
     "currency_code": "BTN",
-    "currency_name": " Ngultrum bhoutanais",
+    "currency_name": "Ngultrum bhoutanais",
     "currency_symbol": "Nu.",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "BV",
@@ -496,15 +496,15 @@
   {
     "country_code": "CC",
     "country_name": "Îles Cocos",
-    "capital": " Île de l'Ouest",
-    "country_demonym": " Insulaires Cocos",
+    "capital": "Île de l'Ouest",
+    "country_demonym": "Insulaires Cocos",
     "total_area": 14,
     "population": 555,
     "currency_code": "AUD",
-    "currency_name": " Dollar australien",
+    "currency_name": "Dollar australien",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "CD",
@@ -522,15 +522,15 @@
   {
     "country_code": "CF",
     "country_name": "République centrafricaine",
-    "capital": " Bangui",
-    "country_demonym": " Centrafricains",
+    "capital": "Bangui",
+    "country_demonym": "Centrafricains",
     "total_area": 622984,
     "population": 4829767,
     "currency_code": "XAF",
-    "currency_name": " Franc CFA Beac",
+    "currency_name": "Franc CFA Beac",
     "currency_symbol": "FCFA",
     "lang_code": "FR",
-    "lang_name": " Français"
+    "lang_name": "Français"
   },
   {
     "country_code": "CG",
@@ -769,15 +769,15 @@
   {
     "country_code": "DM",
     "country_name": "Dominique",
-    "capital": " Roseau",
-    "country_demonym": " Dominicains",
+    "capital": "Roseau",
+    "country_demonym": "Dominicains",
     "total_area": 751,
     "population": 71986,
     "currency_code": "XCD",
     "currency_name": "Dollar des Caraïbes",
     "currency_symbol": "$",
     "lang_code": "FR",
-    "lang_name": " Français"
+    "lang_name": "Français"
   },
   {
     "country_code": "DO",
@@ -808,15 +808,15 @@
   {
     "country_code": "EC",
     "country_name": "Équateur",
-    "capital": " Quito",
-    "country_demonym": " Équatoriens",
+    "capital": "Quito",
+    "country_demonym": "Équatoriens",
     "total_area": 283561,
     "population": 17643054,
     "currency_code": "USD",
-    "currency_name": " Dollar des États-Unis",
+    "currency_name": "Dollar des États-Unis",
     "currency_symbol": "$",
     "lang_code": "ES",
-    "lang_name": " Espagnol"
+    "lang_name": "Espagnol"
   },
   {
     "country_code": "EE",
@@ -860,15 +860,15 @@
   {
     "country_code": "ER",
     "country_name": "Érythrée",
-    "capital": " Asmara",
-    "country_demonym": " Érythréens",
+    "capital": "Asmara",
+    "country_demonym": "Érythréens",
     "total_area": 117600,
     "population": 3546421,
     "currency_code": "ERN",
-    "currency_name": " Nakfa érythréen",
+    "currency_name": "Nakfa érythréen",
     "currency_symbol": "Nkf",
     "lang_code": "TI",
-    "lang_name": " Tigrinya"
+    "lang_name": "Tigrinya"
   },
   {
     "country_code": "ES",
@@ -886,15 +886,15 @@
   {
     "country_code": "ET",
     "country_name": "Éthiopie",
-    "capital": " Addis-Abeba",
-    "country_demonym": " Éthiopiens",
+    "capital": "Addis-Abeba",
+    "country_demonym": "Éthiopiens",
     "total_area": 1104300,
     "population": 114963588,
     "currency_code": "ETB",
-    "currency_name": " Birr éthiopien",
+    "currency_name": "Birr éthiopien",
     "currency_symbol": "Br",
     "lang_code": "AM",
-    "lang_name": " amharique"
+    "lang_name": "amharique"
   },
   {
     "country_code": "FI",
@@ -1081,28 +1081,28 @@
   {
     "country_code": "GL",
     "country_name": "Groenland",
-    "capital": " Nuuk",
-    "country_demonym": " Groenlandais",
+    "capital": "Nuuk",
+    "country_demonym": "Groenlandais",
     "total_area": 2166086,
     "population": 56770,
     "currency_code": "DKK",
-    "currency_name": " Couronne danoise",
+    "currency_name": "Couronne danoise",
     "currency_symbol": "kr.",
     "lang_code": "DA",
-    "lang_name": " Danois"
+    "lang_name": "Danois"
   },
   {
     "country_code": "GM",
     "country_name": "Gambie",
-    "capital": " Banjul",
-    "country_demonym": " Gambiens",
+    "capital": "Banjul",
+    "country_demonym": "Gambiens",
     "total_area": 11295,
     "population": 2416668,
     "currency_code": "GMD",
-    "currency_name": " Dalasi gambien",
+    "currency_name": "Dalasi gambien",
     "currency_symbol": "D",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "GN",
@@ -1133,15 +1133,15 @@
   {
     "country_code": "GQ",
     "country_name": "Guinée équatoriale",
-    "capital": " Malabo",
-    "country_demonym": " Guinéens équatoriaux",
+    "capital": "Malabo",
+    "country_demonym": "Guinéens équatoriaux",
     "total_area": 28051,
     "population": 1402985,
     "currency_code": "XAF",
-    "currency_name": " Franc CFA Beac",
+    "currency_name": "Franc CFA Beac",
     "currency_symbol": "FCFA",
     "lang_code": "ES",
-    "lang_name": " Espagnol"
+    "lang_name": "Espagnol"
   },
   {
     "country_code": "GR",
@@ -1159,15 +1159,15 @@
   {
     "country_code": "GS",
     "country_name": "Géorgie du Sud et îles Sandwich du Sud",
-    "capital": " Grytviken",
-    "country_demonym": " géorgien du Sud ou insulaire Sandwich du Sud",
+    "capital": "Grytviken",
+    "country_demonym": "géorgien du Sud ou insulaire Sandwich du Sud",
     "total_area": 3903,
     "population": 0,
     "currency_code": "GBP",
-    "currency_name": " livre sterling",
+    "currency_name": "livre sterling",
     "currency_symbol": "£",
     "lang_code": "EN",
-    "lang_name": " anglais"
+    "lang_name": "anglais"
   },
   {
     "country_code": "GT",
@@ -1250,15 +1250,15 @@
   {
     "country_code": "HN",
     "country_name": "Honduras",
-    "capital": " Tegucigalpa",
-    "country_demonym": " Honduriens",
+    "capital": "Tegucigalpa",
+    "country_demonym": "Honduriens",
     "total_area": 112090,
     "population": 9904607,
     "currency_code": "HNL",
-    "currency_name": " Lempira hondurien",
+    "currency_name": "Lempira hondurien",
     "currency_symbol": "L",
     "lang_code": "ES",
-    "lang_name": " Espagnol"
+    "lang_name": "Espagnol"
   },
   {
     "country_code": "HR",
@@ -1380,15 +1380,15 @@
   {
     "country_code": "IQ",
     "country_name": "Irak",
-    "capital": " Bagdad",
-    "country_demonym": " Irakiens",
+    "capital": "Bagdad",
+    "country_demonym": "Irakiens",
     "total_area": 438317,
     "population": 40222493,
     "currency_code": "IQD",
-    "currency_name": " Dinar irakien",
+    "currency_name": "Dinar irakien",
     "currency_symbol": "د.ع",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "IR",
@@ -1497,15 +1497,15 @@
   {
     "country_code": "KG",
     "country_name": "Kirghizistan",
-    "capital": " Bichkek",
-    "country_demonym": " Kirghizistan",
+    "capital": "Bichkek",
+    "country_demonym": "Kirghizistan",
     "total_area": 199951,
     "population": 6524195,
     "currency_code": "KGS",
-    "currency_name": " Kirghizistan Som",
+    "currency_name": "Kirghizistan Som",
     "currency_symbol": "Лв",
     "lang_code": "RU",
-    "lang_name": " Russe"
+    "lang_name": "Russe"
   },
   {
     "country_code": "KH",
@@ -1536,28 +1536,28 @@
   {
     "country_code": "KM",
     "country_name": "Comores",
-    "capital": " Moroni",
-    "country_demonym": " Comoriens",
+    "capital": "Moroni",
+    "country_demonym": "Comoriens",
     "total_area": 2235,
     "population": 869601,
     "currency_code": "KMF",
-    "currency_name": " Franc des Comores",
+    "currency_name": "Franc des Comores",
     "currency_symbol": "CF",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "KN",
     "country_name": "Saint-Kitts et Nevis",
-    "capital": " Basseterre",
-    "country_demonym": " Kittitiens ou Névisiens",
+    "capital": "Basseterre",
+    "country_demonym": "Kittitiens ou Névisiens",
     "total_area": 261,
     "population": 53199,
     "currency_code": "XCD",
     "currency_name": "Dollar des Caraïbes",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "KP",
@@ -1588,15 +1588,15 @@
   {
     "country_code": "KW",
     "country_name": "Koweït",
-    "capital": " Koweït",
-    "country_demonym": " Koweïtien",
+    "capital": "Koweït",
+    "country_demonym": "Koweïtien",
     "total_area": 17818,
     "population": 4270571,
     "currency_code": "KWD",
-    "currency_name": " Dinar koweïtien",
+    "currency_name": "Dinar koweïtien",
     "currency_symbol": "KD",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "KY",
@@ -1679,15 +1679,15 @@
   {
     "country_code": "LK",
     "country_name": "Sri Lanka",
-    "capital": " Sri Jayewardenepura Kotte",
-    "country_demonym": " Sri Lankais",
+    "capital": "Sri Jayewardenepura Kotte",
+    "country_demonym": "Sri Lankais",
     "total_area": 65610,
     "population": 21413249,
     "currency_code": "LKR",
-    "currency_name": " Roupie de Sri Lanka",
+    "currency_name": "Roupie de Sri Lanka",
     "currency_symbol": "රු",
     "lang_code": "TA",
-    "lang_name": " Tamoul"
+    "lang_name": "Tamoul"
   },
   {
     "country_code": "LR",
@@ -1744,28 +1744,28 @@
   {
     "country_code": "LV",
     "country_name": "Lettonie",
-    "capital": " Riga",
-    "country_demonym": " Lettons",
+    "capital": "Riga",
+    "country_demonym": "Lettons",
     "total_area": 64589,
     "population": 1886198,
     "currency_code": "EUR",
-    "currency_name": " Euro",
+    "currency_name": "Euro",
     "currency_symbol": "€",
     "lang_code": "LV",
-    "lang_name": " Lettons"
+    "lang_name": "Lettons"
   },
   {
     "country_code": "LY",
     "country_name": "Libye",
-    "capital": " Tripoli",
-    "country_demonym": " Libyens",
+    "capital": "Tripoli",
+    "country_demonym": "Libyens",
     "total_area": 1759540,
     "population": 6871292,
     "currency_code": "LYD",
-    "currency_name": " Dinar libyen",
+    "currency_name": "Dinar libyen",
     "currency_symbol": "LD",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "MA",
@@ -1796,15 +1796,15 @@
   {
     "country_code": "MD",
     "country_name": "Moldavie",
-    "capital": " Chisinau",
-    "country_demonym": " Moldaves",
+    "capital": "Chisinau",
+    "country_demonym": "Moldaves",
     "total_area": 33851,
     "population": 4033963,
     "currency_code": "MDL",
-    "currency_name": " Leu moldave",
+    "currency_name": "Leu moldave",
     "currency_symbol": "L",
     "lang_code": "RO",
-    "lang_name": " Roumain"
+    "lang_name": "Roumain"
   },
   {
     "country_code": "ME",
@@ -1861,15 +1861,15 @@
   {
     "country_code": "MK",
     "country_name": "Macédoine du Nord",
-    "capital": " Skopje",
-    "country_demonym": " Macédoniens",
+    "capital": "Skopje",
+    "country_demonym": "Macédoniens",
     "total_area": 25713,
     "population": 2083374,
     "currency_code": "MKD",
-    "currency_name": " Denar macédonien",
+    "currency_name": "Denar macédonien",
     "currency_symbol": "den",
     "lang_code": "MK",
-    "lang_name": " Macédonien"
+    "lang_name": "Macédonien"
   },
   {
     "country_code": "ML",
@@ -1978,15 +1978,15 @@
   {
     "country_code": "MT",
     "country_name": "Malte",
-    "capital": " La Valette",
-    "country_demonym": " Maltais",
+    "capital": "La Valette",
+    "country_demonym": "Maltais",
     "total_area": 316,
     "population": 441543,
     "currency_code": "EUR",
-    "currency_name": " Euro",
+    "currency_name": "Euro",
     "currency_symbol": "€",
     "lang_code": "MT",
-    "lang_name": " Maltais"
+    "lang_name": "Maltais"
   },
   {
     "country_code": "MU",
@@ -2303,15 +2303,15 @@
   {
     "country_code": "PK",
     "country_name": "Pakistan",
-    "capital": " Islamabad",
-    "country_demonym": " Pakistanais",
+    "capital": "Islamabad",
+    "country_demonym": "Pakistanais",
     "total_area": 796095,
     "population": 220892340,
     "currency_code": "PKR",
-    "currency_name": " Roupie pakistanaise",
+    "currency_name": "Roupie pakistanaise",
     "currency_symbol": "₨",
     "lang_code": "UR",
-    "lang_name": " Ourdou"
+    "lang_name": "Ourdou"
   },
   {
     "country_code": "PL",
@@ -2355,15 +2355,15 @@
   {
     "country_code": "PR",
     "country_name": "Porto Rico",
-    "capital": " San Juan",
-    "country_demonym": " Portoricains",
+    "capital": "San Juan",
+    "country_demonym": "Portoricains",
     "total_area": 13790,
     "population": 2860853,
     "currency_code": "USD",
-    "currency_name": " Dollar des États-Unis",
+    "currency_name": "Dollar des États-Unis",
     "currency_symbol": "$",
     "lang_code": "ES",
-    "lang_name": " Espagnol"
+    "lang_name": "Espagnol"
   },
   {
     "country_code": "PS",
@@ -2498,15 +2498,15 @@
   {
     "country_code": "SA",
     "country_name": "Arabie Saoudite",
-    "capital": " Riyad",
-    "country_demonym": " Saoudiens",
+    "capital": "Riyad",
+    "country_demonym": "Saoudiens",
     "total_area": 2149690,
     "population": 34813871,
     "currency_code": "SAR",
-    "currency_name": " Riyal Saoudien",
+    "currency_name": "Riyal Saoudien",
     "currency_symbol": "SR",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "SB",
@@ -2550,15 +2550,15 @@
   {
     "country_code": "SE",
     "country_name": "Suède",
-    "capital": " Stockholm",
-    "country_demonym": " Suédois",
+    "capital": "Stockholm",
+    "country_demonym": "Suédois",
     "total_area": 450295,
     "population": 10099265,
     "currency_code": "SEK",
-    "currency_name": " Couronne suédoise",
+    "currency_name": "Couronne suédoise",
     "currency_symbol": "kr",
     "lang_code": "SV",
-    "lang_name": " Suédois"
+    "lang_name": "Suédois"
   },
   {
     "country_code": "SG",
@@ -2602,15 +2602,15 @@
   {
     "country_code": "SJ",
     "country_name": "Svalbard et Jan Mayen",
-    "capital": " Longyearbyen",
-    "country_demonym": " Slovaques",
+    "capital": "Longyearbyen",
+    "country_demonym": "Slovaques",
     "total_area": 62045,
     "population": 2926,
     "currency_code": "NOK",
-    "currency_name": " Couronne norvégienne",
+    "currency_name": "Couronne norvégienne",
     "currency_symbol": "kr",
     "lang_code": "NO",
-    "lang_name": " Norvégien"
+    "lang_name": "Norvégien"
   },
   {
     "country_code": "SK",
@@ -2628,28 +2628,28 @@
   {
     "country_code": "SL",
     "country_name": "Sierra Leone",
-    "capital": " Freetown",
-    "country_demonym": " Sammarinais",
+    "capital": "Freetown",
+    "country_demonym": "Sammarinais",
     "total_area": 71740,
     "population": 7976983,
     "currency_code": "SLL",
-    "currency_name": " Leone sierra-léonais",
+    "currency_name": "Leone sierra-léonais",
     "currency_symbol": "Le",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "SM",
     "country_name": "Saint-Marin",
-    "capital": " Saint-Marin",
-    "country_demonym": " Sammarinais",
+    "capital": "Saint-Marin",
+    "country_demonym": "Sammarinais",
     "total_area": 61,
     "population": 33931,
     "currency_code": "EUR",
-    "currency_name": " Euro",
+    "currency_name": "Euro",
     "currency_symbol": "€",
     "lang_code": "IT",
-    "lang_name": " Italien"
+    "lang_name": "Italien"
   },
   {
     "country_code": "SN",
@@ -2667,15 +2667,15 @@
   {
     "country_code": "SO",
     "country_name": "Somalie",
-    "capital": " Mogadiscio",
-    "country_demonym": " Somalilanders",
+    "capital": "Mogadiscio",
+    "country_demonym": "Somalilanders",
     "total_area": 637657,
     "population": 15893222,
     "currency_code": "SOS",
-    "currency_name": " Shilling somalien",
+    "currency_name": "Shilling somalien",
     "currency_symbol": "Sh.So.",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "SR",
@@ -2693,15 +2693,15 @@
   {
     "country_code": "SS",
     "country_name": "Soudan du Sud",
-    "capital": " Juba",
-    "country_demonym": " Soudan du Sud",
+    "capital": "Juba",
+    "country_demonym": "Soudan du Sud",
     "total_area": 644329,
     "population": 11193725,
     "currency_code": "SSP",
-    "currency_name": " Livre sud-soudanaise",
+    "currency_name": "Livre sud-soudanaise",
     "currency_symbol": "SD",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "ST",
@@ -2745,15 +2745,15 @@
   {
     "country_code": "SY",
     "country_name": "Syrie",
-    "capital": " Damas",
-    "country_demonym": " Syriens",
+    "capital": "Damas",
+    "country_demonym": "Syriens",
     "total_area": 185180,
     "population": 17500658,
     "currency_code": "SYP",
-    "currency_name": " Livre syrienne",
+    "currency_name": "Livre syrienne",
     "currency_symbol": "LS",
     "lang_code": "AR",
-    "lang_name": " Arabe"
+    "lang_name": "Arabe"
   },
   {
     "country_code": "SZ",
@@ -2836,15 +2836,15 @@
   {
     "country_code": "TJ",
     "country_name": "Tadjikistan",
-    "capital": " Douchanbé",
-    "country_demonym": " Tadjikistanais",
+    "capital": "Douchanbé",
+    "country_demonym": "Tadjikistanais",
     "total_area": 143100,
     "population": 9537645,
     "currency_code": "TJS",
-    "currency_name": " Somoni tadjik",
+    "currency_name": "Somoni tadjik",
     "currency_symbol": "ЅM",
     "lang_code": "FA",
-    "lang_name": " persan"
+    "lang_name": "persan"
   },
   {
     "country_code": "TK",
@@ -2862,15 +2862,15 @@
   {
     "country_code": "TL",
     "country_name": "Timor-Leste",
-    "capital": " Dili",
-    "country_demonym": " Timorais",
+    "capital": "Dili",
+    "country_demonym": "Timorais",
     "total_area": 14874,
     "population": 1318445,
     "currency_code": "NZD",
-    "currency_name": " Dollar néo-zélandais",
+    "currency_name": "Dollar néo-zélandais",
     "currency_symbol": "$",
     "lang_code": "PT",
-    "lang_name": " Portugais"
+    "lang_name": "Portugais"
   },
   {
     "country_code": "TM",
@@ -2927,28 +2927,28 @@
   {
     "country_code": "TT",
     "country_name": "Trinité-et-Tobago",
-    "capital": " Port d'Espagne",
-    "country_demonym": " Trinidadiens ou Tobagoniens",
+    "capital": "Port d'Espagne",
+    "country_demonym": "Trinidadiens ou Tobagoniens",
     "total_area": 5128,
     "population": 1399488,
     "currency_code": "TTD",
     "currency_name": "Dollar de Trinidad/tobago",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "TV",
     "country_name": "Tuvalu",
-    "capital": " Funafuti",
-    "country_demonym": " Tuvaluans",
+    "capital": "Funafuti",
+    "country_demonym": "Tuvaluans",
     "total_area": 26,
     "population": 11792,
     "currency_code": "AUD",
-    "currency_name": " Dollar australien",
+    "currency_name": "Dollar australien",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais tuvaluan"
+    "lang_name": "Anglais tuvaluan"
   },
   {
     "country_code": "TW",
@@ -2992,15 +2992,15 @@
   {
     "country_code": "UG",
     "country_name": "Ouganda",
-    "capital": " Kampala",
-    "country_demonym": " Ougandais",
+    "capital": "Kampala",
+    "country_demonym": "Ougandais",
     "total_area": 241038,
     "population": 45741007,
     "currency_code": "UGX",
-    "currency_name": " Shilling ougandais",
+    "currency_name": "Shilling ougandais",
     "currency_symbol": "USh",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "UM",
@@ -3057,15 +3057,15 @@
   {
     "country_code": "VA",
     "country_name": "Cité du Vatican",
-    "capital": " Cité du Vatican",
-    "country_demonym": " Citoyens du Vatican",
+    "capital": "Cité du Vatican",
+    "country_demonym": "Citoyens du Vatican",
     "total_area": 0.44,
     "population": 801,
     "currency_code": "EUR",
-    "currency_name": " Euro",
+    "currency_name": "Euro",
     "currency_symbol": "€",
     "lang_code": "EN",
-    "lang_name": " Latin"
+    "lang_name": "Latin"
   },
   {
     "country_code": "VC",
@@ -3114,10 +3114,10 @@
     "total_area": 1910,
     "population": 104425,
     "currency_code": "USD",
-    "currency_name": " Dollar des États-Unis",
+    "currency_name": "Dollar des États-Unis",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "VN",
@@ -3148,28 +3148,28 @@
   {
     "country_code": "WF",
     "country_name": "Wallis et Futuna",
-    "capital": " Mata'utu",
-    "country_demonym": " Wallisiens ou Futunans",
+    "capital": "Mata'utu",
+    "country_demonym": "Wallisiens ou Futunans",
     "total_area": 142,
     "population": 11239,
     "currency_code": "XPF",
-    "currency_name": " Franc Cfp",
+    "currency_name": "Franc Cfp",
     "currency_symbol": "₣",
     "lang_code": "FR",
-    "lang_name": " Français"
+    "lang_name": "Français"
   },
   {
     "country_code": "WS",
     "country_name": "Samoa",
-    "capital": " Apia",
-    "country_demonym": " Samoans",
+    "capital": "Apia",
+    "country_demonym": "Samoans",
     "total_area": 2831,
     "population": 198414,
     "currency_code": "WST",
-    "currency_name": " Tala samoan",
+    "currency_name": "Tala samoan",
     "currency_symbol": "WS$",
     "lang_code": "EN",
-    "lang_name": " Anglais"
+    "lang_name": "Anglais"
   },
   {
     "country_code": "YE",
@@ -3200,15 +3200,15 @@
   {
     "country_code": "ZA",
     "country_name": "Afrique du Sud",
-    "capital": " Le Cap",
-    "country_demonym": " Sud-Africains",
+    "capital": "Le Cap",
+    "country_demonym": "Sud-Africains",
     "total_area": 1219090,
     "population": 59308690,
     "currency_code": "ZAR",
-    "currency_name": " Rand sud-africain",
+    "currency_name": "Rand sud-africain",
     "currency_symbol": "R",
     "lang_code": "AF",
-    "lang_name": " Afrikaans"
+    "lang_name": "Afrikaans"
   },
   {
     "country_code": "ZM",

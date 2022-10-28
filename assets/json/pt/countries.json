@@ -80,15 +80,15 @@
   {
     "country_code": "AM",
     "country_name": "Armênia",
-    "capital": " Yerevan",
-    "country_demonym": " Armênios",
+    "capital": "Yerevan",
+    "country_demonym": "Armênios",
     "total_area": 29743,
     "population": 2963243,
     "currency_code": "AMD",
-    "currency_name": " Dram armênio",
+    "currency_name": "Dram armênio",
     "currency_symbol": "֏",
     "lang_code": "HY",
-    "lang_name": " Armênio"
+    "lang_name": "Armênio"
   },
   {
     "country_code": "AO",
@@ -457,15 +457,15 @@
   {
     "country_code": "BY",
     "country_name": "Bielorrússia",
-    "capital": " Minsk",
-    "country_demonym": " Bielorrussos",
+    "capital": "Minsk",
+    "country_demonym": "Bielorrussos",
     "total_area": 207600,
     "population": 9449323,
     "currency_code": "BYR",
-    "currency_name": " Rublo bielorrusso",
+    "currency_name": "Rublo bielorrusso",
     "currency_symbol": "Br",
     "lang_code": "BE",
-    "lang_name": " Bielorrusso"
+    "lang_name": "Bielorrusso"
   },
   {
     "country_code": "BZ",
@@ -795,15 +795,15 @@
   {
     "country_code": "DZ",
     "country_name": "Argélia",
-    "capital": " Argel",
-    "country_demonym": " Argelinos",
+    "capital": "Argel",
+    "country_demonym": "Argelinos",
     "total_area": 2381741,
     "population": 43851044,
     "currency_code": "DZD",
-    "currency_name": " Dinar argelino",
+    "currency_name": "Dinar argelino",
     "currency_symbol": "DA",
     "lang_code": "AR",
-    "lang_name": " Árabe"
+    "lang_name": "Árabe"
   },
   {
     "country_code": "EC",
@@ -834,15 +834,15 @@
   {
     "country_code": "EG",
     "country_name": "Egito",
-    "capital": " Cairo",
-    "country_demonym": " Egípcios",
+    "capital": "Cairo",
+    "country_demonym": "Egípcios",
     "total_area": 1001450,
     "population": 102334404,
     "currency_code": "EGP",
-    "currency_name": " Libra Egípcia",
+    "currency_name": "Libra Egípcia",
     "currency_symbol": "E£",
     "lang_code": "AR",
-    "lang_name": " Árabe"
+    "lang_name": "Árabe"
   },
   {
     "country_code": "EH",
@@ -886,15 +886,15 @@
   {
     "country_code": "ET",
     "country_name": "Etiópia",
-    "capital": " Adis Abeba",
-    "country_demonym": " Etíopes",
+    "capital": "Adis Abeba",
+    "country_demonym": "Etíopes",
     "total_area": 1104300,
     "population": 114963588,
     "currency_code": "ETB",
-    "currency_name": " Birr etíope",
+    "currency_name": "Birr etíope",
     "currency_symbol": "Br",
     "lang_code": "AM",
-    "lang_name": " Amárico"
+    "lang_name": "Amárico"
   },
   {
     "country_code": "FI",
@@ -1255,7 +1255,7 @@
     "total_area": 112090,
     "population": 9904607,
     "currency_code": "HNL",
-    "currency_name": " Lempira hondurenha",
+    "currency_name": "Lempira hondurenha",
     "currency_symbol": "L",
     "lang_code": "ES",
     "lang_name": "Espanhol"
@@ -1380,15 +1380,15 @@
   {
     "country_code": "IQ",
     "country_name": "Iraque",
-    "capital": " Bagdá",
-    "country_demonym": " Iraquianos",
+    "capital": "Bagdá",
+    "country_demonym": "Iraquianos",
     "total_area": 438317,
     "population": 40222493,
     "currency_code": "IQD",
-    "currency_name": " Dinar Iraquiano",
+    "currency_name": "Dinar Iraquiano",
     "currency_symbol": "د.ع",
     "lang_code": "AR",
-    "lang_name": " Árabe"
+    "lang_name": "Árabe"
   },
   {
     "country_code": "IR",
@@ -1562,15 +1562,15 @@
   {
     "country_code": "KP",
     "country_name": "Coreia do Norte",
-    "capital": " Pyongyang",
-    "country_demonym": " Coreanos",
+    "capital": "Pyongyang",
+    "country_demonym": "Coreanos",
     "total_area": 120538,
     "population": 25778816,
     "currency_code": "KPW",
-    "currency_name": " Won norte-coreano",
+    "currency_name": "Won norte-coreano",
     "currency_symbol": "₩",
     "lang_code": "KO",
-    "lang_name": " Coreano"
+    "lang_name": "Coreano"
   },
   {
     "country_code": "KR",
@@ -2004,15 +2004,15 @@
   {
     "country_code": "MV",
     "country_name": "Maldivas",
-    "capital": " Masculino",
-    "country_demonym": " Maldivas",
+    "capital": "Masculino",
+    "country_demonym": "Maldivas",
     "total_area": 298,
     "population": 540544,
     "currency_code": "MVR",
-    "currency_name": " Maldivas Rufiyaa",
+    "currency_name": "Maldivas Rufiyaa",
     "currency_symbol": "Rf",
     "lang_code": "DV",
-    "lang_name": " Maldivas"
+    "lang_name": "Maldivas"
   },
   {
     "country_code": "MW",
@@ -2212,15 +2212,15 @@
   {
     "country_code": "NZ",
     "country_name": "Nova Zelândia",
-    "capital": " Wellington",
-    "country_demonym": " Neozelandeses",
+    "capital": "Wellington",
+    "country_demonym": "Neozelandeses",
     "total_area": 267710,
     "population": 4822233,
     "currency_code": "NZD",
-    "currency_name": " Dólar neozelandês",
+    "currency_name": "Dólar neozelandês",
     "currency_symbol": "$",
     "lang_code": "EN",
-    "lang_name": " Inglês"
+    "lang_name": "Inglês"
   },
   {
     "country_code": "OM",
@@ -2316,15 +2316,15 @@
   {
     "country_code": "PL",
     "country_name": "Polónia",
-    "capital": " Varsóvia",
-    "country_demonym": " Poloneses",
+    "capital": "Varsóvia",
+    "country_demonym": "Poloneses",
     "total_area": 312685,
     "population": 37846611,
     "currency_code": "PLN",
-    "currency_name": " Zloty polonês",
+    "currency_name": "Zloty polonês",
     "currency_symbol": "zł",
     "lang_code": "PL",
-    "lang_name": " Polonês"
+    "lang_name": "Polonês"
   },
   {
     "country_code": "PM",
@@ -2537,15 +2537,15 @@
   {
     "country_code": "SD",
     "country_name": "Sudão",
-    "capital": " Cartum",
-    "country_demonym": " Sudão",
+    "capital": "Cartum",
+    "country_demonym": "Sudão",
     "total_area": 1861484,
     "population": 43849260,
     "currency_code": "SDG",
-    "currency_name": " Libra Sudanesa",
+    "currency_name": "Libra Sudanesa",
     "currency_symbol": "SD",
     "lang_code": "AR",
-    "lang_name": " Árabe"
+    "lang_name": "Árabe"
   },
   {
     "country_code": "SE",
@@ -2615,15 +2615,15 @@
   {
     "country_code": "SK",
     "country_name": "Eslováquia",
-    "capital": " Bratislava",
-    "country_demonym": " Serra Leoa",
+    "capital": "Bratislava",
+    "country_demonym": "Serra Leoa",
     "total_area": 49035,
     "population": 5459642,
     "currency_code": "EUR",
-    "currency_name": " Euro",
+    "currency_name": "Euro",
     "currency_symbol": "€",
     "lang_code": "SK",
-    "lang_name": " Eslovaco"
+    "lang_name": "Eslovaco"
   },
   {
     "country_code": "SL",

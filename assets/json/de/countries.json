@@ -1250,15 +1250,15 @@
   {
     "country_code": "HN",
     "country_name": "Honduras",
-    "capital": " Tegucigalpa",
-    "country_demonym": " Honduraner",
+    "capital": "Tegucigalpa",
+    "country_demonym": "Honduraner",
     "total_area": 112090,
     "population": 9904607,
     "currency_code": "HNL",
-    "currency_name": " honduranische Lempira",
+    "currency_name": "honduranische Lempira",
     "currency_symbol": "L",
     "lang_code": "ES",
-    "lang_name": " Spanisch"
+    "lang_name": "Spanisch"
   },
   {
     "country_code": "HR",
@@ -2017,15 +2017,15 @@
   {
     "country_code": "MW",
     "country_name": "Malawi",
-    "capital": " Lilongwe",
-    "country_demonym": " Malawier",
+    "capital": "Lilongwe",
+    "country_demonym": "Malawier",
     "total_area": 118484,
     "population": 19129952,
     "currency_code": "MWK",
-    "currency_name": " Malawiischer Kwacha",
+    "currency_name": "Malawiischer Kwacha",
     "currency_symbol": "K",
     "lang_code": "EN",
-    "lang_name": " Englisch"
+    "lang_name": "Englisch"
   },
   {
     "country_code": "MX",
@@ -3109,8 +3109,8 @@
   {
     "country_code": "VI",
     "country_name": "Jungferninseln",
-    "capital": " Charlotte Amalie",
-    "country_demonym": " USA Einwohner der Jungferninseln",
+    "capital": "Charlotte Amalie",
+    "country_demonym": "USA Einwohner der Jungferninseln",
     "total_area": 1910,
     "population": 104425,
     "currency_code": "USD",

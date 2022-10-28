@@ -644,7 +644,7 @@
     "total_area": 51100,
     "population": 5094118,
     "currency_code": "CRC",
-    "currency_name": "Costa-ricanischer Doppelpunkt",
+    "currency_name": "Costa-ricanischer Kolon",
     "currency_symbol": "₡",
     "lang_code": "ES",
     "lang_name": "Spanisch"
@@ -657,7 +657,7 @@
     "total_area": 110860,
     "population": 11326616,
     "currency_code": "CUC",
-    "currency_name": "kubanischer konvertierbarer Peso",
+    "currency_name": "Kubanischer Peso",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Spanisch"
@@ -1333,7 +1333,7 @@
     "total_area": 20770,
     "population": 8655535,
     "currency_code": "ILS",
-    "currency_name": "Israelischer Neuer Schekel",
+    "currency_name": "Neuer israelischer Schekel",
     "currency_symbol": "₪",
     "lang_code": "HE",
     "lang_name": "Hebräisch"

@@ -41,6 +41,7 @@ class _GuessPageState extends State<GuessPage> {
   late LevelModel country;
   late List<List<String>> correctLettersList;
   late List<List<String>> lettersListAnswer;
+  late List<List<String>> wrongLettersList;
   late List<String> allLetters;
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
@@ -145,6 +146,7 @@ class _GuessPageState extends State<GuessPage> {
       if (country.bombUsed!) {
         useBombStart();
       }
+      wrongLettersList = getLettersListEmpty(country.country!);
     });
   }
 
@@ -165,13 +167,29 @@ class _GuessPageState extends State<GuessPage> {
       }
       if (done) {
         done = false;
-        shakeTile = true;
-        Get.find<SoundController>().wrongSound();
-        Duration(milliseconds: 500).delay(() {
-          setState(() {
-            shakeTile = false;
+        List<List<String>> wrongLetters = wrongLettersInAnswer(
+            lettersListAnswer, correctLettersList, country.country!);
+        print(
+            'Is it 70 %? ${(country.country!.length * 0.3).ceil()} of ${amountOfWrongLetters(wrongLetters)}');
+        print(wrongLetters);
+        if ((country.country!.length * 0.3).ceil() >=
+            amountOfWrongLetters(wrongLetters)) {
+          wrongLettersList = wrongLetters;
+          const Duration(milliseconds: 500).delay(() {
+            setState(() {
+              wrongLettersList = getLettersListEmpty(country.country!);
+            });
           });
-        });
+          print('SHOW HINT');
+        } else {
+          shakeTile = true;
+          Get.find<SoundController>().wrongSound();
+          const Duration(milliseconds: 500).delay(() {
+            setState(() {
+              shakeTile = false;
+            });
+          });
+        }
       }
     }
   }
@@ -334,6 +352,38 @@ class _GuessPageState extends State<GuessPage> {
       return true;
     }
     return false;
+  }
+
+  List<List<String>> wrongLettersInAnswer(List<List<String>> checkerList,
+      List<List<String>> answerList, String country) {
+    List<List<String>> wrongLetters = getLettersListEmpty(country);
+
+    for (int i = 0; i < answerList.length; i++) {
+      for (int j = 0; j < answerList[i].length; j++) {
+        if (checkerList[i][j] != answerList[i][j]) {
+          wrongLetters[i][j] = checkerList[i][j];
+        }
+      }
+    }
+    return wrongLetters;
+  }
+
+  int amountOfWrongLetters(List<List<String>> wrongLetterList) {
+    int result = 0;
+    for (var words in wrongLetterList) {
+      for (int i = 0; i < words.length; i++) {
+        if (words[i] == '' ||
+            words[i] == String.fromCharCode(8626) ||
+            words[i] == '-' ||
+            words[i] == '/') {
+          print('Empty');
+        } else {
+          print('Letter is -${words[i]}-');
+          result++;
+        }
+      }
+    }
+    return result;
   }
 
   void putLetterInBox(String letter, int index) {
@@ -960,9 +1010,21 @@ class _GuessPageState extends State<GuessPage> {
                     width: Dimensions.screenWidth / 10,
                   )
                 : ShakeAnimatedWidget(
-                    enabled: shakeTile,
+                    enabled:
+                        answer[index] == wrongLettersList[wordIndex][index] &&
+                                answer[index] != '/' &&
+                                answer[index] != '-' &&
+                                answer[index] != String.fromCharCode(8626)
+                            ? true
+                            : shakeTile,
                     duration: Duration(milliseconds: 500),
-                    shakeAngle: Rotation.deg(z: 40),
+                    shakeAngle:
+                        answer[index] == wrongLettersList[wordIndex][index] &&
+                                answer[index] != '/' &&
+                                answer[index] != '-' &&
+                                answer[index] != String.fromCharCode(8626)
+                            ? Rotation.deg(x: 80)
+                            : Rotation.deg(z: 40),
                     curve: Curves.linear,
                     child: GestureDetector(
                       onTap: () {

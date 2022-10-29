@@ -216,7 +216,7 @@ class _ShopPageState extends State<ShopPage> {
                                     ?.priceString ??
                                 '#',
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: Dimensions.height20,
                       ),
                       MenuButton(
@@ -247,7 +247,7 @@ class _ShopPageState extends State<ShopPage> {
                                     ?.priceString ??
                                 '0.00 \$'
                             : 'un',
-                      ),
+                      ),*/
                       /*SizedBox(
                         height: Dimensions.height20,
                       ),

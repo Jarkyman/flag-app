@@ -169,9 +169,6 @@ class _GuessPageState extends State<GuessPage> {
         done = false;
         List<List<String>> wrongLetters = wrongLettersInAnswer(
             lettersListAnswer, correctLettersList, country.country!);
-        print(
-            'Is it 70 %? ${(country.country!.length * 0.3).ceil()} of ${amountOfWrongLetters(wrongLetters)}');
-        print(wrongLetters);
         if ((country.country!.length * 0.3).ceil() >=
             amountOfWrongLetters(wrongLetters)) {
           wrongLettersList = wrongLetters;
@@ -180,7 +177,6 @@ class _GuessPageState extends State<GuessPage> {
               wrongLettersList = getLettersListEmpty(country.country!);
             });
           });
-          print('SHOW HINT');
         } else {
           shakeTile = true;
           Get.find<SoundController>().wrongSound();
@@ -372,13 +368,10 @@ class _GuessPageState extends State<GuessPage> {
     int result = 0;
     for (var words in wrongLetterList) {
       for (int i = 0; i < words.length; i++) {
-        if (words[i] == '' ||
-            words[i] == String.fromCharCode(8626) ||
-            words[i] == '-' ||
-            words[i] == '/') {
-          print('Empty');
-        } else {
-          print('Letter is -${words[i]}-');
+        if (words[i] != '' &&
+            words[i] != String.fromCharCode(8626) &&
+            words[i] != '-' &&
+            words[i] != '/') {
           result++;
         }
       }

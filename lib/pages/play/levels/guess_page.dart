@@ -860,7 +860,10 @@ class _GuessPageState extends State<GuessPage> {
                       ),
                       InfoColumn(
                         header: 'Country'.tr,
-                        info: firstLetterUpperCase(country.countryName!),
+                        info: country.countryName!.toLowerCase() ==
+                                'Côte dIvoire'.toLowerCase()
+                            ? 'Côte d\'Ivoire'
+                            : firstLetterUpperCase(country.countryName!),
                       ),
                       InfoColumn(
                         header: 'Capital'.tr,

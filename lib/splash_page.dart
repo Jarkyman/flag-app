@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
@@ -9,7 +10,6 @@ import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -31,6 +31,9 @@ class _SplashPageState extends State<SplashScreen>
   late AnimationController controller;
 
   Future<void> _loadResource() async {
+    print('loaded settings');
+    await Get.find<SettingsController>().languageSettingRead();
+    print('loaded settings');
     print('loading countries');
     await Get.find<CountryController>().readCountries(Get.locale!);
     print('loaded countries');
@@ -46,13 +49,10 @@ class _SplashPageState extends State<SplashScreen>
     print('loading levels');
     await Get.find<LevelController>().readLevels();
     Get.find<LevelController>().initUnlockedLevels();
-    print('loaded countries');
+    print('loaded levels');
     print('loading sound');
-    await Get.find<SoundController>().init();
+    Get.find<SoundController>().init();
     print('loaded sound');
-    print('loaded settings');
-    await Get.find<SettingsController>().languageSettingRead();
-    print('loaded settings');
     print('loading shop');
     await Get.find<ShopController>().loadShopSettings();
     print('loaded shop');
@@ -71,6 +71,7 @@ class _SplashPageState extends State<SplashScreen>
         'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCountryLevels}');
     print(
         'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCOCLevels}');
+    print('Flutter phone locale = ${Platform.localeName}');
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {
@@ -82,7 +83,6 @@ class _SplashPageState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    //TODO: ADD timer to match end of load
     _loadResource();
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 3))

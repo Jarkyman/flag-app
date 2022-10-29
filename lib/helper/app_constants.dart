@@ -15,6 +15,7 @@ class AppConstants {
   // Settings
   static const String LANGUAGE = 'language';
   static const String SOUND = 'sound';
+  static const String FIRST_LAUNCH = 'first-launch';
 
   // Hints
   static const String HINTS = 'hints';
@@ -32,7 +33,7 @@ class AppConstants {
   static const String HUNDRED_HINTS = 'flags_100_hints_17';
   static const String FIVEHUNDRED_HINTS = 'flags_500_hints_79';
 
-  // Full list
+  // Lists
   static const List<String> FULL_FLAG_LIST = ['ni', 'py', 'sv'];
   static const List<String> FULL_COC_LIST = [
     'au',
@@ -324,5 +325,16 @@ class AppConstants {
     'YE',
     'ZM',
     'ZW'
+  ];
+  static const List<String> LOCALE_LIST = [
+    'pt_BR',
+    'da_DK',
+    'de_DE',
+    'en_US',
+    'es_ES',
+    'fr_FR',
+    'nb_NO',
+    'pt_PT',
+    'sv_SE'
   ];
 }

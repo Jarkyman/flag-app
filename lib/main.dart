@@ -1,6 +1,5 @@
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/locale_handler.dart';
-import 'package:flag_app/pages/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

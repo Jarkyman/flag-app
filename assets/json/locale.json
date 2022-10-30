@@ -49,7 +49,15 @@
       "Currency": "Currency",
       "Choose Your Language": "Choose Your Language",
       "Level unlocked": "Level unlocked",
-      "is unlocked": "is unlocked."
+      "is unlocked": "is unlocked.",
+      "_review": "review",
+      "Review": "Review",
+      "Review app": "Review app",
+      "Rate Flags game": "Rate Flags game",
+      "RateMsg": "If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn't take you more than one minute.",
+      "RATE": "RATE",
+      "NO THANKS": "NO",
+      "MAYBE LATER": "LATER"
     }
   },
   {
@@ -102,7 +110,15 @@
       "Currency": "Währung",
       "Choose Your Language": "Wähle deine Sprache",
       "Level unlocked": "Niveau freigeschaltet",
-      "is unlocked": "ist entsperrt."
+      "is unlocked": "ist entsperrt.",
+      "_review": "review",
+      "Review": "Rezension",
+      "Review app": "Bewertungs-App",
+      "Rate Flags game": "Bewerte Flags game",
+      "RateMsg": "Wenn Ihnen diese App gefällt, nehmen Sie sich bitte ein wenig Zeit, um sie zu bewerten! \nEs hilft uns wirklich und es sollte nicht länger als eine Minute dauern.",
+      "RATE": "BEWERTUNG",
+      "NO THANKS": "NEIN",
+      "MAYBE LATER": "SPÄTER"
     }
   },
   {
@@ -155,7 +171,15 @@
       "Currency": "Valuta",
       "Choose Your Language": "Vælg dit sprog",
       "Level unlocked": "Niveau låst op",
-      "is unlocked": "er låst op."
+      "is unlocked": "er låst op.",
+      "_review": "review",
+      "Review": "Bedøm",
+      "Review app": "Bedøm app",
+      "Rate Flags game": "Bedøm Flags game",
+      "RateMsg": "Hvis du kan lide denne app, kan du bruge lidt tid på at gennemgå den! \nDet hjælper os virkelig, og det bør ikke tage dig mere end et minut.",
+      "RATE": "BEDØM",
+      "NO THANKS": "NEJ",
+      "MAYBE LATER": "SENERE"
     }
   },
   {
@@ -208,7 +232,15 @@
       "Currency": "Valuta",
       "Choose Your Language": "Välj ditt språk",
       "Level unlocked": "Nivån är upplåst",
-      "is unlocked": "är upplåst."
+      "is unlocked": "är upplåst.",
+      "_review": "review",
+      "Review": "Betygsätta",
+      "Review app": "Betygsätta app",
+      "Rate Flags game": "Betygsätta Flags game",
+      "RateMsg": "Om du gillar den här appen, vänligen ta lite av din tid att granska den!\nDet hjälper oss verkligen och det borde inte ta dig mer än en minut.",
+      "RATE": "BETYGSÄTTA",
+      "NO THANKS": "NEJ",
+      "MAYBE LATER": "SENARE"
     }
   },
   {
@@ -261,7 +293,15 @@
       "Currency": "Valuta",
       "Choose Your Language": "Velg ditt språk",
       "Level unlocked": "Nivået er låst opp",
-      "is unlocked": "er låst opp."
+      "is unlocked": "er låst opp.",
+      "_review": "review",
+      "Review": "Vurdere",
+      "Review app": "Vurdere app",
+      "Rate Flags game": "Vurdere Flags game",
+      "RateMsg": "Hvis du liker denne appen, vennligst ta litt tid til å vurdere den!\nDet hjelper oss virkelig, og det bør ikke ta deg mer enn ett minutt.",
+      "RATE": "VURDERE",
+      "NO THANKS": "NEI",
+      "MAYBE LATER": "SENERE"
     }
   },
   {
@@ -314,11 +354,19 @@
       "Currency": "Valuta",
       "Choose Your Language": "Elige tu idioma",
       "Level unlocked": "El nivel está desbloqueado",
-      "is unlocked": "está desbloqueado."
+      "is unlocked": "está desbloqueado.",
+      "_review": "review",
+      "Review": "Valora",
+      "Review app": "Valora app",
+      "Rate Flags game": "Valora Flags game",
+      "RateMsg": "Si te gusta esta aplicación, ¡tómate un poco de tu tiempo para revisarla!\nRealmente nos ayuda y no debería llevarle más de un minuto.",
+      "RATE": "VALORA",
+      "NO THANKS": "NO",
+      "MAYBE LATER": "LUEGO"
     }
   },
   {
-    "language": "nFrançais",
+    "language": "Français",
     "country_code": "fr_FR",
     "texts": {
       "_HomePage": "Home Page",
@@ -367,7 +415,15 @@
       "Currency": "Devise",
       "Choose Your Language": "Choisissez votre langue",
       "Level unlocked": "Le niveau est débloqué",
-      "is unlocked": "est débloqué."
+      "is unlocked": "est débloqué.",
+      "_review": "review",
+      "Review": "Évaluer",
+      "Review app": "Évaluer app",
+      "Rate Flags game": "Évaluer Flags game",
+      "RateMsg": "Si vous aimez cette application, veuillez prendre un peu de votre temps pour la revoir !\nCela nous aide vraiment et cela ne devrait pas vous prendre plus d'une minute.",
+      "RATE": "ÉVALUER",
+      "NO THANKS": "NON",
+      "MAYBE LATER": "PLUS TARD"
     }
   },
   {
@@ -420,7 +476,15 @@
       "Currency": "Divisa",
       "Choose Your Language": "Escolha seu idioma",
       "Level unlocked": "Nível é desbloqueado",
-      "is unlocked": "está desbloqueado."
+      "is unlocked": "está desbloqueado.",
+      "_review": "review",
+      "Review": "Avalie",
+      "Review app": "Avalie app",
+      "Rate Flags game": "Avalie Flags game",
+      "RateMsg": "Se você gosta deste aplicativo, por favor, tome um pouco do seu tempo para analisá-lo!\nIsso realmente nos ajuda e não deve levar mais de um minuto.",
+      "RATE": "AVALIE",
+      "NO THANKS": "NÃO",
+      "MAYBE LATER": "DEPOIS"
     }
   },
   {
@@ -473,7 +537,15 @@
       "Currency": "Divisa",
       "Choose Your Language": "Escolha seu idioma",
       "Level unlocked": "Nível é desbloqueado",
-      "is unlocked": "está desbloqueado."
+      "is unlocked": "está desbloqueado.",
+      "_review": "review",
+      "Review": "Avalie",
+      "Review app": "Avalie app",
+      "Rate Flags game": "Avalie Flags game",
+      "RateMsg": "Se você gosta deste aplicativo, por favor, tome um pouco do seu tempo para analisá-lo!\nIsso realmente nos ajuda e não deve levar mais de um minuto.",
+      "RATE": "AVALIE",
+      "NO THANKS": "NÃO",
+      "MAYBE LATER": "DEPOIS"
     }
   }
 ]

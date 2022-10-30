@@ -1,28 +1,29 @@
 import 'dart:io';
 
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
 class ReviewController {
   static final RateMyApp rateMyApp = RateMyApp(
-    minDays: 7,
-    minLaunches: 15,
-    remindDays: 7,
-    remindLaunches: 10,
-    googlePlayIdentifier: 'com.hartvig_develop.flags',
-    appStoreIdentifier: '6443707640',
+    minDays: 0, //7,
+    minLaunches: 1, //15,
+    remindDays: 0, //7,
+    remindLaunches: 1, //10,
+    googlePlayIdentifier: AppConstants.ANDROID_ID,
+    appStoreIdentifier: AppConstants.IOS_ID,
   );
 
   static void checkReviewPopup(BuildContext context) {
     if (rateMyApp.shouldOpenDialog) {
       rateMyApp.showRateDialog(
         context,
-        title: 'Rate Flags game',
-        message:
-            'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.',
-        rateButton: 'RATE',
-        noButton: 'NO THANKS',
-        laterButton: 'MAYBE LATER',
+        title: 'Rate Flags game'.tr,
+        message: 'RateMsg'.tr,
+        rateButton: 'RATE'.tr,
+        noButton: 'NO THANKS'.tr,
+        laterButton: 'MAYBE LATER'.tr,
         listener: (button) {
           // The button click listener (useful if you want to cancel the click event).
           switch (button) {

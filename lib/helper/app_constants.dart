@@ -1,6 +1,8 @@
 class AppConstants {
   static const String APP_NAME = 'Flags';
   static const int APP_VERSION = 1;
+  static const String IOS_ID = '6443707640';
+  static const String ANDROID_ID = 'com.hartvig_develop.flags';
 
   // High score
   static const String FLAG_SCORE = 'flag-score';

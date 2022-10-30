@@ -48,6 +48,21 @@
       "productID" : "flags_60_hints_35",
       "referenceName" : "60 hints",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "5.99",
+      "familyShareable" : false,
+      "internalID" : "9F6582EB",
+      "localizations" : [
+        {
+          "description" : "Remove ads from the app",
+          "displayName" : "Remove ads",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "flags_remove_ads_35",
+      "referenceName" : "Remove ads",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {
@@ -57,7 +72,7 @@
 
   ],
   "version" : {
-    "major" : 1,
-    "minor" : 2
+    "major" : 2,
+    "minor" : 0
   }
 }

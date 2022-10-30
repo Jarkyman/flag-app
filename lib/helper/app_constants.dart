@@ -26,12 +26,11 @@ class AppConstants {
   static const String COC = 'Coat of arms';
 
   //In app ids
-  static const String TEN_HINTS = 'flags_10_hints_9';
-  static const String TWENTYFIVE_HINTS = 'flags_25_hints_17';
-  static const String SIXTY_HINTS = 'flags_60_hints_35';
-  static const String FIFTY_HINTS = 'flags_50_hints_9';
-  static const String HUNDRED_HINTS = 'flags_100_hints_17';
-  static const String FIVEHUNDRED_HINTS = 'flags_500_hints_79';
+  static const String TEN_HINTS_ID = 'flags_10_hints_9';
+  static const String TWENTYFIVE_HINTS_ID = 'flags_25_hints_17';
+  static const String SIXTY_HINTS_ID = 'flags_60_hints_35';
+  static const String REMOVE_ADS_ID = 'flags_remove_ads_35';
+  static const String UNLOCK_LEVELS_ID = 'flags_unlock_levels_35';
 
   // Lists
   static const List<String> FULL_FLAG_LIST = ['ni', 'py', 'sv'];

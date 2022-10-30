@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -21,11 +20,11 @@ class ShopController extends GetxController implements GetxService {
   bool get isAdsRemoved => _adsRemoved;
 
   final List<String> _productsIds = [
-    AppConstants.TEN_HINTS,
-    AppConstants.TWENTYFIVE_HINTS,
-    AppConstants.SIXTY_HINTS,
+    AppConstants.TEN_HINTS_ID,
+    AppConstants.TWENTYFIVE_HINTS_ID,
+    AppConstants.SIXTY_HINTS_ID,
+    AppConstants.REMOVE_ADS_ID,
     //'flags_unlock_levels',
-    //'flags_remove_ads'
   ];
 
   List<StoreProduct> _products = [];
@@ -40,9 +39,9 @@ class ShopController extends GetxController implements GetxService {
     await initPlatformState();
     levelsUnlockRead();
     removeAdsRead();
-    /*Purchases.addCustomerInfoUpdateListener(
+    Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
-    );*/
+    );
     try {
       _products =
           await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
@@ -72,14 +71,17 @@ class ShopController extends GetxController implements GetxService {
   Future updateCustomerStatus() async {
     final customerInfo = await Purchases.getCustomerInfo();
 
-    /*final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
-    final entitlementAds = customerInfo.entitlements.active['remove_ads'];
+    //final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
+    final entitlementAds =
+        customerInfo.entitlements.active[AppConstants.REMOVE_ADS_ID];
 
-    bool isUnlock = entitlementUnlock != null;
+    print(
+        'entitlementAds = $entitlementAds ######################################');
+    //bool isUnlock = entitlementUnlock != null;
     bool isAdsRemove = entitlementAds != null;
 
-    levelsUnlockSave(isUnlock);
-    removeAdsSave(isAdsRemove);*/
+    //levelsUnlockSave(isUnlock);
+    removeAdsSave(isAdsRemove);
   }
 
   Future<void> levelsUnlockRead() async {

@@ -65,6 +65,7 @@ class _ShopPageState extends State<ShopPage> {
   void _loadRewardedAd() {
     setState(() {
       loadAd = true;
+      isAdLoaded = false;
     });
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,

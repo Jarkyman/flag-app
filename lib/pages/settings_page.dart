@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
@@ -85,6 +86,31 @@ class SettingsPage extends StatelessWidget {
                           padding: EdgeInsets.only(right: Dimensions.width10),
                           child: Icon(
                             Icons.star,
+                            size: 32,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      SettingsButton(
+                        title: 'Share app'.tr,
+                        onTap: () {
+                          Share.share(
+                              'check out this app \nApp Store: https://apps.apple.com/app/flags-game-quiz/id6443707640 \nPlay Store: https://play.google.com/store/apps/details?id=com.hartvig_develop.flags');
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: Dimensions.width10),
+                          child: Icon(
+                            Icons.share,
                             size: 32,
                             color: Colors.white,
                             shadows: [

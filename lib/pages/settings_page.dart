@@ -1,4 +1,3 @@
-import 'package:flag_app/controllers/review_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';

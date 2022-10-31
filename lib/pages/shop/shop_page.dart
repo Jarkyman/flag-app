@@ -82,6 +82,7 @@ class _ShopPageState extends State<ShopPage> {
           );
           setState(() {
             isAdLoaded = true;
+            loadAd = false;
           });
           setState(() {
             _rewardedAd = ad;

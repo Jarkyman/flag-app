@@ -27,8 +27,7 @@ class CreditsButton extends StatelessWidget {
       '\n\nSound Effect from Pixabay (https://pixabay.com/sound-effects)\nCountries are from Djiass map icon (https://github.com/djaiss/mapsicon)';
 
   final String emailAddress = 'hartvig.develop@gmail.com';
-  final Uri webPage =
-      Uri.parse('https://sites.google.com/view/flagsgame/support');
+  final Uri webPage = Uri.parse('http://flagsgame.epizy.com/support');
 
   final Email email = Email(
     body: '\n\n\n'

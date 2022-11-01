@@ -26,10 +26,19 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9894760850635221~8916492214</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms-beta</string>
+		<string>itms</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -49,10 +58,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>itms-beta</string>
-        <string>itms</string>
-    </array>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

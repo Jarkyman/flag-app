@@ -23,9 +23,11 @@ class SoundController extends GetxController implements GetxService {
   Future init() async {
     soundSettingRead();
     pool = Soundpool.fromOptions(
-        options: SoundpoolOptions(
-            iosOptions: SoundpoolOptionsIos(
-                audioSessionCategory: AudioSessionCategory.ambient)));
+      options: const SoundpoolOptions(
+        iosOptions: SoundpoolOptionsIos(
+            audioSessionCategory: AudioSessionCategory.ambient),
+      ),
+    );
     _clickId = await rootBundle
         .load('assets/sound/click.mp3')
         .then((ByteData soundData) {

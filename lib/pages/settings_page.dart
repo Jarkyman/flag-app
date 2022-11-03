@@ -104,7 +104,7 @@ class SettingsPage extends StatelessWidget {
                         title: 'Share app'.tr,
                         onTap: () {
                           Share.share(
-                              'check out this app \nApp Store: https://apps.apple.com/app/flags-game-quiz/id6443707640 \nPlay Store: https://play.google.com/store/apps/details?id=com.hartvig_develop.flags');
+                              'check out this app \nhttp://flagsgame.epizy.com/app');
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),

@@ -192,7 +192,7 @@ class _FlagsPageState extends State<FlagsPage> {
         }
       });
       Duration(milliseconds: 500).delay(() {
-        int randomInt = random.nextInt(3);
+        int randomInt = random.nextInt(10);
         if (_interstitialAd != null && randomInt == 2) {
           _interstitialAd?.show();
         } else {

@@ -655,7 +655,7 @@ class _GuessPageState extends State<GuessPage> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              int randomInt = random.nextInt(4);
+              int randomInt = random.nextInt(10);
               if (_interstitialAd != null && randomInt == 3) {
                 _interstitialAd?.show();
               } else {
@@ -676,8 +676,7 @@ class _GuessPageState extends State<GuessPage> {
         ),
         body: WillPopScope(
           onWillPop: () async {
-            int randomInt = random.nextInt(4);
-            print(randomInt);
+            int randomInt = random.nextInt(10);
             if (_interstitialAd != null && randomInt == 3) {
               _interstitialAd?.show();
             } else {

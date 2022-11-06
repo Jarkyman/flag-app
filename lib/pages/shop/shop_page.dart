@@ -65,6 +65,7 @@ class _ShopPageState extends State<ShopPage> {
   void _loadRewardedAd() {
     setState(() {
       loadAd = true;
+      isAdLoaded = false;
     });
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
@@ -82,6 +83,7 @@ class _ShopPageState extends State<ShopPage> {
           );
           setState(() {
             isAdLoaded = true;
+            loadAd = false;
           });
           setState(() {
             _rewardedAd = ad;
@@ -232,8 +234,8 @@ class _ShopPageState extends State<ShopPage> {
                             }
                           } else {
                             Get.snackbar(
-                              'Levels unlocked',
-                              'You have already removed all levels',
+                              'Levels unlocked'.tr,
+                              'You have already removed all levels'.tr,
                               backgroundColor:
                                   AppColors.correctColor.withOpacity(0.4),
                             );

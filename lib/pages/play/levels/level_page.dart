@@ -29,9 +29,6 @@ class _LevelPageState extends State<LevelPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(Get.locale!);
-    print(Get.find<CountryController>().getCountries[1].currencyName);
-    print(Get.find<LevelController>().getList(Get.arguments[0])![1].country);
     createBannerAd();
   }
 
@@ -98,9 +95,6 @@ class _LevelPageState extends State<LevelPage> {
                         crossAxisSpacing: Dimensions.height20,
                         crossAxisCount: 4,
                         children: List.generate(levels.length, (index) {
-                          print(
-                              '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}');
-                          print(levels[index].country!);
                           String countryCodeImg =
                               '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}';
                           if ((countryCodeImg == 'ni' ||

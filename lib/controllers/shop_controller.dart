@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -43,8 +42,14 @@ class ShopController extends GetxController implements GetxService {
     /*Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
     );*/
-    _products =
-        await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
+    try {
+      _products =
+          await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
+    } catch (e) {
+      print(e);
+      _products = [];
+    }
+
     print(_products);
     update();
   }

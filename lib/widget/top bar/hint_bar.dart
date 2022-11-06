@@ -18,18 +18,24 @@ class HintBar extends StatelessWidget {
   final String hintPriceOne;
   final String hintPriceTwo;
   final String? hintPriceThree;
+  final bool disableOne;
+  final bool disableTwo;
+  final bool disableTree;
 
   const HintBar({
     Key? key,
     required this.tapHintOne,
-    required this.tapHintTwo,
-    this.tapHintThree,
     required this.iconOne,
-    required this.iconTwo,
-    this.iconThree,
     required this.hintPriceOne,
+    this.disableOne = false,
+    required this.tapHintTwo,
+    required this.iconTwo,
     required this.hintPriceTwo,
+    this.disableTwo = false,
+    this.tapHintThree,
+    this.iconThree,
     this.hintPriceThree,
+    this.disableTree = false,
   }) : super(key: key);
 
   @override
@@ -53,6 +59,7 @@ class HintBar extends StatelessWidget {
                     },
                     icon: iconOne,
                     num: hintPriceOne,
+                    disable: disableOne,
                   );
                 }),
                 SizedBox(
@@ -65,6 +72,7 @@ class HintBar extends StatelessWidget {
                     },
                     icon: iconTwo,
                     num: hintPriceTwo,
+                    disable: disableTwo,
                   );
                 }),
                 SizedBox(
@@ -80,6 +88,7 @@ class HintBar extends StatelessWidget {
                       },
                       icon: iconThree!,
                       num: hintPriceThree!,
+                      disable: disableTree,
                     );
                   }),
               ],

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:animated_widgets/widgets/rotation_animated.dart';
@@ -41,6 +40,7 @@ class _GuessPageState extends State<GuessPage> {
   late LevelModel country;
   late List<List<String>> correctLettersList;
   late List<List<String>> lettersListAnswer;
+  late List<List<String>> wrongLettersList;
   late List<String> allLetters;
   final int TILES_PR_ROW = 9;
   bool bombUsed = false;
@@ -121,24 +121,40 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void setInit() {
-    _loadInterstitialAd();
-    levels = Get.find<LevelController>().getList(Get.arguments[0])!;
-    levelList = Get.find<LevelController>()
-        .getLevelList(Get.arguments[1], Get.arguments[0]);
-    country = levelList[Get.arguments[2]];
-    correctLettersList = getCorrectLettersList(country.country!);
-    lettersListAnswer = getLettersListEmpty(country.country!);
-    allLetters =
-        generateRandomLetters(country.country!.toUpperCase().split(''));
-    bombUsed = false;
-    print(jsonEncode(country));
+    setState(() {
+      _loadInterstitialAd();
+      var levelController = Get.find<LevelController>();
+      levels = levelController.getList(Get.arguments[0])!;
+      levelList =
+          levelController.getLevelList(Get.arguments[1], Get.arguments[0]);
+      country = levelList[Get.arguments[2]];
+      correctLettersList = getCorrectLettersList(country.country!);
+      if (country.answerLetters!.isEmpty) {
+        lettersListAnswer = getLettersListEmpty(country.country!);
+      } else {
+        lettersListAnswer = country.answerLetters!;
+      }
+      if (country.allLetters!.isEmpty) {
+        allLetters =
+            generateRandomLetters(country.country!.toUpperCase().split(''));
+        levelController.saveAllLetters(Get.arguments[0], country, allLetters);
+      } else {
+        allLetters = country.allLetters!;
+      }
+      bombUsed = false;
+      if (country.bombUsed!) {
+        useBombStart();
+      }
+      wrongLettersList = getLettersListEmpty(country.country!);
+    });
   }
 
   void checkWin() {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
       Get.find<SoundController>().completeSound();
-      Get.find<LevelController>().guessed(Get.arguments[0], country);
+      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
+      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
     } else {
       bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
@@ -150,13 +166,25 @@ class _GuessPageState extends State<GuessPage> {
       }
       if (done) {
         done = false;
-        shakeTile = true;
-        Get.find<SoundController>().wrongSound();
-        Duration(milliseconds: 500).delay(() {
-          setState(() {
-            shakeTile = false;
+        List<List<String>> wrongLetters = wrongLettersInAnswer(
+            lettersListAnswer, correctLettersList, country.country!);
+        if ((country.country!.length * 0.3).ceil() >=
+            amountOfWrongLetters(wrongLetters)) {
+          wrongLettersList = wrongLetters;
+          const Duration(milliseconds: 500).delay(() {
+            setState(() {
+              wrongLettersList = getLettersListEmpty(country.country!);
+            });
           });
-        });
+        } else {
+          shakeTile = true;
+          Get.find<SoundController>().wrongSound();
+          const Duration(milliseconds: 500).delay(() {
+            setState(() {
+              shakeTile = false;
+            });
+          });
+        }
       }
     }
   }
@@ -240,8 +268,6 @@ class _GuessPageState extends State<GuessPage> {
       }
     }
 
-    print(lettersList);
-
     return lettersList;
   }
 
@@ -323,6 +349,35 @@ class _GuessPageState extends State<GuessPage> {
     return false;
   }
 
+  List<List<String>> wrongLettersInAnswer(List<List<String>> checkerList,
+      List<List<String>> answerList, String country) {
+    List<List<String>> wrongLetters = getLettersListEmpty(country);
+
+    for (int i = 0; i < answerList.length; i++) {
+      for (int j = 0; j < answerList[i].length; j++) {
+        if (checkerList[i][j] != answerList[i][j]) {
+          wrongLetters[i][j] = checkerList[i][j];
+        }
+      }
+    }
+    return wrongLetters;
+  }
+
+  int amountOfWrongLetters(List<List<String>> wrongLetterList) {
+    int result = 0;
+    for (var words in wrongLetterList) {
+      for (int i = 0; i < words.length; i++) {
+        if (words[i] != '' &&
+            words[i] != String.fromCharCode(8626) &&
+            words[i] != '-' &&
+            words[i] != '/') {
+          result++;
+        }
+      }
+    }
+    return result;
+  }
+
   void putLetterInBox(String letter, int index) {
     if (isAnswerFull()) {
     } else {
@@ -347,6 +402,8 @@ class _GuessPageState extends State<GuessPage> {
       });
       checkWin();
     }
+    Get.find<LevelController>()
+        .saveAnswerLetters(Get.arguments[0], country, lettersListAnswer);
   }
 
   void removeLetter(String letter, int index, int wordIndex) {
@@ -388,12 +445,17 @@ class _GuessPageState extends State<GuessPage> {
       String letter = '';
       int index = 0;
       bool isDone = false;
+      List<String> usedLetters = [];
+
+      for (var use in lettersListAnswer) {
+        usedLetters.addAll(use);
+      }
 
       for (int i = 0; i < lettersListAnswer.length; i++) {
         for (int j = 0; j < lettersListAnswer[i].length; j++) {
           if (lettersListAnswer[i][j] == '') {
-            isDone = true;
             letter = correctLettersList[i][j];
+            isDone = true;
             j = lettersListAnswer[i].length;
           } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
             for (int k = 0; k < allLetters.length; k++) {
@@ -412,15 +474,97 @@ class _GuessPageState extends State<GuessPage> {
         }
       }
 
-      for (int i = 0; i < allLetters.length; i++) {
-        if (allLetters[i] == letter) {
-          index = i;
+      if (allLetters.contains(letter)) {
+        for (int i = 0; i < allLetters.length; i++) {
+          if (allLetters[i] == letter) {
+            index = i;
+          }
+        }
+        putLetterInBox(letter, index);
+        Get.find<HintController>().useHint(hints);
+      } else if (usedLetters.contains(letter)) {
+        for (int i = 0; i < lettersListAnswer.length; i++) {
+          if (lettersListAnswer[i].contains(letter)) {
+            int letterIndex = lettersListAnswer[i].indexOf(letter);
+            if (lettersListAnswer[i][letterIndex] !=
+                correctLettersList[i][letterIndex]) {
+              removeLetter(letter, letterIndex, i);
+              for (int j = 0; j < allLetters.length; j++) {
+                if (allLetters[j] == letter) {
+                  index = j;
+                }
+              }
+              putLetterInBox(letter, index);
+              Get.find<HintController>().useHint(hints);
+            }
+          }
         }
       }
-      putLetterInBox(letter, index);
-      Get.find<HintController>().useHint(hints);
     } else {
       Get.toNamed(RouteHelper.getShopPage());
+    }
+  }
+
+  void useBombStart() {
+    if (!bombUsed) {
+      List<String> reducedLetters = [];
+      List<String> tempAllList = [];
+      List<String> correctList =
+          country.country!.removeAllWhitespace.toUpperCase().split('');
+      List<String> usedLetters = [];
+      List<String> correctUsedLetters = [];
+
+      for (var use in lettersListAnswer) {
+        usedLetters.addAll(use);
+      }
+      usedLetters.removeWhere((element) => element == '');
+
+      for (var use in usedLetters) {
+        if (correctList.contains(use)) {
+          correctList.remove(use);
+        } else {
+          correctUsedLetters.add(use);
+        }
+      }
+
+      for (int i = 0; i < allLetters.length; i++) {
+        tempAllList.add(allLetters[i]);
+        reducedLetters.add('');
+      }
+
+      for (int j = 0; j < correctList.length; j++) {
+        int index = tempAllList.indexOf(correctList[j]);
+        tempAllList[index] = '';
+        reducedLetters[index] = correctList[j];
+      }
+
+      correctUsedLetters.remove(String.fromCharCode(8626));
+      correctUsedLetters.remove('-');
+
+      for (int i = 0; i < usedLetters.length; i++) {
+        bool tempDone = false;
+        if (correctUsedLetters.contains(usedLetters[i])) {
+          for (int j = 0; j < lettersListAnswer.length; j++) {
+            if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
+              for (int k = 0; k < lettersListAnswer[j].length; k++) {
+                if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
+                  lettersListAnswer[j][k] = '';
+                  tempDone = true;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      setState(() {
+        allLetters = reducedLetters;
+        bombUsed = true;
+        Get.find<LevelController>()
+            .saveBombUsed(Get.arguments[0], country, true);
+        Get.find<LevelController>()
+            .saveAllLetters(Get.arguments[0], country, allLetters);
+      });
     }
   }
 
@@ -431,13 +575,24 @@ class _GuessPageState extends State<GuessPage> {
         List<String> tempAllList = [];
         List<String> correctList =
             country.country!.removeAllWhitespace.toUpperCase().split('');
-        bool isDone = false;
+        List<String> usedLetters = [];
+        List<String> correctUsedLetters = [];
 
-        for (int i = 0; i < allLetters.length; i++) {
-          tempAllList.add(allLetters[i]);
+        for (var use in lettersListAnswer) {
+          usedLetters.addAll(use);
+        }
+        usedLetters.removeWhere((element) => element == '');
+
+        for (var use in usedLetters) {
+          if (correctList.contains(use)) {
+            correctList.remove(use);
+          } else {
+            correctUsedLetters.add(use);
+          }
         }
 
         for (int i = 0; i < allLetters.length; i++) {
+          tempAllList.add(allLetters[i]);
           reducedLetters.add('');
         }
 
@@ -447,9 +602,32 @@ class _GuessPageState extends State<GuessPage> {
           reducedLetters[index] = correctList[j];
         }
 
+        correctUsedLetters.remove(String.fromCharCode(8626));
+        correctUsedLetters.remove('-');
+
+        for (int i = 0; i < usedLetters.length; i++) {
+          bool tempDone = false;
+          if (correctUsedLetters.contains(usedLetters[i])) {
+            for (int j = 0; j < lettersListAnswer.length; j++) {
+              if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
+                for (int k = 0; k < lettersListAnswer[j].length; k++) {
+                  if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
+                    lettersListAnswer[j][k] = '';
+                    tempDone = true;
+                  }
+                }
+              }
+            }
+          }
+        }
+
         setState(() {
           allLetters = reducedLetters;
           bombUsed = true;
+          Get.find<LevelController>()
+              .saveBombUsed(Get.arguments[0], country, true);
+          Get.find<LevelController>()
+              .saveAllLetters(Get.arguments[0], country, allLetters);
         });
         Get.find<HintController>().useHint(hints);
       }
@@ -460,11 +638,12 @@ class _GuessPageState extends State<GuessPage> {
 
   void useFinishHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
-      setState(() {
-        Get.find<LevelController>().guessed(Get.arguments[0], country);
-      });
+      //setState(() {
+      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
+      //});
       Get.find<HintController>().useHint(hints);
       Get.find<SoundController>().completeSound();
+      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
@@ -486,207 +665,219 @@ class _GuessPageState extends State<GuessPage> {
             },
             icon: Icon(Icons.arrow_back_ios_new),
           ),
-          title: Text('${Get.arguments[0]}'.tr),
           backgroundColor: AppColors.mainColor,
           /*actions: [
             GestureDetector(
               onTap: () {
-                Get.find<LevelController>()
-                    .guessedRemove(Get.arguments[0], country);
               },
-              child: Icon(Icons.refresh),
+              child: Icon(Icons.sports_volleyball_outlined),
             ),
-          ],*/ //Reset level
+          ],*/
         ),
-        body: SwipeDetector(
-          onSwipeRight: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] - 1;
-
-            if (nextPageIndex > -1) {
+        body: WillPopScope(
+          onWillPop: () async {
+            int randomInt = random.nextInt(4);
+            print(randomInt);
+            if (_interstitialAd != null && randomInt == 3) {
+              _interstitialAd?.show();
+            } else {
               Get.find<SoundController>().windSound();
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
             }
+            return true;
           },
-          onSwipeLeft: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] + 1;
-            if (nextPageIndex < levelList.length) {
-              Get.find<SoundController>().windSound();
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
-            }
-          },
-          child: BackgroundImage(
-            child: GetBuilder<LevelController>(
-              builder: (levelController) {
-                print('Type = ' + Get.arguments[0].toString());
-                print('Level = ' + Get.arguments[1].toString());
-                print('Flag index = ' + Get.arguments[2].toString());
+          child: SwipeDetector(
+            onSwipeRight: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] - 1;
 
-                String countryCodeImg =
-                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
-                String countryCodeImgCountry =
-                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
-                if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
-                    country.guessed! &&
-                    Get.arguments[0] == AppConstants.FLAGS) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                if (Get.arguments[0] == AppConstants.COUNTRIES) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
-                    country.guessed! &&
-                    Get.arguments[0] == AppConstants.COC) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                ;
+              if (nextPageIndex > -1) {
+                Get.find<SoundController>().windSound();
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            onSwipeLeft: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] + 1;
+              if (nextPageIndex < levelList.length) {
+                Get.find<SoundController>().windSound();
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            child: BackgroundImage(
+              child: GetBuilder<LevelController>(
+                builder: (levelController) {
+                  print('Type = ' + Get.arguments[0].toString());
+                  print('Level = ' + Get.arguments[1].toString());
+                  print('Flag index = ' + Get.arguments[2].toString());
 
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    country.guessed!
-                        ? Container(
-                            height: Dimensions.height20 * 2,
-                          )
-                        : HintBar(
-                            tapHintOne: () {
-                              useFinishHint(5);
-                            },
-                            iconOne: Icon(
-                              Icons.check,
-                              color: AppColors.mainColor,
+                  String countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                  String countryCodeImgCountry =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                  if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
+                      country.guessed! &&
+                      Get.arguments[0] == AppConstants.FLAGS) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  if (Get.arguments[0] == AppConstants.COUNTRIES) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
+                      country.guessed! &&
+                      Get.arguments[0] == AppConstants.COC) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      country.guessed!
+                          ? Container(
+                              height: Dimensions.height20 * 2,
+                            )
+                          : HintBar(
+                              tapHintOne: () {
+                                useFinishHint(5);
+                              },
+                              iconOne: Icon(
+                                Icons.check,
+                                color: AppColors.mainColor,
+                              ),
+                              hintPriceOne: '5',
+                              tapHintTwo: () {
+                                if (!bombUsed) {
+                                  useBombHint(2);
+                                }
+                              },
+                              iconTwo: ImageIcon(
+                                AssetImage('assets/icon/bomb.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceTwo: '2',
+                              disableTwo: bombUsed,
+                              tapHintThree: () {
+                                useFirstLetterHint(1);
+                              },
+                              iconThree: ImageIcon(
+                                AssetImage('assets/icon/a.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceThree: '1',
                             ),
-                            hintPriceOne: '5',
-                            tapHintTwo: () {
-                              useBombHint(2);
-                            },
-                            iconTwo: ImageIcon(
-                              AssetImage('assets/icon/bomb.png'),
-                              color: AppColors.mainColor,
-                              size: Dimensions.iconSize24,
-                            ),
-                            hintPriceTwo: '2',
-                            tapHintThree: () {
-                              useFirstLetterHint(1);
-                            },
-                            iconThree: ImageIcon(
-                              AssetImage('assets/icon/a.png'),
-                              color: AppColors.mainColor,
-                              size: Dimensions.iconSize24,
-                            ),
-                            hintPriceThree: '1',
-                          ),
-                    SizedBox(height: Dimensions.height10),
-                    Get.arguments[0] == AppConstants.COUNTRIES
-                        ? Container(
-                            height: Dimensions.height20 * 10,
-                            child: Stack(
-                              children: [
-                                Hero(
-                                  tag: '${countryCodeImgCountry.toLowerCase()}',
-                                  /*flightShuttleBuilder:
-                                      ((flightContext, animation, _, __, ___) {
-                                    animation.addStatusListener((status) {
-                                      if (status == AnimationStatus.completed) {
-                                        setState(() {
-                                          removeCountry = true;
-                                          print('hero done');
-                                        });
-                                      } else if (status ==
-                                          AnimationStatus.dismissed) {
-                                        setState(() {
-                                          removeCountry = false;
-                                          print('hero dismiss');
-                                        });
-                                      }
-                                    });
-                                    return Container();
-                                  }),*/
-                                  child: Center(
-                                    child: Image.asset(
-                                        'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
-                                        fit: BoxFit.contain,
-                                        color: Colors.transparent),
+                      SizedBox(height: Dimensions.height10),
+                      Get.arguments[0] == AppConstants.COUNTRIES
+                          ? Container(
+                              height: Dimensions.height20 * 10,
+                              child: Stack(
+                                children: [
+                                  Hero(
+                                    tag:
+                                        '${countryCodeImgCountry.toLowerCase()}',
+                                    /*flightShuttleBuilder:
+                                        ((flightContext, animation, _, __, ___) {
+                                      animation.addStatusListener((status) {
+                                        if (status == AnimationStatus.completed) {
+                                          setState(() {
+                                            removeCountry = true;
+                                            print('hero done');
+                                          });
+                                        } else if (status ==
+                                            AnimationStatus.dismissed) {
+                                          setState(() {
+                                            removeCountry = false;
+                                            print('hero dismiss');
+                                          });
+                                        }
+                                      });
+                                      return Container();
+                                    }),*/
+                                    child: Center(
+                                      child: Image.asset(
+                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
+                                          fit: BoxFit.contain,
+                                          color: Colors.transparent),
+                                    ),
                                   ),
-                                ),
-                                Center(
-                                  child: Container(
-                                    height: Dimensions.height20 * 10,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: Dimensions.height20),
-                                    decoration: BoxDecoration(),
+                                  Center(
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius15),
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Colors.black,
+                                      height: Dimensions.height20 * 10,
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: Dimensions.height20),
+                                      decoration: BoxDecoration(),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15),
+                                          border: Border.all(
+                                            width: 1,
+                                            color: Colors.black,
+                                          ),
                                         ),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius15),
-                                        child: Image.asset(
-                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                          fit: BoxFit.cover,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15),
+                                          child: Image.asset(
+                                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Hero(
-                            tag: '${countryCodeImg.toLowerCase()}',
-                            child: Container(
-                              height: Dimensions.height20 * 10,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: Dimensions.height20),
-                              decoration: BoxDecoration(),
-                              child: Center(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius10),
-                                  child: Image.asset(
-                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                    fit: BoxFit.contain,
+                                ],
+                              ),
+                            )
+                          : Hero(
+                              tag: '${countryCodeImg.toLowerCase()}',
+                              child: Container(
+                                height: Dimensions.height20 * 10,
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: Dimensions.height20),
+                                decoration: BoxDecoration(),
+                                child: Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius10),
+                                    child: Image.asset(
+                                      'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                    country.guessed!
-                        ? Expanded(
-                            child: guessTiles(correctLettersList, true),
-                          )
-                        : Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                guessTiles(lettersListAnswer, false),
-                                tilesAtBottom(),
-                              ],
+                      country.guessed!
+                          ? Expanded(
+                              child: guessTiles(correctLettersList, true),
+                            )
+                          : Expanded(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  guessTiles(lettersListAnswer, false),
+                                  tilesAtBottom(),
+                                ],
+                              ),
                             ),
-                          ),
-                    finishInfoBox(
-                        Get.find<CountryController>()
-                            .getCountryByName(country.country!),
-                        !country.guessed!),
-                  ],
-                );
-              },
+                      finishInfoBox(
+                          Get.find<CountryController>()
+                              .getCountryByName(country.country!),
+                          !country.guessed!),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ));
@@ -724,7 +915,10 @@ class _GuessPageState extends State<GuessPage> {
                       ),
                       InfoColumn(
                         header: 'Country'.tr,
-                        info: firstLetterUpperCase(country.countryName!),
+                        info: country.countryName!.toLowerCase() ==
+                                'Côte dIvoire'.toLowerCase()
+                            ? 'Côte d\'Ivoire'
+                            : firstLetterUpperCase(country.countryName!),
                       ),
                       InfoColumn(
                         header: 'Capital'.tr,
@@ -821,9 +1015,21 @@ class _GuessPageState extends State<GuessPage> {
                     width: Dimensions.screenWidth / 10,
                   )
                 : ShakeAnimatedWidget(
-                    enabled: shakeTile,
+                    enabled:
+                        answer[index] == wrongLettersList[wordIndex][index] &&
+                                answer[index] != '/' &&
+                                answer[index] != '-' &&
+                                answer[index] != String.fromCharCode(8626)
+                            ? true
+                            : shakeTile,
                     duration: Duration(milliseconds: 500),
-                    shakeAngle: Rotation.deg(z: 40),
+                    shakeAngle:
+                        answer[index] == wrongLettersList[wordIndex][index] &&
+                                answer[index] != '/' &&
+                                answer[index] != '-' &&
+                                answer[index] != String.fromCharCode(8626)
+                            ? Rotation.deg(x: 80)
+                            : Rotation.deg(z: 40),
                     curve: Curves.linear,
                     child: GestureDetector(
                       onTap: () {

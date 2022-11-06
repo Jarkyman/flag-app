@@ -120,7 +120,7 @@
     "Level": 2
   },
   {
-    "Country": "Nigeria",
+    "Country": "Nigéria",
     "Level": 2
   },
   {
@@ -320,7 +320,7 @@
     "Level": 4
   },
   {
-    "Country": "Côte d'Ivoire",
+    "Country": "Côte dIvoire",
     "Level": 5
   },
   {
@@ -336,7 +336,7 @@
     "Level": 5
   },
   {
-    "Country": "Liberia",
+    "Country": "Libéria",
     "Level": 5
   },
   {
@@ -404,11 +404,11 @@
     "Level": 6
   },
   {
-    "Country": "Biélorussie",
+    "Country": "Bélarus",
     "Level": 6
   },
   {
-    "Country": "Arabie saoudite",
+    "Country": "Arabie Saoudite",
     "Level": 6
   },
   {
@@ -444,7 +444,7 @@
     "Level": 6
   },
   {
-    "Country": "Erythrée",
+    "Country": "Érythrée",
     "Level": 6
   },
   {
@@ -472,7 +472,7 @@
     "Level": 6
   },
   {
-    "Country": "Tchéquie",
+    "Country": "Tchèque",
     "Level": 6
   },
   {
@@ -528,7 +528,7 @@
     "Level": 7
   },
   {
-    "Country": " États-Unis",
+    "Country": "États-Unis",
     "Level": 7
   },
   {
@@ -572,7 +572,7 @@
     "Level": 8
   },
   {
-    "Country": "Ethiopie",
+    "Country": "Éthiopie",
     "Level": 8
   },
   {
@@ -616,11 +616,11 @@
     "Level": 8
   },
   {
-    "Country": "Antigua - et-Barbuda",
+    "Country": "Antigua et Barbuda",
     "Level": 8
   },
   {
-    "Country": "Saint-Kitts - et-Nevis",
+    "Country": "Saint-Kitts et Nevis",
     "Level": 8
   },
   {
@@ -772,7 +772,7 @@
     "Level": 8
   },
   {
-    "Country": "Sao Tomé-et-Principe",
+    "Country": "Sao tomé et principe",
     "Level": 10
   }
 ]

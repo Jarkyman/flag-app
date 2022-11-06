@@ -1679,7 +1679,7 @@
   {
     "country_code": "LK",
     "country_name": "Sri Lanka",
-    "capital": "Sri Jayewardenepura Kotte",
+    "capital": "Colombo",
     "country_demonym": "Sri Lankans",
     "total_area": 65610,
     "population": 21413249,
@@ -2373,7 +2373,7 @@
     "total_area": 5860,
     "population": 5101414,
     "currency_code": "ILS",
-    "currency_name": "Israeli New Shekel",
+    "currency_name": "New Israel Shekel",
     "currency_symbol": "₪",
     "lang_code": "EN",
     "lang_name": "English"
@@ -2394,7 +2394,7 @@
   {
     "country_code": "PW",
     "country_name": "Palau",
-    "capital": "Melekeok - Palau State Capital",
+    "capital": "Ngerulmud",
     "country_demonym": "Palauans",
     "total_area": 459,
     "population": 18094,

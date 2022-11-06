@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helper/app_constants.dart';
@@ -10,8 +12,10 @@ class SettingsRepo {
   });
 
   Future<String> languageSettingRead() async {
-    String language =
-        await sharedPreferences.getString(AppConstants.LANGUAGE) ?? 'en_US';
+    String language = sharedPreferences.getString(AppConstants.LANGUAGE) ??
+        (AppConstants.LOCALE_LIST.contains(Platform.localeName)
+            ? Platform.localeName
+            : 'en_US');
     return language;
   }
 
@@ -26,5 +30,15 @@ class SettingsRepo {
 
   Future<bool> soundSettingsSave(bool sound) async {
     return await sharedPreferences.setBool(AppConstants.SOUND, sound);
+  }
+
+  Future<bool> firstLaunchRead() async {
+    bool first =
+        await sharedPreferences.getBool(AppConstants.FIRST_LAUNCH) ?? true;
+    return first;
+  }
+
+  Future<bool> firstLaunchSave(bool first) async {
+    return await sharedPreferences.setBool(AppConstants.FIRST_LAUNCH, first);
   }
 }

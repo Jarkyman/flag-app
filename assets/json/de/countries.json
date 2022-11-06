@@ -326,7 +326,7 @@
   },
   {
     "country_code": "BL",
-    "country_name": "St. Barthelemy",
+    "country_name": "Saint Barthelemy",
     "capital": "Gustavia",
     "country_demonym": "Barthelemois",
     "total_area": 21,
@@ -644,7 +644,7 @@
     "total_area": 51100,
     "population": 5094118,
     "currency_code": "CRC",
-    "currency_name": "Costa-ricanischer Doppelpunkt",
+    "currency_name": "Costa-ricanischer Kolon",
     "currency_symbol": "₡",
     "lang_code": "ES",
     "lang_name": "Spanisch"
@@ -657,7 +657,7 @@
     "total_area": 110860,
     "population": 11326616,
     "currency_code": "CUC",
-    "currency_name": "kubanischer konvertierbarer Peso",
+    "currency_name": "Kubanischer Peso",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Spanisch"
@@ -1250,15 +1250,15 @@
   {
     "country_code": "HN",
     "country_name": "Honduras",
-    "capital": " Tegucigalpa",
-    "country_demonym": " Honduraner",
+    "capital": "Tegucigalpa",
+    "country_demonym": "Honduraner",
     "total_area": 112090,
     "population": 9904607,
     "currency_code": "HNL",
-    "currency_name": " honduranische Lempira",
+    "currency_name": "honduranische Lempira",
     "currency_symbol": "L",
     "lang_code": "ES",
-    "lang_name": " Spanisch"
+    "lang_name": "Spanisch"
   },
   {
     "country_code": "HR",
@@ -1333,7 +1333,7 @@
     "total_area": 20770,
     "population": 8655535,
     "currency_code": "ILS",
-    "currency_name": "Israelischer Neuer Schekel",
+    "currency_name": "Neuer israelischer Schekel",
     "currency_symbol": "₪",
     "lang_code": "HE",
     "lang_name": "Hebräisch"
@@ -1548,7 +1548,7 @@
   },
   {
     "country_code": "KN",
-    "country_name": "St. Kitts und Nevis",
+    "country_name": "Saint Kitts und Nevis",
     "capital": "Basseterre",
     "country_demonym": "Kittitians oder Nevisians",
     "total_area": 261,
@@ -1652,9 +1652,9 @@
   },
   {
     "country_code": "LC",
-    "country_name": "St. Lucia",
+    "country_name": "Saint Lucia",
     "capital": "Castries",
-    "country_demonym": "St. Lucian",
+    "country_demonym": "Saint Lucian",
     "total_area": 616,
     "population": 183627,
     "currency_code": "XCD",
@@ -1679,7 +1679,7 @@
   {
     "country_code": "LK",
     "country_name": "Sri Lanka",
-    "capital": "Sri Jayewardenepura Kotte",
+    "capital": "Colombo",
     "country_demonym": "Srilanker",
     "total_area": 65610,
     "population": 21413249,
@@ -2017,15 +2017,15 @@
   {
     "country_code": "MW",
     "country_name": "Malawi",
-    "capital": " Lilongwe",
-    "country_demonym": " Malawier",
+    "capital": "Lilongwe",
+    "country_demonym": "Malawier",
     "total_area": 118484,
     "population": 19129952,
     "currency_code": "MWK",
-    "currency_name": " Malawiischer Kwacha",
+    "currency_name": "Malawiischer Kwacha",
     "currency_symbol": "K",
     "lang_code": "EN",
-    "lang_name": " Englisch"
+    "lang_name": "Englisch"
   },
   {
     "country_code": "MX",
@@ -2394,7 +2394,7 @@
   {
     "country_code": "PW",
     "country_name": "Palau",
-    "capital": "Melekeok - Hauptstadt des Bundesstaates Palau",
+    "capital": "Ngerulmud",
     "country_demonym": "Palauaner",
     "total_area": 459,
     "population": 18094,
@@ -3109,8 +3109,8 @@
   {
     "country_code": "VI",
     "country_name": "Jungferninseln",
-    "capital": " Charlotte Amalie",
-    "country_demonym": " USA Einwohner der Jungferninseln",
+    "capital": "Charlotte Amalie",
+    "country_demonym": "USA Einwohner der Jungferninseln",
     "total_area": 1910,
     "population": 104425,
     "currency_code": "USD",

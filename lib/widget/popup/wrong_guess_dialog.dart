@@ -48,10 +48,12 @@ void wrongGuessDialog({
                   children: [
                     const Icon(Icons.ondemand_video),
                     SizedBox(
-                      width: Dimensions.width5,
+                      width: Dimensions.width10,
                     ),
                     Text(
                       'Get one more try'.tr,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color:
                             adLoaded ? Colors.black : AppColors.textColorGray,

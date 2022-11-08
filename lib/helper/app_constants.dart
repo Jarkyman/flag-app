@@ -34,6 +34,9 @@ class AppConstants {
   static const String REMOVE_ADS_ID = 'flags_remove_ads_35';
   static const String UNLOCK_LEVELS_ID = 'flags_unlock_levels_35';
 
+  static const String Remove_ADS_ID_ENT = 'remove_ads';
+  static const String UNLOCK_LEVELS_ID_ENT = 'unlock_levels';
+
   // Lists
   static const List<String> FULL_FLAG_LIST = ['ni', 'py', 'sv'];
   static const List<String> FULL_COC_LIST = [

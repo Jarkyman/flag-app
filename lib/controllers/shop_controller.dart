@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flag_app/helper/app_constants.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -69,19 +70,21 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future updateCustomerStatus() async {
-    final customerInfo = await Purchases.getCustomerInfo();
+    try {
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
-    //final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
-    final entitlementAds =
-        customerInfo.entitlements.active[AppConstants.REMOVE_ADS_ID];
+      final entitlementAds = customerInfo
+          .entitlements.all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
+      //final entitlementLevel = customerInfo.entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
 
-    print(
-        'entitlementAds = $entitlementAds ######################################');
-    //bool isUnlock = entitlementUnlock != null;
-    bool isAdsRemove = entitlementAds != null;
+      bool isAdsRemove = entitlementAds == true;
+      //bool isUnlockLevels = entitlementLevel == true;
 
-    //levelsUnlockSave(isUnlock);
-    removeAdsSave(isAdsRemove);
+      //levelsUnlockSave(isUnlockLevels);
+      removeAdsSave(isAdsRemove);
+    } on PlatformException catch (e) {
+      print(e);
+    }
   }
 
   Future<void> levelsUnlockRead() async {

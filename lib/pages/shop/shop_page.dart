@@ -34,7 +34,6 @@ class _ShopPageState extends State<ShopPage> {
     super.initState();
     _loadRewardedAd();
     _loadProducts();
-    //print(products[0]);
   }
 
   void _loadProducts() async {
@@ -47,7 +46,6 @@ class _ShopPageState extends State<ShopPage> {
 
   StoreProduct? getProductFromIdentifier(String identifier) {
     StoreProduct? result;
-    print(products);
     for (var product in products) {
       if (product.identifier == identifier) {
         result = product;
@@ -132,7 +130,6 @@ class _ShopPageState extends State<ShopPage> {
                                 await Purchases.purchaseProduct(
                                     AppConstants.TEN_HINTS_ID,
                                     type: PurchaseType.inapp);
-                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 2; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -142,7 +139,6 @@ class _ShopPageState extends State<ShopPage> {
                                 PurchasesErrorHelper.getErrorCode(e);
                             if (errorCode !=
                                 PurchasesErrorCode.purchaseCancelledError) {
-                              debugPrint('Failed to purchase product.');
                               purchaseErrorSnackbar();
                             }
                           }
@@ -164,7 +160,6 @@ class _ShopPageState extends State<ShopPage> {
                                 await Purchases.purchaseProduct(
                                     AppConstants.TWENTYFIVE_HINTS_ID,
                                     type: PurchaseType.inapp);
-                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 5; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -174,7 +169,6 @@ class _ShopPageState extends State<ShopPage> {
                                 PurchasesErrorHelper.getErrorCode(e);
                             if (errorCode !=
                                 PurchasesErrorCode.purchaseCancelledError) {
-                              debugPrint('Failed to purchase product.');
                               purchaseErrorSnackbar();
                             }
                           }
@@ -196,7 +190,6 @@ class _ShopPageState extends State<ShopPage> {
                                 await Purchases.purchaseProduct(
                                     AppConstants.SIXTY_HINTS_ID,
                                     type: PurchaseType.inapp);
-                            debugPrint('Purchase info: $customerInfo');
                             for (int i = 1; i <= 12; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -206,7 +199,6 @@ class _ShopPageState extends State<ShopPage> {
                                 PurchasesErrorHelper.getErrorCode(e);
                             if (errorCode !=
                                 PurchasesErrorCode.purchaseCancelledError) {
-                              debugPrint('Failed to purchase product. ');
                               purchaseErrorSnackbar();
                             }
                           }
@@ -247,46 +239,48 @@ class _ShopPageState extends State<ShopPage> {
                             ? getProductFromIdentifier(
                                         AppConstants.UNLOCK_LEVELS)
                                     ?.priceString ??
-                                '0.00 \$'
+                                '\$3.99'
                             : 'un',
                       ),*/
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      MenuButton(
-                        active: !Get.find<ShopController>().isAdsRemoved,
-                        disable: Get.find<ShopController>().isAdsRemoved,
-                        onTap: () async {
-                          if (!Get.find<ShopController>().isAdsRemoved) {
-                            try {
-                              CustomerInfo customerInfo =
-                                  await Purchases.purchaseProduct(
-                                      AppConstants.REMOVE_ADS_ID,
-                                      type: PurchaseType.inapp);
-                              debugPrint('Purchase info: $customerInfo');
-                              Get.find<ShopController>().removeAdsSave(true);
-                              Get.find<SoundController>().completeSound();
-                              debugPrint('Removed adds');
-                            } on PlatformException catch (e) {
-                              var errorCode =
-                                  PurchasesErrorHelper.getErrorCode(e);
-                              if (errorCode !=
-                                  PurchasesErrorCode.purchaseCancelledError) {
-                                debugPrint('Failed to purchase product. ');
-                                purchaseErrorSnackbar();
+                      GetBuilder<ShopController>(builder: (shopController) {
+                        return MenuButton(
+                          active: !shopController.isAdsRemoved,
+                          disable: shopController.isAdsRemoved,
+                          onTap: () async {
+                            if (!shopController.isAdsRemoved) {
+                              try {
+                                CustomerInfo customerInfo =
+                                    await Purchases.purchaseProduct(
+                                        AppConstants.REMOVE_ADS_ID,
+                                        type: PurchaseType.inapp);
+                                debugPrint('Purchase info: $customerInfo');
+                                shopController.removeAdsSave(true);
+                                Get.find<SoundController>().completeSound();
+                                debugPrint('Removed adds');
+                              } on PlatformException catch (e) {
+                                var errorCode =
+                                    PurchasesErrorHelper.getErrorCode(e);
+                                if (errorCode !=
+                                    PurchasesErrorCode.purchaseCancelledError) {
+                                  debugPrint('Failed to purchase product. ');
+                                  purchaseErrorSnackbar();
+                                }
                               }
+                            } else {
+                              print('ADS IS REMOVED');
                             }
-                          } else {
-                            print('ADS IS REMOVED');
-                          }
-                        },
-                        title: 'Remove ads'.tr,
-                        loading: loadingProduct,
-                        price:
-                            getProductFromIdentifier(AppConstants.REMOVE_ADS_ID)
-                                    ?.priceString ??
-                                '#',
-                      ),
+                          },
+                          title: 'Remove ads'.tr,
+                          loading: loadingProduct,
+                          price: getProductFromIdentifier(
+                                      AppConstants.REMOVE_ADS_ID)
+                                  ?.priceString ??
+                              '#',
+                        );
+                      }),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -312,20 +306,14 @@ class _ShopPageState extends State<ShopPage> {
                           try {
                             CustomerInfo restoredInfo =
                                 await Purchases.restorePurchases();
-                            // ... check restored purchaserInfo to see if entitlement is now active
-                            final entitlementAds =
-                                restoredInfo.entitlements.active['remove_ads'];
-                            print(
-                                'entitlementAds = $entitlementAds ######################################');
-
-                            bool isAdsRemove = entitlementAds != null;
+                            final entitlementAds = restoredInfo.entitlements
+                                .all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
+                            bool isAdsRemove = entitlementAds == true;
 
                             Get.find<ShopController>()
                                 .removeAdsSave(isAdsRemove);
                           } on PlatformException catch (e) {
-                            print('\n\n\nRESTORE');
                             print(e);
-                            // Error restoring purchases
                           }
                         },
                         title: 'Restore Purchases'.tr,

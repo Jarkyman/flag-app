@@ -32,7 +32,7 @@ class MenuButton extends StatelessWidget {
         Get.find<SoundController>().clickSound();
       },
       child: Container(
-        width: Dimensions.width30 * 10,
+        width: Dimensions.screenWidth / 1.4,
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
           color: disable

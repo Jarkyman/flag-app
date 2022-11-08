@@ -70,14 +70,6 @@ class MenuButton extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (loading)
-                    Padding(
-                      padding: EdgeInsets.only(right: Dimensions.width10),
-                      child: CircularProgressIndicator(
-                        color: AppColors.mainColor,
-                        strokeWidth: 2.0,
-                      ),
-                    ),
                   if (price == '#' && !loading)
                     Padding(
                         padding: EdgeInsets.only(right: Dimensions.width10),
@@ -85,6 +77,17 @@ class MenuButton extends StatelessWidget {
                 ],
               ),
             ),
+            if (loading)
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.all(Dimensions.width10),
+                  child: CircularProgressIndicator(
+                    color: AppColors.mainColor,
+                    strokeWidth: 2.0,
+                  ),
+                ),
+              ),
             Positioned(
               right: 4,
               top: 4,

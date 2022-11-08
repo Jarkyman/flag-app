@@ -16,7 +16,6 @@ import 'package:shake/shake.dart';
 
 import '../../../controllers/country_controller.dart';
 import '../../../controllers/hint_controller.dart';
-import '../../../controllers/review_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
@@ -656,13 +655,12 @@ class _GuessPageState extends State<GuessPage> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              int randomInt = random.nextInt(4);
+              int randomInt = random.nextInt(10);
               if (_interstitialAd != null && randomInt == 3) {
                 _interstitialAd?.show();
               } else {
                 Get.find<SoundController>().windSound();
                 Get.back();
-                ReviewController.checkReviewPopup(context);
               }
             },
             icon: Icon(Icons.arrow_back_ios_new),
@@ -676,196 +674,209 @@ class _GuessPageState extends State<GuessPage> {
             ),
           ],*/
         ),
-        body: SwipeDetector(
-          onSwipeRight: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] - 1;
-
-            if (nextPageIndex > -1) {
+        body: WillPopScope(
+          onWillPop: () async {
+            int randomInt = random.nextInt(10);
+            if (_interstitialAd != null && randomInt == 3) {
+              _interstitialAd?.show();
+            } else {
               Get.find<SoundController>().windSound();
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
             }
+            return true;
           },
-          onSwipeLeft: (value) {
-            int nextPageIndex = Get.arguments[2];
-            nextPageIndex = Get.arguments[2] + 1;
-            if (nextPageIndex < levelList.length) {
-              Get.find<SoundController>().windSound();
-              setState(() {
-                Get.arguments[2] = nextPageIndex;
-                setInit();
-              });
-            }
-          },
-          child: BackgroundImage(
-            child: GetBuilder<LevelController>(
-              builder: (levelController) {
-                print('Type = ' + Get.arguments[0].toString());
-                print('Level = ' + Get.arguments[1].toString());
-                print('Flag index = ' + Get.arguments[2].toString());
+          child: SwipeDetector(
+            onSwipeRight: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] - 1;
 
-                String countryCodeImg =
-                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
-                String countryCodeImgCountry =
-                    '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
-                if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
-                    country.guessed! &&
-                    Get.arguments[0] == AppConstants.FLAGS) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                if (Get.arguments[0] == AppConstants.COUNTRIES) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
-                    country.guessed! &&
-                    Get.arguments[0] == AppConstants.COC) {
-                  countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
-                }
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    country.guessed!
-                        ? Container(
-                            height: Dimensions.height20 * 2,
-                          )
-                        : HintBar(
-                            tapHintOne: () {
-                              useFinishHint(5);
-                            },
-                            iconOne: Icon(
-                              Icons.check,
-                              color: AppColors.mainColor,
+              if (nextPageIndex > -1) {
+                Get.find<SoundController>().windSound();
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            onSwipeLeft: (value) {
+              int nextPageIndex = Get.arguments[2];
+              nextPageIndex = Get.arguments[2] + 1;
+              if (nextPageIndex < levelList.length) {
+                Get.find<SoundController>().windSound();
+                setState(() {
+                  Get.arguments[2] = nextPageIndex;
+                  setInit();
+                });
+              }
+            },
+            child: BackgroundImage(
+              child: GetBuilder<LevelController>(
+                builder: (levelController) {
+                  print('Type = ' + Get.arguments[0].toString());
+                  print('Level = ' + Get.arguments[1].toString());
+                  print('Flag index = ' + Get.arguments[2].toString());
+
+                  String countryCodeImg =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                  String countryCodeImgCountry =
+                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                  if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
+                      country.guessed! &&
+                      Get.arguments[0] == AppConstants.FLAGS) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  if (Get.arguments[0] == AppConstants.COUNTRIES) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
+                      country.guessed! &&
+                      Get.arguments[0] == AppConstants.COC) {
+                    countryCodeImg =
+                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                  }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      country.guessed!
+                          ? Container(
+                              height: Dimensions.height20 * 2,
+                            )
+                          : HintBar(
+                              tapHintOne: () {
+                                useFinishHint(5);
+                              },
+                              iconOne: Icon(
+                                Icons.check,
+                                color: AppColors.mainColor,
+                              ),
+                              hintPriceOne: '5',
+                              tapHintTwo: () {
+                                if (!bombUsed) {
+                                  useBombHint(2);
+                                }
+                              },
+                              iconTwo: ImageIcon(
+                                AssetImage('assets/icon/bomb.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceTwo: '2',
+                              disableTwo: bombUsed,
+                              tapHintThree: () {
+                                useFirstLetterHint(1);
+                              },
+                              iconThree: ImageIcon(
+                                AssetImage('assets/icon/a.png'),
+                                color: AppColors.mainColor,
+                                size: Dimensions.iconSize24,
+                              ),
+                              hintPriceThree: '1',
                             ),
-                            hintPriceOne: '5',
-                            tapHintTwo: () {
-                              if (!bombUsed) {
-                                useBombHint(2);
-                              }
-                            },
-                            iconTwo: ImageIcon(
-                              AssetImage('assets/icon/bomb.png'),
-                              color: AppColors.mainColor,
-                              size: Dimensions.iconSize24,
-                            ),
-                            hintPriceTwo: '2',
-                            disableTwo: bombUsed,
-                            tapHintThree: () {
-                              useFirstLetterHint(1);
-                            },
-                            iconThree: ImageIcon(
-                              AssetImage('assets/icon/a.png'),
-                              color: AppColors.mainColor,
-                              size: Dimensions.iconSize24,
-                            ),
-                            hintPriceThree: '1',
-                          ),
-                    SizedBox(height: Dimensions.height10),
-                    Get.arguments[0] == AppConstants.COUNTRIES
-                        ? Container(
-                            height: Dimensions.height20 * 10,
-                            child: Stack(
-                              children: [
-                                Hero(
-                                  tag: '${countryCodeImgCountry.toLowerCase()}',
-                                  /*flightShuttleBuilder:
-                                      ((flightContext, animation, _, __, ___) {
-                                    animation.addStatusListener((status) {
-                                      if (status == AnimationStatus.completed) {
-                                        setState(() {
-                                          removeCountry = true;
-                                          print('hero done');
-                                        });
-                                      } else if (status ==
-                                          AnimationStatus.dismissed) {
-                                        setState(() {
-                                          removeCountry = false;
-                                          print('hero dismiss');
-                                        });
-                                      }
-                                    });
-                                    return Container();
-                                  }),*/
-                                  child: Center(
-                                    child: Image.asset(
-                                        'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
-                                        fit: BoxFit.contain,
-                                        color: Colors.transparent),
+                      SizedBox(height: Dimensions.height10),
+                      Get.arguments[0] == AppConstants.COUNTRIES
+                          ? Container(
+                              height: Dimensions.height20 * 10,
+                              child: Stack(
+                                children: [
+                                  Hero(
+                                    tag:
+                                        '${countryCodeImgCountry.toLowerCase()}',
+                                    /*flightShuttleBuilder:
+                                        ((flightContext, animation, _, __, ___) {
+                                      animation.addStatusListener((status) {
+                                        if (status == AnimationStatus.completed) {
+                                          setState(() {
+                                            removeCountry = true;
+                                            print('hero done');
+                                          });
+                                        } else if (status ==
+                                            AnimationStatus.dismissed) {
+                                          setState(() {
+                                            removeCountry = false;
+                                            print('hero dismiss');
+                                          });
+                                        }
+                                      });
+                                      return Container();
+                                    }),*/
+                                    child: Center(
+                                      child: Image.asset(
+                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
+                                          fit: BoxFit.contain,
+                                          color: Colors.transparent),
+                                    ),
                                   ),
-                                ),
-                                Center(
-                                  child: Container(
-                                    height: Dimensions.height20 * 10,
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: Dimensions.height20),
-                                    decoration: BoxDecoration(),
+                                  Center(
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius15),
-                                        border: Border.all(
-                                          width: 1,
-                                          color: Colors.black,
+                                      height: Dimensions.height20 * 10,
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: Dimensions.height20),
+                                      decoration: BoxDecoration(),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15),
+                                          border: Border.all(
+                                            width: 1,
+                                            color: Colors.black,
+                                          ),
                                         ),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius15),
-                                        child: Image.asset(
-                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                          fit: BoxFit.cover,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15),
+                                          child: Image.asset(
+                                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Hero(
-                            tag: '${countryCodeImg.toLowerCase()}',
-                            child: Container(
-                              height: Dimensions.height20 * 10,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: Dimensions.height20),
-                              decoration: BoxDecoration(),
-                              child: Center(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius10),
-                                  child: Image.asset(
-                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                    fit: BoxFit.contain,
+                                ],
+                              ),
+                            )
+                          : Hero(
+                              tag: '${countryCodeImg.toLowerCase()}',
+                              child: Container(
+                                height: Dimensions.height20 * 10,
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: Dimensions.height20),
+                                decoration: BoxDecoration(),
+                                child: Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius10),
+                                    child: Image.asset(
+                                      'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                    country.guessed!
-                        ? Expanded(
-                            child: guessTiles(correctLettersList, true),
-                          )
-                        : Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                guessTiles(lettersListAnswer, false),
-                                tilesAtBottom(),
-                              ],
+                      country.guessed!
+                          ? Expanded(
+                              child: guessTiles(correctLettersList, true),
+                            )
+                          : Expanded(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  guessTiles(lettersListAnswer, false),
+                                  tilesAtBottom(),
+                                ],
+                              ),
                             ),
-                          ),
-                    finishInfoBox(
-                        Get.find<CountryController>()
-                            .getCountryByName(country.country!),
-                        !country.guessed!),
-                  ],
-                );
-              },
+                      finishInfoBox(
+                          Get.find<CountryController>()
+                              .getCountryByName(country.country!),
+                          !country.guessed!),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ));

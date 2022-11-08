@@ -11,7 +11,6 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
-import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../widget/Top bar/app_bar_row_exit.dart';
 import '../../widget/buttons/menu_button.dart';
@@ -66,6 +65,7 @@ class _ShopPageState extends State<ShopPage> {
   void _loadRewardedAd() {
     setState(() {
       loadAd = true;
+      isAdLoaded = false;
     });
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
@@ -83,6 +83,7 @@ class _ShopPageState extends State<ShopPage> {
           );
           setState(() {
             isAdLoaded = true;
+            loadAd = false;
           });
           setState(() {
             _rewardedAd = ad;

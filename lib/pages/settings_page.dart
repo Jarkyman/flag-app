@@ -1,7 +1,10 @@
+import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
@@ -12,7 +15,7 @@ import '../widget/buttons/custom_close_button.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,57 @@ class SettingsPage extends StatelessWidget {
                           ),
                         );
                       }),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      SettingsButton(
+                        title: 'Review app'.tr,
+                        onTap: () {
+                          LaunchReview.launch(
+                              androidAppId: AppConstants.ANDROID_ID,
+                              iOSAppId: AppConstants.IOS_ID);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: Dimensions.width10),
+                          child: Icon(
+                            Icons.star,
+                            size: 32,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      SettingsButton(
+                        title: 'Share app'.tr,
+                        onTap: () {
+                          Share.share(
+                              'check out this app \nhttp://flagsgame.epizy.com/app');
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: Dimensions.width10),
+                          child: Icon(
+                            Icons.share,
+                            size: 32,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

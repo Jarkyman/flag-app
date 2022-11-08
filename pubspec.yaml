@@ -27,6 +27,7 @@ dependencies:
   url_launcher: ^6.1.6
   launch_review: ^3.0.1
   share_plus: ^6.2.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

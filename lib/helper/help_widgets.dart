@@ -19,28 +19,28 @@ List<HelpWidget> allHelpWidgets() {
           color: AppColors.mainColor,
           size: Dimensions.iconSize24 * 1.4,
         ),
-        description: 'Remove half the answers'),
+        description: 'Remove half of the answers'.tr),
     HelpWidget(
         icon: ImageIcon(
           AssetImage('assets/icon/bomb.png'),
           color: AppColors.mainColor,
           size: Dimensions.iconSize24,
         ),
-        description: 'Remove all the wrong letters'),
+        description: 'Remove all the wrong letters'.tr),
     HelpWidget(
         icon: ImageIcon(
           AssetImage('assets/icon/a.png'),
           color: AppColors.mainColor,
           size: Dimensions.iconSize24,
         ),
-        description: 'Get a correct Letter'),
+        description: 'Get a correct Letter'.tr),
     HelpWidget(
         icon: ImageIcon(
           AssetImage('assets/icon/shake.png'),
           color: AppColors.mainColor,
           size: Dimensions.iconSize24 * 1.4,
         ),
-        description: 'Shake your phone to mix the letters'),
+        description: 'Shake your phone to mix the letters'.tr),
   ];
 }
 
@@ -58,7 +58,7 @@ List<HelpWidget> trainingHelpWidgets() {
           color: AppColors.mainColor,
           size: Dimensions.iconSize24 * 1.4,
         ),
-        description: 'Remove half the answers'),
+        description: 'Remove half of the answers'.tr),
   ];
 }
 
@@ -76,20 +76,27 @@ List<HelpWidget> guessHelpWidgets() {
           color: AppColors.mainColor,
           size: Dimensions.iconSize24,
         ),
-        description: 'Remove all the wrong letters'),
+        description: 'Remove all the wrong letters'.tr),
     HelpWidget(
         icon: ImageIcon(
           AssetImage('assets/icon/a.png'),
           color: AppColors.mainColor,
           size: Dimensions.iconSize24,
         ),
-        description: 'Get a correct Letter'),
+        description: 'Get a correct Letter'.tr),
     HelpWidget(
         icon: ImageIcon(
           AssetImage('assets/icon/shake.png'),
           color: AppColors.mainColor,
           size: Dimensions.iconSize24 * 1.4,
         ),
-        description: 'Shake your phone to mix the letters'),
+        description: 'Shake your phone to mix the letters'.tr),
+    HelpWidget(
+        icon: ImageIcon(
+          AssetImage('assets/icon/swipe.png'),
+          color: AppColors.mainColor,
+          size: Dimensions.iconSize24 * 1.4,
+        ),
+        description: 'Swipe between pages'.tr),
   ];
 }

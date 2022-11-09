@@ -7,7 +7,6 @@ import '../help_widget.dart';
 void helpDialog(List<HelpWidget> helpWidgets) {
   Get.defaultDialog(
     title: 'Help'.tr,
-    middleText: '',
     backgroundColor: Colors.white,
     radius: 30,
     titleStyle: const TextStyle(

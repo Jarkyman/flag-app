@@ -58,7 +58,15 @@
       "RateMsg": "If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn't take you more than one minute.",
       "RATE": "RATE",
       "NO THANKS": "NO",
-      "MAYBE LATER": "LATER"
+      "MAYBE LATER": "LATER",
+      "_help": "help",
+      "Help": "Help",
+      "Get the correct answer": "Get the correct answer",
+      "Remove half of the answers": "Remove half of the answers",
+      "Remove all the wrong letters": "Remove all the wrong letters",
+      "Get a correct Letter": "Get a correct Letter",
+      "Shake your phone to mix the letters": "Shake your phone to mix the letters",
+      "Swipe between pages": "Swipe between pages"
     }
   },
   {
@@ -120,7 +128,15 @@
       "RateMsg": "Wenn Ihnen diese App gefällt, nehmen Sie sich bitte ein wenig Zeit, um sie zu bewerten! \nEs hilft uns wirklich und es sollte nicht länger als eine Minute dauern.",
       "RATE": "BEWERTUNG",
       "NO THANKS": "NEIN",
-      "MAYBE LATER": "SPÄTER"
+      "MAYBE LATER": "SPÄTER",
+      "_help": "help",
+      "Help": "Hilfe",
+      "Get the correct answer": "Erhalten Sie die richtige Antwort",
+      "Remove half of the answers": "Entfernen Sie die Hälfte der Antworten",
+      "Remove all the wrong letters": "Entfernen Sie alle falschen Buchstaben",
+      "Get a correct Letter": "Holen Sie sich einen richtigen Buchstaben",
+      "Shake your phone to mix the letters": "Schütteln Sie Ihr Telefon, um die Buchstaben zu mischen",
+      "Swipe between pages": "Zwischen den Seiten wischen"
     }
   },
   {
@@ -182,7 +198,15 @@
       "RateMsg": "Hvis du kan lide denne app, kan du bruge lidt tid på at gennemgå den! \nDet hjælper os virkelig, og det bør ikke tage dig mere end et minut.",
       "RATE": "BEDØM",
       "NO THANKS": "NEJ",
-      "MAYBE LATER": "SENERE"
+      "MAYBE LATER": "SENERE",
+      "_help": "help",
+      "Help": "Hjælp",
+      "Get the correct answer": "Få det rigtige svar",
+      "Remove half of the answers": "Fjern halvdelen af svarene",
+      "Remove all the wrong letters": "Fjern alle de forkerte bogstaver",
+      "Get a correct Letter": "Få et rigtigt bogstav",
+      "Shake your phone to mix the letters": "Ryst din telefon for at blande bogstaverne",
+      "Swipe between pages": "Swipe mellem siderne"
     }
   },
   {
@@ -244,7 +268,15 @@
       "RateMsg": "Om du gillar den här appen, vänligen ta lite av din tid att granska den!\nDet hjälper oss verkligen och det borde inte ta dig mer än en minut.",
       "RATE": "BETYGSÄTTA",
       "NO THANKS": "NEJ",
-      "MAYBE LATER": "SENARE"
+      "MAYBE LATER": "SENARE",
+      "_help": "help",
+      "Help": "Hjälp",
+      "Get the correct answer": "Få rätt svar",
+      "Remove half of the answers": "Ta bort hälften av svaren",
+      "Remove all the wrong letters": "Ta bort alla fel bokstäver",
+      "Get a correct Letter": "Få en korrekt bokstav",
+      "Shake your phone to mix the letters": "Skaka telefonen för att blanda bokstäverna",
+      "Swipe between pages": "Svep mellan sidorna"
     }
   },
   {
@@ -306,7 +338,15 @@
       "RateMsg": "Hvis du liker denne appen, vennligst ta litt tid til å vurdere den!\nDet hjelper oss virkelig, og det bør ikke ta deg mer enn ett minutt.",
       "RATE": "VURDERE",
       "NO THANKS": "NEI",
-      "MAYBE LATER": "SENERE"
+      "MAYBE LATER": "SENERE",
+      "_help": "help",
+      "Help": "Hjelp",
+      "Get the correct answer": "Få det riktige svaret",
+      "Remove half of the answers": "Fjern halvparten av svarene",
+      "Remove all the wrong letters": "Fjern alle de gale bokstavene",
+      "Get a correct Letter": "Få en riktig bokstav",
+      "Shake your phone to mix the letters": "Rist telefonen for å blande bokstavene",
+      "Swipe between pages": "Sveip mellom sidene"
     }
   },
   {
@@ -368,7 +408,15 @@
       "RateMsg": "Si te gusta esta aplicación, ¡tómate un poco de tu tiempo para revisarla!\nRealmente nos ayuda y no debería llevarle más de un minuto.",
       "RATE": "VALORA",
       "NO THANKS": "NO",
-      "MAYBE LATER": "LUEGO"
+      "MAYBE LATER": "LUEGO",
+      "_help": "help",
+      "Help": "Ayuda",
+      "Get the correct answer": "Obtén la respuesta correcta",
+      "Remove half of the answers": "Eliminar la mitad de las respuestas",
+      "Remove all the wrong letters": "Eliminar todas las letras incorrectas",
+      "Get a correct Letter": "Obtener una letra correcta",
+      "Shake your phone to mix the letters": "Agite su teléfono para barajar las letras",
+      "Swipe between pages": "Deslizar entre páginas"
     }
   },
   {
@@ -430,7 +478,15 @@
       "RateMsg": "Si vous aimez cette application, veuillez prendre un peu de votre temps pour la revoir !\nCela nous aide vraiment et cela ne devrait pas vous prendre plus d'une minute.",
       "RATE": "ÉVALUER",
       "NO THANKS": "NON",
-      "MAYBE LATER": "PLUS TARD"
+      "MAYBE LATER": "PLUS TARD",
+      "_help": "help",
+      "Help": "Aider",
+      "Get the correct answer": "Obtenez la bonne réponse",
+      "Remove half of the answers": "Supprimer la moitié des réponses",
+      "Remove all the wrong letters": "Supprimer toutes les mauvaises lettres",
+      "Get a correct Letter": "Obtenir une lettre correcte",
+      "Shake your phone to mix the letters": "Secouez votre téléphone pour mélanger les lettres",
+      "Swipe between pages": "Glisser entre les pages"
     }
   },
   {
@@ -492,7 +548,15 @@
       "RateMsg": "Se você gosta deste aplicativo, por favor, tome um pouco do seu tempo para analisá-lo!\nIsso realmente nos ajuda e não deve levar mais de um minuto.",
       "RATE": "AVALIE",
       "NO THANKS": "NÃO",
-      "MAYBE LATER": "DEPOIS"
+      "MAYBE LATER": "DEPOIS",
+      "_help": "help",
+      "Help": "Ajuda",
+      "Get the correct answer": "Obtenha a resposta certa",
+      "Remove half of the answers": "Remova metade das respostas",
+      "Remove all the wrong letters": "Remova todas as letras erradas",
+      "Get a correct Letter": "Obter uma letra correta",
+      "Shake your phone to mix the letters": "Agite seu telefone para embaralhar as letras",
+      "Swipe between pages": "Deslize entre as páginas"
     }
   },
   {
@@ -554,7 +618,15 @@
       "RateMsg": "Se você gosta deste aplicativo, por favor, tome um pouco do seu tempo para analisá-lo!\nIsso realmente nos ajuda e não deve levar mais de um minuto.",
       "RATE": "AVALIE",
       "NO THANKS": "NÃO",
-      "MAYBE LATER": "DEPOIS"
+      "MAYBE LATER": "DEPOIS",
+      "_help": "help",
+      "Help": "Ajuda",
+      "Get the correct answer": "Obtenha a resposta certa",
+      "Remove half of the answers": "Remova metade das respostas",
+      "Remove all the wrong letters": "Remova todas as letras erradas",
+      "Get a correct Letter": "Obter uma letra correta",
+      "Shake your phone to mix the letters": "Agite seu telefone para embaralhar as letras",
+      "Swipe between pages": "Deslize entre as páginas"
     }
   }
 ]

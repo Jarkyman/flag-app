@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		34FDBDEB3AAD473DC9E79294 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E8BFA6187F68DFD83976D7 /* Pods_Runner.framework */; };
+		3722CF6D291AF55C0038E3E8 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 3722CF6C291AF55C0038E3E8 /* StoreKitTestCertificate.cer */; };
 		373A1E9F28FAF74B007EAF46 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 373A1E9E28FAF74B007EAF46 /* Configuration.storekit */; };
-		373A1EA128FAF926007EAF46 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 373A1EA028FAF926007EAF46 /* StoreKitTestCertificate.cer */; };
 		3795A6CA28EF011100B34EBC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795A6C928EF011100B34EBC /* StoreKit.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -36,8 +36,8 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		28E8BFA6187F68DFD83976D7 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3722CF6C291AF55C0038E3E8 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		373A1E9E28FAF74B007EAF46 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = Configuration.storekit; path = Runner/Configuration.storekit; sourceTree = "<group>"; };
-		373A1EA028FAF926007EAF46 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		3795A6C928EF011100B34EBC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		6D84222338C571365411BB09 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				373A1E9E28FAF74B007EAF46 /* Configuration.storekit */,
-				373A1EA028FAF926007EAF46 /* StoreKitTestCertificate.cer */,
+				3722CF6C291AF55C0038E3E8 /* StoreKitTestCertificate.cer */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -202,7 +202,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				373A1EA128FAF926007EAF46 /* StoreKitTestCertificate.cer in Resources */,
+				3722CF6D291AF55C0038E3E8 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

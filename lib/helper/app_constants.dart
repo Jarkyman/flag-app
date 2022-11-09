@@ -18,6 +18,8 @@ class AppConstants {
   static const String LANGUAGE = 'language';
   static const String SOUND = 'sound';
   static const String FIRST_LAUNCH = 'first-launch';
+  static const String FIRST_HELP_GUESS = 'first-help-guess';
+  static const String FIRST_HELP_TRAIN = 'first-help-train';
 
   // Hints
   static const String HINTS = 'hints';

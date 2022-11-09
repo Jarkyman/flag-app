@@ -4,6 +4,7 @@ import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
+import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/tiles/empty_tile.dart';
@@ -21,11 +22,13 @@ import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
+import '../../../helper/help_widgets.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
 import '../../../widget/Top bar/hint_bar.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
 import '../../../widget/info_column.dart';
+import '../../../widget/popup/help_dialog.dart';
 
 class GuessPage extends StatefulWidget {
   const GuessPage({Key? key}) : super(key: key);
@@ -649,8 +652,22 @@ class _GuessPageState extends State<GuessPage> {
     }
   }
 
+  int _countDialogOpen = 0;
+
+  void openHelpDialog() {
+    if (_countDialogOpen == 0) {
+      if (!Get.find<SettingsController>().getFirstGuessHelp) {
+        helpDialog(guessHelpWidgets());
+        Get.find<SettingsController>().firstHelpGuessSave(true);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () {
+      openHelpDialog();
+    });
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

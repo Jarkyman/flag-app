@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flag_app/helper/app_constants.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -20,11 +21,11 @@ class ShopController extends GetxController implements GetxService {
   bool get isAdsRemoved => _adsRemoved;
 
   final List<String> _productsIds = [
-    AppConstants.TEN_HINTS,
-    AppConstants.TWENTYFIVE_HINTS,
-    AppConstants.SIXTY_HINTS,
+    AppConstants.TEN_HINTS_ID,
+    AppConstants.TWENTYFIVE_HINTS_ID,
+    AppConstants.SIXTY_HINTS_ID,
+    AppConstants.REMOVE_ADS_ID,
     //'flags_unlock_levels',
-    //'flags_remove_ads'
   ];
 
   List<StoreProduct> _products = [];
@@ -39,9 +40,9 @@ class ShopController extends GetxController implements GetxService {
     await initPlatformState();
     levelsUnlockRead();
     removeAdsRead();
-    /*Purchases.addCustomerInfoUpdateListener(
+    Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
-    );*/
+    );
     try {
       _products =
           await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
@@ -69,16 +70,21 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future updateCustomerStatus() async {
-    final customerInfo = await Purchases.getCustomerInfo();
+    try {
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
-    /*final entitlementUnlock = customerInfo.entitlements.active['unlock_levels'];
-    final entitlementAds = customerInfo.entitlements.active['remove_ads'];
+      final entitlementAds = customerInfo
+          .entitlements.all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
+      //final entitlementLevel = customerInfo.entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
 
-    bool isUnlock = entitlementUnlock != null;
-    bool isAdsRemove = entitlementAds != null;
+      bool isAdsRemove = entitlementAds == true;
+      //bool isUnlockLevels = entitlementLevel == true;
 
-    levelsUnlockSave(isUnlock);
-    removeAdsSave(isAdsRemove);*/
+      //levelsUnlockSave(isUnlockLevels);
+      removeAdsSave(isAdsRemove);
+    } on PlatformException catch (e) {
+      print(e);
+    }
   }
 
   Future<void> levelsUnlockRead() async {

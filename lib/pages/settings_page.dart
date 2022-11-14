@@ -1,5 +1,7 @@
 import 'package:flag_app/helper/app_constants.dart';
+import 'package:flag_app/helper/help_widgets.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
+import 'package:flag_app/widget/popup/help_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,7 @@ import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
 import '../widget/buttons/custom_close_button.dart';
+import '../widget/help_widget.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -71,6 +74,30 @@ class SettingsPage extends StatelessWidget {
                           ),
                         );
                       }),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      SettingsButton(
+                        title: 'Help'.tr,
+                        onTap: () {
+                          helpDialog(allHelpWidgets());
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: Dimensions.width10),
+                          child: Icon(
+                            Icons.question_mark_outlined,
+                            size: 32,
+                            color: Colors.white,
+                            shadows: [
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                              Shadow(blurRadius: 6, color: Colors.black),
+                            ],
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: Dimensions.height20,
                       ),

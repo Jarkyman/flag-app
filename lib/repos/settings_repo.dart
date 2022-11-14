@@ -41,4 +41,24 @@ class SettingsRepo {
   Future<bool> firstLaunchSave(bool first) async {
     return await sharedPreferences.setBool(AppConstants.FIRST_LAUNCH, first);
   }
+
+  Future<bool> firstHelpGuessRead() async {
+    bool first =
+        await sharedPreferences.getBool(AppConstants.FIRST_HELP_GUESS) ?? false;
+    return first;
+  }
+
+  Future<void> firstHelpGuessSave(bool first) async {
+    await sharedPreferences.setBool(AppConstants.FIRST_HELP_GUESS, first);
+  }
+
+  Future<bool> firstHelpTrainRead() async {
+    bool first =
+        await sharedPreferences.getBool(AppConstants.FIRST_HELP_TRAIN) ?? false;
+    return first;
+  }
+
+  Future<void> firstHelpTrainSave(bool first) async {
+    await sharedPreferences.setBool(AppConstants.FIRST_HELP_TRAIN, first);
+  }
 }

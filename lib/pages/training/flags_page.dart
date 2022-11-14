@@ -9,13 +9,16 @@ import '../../controllers/country_controller.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/review_controller.dart';
 import '../../controllers/score_controller.dart';
+import '../../controllers/settings_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../../helper/help_widgets.dart';
 import '../../models/country_model.dart';
 import '../../widget/Top bar/hint_bar.dart';
 import '../../widget/ads/ad_banner_widget.dart';
+import '../../widget/popup/help_dialog.dart';
 import '../../widget/popup/wrong_guess_dialog.dart';
 
 class FlagsPage extends StatefulWidget {
@@ -192,7 +195,7 @@ class _FlagsPageState extends State<FlagsPage> {
         }
       });
       Duration(milliseconds: 500).delay(() {
-        int randomInt = random.nextInt(3);
+        int randomInt = random.nextInt(10);
         if (_interstitialAd != null && randomInt == 2) {
           _interstitialAd?.show();
         } else {
@@ -273,8 +276,23 @@ class _FlagsPageState extends State<FlagsPage> {
     }
   }
 
+  int _countDialogOpen = 0;
+
+  void openHelpDialog() {
+    if (_countDialogOpen == 0) {
+      if (!Get.find<SettingsController>().getFirstTrainHelp) {
+        helpDialog(trainingHelpWidgets());
+        Get.find<SettingsController>().firstHelpTrainSave(true);
+        _countDialogOpen++;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () {
+      openHelpDialog();
+    });
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

@@ -271,21 +271,20 @@ class _CountriesPageState extends State<CountriesPage> {
   int _countDialogOpen = 0;
 
   void openHelpDialog() {
-    if (_countDialogOpen == 0) {
-      if (!Get.find<SettingsController>().getFirstTrainHelp) {
-        helpDialog(trainingHelpWidgets());
-        Get.find<SettingsController>().firstHelpTrainSave(true);
-        _countDialogOpen++;
+    Future.delayed(const Duration(seconds: 1), () {
+      if (_countDialogOpen == 0) {
+        if (!Get.find<SettingsController>().getFirstTrainHelp) {
+          helpDialog(trainingHelpWidgets());
+          Get.find<SettingsController>().firstHelpTrainSave(true);
+          _countDialogOpen++;
+        }
       }
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      openHelpDialog();
-    });
-
+    openHelpDialog();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

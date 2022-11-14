@@ -655,19 +655,20 @@ class _GuessPageState extends State<GuessPage> {
   int _countDialogOpen = 0;
 
   void openHelpDialog() {
-    if (_countDialogOpen == 0) {
-      if (!Get.find<SettingsController>().getFirstGuessHelp) {
-        helpDialog(guessHelpWidgets());
-        Get.find<SettingsController>().firstHelpGuessSave(true);
+    Future.delayed(const Duration(seconds: 1), () {
+      if (_countDialogOpen == 0) {
+        if (!Get.find<SettingsController>().getFirstGuessHelp) {
+          helpDialog(guessHelpWidgets());
+          Get.find<SettingsController>().firstHelpGuessSave(true);
+          _countDialogOpen++;
+        }
       }
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      openHelpDialog();
-    });
+    openHelpDialog();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

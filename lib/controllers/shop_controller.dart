@@ -75,12 +75,13 @@ class ShopController extends GetxController implements GetxService {
 
       final entitlementAds = customerInfo
           .entitlements.all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
-      //final entitlementLevel = customerInfo.entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
+      final entitlementLevel = customerInfo
+          .entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
 
       bool isAdsRemove = entitlementAds == true;
-      //bool isUnlockLevels = entitlementLevel == true;
+      bool isUnlockLevels = entitlementLevel == true;
 
-      //levelsUnlockSave(isUnlockLevels);
+      levelsUnlockSave(isUnlockLevels);
       removeAdsSave(isAdsRemove);
     } on PlatformException catch (e) {
       print(e);

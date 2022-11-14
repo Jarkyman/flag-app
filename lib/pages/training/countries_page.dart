@@ -209,7 +209,7 @@ class _CountriesPageState extends State<CountriesPage> {
   void openWrongDialog() {
     wrongGuessDialog(
       score: score,
-      isTryAgainUsed: isTryAgainUsed,
+      isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
         _rewardedAd?.show(

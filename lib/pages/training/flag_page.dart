@@ -207,9 +207,10 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   void openWrongDialog() {
+    print(isAdLoaded);
     wrongGuessDialog(
       score: score,
-      isTryAgainUsed: isTryAgainUsed,
+      isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
         _rewardedAd?.show(

@@ -57,7 +57,7 @@ class MenuButton extends StatelessWidget {
                     if (price != '' || price == '#')
                       Expanded(child: Container()),
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         width: price != '' && price != '#'
                             ? Dimensions.width10 * 13.5
                             : Dimensions.screenWidth / 1.6,
@@ -81,7 +81,7 @@ class MenuButton extends StatelessWidget {
                         width: Dimensions.width10,
                       ),
                     if (price != '' && price != '#')
-                      Container(
+                      SizedBox(
                         width: Dimensions.width20 * 5,
                         child: AutoSizeText(
                           price,

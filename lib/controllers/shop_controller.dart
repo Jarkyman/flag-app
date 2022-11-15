@@ -25,7 +25,7 @@ class ShopController extends GetxController implements GetxService {
     AppConstants.TWENTYFIVE_HINTS_ID,
     AppConstants.SIXTY_HINTS_ID,
     AppConstants.REMOVE_ADS_ID,
-    //'flags_unlock_levels',
+    AppConstants.UNLOCK_LEVELS_ID,
   ];
 
   List<StoreProduct> _products = [];

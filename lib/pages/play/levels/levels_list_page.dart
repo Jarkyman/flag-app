@@ -25,6 +25,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
     return Scaffold(
       body: BackgroundImage(
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
               AppBarRow(),
@@ -54,50 +55,54 @@ class _LevelsListPageState extends State<LevelsListPage> {
 
                           bool isLocked = levelController.isLevelUnlocked(
                               index, Get.arguments[0]);
+                          return GetBuilder<ShopController>(
+                              builder: (shopController) {
+                            bool levelsUnlock = shopController.isLevelsUnlocked;
 
-                          bool levelsUnlock =
-                              Get.find<ShopController>().isLevelsUnlocked;
-
-                          bool locked = true;
-                          if (levelsUnlock) {
-                            locked = false;
-                          } else if (!isLocked) {
-                            locked = false;
-                          }
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: Dimensions.height10,
-                                horizontal: Dimensions.width10),
-                            child: LevelButton(
-                              isLocked: locked,
-                              onTap: () {
-                                if (!isLocked || levelsUnlock) {
-                                  Get.toNamed(RouteHelper.getLevelPage(),
-                                      arguments: [Get.arguments[0], index + 1]);
-                                } else {
-                                  if (!isSnackOpen) {
-                                    isSnackOpen = true;
-                                    Duration(seconds: 3).delay(() {
-                                      isSnackOpen = false;
-                                    });
-                                    Get.snackbar(
-                                      'Unlock more levels'.tr,
-                                      'You need to finish'.tr +
-                                          ' ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ' +
-                                          'more, to unlock level'.tr +
-                                          ' ${index + 1} ' +
-                                          'more, to unlock level2'.tr,
-                                      backgroundColor:
-                                          AppColors.wrongColor.withOpacity(0.3),
-                                    );
+                            bool locked = true;
+                            if (levelsUnlock) {
+                              locked = false;
+                            } else if (!isLocked) {
+                              locked = false;
+                            }
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: Dimensions.height10,
+                                  horizontal: Dimensions.width10),
+                              child: LevelButton(
+                                isLocked: locked,
+                                onTap: () {
+                                  if (!isLocked || levelsUnlock) {
+                                    Get.toNamed(RouteHelper.getLevelPage(),
+                                        arguments: [
+                                          Get.arguments[0],
+                                          index + 1
+                                        ]);
+                                  } else {
+                                    if (!isSnackOpen) {
+                                      isSnackOpen = true;
+                                      Duration(seconds: 3).delay(() {
+                                        isSnackOpen = false;
+                                      });
+                                      Get.snackbar(
+                                        'Unlock more levels'.tr,
+                                        'You need to finish'.tr +
+                                            ' ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ' +
+                                            'more, to unlock level'.tr +
+                                            ' ${index + 1} ' +
+                                            'more, to unlock level2'.tr,
+                                        backgroundColor: AppColors.wrongColor
+                                            .withOpacity(0.3),
+                                      );
+                                    }
                                   }
-                                }
-                              },
-                              title: 'Level'.tr + ' ${index + 1}',
-                              numOfDone: numOfDone,
-                              numTotal: numTotal,
-                            ),
-                          );
+                                },
+                                title: 'Level'.tr + ' ${index + 1}',
+                                numOfDone: numOfDone,
+                                numTotal: numTotal,
+                              ),
+                            );
+                          });
                         });
                   },
                 ),

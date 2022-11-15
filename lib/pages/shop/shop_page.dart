@@ -216,30 +216,38 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       GetBuilder<ShopController>(builder: (shopController) {
                         return MenuButton(
-                          active: shopController.isLevelsUnlocked,
+                          active: !shopController.isLevelsUnlocked,
+                          disable: shopController.isLevelsUnlocked,
                           onTap: () async {
                             if (!shopController.isLevelsUnlocked) {
                               try {
                                 CustomerInfo customerInfo =
                                     await Purchases.purchaseProduct(
-                                        AppConstants.UNLOCK_LEVELS,
+                                        AppConstants.UNLOCK_LEVELS_ID,
                                         type: PurchaseType.inapp);
                                 debugPrint('Purchase info: $customerInfo');
                                 shopController.levelsUnlockSave(true);
                                 Get.find<SoundController>().completeSound();
                                 debugPrint('Levels unlocked');
-                              } catch (e) {
-                                debugPrint('Failed to purchase product.');
-                                purchaseErrorSnackbar();
+                              } on PlatformException catch (e) {
+                                var errorCode =
+                                    PurchasesErrorHelper.getErrorCode(e);
+                                if (errorCode !=
+                                    PurchasesErrorCode.purchaseCancelledError) {
+                                  debugPrint('Failed to purchase product. ');
+                                  purchaseErrorSnackbar();
+                                }
                               }
                             } else {
+                              shopController
+                                  .levelsUnlockSave(false); //TODO: REMOVE
                               print('Levels are removed');
                             }
                           },
-                          title: 'Unlock all levels'.tr + ' med mere',
+                          title: 'Unlock all levels'.tr,
                           price: !shopController.isLevelsUnlocked
                               ? getProductFromIdentifier(
-                                          AppConstants.UNLOCK_LEVELS)
+                                          AppConstants.UNLOCK_LEVELS_ID)
                                       ?.priceString ??
                                   '#'
                               : '',
@@ -273,6 +281,8 @@ class _ShopPageState extends State<ShopPage> {
                                 }
                               }
                             } else {
+                              shopController
+                                  .removeAdsSave(false); //TODO: REMOVE
                               print('ADS IS REMOVED');
                             }
                           },

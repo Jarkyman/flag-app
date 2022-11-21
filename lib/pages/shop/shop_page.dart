@@ -238,10 +238,6 @@ class _ShopPageState extends State<ShopPage> {
                                   purchaseErrorSnackbar();
                                 }
                               }
-                            } else {
-                              shopController
-                                  .levelsUnlockSave(false); //TODO: REMOVE
-                              print('Levels are removed');
                             }
                           },
                           title: 'Unlock all levels'.tr,
@@ -280,10 +276,6 @@ class _ShopPageState extends State<ShopPage> {
                                   purchaseErrorSnackbar();
                                 }
                               }
-                            } else {
-                              shopController
-                                  .removeAdsSave(false); //TODO: REMOVE
-                              print('ADS IS REMOVED');
                             }
                           },
                           title: 'Remove ads'.tr,

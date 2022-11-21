@@ -11,6 +11,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
+import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../widget/Top bar/app_bar_row_exit.dart';
 import '../../widget/buttons/menu_button.dart';
@@ -210,38 +211,44 @@ class _ShopPageState extends State<ShopPage> {
                                 ?.priceString ??
                             '#',
                       ),
-                      /*SizedBox(
+                      SizedBox(
                         height: Dimensions.height20,
                       ),
-                      MenuButton(
-                        active: !Get.find<ShopController>().isLevelsUnlocked,
-                        onTap: () async {
-                          if (!Get.find<ShopController>().isLevelsUnlocked) {
-                            try {
-                              //await Purchases.purchaseProduct(AppConstants.UNLOCK_LEVELS);
-                              Get.find<ShopController>().levelsUnlockSave(true);
-                              Get.find<SoundController>().completeSound();
-                            } catch (e) {
-                              debugPrint('Failed to purchase product.');
-                              purchaseErrorSnackbar();
+                      GetBuilder<ShopController>(builder: (shopController) {
+                        return MenuButton(
+                          active: !shopController.isLevelsUnlocked,
+                          disable: shopController.isLevelsUnlocked,
+                          onTap: () async {
+                            if (!shopController.isLevelsUnlocked) {
+                              try {
+                                CustomerInfo customerInfo =
+                                    await Purchases.purchaseProduct(
+                                        AppConstants.UNLOCK_LEVELS_ID,
+                                        type: PurchaseType.inapp);
+                                debugPrint('Purchase info: $customerInfo');
+                                shopController.levelsUnlockSave(true);
+                                Get.find<SoundController>().completeSound();
+                                debugPrint('Levels unlocked');
+                              } on PlatformException catch (e) {
+                                var errorCode =
+                                    PurchasesErrorHelper.getErrorCode(e);
+                                if (errorCode !=
+                                    PurchasesErrorCode.purchaseCancelledError) {
+                                  debugPrint('Failed to purchase product. ');
+                                  purchaseErrorSnackbar();
+                                }
+                              }
                             }
-                          } else {
-                            Get.snackbar(
-                              'Levels unlocked'.tr,
-                              'You have already removed all levels'.tr,
-                              backgroundColor:
-                                  AppColors.correctColor.withOpacity(0.4),
-                            );
-                          }
-                        },
-                        title: 'Unlock all levels'.tr,
-                        price: !Get.find<ShopController>().isLevelsUnlocked
-                            ? getProductFromIdentifier(
-                                        AppConstants.UNLOCK_LEVELS)
-                                    ?.priceString ??
-                                '\$3.99'
-                            : 'un',
-                      ),*/
+                          },
+                          title: 'Unlock all levels'.tr,
+                          price: !shopController.isLevelsUnlocked
+                              ? getProductFromIdentifier(
+                                          AppConstants.UNLOCK_LEVELS_ID)
+                                      ?.priceString ??
+                                  '#'
+                              : '',
+                        );
+                      }),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -269,16 +276,16 @@ class _ShopPageState extends State<ShopPage> {
                                   purchaseErrorSnackbar();
                                 }
                               }
-                            } else {
-                              print('ADS IS REMOVED');
                             }
                           },
                           title: 'Remove ads'.tr,
                           loading: loadingProduct,
-                          price: getProductFromIdentifier(
-                                      AppConstants.REMOVE_ADS_ID)
-                                  ?.priceString ??
-                              '#',
+                          price: !shopController.isAdsRemoved
+                              ? getProductFromIdentifier(
+                                          AppConstants.REMOVE_ADS_ID)
+                                      ?.priceString ??
+                                  '#'
+                              : '',
                         );
                       }),
                       SizedBox(

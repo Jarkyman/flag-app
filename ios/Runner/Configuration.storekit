@@ -63,6 +63,21 @@
       "productID" : "flags_remove_ads_35",
       "referenceName" : "Remove ads",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6DE3C13F",
+      "localizations" : [
+        {
+          "description" : "Unlock all levels",
+          "displayName" : "Unluck all levels",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "flags_unlock_levels_35",
+      "referenceName" : "Unlock all levels",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

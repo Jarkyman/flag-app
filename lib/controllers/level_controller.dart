@@ -122,21 +122,21 @@ class LevelController extends GetxController implements GetxService {
   int getLevelAmount(String playOption) {
     List<LevelModel> levels = getList(playOption)!;
     int amount = 0;
-    levels.forEach((element) {
+    for (var element in levels) {
       if (amount < element.level!) {
         amount = element.level!;
       }
-    });
+    }
     return amount;
   }
 
   List<LevelModel> getLevelList(int level, String playOption) {
     List<LevelModel> levelListResult = [];
-    getList(playOption)!.forEach((element) {
+    for (var element in getList(playOption)!) {
       if (element.level == level) {
         levelListResult.add(element);
       }
-    });
+    }
     return levelListResult;
   }
 

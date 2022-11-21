@@ -5,6 +5,7 @@ import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
+import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/tiles/empty_tile.dart';
@@ -81,46 +82,50 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void _loadInterstitialAd() {
-    InterstitialAd.load(
-      adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              Get.find<SoundController>().windSound();
-              Get.back();
-            },
-          );
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      InterstitialAd.load(
+        adUnitId: AdHelper.interstitialAdUnitId,
+        request: AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (ad) {
+                Get.find<SoundController>().windSound();
+                Get.back();
+              },
+            );
 
-          setState(() {
-            _interstitialAd = ad;
-          });
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load an interstitial ad: ${err.message}');
-        },
-      ),
-    );
+            setState(() {
+              _interstitialAd = ad;
+            });
+          },
+          onAdFailedToLoad: (err) {
+            print('Failed to load an interstitial ad: ${err.message}');
+          },
+        ),
+      );
+    }
   }
 
   void createBannerAd() {
-    BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          ad.dispose();
-        },
-      ),
-    ).load();
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      BannerAd(
+        adUnitId: AdHelper.bannerAdUnitId,
+        request: const AdRequest(),
+        size: AdSize.banner,
+        listener: BannerAdListener(
+          onAdLoaded: (ad) {
+            setState(() {
+              _bannerAd = ad as BannerAd;
+            });
+          },
+          onAdFailedToLoad: (ad, err) {
+            print('Failed to load a banner ad: ${err.message}');
+            ad.dispose();
+          },
+        ),
+      ).load();
+    }
   }
 
   void setInit() {
@@ -655,25 +660,28 @@ class _GuessPageState extends State<GuessPage> {
   int _countDialogOpen = 0;
 
   void openHelpDialog() {
-    if (_countDialogOpen == 0) {
-      if (!Get.find<SettingsController>().getFirstGuessHelp) {
-        helpDialog(guessHelpWidgets());
-        Get.find<SettingsController>().firstHelpGuessSave(true);
+    Future.delayed(const Duration(seconds: 1), () {
+      if (_countDialogOpen == 0) {
+        if (!Get.find<SettingsController>().getFirstGuessHelp) {
+          helpDialog(guessHelpWidgets());
+          Get.find<SettingsController>().firstHelpGuessSave(true);
+          _countDialogOpen++;
+        }
       }
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      openHelpDialog();
-    });
+    openHelpDialog();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               int randomInt = random.nextInt(10);
-              if (_interstitialAd != null && randomInt == 3) {
+              if (_interstitialAd != null &&
+                  randomInt == 3 &&
+                  !Get.find<ShopController>().isAdsRemoved) {
                 _interstitialAd?.show();
               } else {
                 Get.find<SoundController>().windSound();
@@ -694,7 +702,9 @@ class _GuessPageState extends State<GuessPage> {
         body: WillPopScope(
           onWillPop: () async {
             int randomInt = random.nextInt(10);
-            if (_interstitialAd != null && randomInt == 3) {
+            if (_interstitialAd != null &&
+                randomInt == 3 &&
+                !Get.find<ShopController>().isAdsRemoved) {
               _interstitialAd?.show();
             } else {
               Get.find<SoundController>().windSound();
@@ -901,69 +911,77 @@ class _GuessPageState extends State<GuessPage> {
 
   finishInfoBox(CountryModel country, bool isGuessed) {
     var ad = adBannerWidget(bannerAd: _bannerAd);
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        !isGuessed
-            ? Container(
-                height: country.countryCode!.toLowerCase() == 'vc'
-                    ? Dimensions.screenHeight / 4.5
-                    : Dimensions.screenHeight / 3.4,
-                decoration: BoxDecoration(
-                  color: AppColors.mainColor.withOpacity(0.4),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Dimensions.radius30),
-                    topRight: Radius.circular(Dimensions.radius30),
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: Dimensions.width20,
-                      right: Dimensions.width20,
-                      top: Dimensions.width20),
-                  child: Column(
-                    children: [
-                      InfoColumn(
-                        header: 'Continent'.tr,
-                        info: firstLetterUpperCase(
-                            Get.find<CountryContinentController>()
-                                .getContinentNameByCountryModel(country)),
-                      ),
-                      InfoColumn(
-                        header: 'Country'.tr,
-                        info: country.countryName!.toLowerCase() ==
-                                'Côte dIvoire'.toLowerCase()
-                            ? 'Côte d\'Ivoire'
-                            : firstLetterUpperCase(country.countryName!),
-                      ),
-                      InfoColumn(
-                        header: 'Capital'.tr,
-                        info: firstLetterUpperCase(country.capital!),
-                      ),
-                      InfoColumn(
-                        header: 'Currency'.tr,
-                        info:
-                            '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
-                        divider: false,
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : _bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4
+    return GetBuilder<ShopController>(
+      builder: (shopController) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            !isGuessed
                 ? Container(
-                    height: _bannerAd!.size.height.toDouble(),
+                    height: country.countryCode!.toLowerCase() == 'vc'
+                        ? Dimensions.screenHeight / 4.5
+                        : Dimensions.screenHeight / 3.4,
+                    decoration: BoxDecoration(
+                      color: AppColors.mainColor.withOpacity(0.4),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Dimensions.radius30),
+                        topRight: Radius.circular(Dimensions.radius30),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: Dimensions.width20,
+                          right: Dimensions.width20,
+                          top: Dimensions.width20),
+                      child: Column(
+                        children: [
+                          InfoColumn(
+                            header: 'Continent'.tr,
+                            info: firstLetterUpperCase(
+                                Get.find<CountryContinentController>()
+                                    .getContinentNameByCountryModel(country)),
+                          ),
+                          InfoColumn(
+                            header: 'Country'.tr,
+                            info: country.countryName!.toLowerCase() ==
+                                    'Côte dIvoire'.toLowerCase()
+                                ? 'Côte d\'Ivoire'
+                                : firstLetterUpperCase(country.countryName!),
+                          ),
+                          InfoColumn(
+                            header: 'Capital'.tr,
+                            info: firstLetterUpperCase(country.capital!),
+                          ),
+                          InfoColumn(
+                            header: 'Currency'.tr,
+                            info:
+                                '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
+                            divider: false,
+                          ),
+                        ],
+                      ),
+                    ),
                   )
-                : Container(),
-        (_bannerAd != null && getAmountOfTileRows(TILES_PR_ROW) < 4)
-            ? Positioned(
-                bottom: 0,
-                child: adBannerWidget(bannerAd: _bannerAd),
-              )
-            : Container(
-                height: Dimensions.height20,
-              ),
-      ],
+                : _bannerAd != null &&
+                        getAmountOfTileRows(TILES_PR_ROW) < 4 &&
+                        !shopController.isAdsRemoved
+                    ? Container(
+                        height: _bannerAd!.size.height.toDouble(),
+                      )
+                    : Container(),
+            (_bannerAd != null &&
+                    getAmountOfTileRows(TILES_PR_ROW) < 4 &&
+                    !shopController.isAdsRemoved)
+                ? Positioned(
+                    bottom: 0,
+                    child: adBannerWidget(bannerAd: _bannerAd),
+                  )
+                : Container(
+                    height: Dimensions.height20,
+                  ),
+          ],
+        );
+      },
     );
   }
 

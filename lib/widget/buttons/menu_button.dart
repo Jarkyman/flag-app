@@ -54,42 +54,50 @@ class MenuButton extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (price != '' || price == '#')
-                      Expanded(child: Container()),
-                    price != ''
-                        ? SizedBox(
-                            width: Dimensions.screenWidth / 2,
-                            child: AutoSizeText(
-                              title,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontSize: Dimensions.font20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          )
-                        : AutoSizeText(
-                            title,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: Dimensions.font20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                    Center(
+                      child: SizedBox(
+                        width: price != '' || price == '#'
+                            ? Dimensions.width10 * 13.5
+                            : Dimensions.screenWidth / 1.6,
+                        child: AutoSizeText(
+                          title,
+                          textAlign: price != '' || price == '#'
+                              ? TextAlign.left
+                              : TextAlign.center,
+                          maxLines: price != '' ? 2 : 1,
+                          style: TextStyle(
+                            fontSize: Dimensions.font20,
+                            fontWeight: FontWeight.w500,
                           ),
+                        ),
+                      ),
+                    ),
                     if (price != '' || price == '#')
                       Expanded(child: Container()),
                     if (price != '' && price != '#')
-                      AutoSizeText(
-                        price,
-                        style: TextStyle(
-                          fontSize: Dimensions.font20,
-                          fontWeight: FontWeight.w500,
+                      SizedBox(
+                        width: Dimensions.width10,
+                      ),
+                    if (price != '' && price != '#')
+                      SizedBox(
+                        width: Dimensions.width20 * 5,
+                        child: AutoSizeText(
+                          price,
+                          textAlign: TextAlign.right,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: Dimensions.font20,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     if (price == '#' && !loading)
-                      Padding(
-                          padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: Icon(Icons.not_interested_outlined)),
+                      SizedBox(
+                        width: 30,
+                        child: Padding(
+                            padding: EdgeInsets.only(right: Dimensions.width10),
+                            child: const Icon(Icons.not_interested_outlined)),
+                      ),
                   ],
                 ),
               ),

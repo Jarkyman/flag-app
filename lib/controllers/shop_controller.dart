@@ -25,7 +25,7 @@ class ShopController extends GetxController implements GetxService {
     AppConstants.TWENTYFIVE_HINTS_ID,
     AppConstants.SIXTY_HINTS_ID,
     AppConstants.REMOVE_ADS_ID,
-    //'flags_unlock_levels',
+    AppConstants.UNLOCK_LEVELS_ID,
   ];
 
   List<StoreProduct> _products = [];
@@ -75,12 +75,13 @@ class ShopController extends GetxController implements GetxService {
 
       final entitlementAds = customerInfo
           .entitlements.all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
-      //final entitlementLevel = customerInfo.entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
+      final entitlementLevel = customerInfo
+          .entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
 
       bool isAdsRemove = entitlementAds == true;
-      //bool isUnlockLevels = entitlementLevel == true;
+      bool isUnlockLevels = entitlementLevel == true;
 
-      //levelsUnlockSave(isUnlockLevels);
+      levelsUnlockSave(isUnlockLevels);
       removeAdsSave(isAdsRemove);
     } on PlatformException catch (e) {
       print(e);

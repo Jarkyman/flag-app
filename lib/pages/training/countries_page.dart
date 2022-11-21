@@ -14,6 +14,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/review_controller.dart';
 import '../../controllers/settings_controller.dart';
+import '../../controllers/shop_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
@@ -75,27 +76,29 @@ class _CountriesPageState extends State<CountriesPage> {
   }
 
   void _loadInterstitialAd() {
-    InterstitialAd.load(
-      adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              openWrongDialog();
-              _loadInterstitialAd();
-            },
-          );
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      InterstitialAd.load(
+        adUnitId: AdHelper.interstitialAdUnitId,
+        request: AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (ad) {
+                openWrongDialog();
+                _loadInterstitialAd();
+              },
+            );
 
-          setState(() {
-            _interstitialAd = ad;
-          });
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load an interstitial ad: ${err.message}');
-        },
-      ),
-    );
+            setState(() {
+              _interstitialAd = ad;
+            });
+          },
+          onAdFailedToLoad: (err) {
+            print('Failed to load an interstitial ad: ${err.message}');
+          },
+        ),
+      );
+    }
   }
 
   void _loadRewardedAd() {
@@ -132,22 +135,24 @@ class _CountriesPageState extends State<CountriesPage> {
   }
 
   void createBannerAd() {
-    BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          ad.dispose();
-        },
-      ),
-    ).load();
+    if (!Get.find<ShopController>().isAdsRemoved) {
+      BannerAd(
+        adUnitId: AdHelper.bannerAdUnitId,
+        request: const AdRequest(),
+        size: AdSize.banner,
+        listener: BannerAdListener(
+          onAdLoaded: (ad) {
+            setState(() {
+              _bannerAd = ad as BannerAd;
+            });
+          },
+          onAdFailedToLoad: (ad, err) {
+            print('Failed to load a banner ad: ${err.message}');
+            ad.dispose();
+          },
+        ),
+      ).load();
+    }
   }
 
   void generateCountries() {
@@ -196,7 +201,9 @@ class _CountriesPageState extends State<CountriesPage> {
       });
       Duration(milliseconds: 500).delay(() {
         int randomInt = random.nextInt(10);
-        if (_interstitialAd != null && randomInt == 2) {
+        if (_interstitialAd != null &&
+            randomInt == 2 &&
+            !Get.find<ShopController>().isAdsRemoved) {
           _interstitialAd?.show();
         } else {
           openWrongDialog();
@@ -209,7 +216,7 @@ class _CountriesPageState extends State<CountriesPage> {
   void openWrongDialog() {
     wrongGuessDialog(
       score: score,
-      isTryAgainUsed: isTryAgainUsed,
+      isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
         _rewardedAd?.show(
@@ -271,21 +278,20 @@ class _CountriesPageState extends State<CountriesPage> {
   int _countDialogOpen = 0;
 
   void openHelpDialog() {
-    if (_countDialogOpen == 0) {
-      if (!Get.find<SettingsController>().getFirstTrainHelp) {
-        helpDialog(trainingHelpWidgets());
-        Get.find<SettingsController>().firstHelpTrainSave(true);
-        _countDialogOpen++;
+    Future.delayed(const Duration(seconds: 1), () {
+      if (_countDialogOpen == 0) {
+        if (!Get.find<SettingsController>().getFirstTrainHelp) {
+          helpDialog(trainingHelpWidgets());
+          Get.find<SettingsController>().firstHelpTrainSave(true);
+          _countDialogOpen++;
+        }
       }
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      openHelpDialog();
-    });
-
+    openHelpDialog();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -415,7 +421,14 @@ class _CountriesPageState extends State<CountriesPage> {
                           );
                         }),
                   ),
-                  if (_bannerAd != null) adBannerWidget(bannerAd: _bannerAd),
+                  GetBuilder<ShopController>(builder: (shopController) {
+                    if (shopController.isAdsRemoved) {
+                      _interstitialAd?.dispose();
+                    }
+                    return _bannerAd != null && !shopController.isAdsRemoved
+                        ? adBannerWidget(bannerAd: _bannerAd)
+                        : Container();
+                  })
                 ],
               );
             },

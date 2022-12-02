@@ -84,17 +84,8 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: Icon(
-                            Icons.question_mark_outlined,
-                            size: 32,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                            ],
+                          child: IconWidget(
+                            icon: Icons.question_mark_outlined,
                           ),
                         ),
                       ),
@@ -110,17 +101,8 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: Icon(
-                            Icons.star,
-                            size: 32,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                            ],
+                          child: IconWidget(
+                            icon: Icons.star,
                           ),
                         ),
                       ),
@@ -135,17 +117,8 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: Icon(
-                            Icons.share,
-                            size: 32,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                              Shadow(blurRadius: 6, color: Colors.black),
-                            ],
+                          child: IconWidget(
+                            icon: Icons.share,
                           ),
                         ),
                       ),
@@ -159,6 +132,29 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class IconWidget extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  const IconWidget({Key? key, required this.icon, this.color = Colors.white})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      icon,
+      size: Dimensions.iconSize16 * 2,
+      color: Colors.white,
+      shadows: const [
+        Shadow(blurRadius: 6, color: Colors.black),
+        Shadow(blurRadius: 6, color: Colors.black),
+        Shadow(blurRadius: 6, color: Colors.black),
+        Shadow(blurRadius: 6, color: Colors.black),
+        Shadow(blurRadius: 6, color: Colors.black),
+      ],
     );
   }
 }

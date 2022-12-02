@@ -51,7 +51,7 @@ void wrongGuessDialog({
                       width: Dimensions.width10,
                     ),
                     Text(
-                      'Get one more try'.tr,
+                      'Continue'.tr,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -85,7 +85,7 @@ void wrongGuessDialog({
             ),
           ),
           child: Center(
-            child: Text('Try Again'.tr),
+            child: Text('Start over'.tr),
           ),
         ),
       ),

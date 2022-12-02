@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flag_app/controllers/country_continent_controller.dart';
+import 'package:flag_app/models/country_continent_model.dart';
 import 'package:flag_app/models/country_model.dart';
 import 'package:flag_app/repos/country_repo.dart';
 import 'package:get/get.dart';
@@ -102,6 +103,7 @@ class CountryController extends GetxController implements GetxService {
     all.addAll(_countries);
     all.shuffle();
     List<CountryModel> result = [];
+    String selectedContinent = "";
     int count = amount - 2;
 
     for (var country in _countries) {
@@ -110,8 +112,16 @@ class CountryController extends GetxController implements GetxService {
       }
     }
 
+    Get.find<CountryContinentController>().getCountries.forEach((continent) {
+      if (result[0].countryName == continent.country) {
+        selectedContinent = continent.continent!;
+        print(selectedContinent);
+      }
+    });
+
     for (int i = 0; i <= count; i++) {
-      if (all[i].countryName == selectedCountry) {
+      if (all[i].countryName == selectedCountry ||
+          !sameContinent(selectedContinent, all[i].countryName!)) {
         count++;
       } else {
         result.add(all[i]);
@@ -121,5 +131,18 @@ class CountryController extends GetxController implements GetxService {
     update();
 
     return result;
+  }
+
+  bool sameContinent(String selectedContinent, String selectedCountry) {
+    for (CountryContinentModel continent
+        in Get.find<CountryContinentController>().getCountries) {
+      if (selectedCountry == continent.country) {
+        if (continent.continent == selectedContinent) {
+          print(selectedCountry + ' ' + selectedContinent);
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

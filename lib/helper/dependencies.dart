@@ -13,6 +13,7 @@ import 'package:flag_app/repos/level_repo.dart';
 import 'package:flag_app/repos/score_repo.dart';
 import 'package:flag_app/repos/settings_repo.dart';
 import 'package:flag_app/repos/shop_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +22,11 @@ import 'locale_handler.dart';
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-  await MobileAds.instance.initialize();
+  await MobileAds.instance.initialize().then((initializationStatus) {
+    initializationStatus.adapterStatuses.forEach((key, value) {
+      debugPrint('Adapter status for $key: ${value.description}');
+    });
+  });
   await LocaleHandler.initLanguages();
 
   //Repo

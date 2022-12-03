@@ -99,12 +99,12 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future<void> removeAdsRead() async {
-    _adsRemoved = await shopRepo.levelsUnlockRead();
+    _adsRemoved = await shopRepo.removeAdsRead();
   }
 
   Future<void> removeAdsSave(bool removeAds) async {
     _adsRemoved = removeAds;
-    await shopRepo.levelsUnlockSave(removeAds);
+    await shopRepo.removeAdsSave(removeAds);
     update();
   }
 }

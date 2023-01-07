@@ -11,20 +11,13 @@ class CreditsButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String credits = 'This is an app with flags from all over the world\n\n'
-      'If you love flags, countries and coat of arms, this is the perfect app for you.\n'
-      'I have collected all the countries and some information about them.\n'
-      'As you complete each level and work your way through all the flags you '
-      'will learn a lot of new things, the capital, the currency and what the flag looks like.'
-      '\n\nThere is also the option to practice, here you play with a flag or a country and '
-      'get options on which country it is.\nTo practice your skills for the flags of the different countries'
-      '\n\nYou have the option to complete levels with flags, countries, and coats of arms.'
-      '\nAs you get through the different levels, you get better and better. See if you can complete all the levels.'
-      '\n\nLanguage in the app:\nBrasileiro\nDansk\nDeutsch\nEnglish\nEspañol\nFrançais\nNorsk\nPortuguês\nSvenska\n\n'
-      'If you find any errors or mistakes, please write to me at';
+  final String credits = 'Credits Words'.tr;
 
-  final String ccCredits =
-      '\n\nSound Effect from Pixabay (https://pixabay.com/sound-effects)\nCountries are from Djiass map icon (https://github.com/djaiss/mapsicon)';
+  final String ccCredits = '\n\n' +
+      'Sound Effect from Pixabay'.tr +
+      '(https://pixabay.com/sound-effects)\n' +
+      'Countries are from Djiass map icon'.tr +
+      '(https://github.com/djaiss/mapsicon)';
 
   final String emailAddress = 'hartvig.develop@gmail.com';
   final Uri webPage = Uri.parse('http://flagsgame.epizy.com/support');

@@ -74,7 +74,7 @@ class ShopController extends GetxController implements GetxService {
       CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
       final entitlementAds = customerInfo
-          .entitlements.all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
+          .entitlements.all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
       final entitlementLevel = customerInfo
           .entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
 

@@ -314,7 +314,7 @@ class _ShopPageState extends State<ShopPage> {
                             CustomerInfo restoredInfo =
                                 await Purchases.restorePurchases();
                             final entitlementAds = restoredInfo.entitlements
-                                .all[AppConstants.Remove_ADS_ID_ENT]?.isActive;
+                                .all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
                             bool isAdsRemove = entitlementAds == true;
 
                             Get.find<ShopController>()

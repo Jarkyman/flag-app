@@ -4,6 +4,7 @@ import 'package:flag_app/helper/dimensions.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gdpr_dialog/gdpr_dialog.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/sound_controller.dart';
@@ -18,8 +19,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String status = 'none';
+
   @override
   void initState() {
+    Text('Show dialog');
+    GdprDialog.instance.resetDecision();
+    GdprDialog.instance
+        .showDialog(isForTest: false, testDeviceId: '')
+        .then((onValue) {
+      setState(() {
+        status = 'dialog result == $onValue';
+        print('RESULT = ' + status);
+      });
+    });
     super.initState();
   }
 

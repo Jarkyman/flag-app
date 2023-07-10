@@ -19,7 +19,7 @@ dependencies:
   flutter_swipe_detector: ^2.0.0
   google_mobile_ads: ^1.2.0
   soundpool: ^2.3.0
-  purchases_flutter: ^4.3.0
+  purchases_flutter: ^5.2.3
   animated_widgets: ^1.1.0
   shake: ^2.1.0
   rate_my_app: ^1.1.3

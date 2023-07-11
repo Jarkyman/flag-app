@@ -1,9 +1,9 @@
 name: flag_app
-description: A new Flutter project.
+description: A flag quiz app.
 
 publish_to: 'none'
 
-version: 1.2.5+15
+version: 1.2.5+16
 
 environment:
   sdk: '>=2.18.0 <3.0.0'

@@ -23,8 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    Text('Show dialog');
-    GdprDialog.instance.resetDecision();
+    //GdprDialog.instance.resetDecision(); //For test only
     GdprDialog.instance
         .showDialog(isForTest: false, testDeviceId: '')
         .then((onValue) {

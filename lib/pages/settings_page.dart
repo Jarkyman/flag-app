@@ -14,7 +14,6 @@ import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
 import '../widget/buttons/custom_close_button.dart';
-import '../widget/help_widget.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -113,7 +112,7 @@ class SettingsPage extends StatelessWidget {
                         title: 'Share app'.tr,
                         onTap: () {
                           Share.share(
-                              'check out this app \nhttp://flagsgame.epizy.com/app');
+                              'Check out this app \nhttp://flagsgame.epizy.com/app');
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),

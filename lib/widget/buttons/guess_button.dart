@@ -35,7 +35,7 @@ class GuessButton extends StatelessWidget {
               width: 2,
               color: borderColor,
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3,
                 spreadRadius: 2,

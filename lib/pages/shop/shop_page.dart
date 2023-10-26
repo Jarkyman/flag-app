@@ -11,7 +11,6 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
-import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../widget/Top bar/app_bar_row_exit.dart';
 import '../../widget/buttons/menu_button.dart';
@@ -116,7 +115,7 @@ class _ShopPageState extends State<ShopPage> {
           child: SafeArea(
             child: Column(
               children: [
-                AppBarRowExit(),
+                const AppBarRowExit(),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -66,9 +66,9 @@ class _LevelPageState extends State<LevelPage> {
             Get.find<SoundController>().clickSound();
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text('Level'.tr + ' ${Get.arguments[1]}'),
+        title: Text('${'Level'.tr} ${Get.arguments[1]}'),
         backgroundColor: AppColors.mainColor,
       ),
       body: BackgroundImage(
@@ -85,8 +85,8 @@ class _LevelPageState extends State<LevelPage> {
                   ),
                   child: GetBuilder<LevelController>(
                     builder: (levelController) {
-                      print('Type = ' + Get.arguments[0].toString());
-                      print('Level = ' + Get.arguments[1].toString());
+                      print('Type = ${Get.arguments[0]}');
+                      print('Level = ${Get.arguments[1]}');
                       List<LevelModel> levels = levelController.getLevelList(
                           Get.arguments[1], Get.arguments[0]);
                       return GridView.count(
@@ -96,7 +96,7 @@ class _LevelPageState extends State<LevelPage> {
                         crossAxisCount: 4,
                         children: List.generate(levels.length, (index) {
                           String countryCodeImg =
-                              '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}';
+                              Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase();
                           if ((countryCodeImg == 'ni' ||
                                   countryCodeImg == 'py' ||
                                   countryCodeImg == 'sv') &&
@@ -117,7 +117,7 @@ class _LevelPageState extends State<LevelPage> {
                                   ]);
                             },
                             child: Hero(
-                              tag: '${countryCodeImg.toLowerCase()}',
+                              tag: countryCodeImg.toLowerCase(),
                               child: LevelCard(
                                 guessed: levels[index].guessed!,
                                 image:

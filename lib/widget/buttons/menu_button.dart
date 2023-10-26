@@ -106,7 +106,7 @@ class MenuButton extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Padding(
                     padding: EdgeInsets.all(Dimensions.width10),
-                    child: CircularProgressIndicator(
+                    child: const CircularProgressIndicator(
                       color: AppColors.mainColor,
                       strokeWidth: 2.0,
                     ),

@@ -32,7 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -80,8 +80,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation group: 'com.google.android.material', name: 'material', version: '1.8.0-alpha01'
-    implementation 'com.google.ads.mediation:facebook:6.14.0.0'
+    implementation group: 'com.google.android.material', name: 'material', version: '1.10.0'
+    implementation 'com.google.ads.mediation:facebook:6.16.0.0'
 
     def billingVersion = "6.0.1"
     implementation "com.android.billingclient:billing:$billingVersion"

@@ -26,13 +26,13 @@ class LevelModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['Country'] = this.country;
-    data['Guessed'] = this.guessed;
-    data['Level'] = this.level;
-    data['BombUsed'] = this.bombUsed;
-    data['AnswerLetters'] = enConvertList(this.answerLetters!);
-    data['AllLetters'] = this.allLetters;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Country'] = country;
+    data['Guessed'] = guessed;
+    data['Level'] = level;
+    data['BombUsed'] = bombUsed;
+    data['AnswerLetters'] = enConvertList(answerLetters!);
+    data['AllLetters'] = allLetters;
     return data;
   }
 

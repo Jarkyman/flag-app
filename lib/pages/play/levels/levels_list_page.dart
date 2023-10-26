@@ -28,7 +28,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
           bottom: false,
           child: Column(
             children: [
-              AppBarRow(),
+              const AppBarRow(),
               SizedBox(
                 height: Dimensions.height20,
               ),
@@ -81,23 +81,19 @@ class _LevelsListPageState extends State<LevelsListPage> {
                                   } else {
                                     if (!isSnackOpen) {
                                       isSnackOpen = true;
-                                      Duration(seconds: 3).delay(() {
+                                      const Duration(seconds: 3).delay(() {
                                         isSnackOpen = false;
                                       });
                                       Get.snackbar(
                                         'Unlock more levels'.tr,
-                                        'You need to finish'.tr +
-                                            ' ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ' +
-                                            'more, to unlock level'.tr +
-                                            ' ${index + 1} ' +
-                                            'more, to unlock level2'.tr,
+                                        '${'You need to finish'.tr} ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ${'more, to unlock level'.tr} ${index + 1} ${'more, to unlock level2'.tr}',
                                         backgroundColor: AppColors.wrongColor
                                             .withOpacity(0.3),
                                       );
                                     }
                                   }
                                 },
-                                title: 'Level'.tr + ' ${index + 1}',
+                                title: '${'Level'.tr} ${index + 1}',
                                 numOfDone: numOfDone,
                                 numTotal: numTotal,
                               ),

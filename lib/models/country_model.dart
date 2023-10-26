@@ -30,15 +30,15 @@ class CountryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country_code'] = this.countryCode;
-    data['country_name'] = this.countryName;
-    data['capital'] = this.capital;
-    data['country_demonym'] = this.countryDemonym;
-    data['currency_code'] = this.currencyCode;
-    data['currency_name'] = this.currencyName;
-    data['lang_code'] = this.langCode;
-    data['lang_name'] = this.langName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['country_code'] = countryCode;
+    data['country_name'] = countryName;
+    data['capital'] = capital;
+    data['country_demonym'] = countryDemonym;
+    data['currency_code'] = currencyCode;
+    data['currency_name'] = currencyName;
+    data['lang_code'] = langCode;
+    data['lang_name'] = langName;
     return data;
   }
 }

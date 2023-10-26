@@ -11,7 +11,7 @@ class ShopRepo {
 
   Future<bool> levelsUnlockRead() async {
     bool levelsUnlocked =
-        await sharedPreferences.getBool(AppConstants.UNLOCK_LEVELS) ?? false;
+        sharedPreferences.getBool(AppConstants.UNLOCK_LEVELS) ?? false;
     return levelsUnlocked;
   }
 
@@ -21,7 +21,7 @@ class ShopRepo {
 
   Future<bool> removeAdsRead() async {
     bool removeAds =
-        await sharedPreferences.getBool(AppConstants.ADS_REMOVE) ?? false;
+        sharedPreferences.getBool(AppConstants.ADS_REMOVE) ?? false;
     return removeAds;
   }
 

@@ -32,11 +32,11 @@ class CountryController extends GetxController implements GetxService {
   void removeUnUsed() {
     List<CountryModel> result = [];
     Get.find<CountryContinentController>().getCountries.forEach((continent) {
-      _countries.forEach((country) {
+      for (var country in _countries) {
         if (country.countryName == continent.country) {
           result.add(country);
         }
-      });
+      }
     });
     _countries = result;
   }
@@ -44,23 +44,23 @@ class CountryController extends GetxController implements GetxService {
   List<CountryModel> getTestObj() {
     List<CountryModel> result = [];
     Get.find<CountryContinentController>().getCountries.forEach((continent) {
-      _countries.forEach((country) {
+      for (var country in _countries) {
         if (country.countryName == continent.country) {
           result.add(country);
         }
-      });
+      }
     });
-    print('Test Obj ' + result.length.toString());
+    print('Test Obj ${result.length}');
     return result;
   }
 
   String getCountryCode(String country) {
     String countryCode = 'error';
-    _countries.forEach((element) {
+    for (var element in _countries) {
       if (country.toLowerCase() == element.countryName!.toLowerCase()) {
         countryCode = element.countryCode!;
       }
-    });
+    }
     return countryCode;
   }
 
@@ -138,7 +138,7 @@ class CountryController extends GetxController implements GetxService {
         in Get.find<CountryContinentController>().getCountries) {
       if (selectedCountry == continent.country) {
         if (continent.continent == selectedContinent) {
-          print(selectedCountry + ' ' + selectedContinent);
+          print('$selectedCountry $selectedContinent');
           return true;
         }
       }

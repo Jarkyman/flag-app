@@ -75,7 +75,7 @@ class _SplashPageState extends State<SplashScreen>
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {
-      Timer(Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInitial()));
+      Timer(const Duration(seconds: 3), () => Get.offNamed(RouteHelper.getInitial()));
       //Timer(Duration(seconds: 3), () => Get.off(TestPage()));
     }
   }
@@ -109,7 +109,7 @@ class _SplashPageState extends State<SplashScreen>
                     ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   bottom: 25,
                   right: 25,
                   child: CircularProgressIndicator(

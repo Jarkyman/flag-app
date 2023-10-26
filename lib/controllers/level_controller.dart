@@ -68,7 +68,7 @@ class LevelController extends GetxController implements GetxService {
       _addToLevelUnlock(playOption);
       unlock = true;
       Get.snackbar(
-          'Level unlocked'.tr, 'Level'.tr + ' $amount ' + 'is unlocked'.tr);
+          'Level unlocked'.tr, '${'Level'.tr} $amount ${'is unlocked'.tr}');
     }
 
     return unlock;
@@ -315,7 +315,7 @@ class LevelController extends GetxController implements GetxService {
   }
 
   Future<void> readLevels({bool reset = false}) async {
-    print('ReadLevels' + Get.locale!.toString());
+    print('ReadLevels${Get.locale!}');
     _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!,
         reset: reset);
     _countriesLevels = await levelRepo

@@ -31,7 +31,7 @@ class SettingsPage extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                CustomCloseButton(),
+                const CustomCloseButton(),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: IconWidget(
+                          child: const IconWidget(
                             icon: Icons.question_mark_outlined,
                           ),
                         ),
@@ -100,7 +100,7 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: IconWidget(
+                          child: const IconWidget(
                             icon: Icons.star,
                           ),
                         ),
@@ -116,7 +116,7 @@ class SettingsPage extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: IconWidget(
+                          child: const IconWidget(
                             icon: Icons.share,
                           ),
                         ),

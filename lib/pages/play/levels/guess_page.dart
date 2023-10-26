@@ -85,7 +85,7 @@ class _GuessPageState extends State<GuessPage> {
     if (!Get.find<ShopController>().isAdsRemoved) {
       InterstitialAd.load(
         adUnitId: AdHelper.interstitialAdUnitId,
-        request: AdRequest(),
+        request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (ad) {
             ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -282,7 +282,7 @@ class _GuessPageState extends State<GuessPage> {
   List<List<String>> getLettersListEmpty(String word) {
     List<List<String>> lettersList = getCorrectLettersList(word);
 
-    lettersList.forEach((words) {
+    for (var words in lettersList) {
       for (int i = 0; i < words.length; i++) {
         if (words[i] == '-' ||
             words[i] == String.fromCharCode(8626) ||
@@ -291,7 +291,7 @@ class _GuessPageState extends State<GuessPage> {
           words[i] = '';
         }
       }
-    });
+    }
 
     return lettersList;
   }
@@ -688,7 +688,7 @@ class _GuessPageState extends State<GuessPage> {
                 Get.back();
               }
             },
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: const Icon(Icons.arrow_back_ios_new),
           ),
           backgroundColor: AppColors.mainColor,
           /*actions: [
@@ -738,14 +738,14 @@ class _GuessPageState extends State<GuessPage> {
             child: BackgroundImage(
               child: GetBuilder<LevelController>(
                 builder: (levelController) {
-                  print('Type = ' + Get.arguments[0].toString());
-                  print('Level = ' + Get.arguments[1].toString());
-                  print('Flag index = ' + Get.arguments[2].toString());
+                  print('Type = ${Get.arguments[0]}');
+                  print('Level = ${Get.arguments[1]}');
+                  print('Flag index = ${Get.arguments[2]}');
 
                   String countryCodeImg =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                      Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
                   String countryCodeImgCountry =
-                      '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}';
+                      Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
                   if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
                       country.guessed! &&
                       Get.arguments[0] == AppConstants.FLAGS) {
@@ -773,7 +773,7 @@ class _GuessPageState extends State<GuessPage> {
                               tapHintOne: () {
                                 useFinishHint(5);
                               },
-                              iconOne: Icon(
+                              iconOne: const Icon(
                                 Icons.check,
                                 color: AppColors.mainColor,
                               ),
@@ -784,7 +784,7 @@ class _GuessPageState extends State<GuessPage> {
                                 }
                               },
                               iconTwo: ImageIcon(
-                                AssetImage('assets/icon/bomb.png'),
+                                const AssetImage('assets/icon/bomb.png'),
                                 color: AppColors.mainColor,
                                 size: Dimensions.iconSize24,
                               ),
@@ -794,7 +794,7 @@ class _GuessPageState extends State<GuessPage> {
                                 useFirstLetterHint(1);
                               },
                               iconThree: ImageIcon(
-                                AssetImage('assets/icon/a.png'),
+                                const AssetImage('assets/icon/a.png'),
                                 color: AppColors.mainColor,
                                 size: Dimensions.iconSize24,
                               ),
@@ -802,13 +802,13 @@ class _GuessPageState extends State<GuessPage> {
                             ),
                       SizedBox(height: Dimensions.height10),
                       Get.arguments[0] == AppConstants.COUNTRIES
-                          ? Container(
+                          ? SizedBox(
                               height: Dimensions.height20 * 10,
                               child: Stack(
                                 children: [
                                   Hero(
                                     tag:
-                                        '${countryCodeImgCountry.toLowerCase()}',
+                                        countryCodeImgCountry.toLowerCase(),
                                     /*flightShuttleBuilder:
                                         ((flightContext, animation, _, __, ___) {
                                       animation.addStatusListener((status) {
@@ -839,7 +839,7 @@ class _GuessPageState extends State<GuessPage> {
                                       height: Dimensions.height20 * 10,
                                       margin: EdgeInsets.symmetric(
                                           horizontal: Dimensions.height20),
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                       child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
@@ -864,12 +864,12 @@ class _GuessPageState extends State<GuessPage> {
                               ),
                             )
                           : Hero(
-                              tag: '${countryCodeImg.toLowerCase()}',
+                              tag: countryCodeImg.toLowerCase(),
                               child: Container(
                                 height: Dimensions.height20 * 10,
                                 margin: EdgeInsets.symmetric(
                                     horizontal: Dimensions.height20),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Center(
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(
@@ -999,7 +999,7 @@ class _GuessPageState extends State<GuessPage> {
             return Padding(
               padding: EdgeInsets.only(bottom: Dimensions.height10 / 2),
               child: allLetters[index] == ''
-                  ? EmptyTile()
+                  ? const EmptyTile()
                   : GestureDetector(
                       onTap: () {
                         putLetterInBox(allLetters[index], index);
@@ -1043,7 +1043,7 @@ class _GuessPageState extends State<GuessPage> {
       children: List.generate(
         words.length,
         (index) => answer[index] == ''
-            ? EmptyTile()
+            ? const EmptyTile()
             : answer[index] == '/'
                 ? Container(
                     width: Dimensions.screenWidth / 10,
@@ -1056,7 +1056,7 @@ class _GuessPageState extends State<GuessPage> {
                                 answer[index] != String.fromCharCode(8626)
                             ? true
                             : shakeTile,
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     shakeAngle:
                         answer[index] == wrongLettersList[wordIndex][index] &&
                                 answer[index] != '/' &&

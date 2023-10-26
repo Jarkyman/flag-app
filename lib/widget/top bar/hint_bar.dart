@@ -100,7 +100,7 @@ class HintBar extends StatelessWidget {
                 Get.find<SoundController>().clickSound();
                 Get.toNamed(RouteHelper.getShopPage());
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.lightbulb_outline,
                 color: AppColors.mainColor,
               ),

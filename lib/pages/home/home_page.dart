@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         .then((onValue) {
       setState(() {
         status = 'dialog result == $onValue';
-        print('RESULT = ' + status);
+        print('RESULT = $status');
       });
     });
     super.initState();
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20 * 2),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.settings_outlined,
                             color: AppColors.mainColor,
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Get.toNamed(RouteHelper.getShopPage());
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.lightbulb_outline,
                           color: AppColors.mainColor,
                         ),

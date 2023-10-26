@@ -22,11 +22,11 @@ class InfoColumn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('$header: '),
-            Text('$info'),
+            Text(info),
           ],
         ),
         if (divider)
-          Divider(
+          const Divider(
             color: AppColors.mainColor,
           ),
       ],

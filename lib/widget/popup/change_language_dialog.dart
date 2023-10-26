@@ -9,15 +9,15 @@ import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
 final List locale = [
-  {'name': 'Brasileiro', 'locale': Locale('pt', 'BR')},
-  {'name': 'Dansk', 'locale': Locale('da', 'DK')},
-  {'name': 'Deutsch', 'locale': Locale('de', 'DE')},
-  {'name': 'English', 'locale': Locale('en', 'US')},
-  {'name': 'Español', 'locale': Locale('es', 'ES')},
-  {'name': 'Français', 'locale': Locale('fr', 'FR')},
-  {'name': 'Norsk', 'locale': Locale('nb', 'NO')},
-  {'name': 'Português', 'locale': Locale('pt', 'PT')},
-  {'name': 'Svenska', 'locale': Locale('sv', 'SE')},
+  {'name': 'Brasileiro', 'locale': const Locale('pt', 'BR')},
+  {'name': 'Dansk', 'locale': const Locale('da', 'DK')},
+  {'name': 'Deutsch', 'locale': const Locale('de', 'DE')},
+  {'name': 'English', 'locale': const Locale('en', 'US')},
+  {'name': 'Español', 'locale': const Locale('es', 'ES')},
+  {'name': 'Français', 'locale': const Locale('fr', 'FR')},
+  {'name': 'Norsk', 'locale': const Locale('nb', 'NO')},
+  {'name': 'Português', 'locale': const Locale('pt', 'PT')},
+  {'name': 'Svenska', 'locale': const Locale('sv', 'SE')},
 ];
 
 updateLanguage(Locale locale) {
@@ -33,12 +33,12 @@ void buildLanguageDialog() {
     title: 'Choose Your Language'.tr,
     middleText: "",
     backgroundColor: AppColors.lightGreen,
-    content: Container(
+    content: SizedBox(
       height: Dimensions.screenHeight / 2,
       width: Dimensions.width45 * 6,
       child: SingleChildScrollView(
         child: ListView.separated(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -63,7 +63,7 @@ void buildLanguageDialog() {
               );
             },
             separatorBuilder: (context, index) {
-              return Divider(
+              return const Divider(
                 color: AppColors.mainColor,
               );
             },

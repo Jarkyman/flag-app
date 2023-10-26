@@ -28,7 +28,7 @@ class CustomCloseButton extends StatelessWidget {
               color: AppColors.mainColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
             ),
-            child: Center(
+            child: const Center(
               child: Icon(
                 Icons.close,
                 color: AppColors.mainColor,

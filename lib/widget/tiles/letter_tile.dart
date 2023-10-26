@@ -15,7 +15,7 @@ class LetterTile extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            stops: [
+            stops: const [
               0.34,
               0.42,
             ],

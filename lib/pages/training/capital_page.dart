@@ -34,7 +34,7 @@ class _CapitalPageState extends State<CapitalPage> {
 
   void generateCountries() {
     setState(() {
-      Duration(milliseconds: 500).delay(() {
+      const Duration(milliseconds: 500).delay(() {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 4);
@@ -132,7 +132,7 @@ class _CapitalPageState extends State<CapitalPage> {
             Get.find<SoundController>().clickSound();
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
           'Capitals'.tr,
@@ -143,7 +143,7 @@ class _CapitalPageState extends State<CapitalPage> {
         actions: [
           GetBuilder<ScoreController>(builder: (scoreController) {
             return Text(
-              'Score'.tr + ': $score \n' + 'Record'.tr + ': $highScore ',
+              '${'Score'.tr}: $score \n${'Record'.tr}: $highScore ',
               style: TextStyle(fontSize: Dimensions.font16),
             );
           }),
@@ -162,18 +162,18 @@ class _CapitalPageState extends State<CapitalPage> {
                       tapHintTwo: () {
                         useFiftyFiftyHint(1);
                       },
-                      iconOne: Icon(
+                      iconOne: const Icon(
                         Icons.check,
                         color: AppColors.mainColor,
                       ),
                       iconTwo: ImageIcon(
-                        AssetImage('assets/icon/fifty_fifty.png'),
+                        const AssetImage('assets/icon/fifty_fifty.png'),
                         color: AppColors.mainColor,
                         size: Dimensions.iconSize24 * 1.4,
                       ),
                       hintPriceOne: '3',
                       hintPriceTwo: '1'),
-                  Container(
+                  SizedBox(
                     height: Dimensions.height30 * 2,
                     child: Center(
                       child: Padding(
@@ -204,7 +204,7 @@ class _CapitalPageState extends State<CapitalPage> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           return GuessButton(

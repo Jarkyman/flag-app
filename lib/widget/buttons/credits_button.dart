@@ -13,11 +13,7 @@ class CreditsButton extends StatelessWidget {
 
   final String credits = 'Credits Words'.tr;
 
-  final String ccCredits = '\n\n' +
-      'Sound Effect from Pixabay'.tr +
-      '(https://pixabay.com/sound-effects)\n' +
-      'Countries are from Djiass map icon'.tr +
-      '(https://github.com/djaiss/mapsicon)';
+  final String ccCredits = '\n\n${'Sound Effect from Pixabay'.tr}(https://pixabay.com/sound-effects)\n${'Countries are from Djiass map icon'.tr}(https://github.com/djaiss/mapsicon)';
 
   final String emailAddress = 'hartvig.develop@gmail.com';
   final Uri webPage = Uri.parse('http://flagsgame.epizy.com/support');
@@ -117,7 +113,7 @@ class CreditsButton extends StatelessWidget {
       },
       child: Text(
         'Credits'.tr,
-        style: TextStyle(color: AppColors.textColorGray),
+        style: const TextStyle(color: AppColors.textColorGray),
       ),
     );
   }

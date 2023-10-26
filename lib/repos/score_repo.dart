@@ -10,7 +10,7 @@ class ScoreRepo {
   });
 
   Future<int> readFlagScore() async {
-    int score = await sharedPreferences.getInt(AppConstants.FLAG_SCORE) ?? 0;
+    int score = sharedPreferences.getInt(AppConstants.FLAG_SCORE) ?? 0;
     return score;
   }
 
@@ -19,7 +19,7 @@ class ScoreRepo {
   }
 
   Future<int> readFlagsScore() async {
-    int score = await sharedPreferences.getInt(AppConstants.FLAGS_SCORE) ?? 0;
+    int score = sharedPreferences.getInt(AppConstants.FLAGS_SCORE) ?? 0;
     return score;
   }
 
@@ -28,7 +28,7 @@ class ScoreRepo {
   }
 
   Future<int> readCapitalScore() async {
-    int score = await sharedPreferences.getInt(AppConstants.CAPITAL_SCORE) ?? 0;
+    int score = sharedPreferences.getInt(AppConstants.CAPITAL_SCORE) ?? 0;
     return score;
   }
 
@@ -38,7 +38,7 @@ class ScoreRepo {
 
   Future<int> readCountriesScore() async {
     int score =
-        await sharedPreferences.getInt(AppConstants.COUNTRIES_SCORE) ?? 0;
+        sharedPreferences.getInt(AppConstants.COUNTRIES_SCORE) ?? 0;
     return score;
   }
 

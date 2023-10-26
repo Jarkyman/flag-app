@@ -19,7 +19,7 @@ class PlayPage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              AppBarRow(),
+              const AppBarRow(),
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

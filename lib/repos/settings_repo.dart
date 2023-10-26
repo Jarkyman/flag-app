@@ -24,7 +24,7 @@ class SettingsRepo {
   }
 
   Future<bool> soundSettingRead() async {
-    bool sound = await sharedPreferences.getBool(AppConstants.SOUND) ?? true;
+    bool sound = sharedPreferences.getBool(AppConstants.SOUND) ?? true;
     return sound;
   }
 
@@ -34,7 +34,7 @@ class SettingsRepo {
 
   Future<bool> firstLaunchRead() async {
     bool first =
-        await sharedPreferences.getBool(AppConstants.FIRST_LAUNCH) ?? true;
+        sharedPreferences.getBool(AppConstants.FIRST_LAUNCH) ?? true;
     return first;
   }
 
@@ -44,7 +44,7 @@ class SettingsRepo {
 
   Future<bool> firstHelpGuessRead() async {
     bool first =
-        await sharedPreferences.getBool(AppConstants.FIRST_HELP_GUESS) ?? false;
+        sharedPreferences.getBool(AppConstants.FIRST_HELP_GUESS) ?? false;
     return first;
   }
 
@@ -54,7 +54,7 @@ class SettingsRepo {
 
   Future<bool> firstHelpTrainRead() async {
     bool first =
-        await sharedPreferences.getBool(AppConstants.FIRST_HELP_TRAIN) ?? false;
+        sharedPreferences.getBool(AppConstants.FIRST_HELP_TRAIN) ?? false;
     return first;
   }
 

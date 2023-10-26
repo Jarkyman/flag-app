@@ -34,7 +34,7 @@ class AppBarRowExit extends StatelessWidget {
                 color: AppColors.mainColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
               ),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.close,
                   color: AppColors.mainColor,
@@ -45,7 +45,7 @@ class AppBarRowExit extends StatelessWidget {
           GetBuilder<HintController>(builder: (hintController) {
             return HintWidget(
               onTap: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.lightbulb_outline,
                 color: AppColors.mainColor,
               ),

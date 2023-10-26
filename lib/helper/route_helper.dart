@@ -27,52 +27,52 @@ class RouteHelper {
   static const String capitalPage = '/capital-page';
   static const String countriesPage = '/countries-page';
 
-  static String getSplashPage() => '$splashPage';
+  static String getSplashPage() => splashPage;
 
-  static String getInitial() => '$initial';
+  static String getInitial() => initial;
 
-  static String getShopPage() => '$shopPage';
+  static String getShopPage() => shopPage;
 
-  static String getSettingsPage() => '$settingsPage';
+  static String getSettingsPage() => settingsPage;
 
-  static String getPlayPage() => '$playPage';
+  static String getPlayPage() => playPage;
 
-  static String getLevelsListPage() => '$levelsListPage';
+  static String getLevelsListPage() => levelsListPage;
 
-  static String getLevelPage() => '$levelPage';
+  static String getLevelPage() => levelPage;
 
-  static String getGuessPage() => '$guessPage';
+  static String getGuessPage() => guessPage;
 
-  static String getFlagPage() => '$flagPage';
+  static String getFlagPage() => flagPage;
 
-  static String getFlagsPage() => '$flagsPage';
+  static String getFlagsPage() => flagsPage;
 
-  static String getCapitalPage() => '$capitalPage';
+  static String getCapitalPage() => capitalPage;
 
-  static String getCountriesPage() => '$countriesPage';
+  static String getCountriesPage() => countriesPage;
 
   static List<GetPage> routes = [
-    GetPage(name: splashPage, page: () => SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
+    GetPage(name: splashPage, page: () => const SplashScreen()),
+    GetPage(name: initial, page: () => const HomePage()),
     GetPage(
         name: shopPage,
-        page: () => ShopPage(),
+        page: () => const ShopPage(),
         transition: Transition.downToUp),
     GetPage(
         name: settingsPage,
-        page: () => SettingsPage(),
+        page: () => const SettingsPage(),
         transition: Transition.downToUp),
     GetPage(
         name: playPage,
         page: () {
-          return PlayPage();
+          return const PlayPage();
         }),
-    GetPage(name: levelsListPage, page: () => LevelsListPage()),
-    GetPage(name: levelPage, page: () => LevelPage()),
-    GetPage(name: guessPage, page: () => GuessPage()),
-    GetPage(name: flagPage, page: () => FlagPage()),
-    GetPage(name: flagsPage, page: () => FlagsPage()),
-    GetPage(name: capitalPage, page: () => CapitalPage()),
-    GetPage(name: countriesPage, page: () => CountriesPage()),
+    GetPage(name: levelsListPage, page: () => const LevelsListPage()),
+    GetPage(name: levelPage, page: () => const LevelPage()),
+    GetPage(name: guessPage, page: () => const GuessPage()),
+    GetPage(name: flagPage, page: () => const FlagPage()),
+    GetPage(name: flagsPage, page: () => const FlagsPage()),
+    GetPage(name: capitalPage, page: () => const CapitalPage()),
+    GetPage(name: countriesPage, page: () => const CountriesPage()),
   ];
 }

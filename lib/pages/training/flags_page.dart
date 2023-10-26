@@ -78,7 +78,7 @@ class _FlagsPageState extends State<FlagsPage> {
     if (!Get.find<ShopController>().isAdsRemoved) {
       InterstitialAd.load(
         adUnitId: AdHelper.interstitialAdUnitId,
-        request: AdRequest(),
+        request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (ad) {
             ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -103,7 +103,7 @@ class _FlagsPageState extends State<FlagsPage> {
   void _loadRewardedAd() {
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -157,7 +157,7 @@ class _FlagsPageState extends State<FlagsPage> {
 
   void generateCountries() {
     setState(() {
-      Duration(milliseconds: 500).delay(() {
+      const Duration(milliseconds: 500).delay(() {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 6);
@@ -199,7 +199,7 @@ class _FlagsPageState extends State<FlagsPage> {
           Get.find<ScoreController>().saveFlagsScore(highScore);
         }
       });
-      Duration(milliseconds: 500).delay(() {
+      const Duration(milliseconds: 500).delay(() {
         int randomInt = random.nextInt(10);
         if (_interstitialAd != null &&
             randomInt == 2 &&
@@ -307,7 +307,7 @@ class _FlagsPageState extends State<FlagsPage> {
             Get.find<SoundController>().clickSound();
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         centerTitle: true,
         title: Text(
@@ -320,7 +320,7 @@ class _FlagsPageState extends State<FlagsPage> {
           GetBuilder<ScoreController>(builder: (scoreController) {
             return Row(
               children: [
-                Icon(Icons.star),
+                const Icon(Icons.star),
                 SizedBox(
                   width: Dimensions.width5 / 2,
                 ),
@@ -348,19 +348,19 @@ class _FlagsPageState extends State<FlagsPage> {
                   tapHintTwo: () {
                     useFiftyFiftyHint(1);
                   },
-                  iconOne: Icon(
+                  iconOne: const Icon(
                     Icons.check,
                     color: AppColors.mainColor,
                   ),
                   iconTwo: ImageIcon(
-                    AssetImage('assets/icon/fifty_fifty.png'),
+                    const AssetImage('assets/icon/fifty_fifty.png'),
                     color: AppColors.mainColor,
                     size: Dimensions.iconSize24 * 1.4,
                   ),
                   hintPriceOne: '3',
                   hintPriceTwo: '1',
                 ),
-                Container(
+                SizedBox(
                   height: Dimensions.height30 * 2,
                   child: Center(
                     child: Padding(
@@ -388,7 +388,7 @@ class _FlagsPageState extends State<FlagsPage> {
                 ),
                 Expanded(
                   child: GridView.count(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     childAspectRatio: 3 / 2,
                     mainAxisSpacing: Dimensions.height20,
                     // Create a grid with 2 columns. If you change the scrollDirection to

@@ -36,20 +36,20 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? CircularProgressIndicator()
+          ? const CircularProgressIndicator()
           : BackgroundImage(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '$count/${countries.length} - ${countries[count].countryCode} - ${countries[count].countryName}',
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
                   Container(
                     width: double.maxFinite,
                     height: 300,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: const BoxDecoration(),
                     child: Image.asset(
                       //'assets/image/flags/${countries[count].countryCode.toString().toLowerCase()}.png',
                       //'assets/image/countries/${countries[count].countryCode.toString().toLowerCase()}-full.png',
@@ -63,7 +63,7 @@ class _TestPageState extends State<TestPage> {
                         count++;
                       });
                     },
-                    child: Text('NEXT'),
+                    child: const Text('NEXT'),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -71,7 +71,7 @@ class _TestPageState extends State<TestPage> {
                         count--;
                       });
                     },
-                    child: Text('BACK'),
+                    child: const Text('BACK'),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -79,7 +79,7 @@ class _TestPageState extends State<TestPage> {
                         count = 0;
                       });
                     },
-                    child: Text('RESET'),
+                    child: const Text('RESET'),
                   ),
                   TextField(
                     onSubmitted: (value) {
@@ -92,14 +92,14 @@ class _TestPageState extends State<TestPage> {
                       hintText: 'count',
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 1.0,
                           color: Colors.white,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 1.0,
                           color: Colors.white,
                         ),

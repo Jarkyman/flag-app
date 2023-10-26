@@ -36,7 +36,7 @@ class AppBarRow extends StatelessWidget {
                 color: AppColors.mainColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
               ),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.arrow_back_ios_outlined,
                   color: AppColors.mainColor,
@@ -50,7 +50,7 @@ class AppBarRow extends StatelessWidget {
                 Get.find<SoundController>().clickSound();
                 Get.toNamed(RouteHelper.getShopPage());
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.lightbulb_outline,
                 color: AppColors.mainColor,
               ),

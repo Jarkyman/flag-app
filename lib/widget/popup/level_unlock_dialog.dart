@@ -35,7 +35,7 @@ void levelUnlockDialog(
               color: AppColors.mainColor,
             ),
           ),
-          child: Center(child: Text('Cancel')),
+          child: const Center(child: Text('Cancel')),
         ),
       ),
     ),

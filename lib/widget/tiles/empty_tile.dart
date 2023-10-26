@@ -11,7 +11,7 @@ class EmptyTile extends StatelessWidget {
       width: Dimensions.screenWidth / 12,
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Colors.grey,
           ),
           BoxShadow(

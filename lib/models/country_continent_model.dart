@@ -10,9 +10,9 @@ class CountryContinentModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Continent'] = this.continent;
-    data['Country'] = this.country;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Continent'] = continent;
+    data['Country'] = country;
     return data;
   }
 }

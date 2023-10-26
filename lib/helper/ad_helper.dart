@@ -11,7 +11,7 @@ class AdHelper {
       } else if (Platform.isIOS) {
         return 'ca-app-pub-9894760850635221/2622546602'; //'ca-app-pub-3940256099942544/2934735716'; //ca-app-pub-9894760850635221/2622546602
       } else {
-        throw new UnsupportedError('Unsupported platform');
+        throw UnsupportedError('Unsupported platform');
       }
     } else {
       return 'No ad banner';
@@ -25,7 +25,7 @@ class AdHelper {
       } else if (Platform.isIOS) {
         return 'ca-app-pub-9894760850635221/6348084916'; // "ca-app-pub-3940256099942544/4411468910"; //ca-app-pub-9894760850635221/6348084916
       } else {
-        throw new UnsupportedError("Unsupported platform");
+        throw UnsupportedError("Unsupported platform");
       }
     } else {
       return "no ad interstitialAd";
@@ -38,7 +38,7 @@ class AdHelper {
     } else if (Platform.isIOS) {
       return 'ca-app-pub-9894760850635221/9272000845'; //"ca-app-pub-3940256099942544/1712485313"; //ca-app-pub-9894760850635221/9272000845
     } else {
-      throw new UnsupportedError("Unsupported platform");
+      throw UnsupportedError("Unsupported platform");
     }
   }
 }

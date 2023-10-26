@@ -80,7 +80,7 @@ class _FlagPageState extends State<FlagPage> {
     if (!Get.find<ShopController>().isAdsRemoved) {
       InterstitialAd.load(
         adUnitId: AdHelper.interstitialAdUnitId,
-        request: AdRequest(),
+        request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (ad) {
             ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -104,7 +104,7 @@ class _FlagPageState extends State<FlagPage> {
   void _loadRewardedAd() {
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -157,7 +157,7 @@ class _FlagPageState extends State<FlagPage> {
 
   void generateCountries() {
     setState(() {
-      Duration(milliseconds: 500).delay(() {
+      const Duration(milliseconds: 500).delay(() {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 4);
@@ -199,7 +199,7 @@ class _FlagPageState extends State<FlagPage> {
           Get.find<ScoreController>().saveFlagScore(highScore);
         }
       });
-      Duration(milliseconds: 500).delay(() {
+      const Duration(milliseconds: 500).delay(() {
         int randomInt = random.nextInt(10);
         if (_interstitialAd != null &&
             randomInt == 2 &&
@@ -300,7 +300,7 @@ class _FlagPageState extends State<FlagPage> {
             Get.find<SoundController>().clickSound();
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         centerTitle: true,
         title: Text(
@@ -313,7 +313,7 @@ class _FlagPageState extends State<FlagPage> {
           GetBuilder<ScoreController>(builder: (scoreController) {
             return Row(
               children: [
-                Icon(Icons.star),
+                const Icon(Icons.star),
                 SizedBox(
                   width: Dimensions.width5 / 2,
                 ),
@@ -345,12 +345,12 @@ class _FlagPageState extends State<FlagPage> {
                       tapHintTwo: () {
                         useFiftyFiftyHint(1);
                       },
-                      iconOne: Icon(
+                      iconOne: const Icon(
                         Icons.check,
                         color: AppColors.mainColor,
                       ),
                       iconTwo: ImageIcon(
-                        AssetImage('assets/icon/fifty_fifty.png'),
+                        const AssetImage('assets/icon/fifty_fifty.png'),
                         color: AppColors.mainColor,
                         size: Dimensions.iconSize24 * 1.4,
                       ),
@@ -382,7 +382,7 @@ class _FlagPageState extends State<FlagPage> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           return GuessButton(

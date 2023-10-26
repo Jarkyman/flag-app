@@ -14,7 +14,7 @@ void wrongGuessDialog({
 }) {
   Get.defaultDialog(
     title: 'Wrong country'.tr,
-    middleText: 'You score is'.tr + ' $score',
+    middleText: '${'You score is'.tr} $score',
     backgroundColor: Colors.white,
     radius: 30,
     barrierDismissible: false,

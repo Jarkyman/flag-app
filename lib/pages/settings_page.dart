@@ -5,7 +5,7 @@ import 'package:flag_app/widget/popup/help_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
-import 'package:launch_review/launch_review.dart';
+import 'package:launch_app_store/launch_app_store.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../controllers/sound_controller.dart';

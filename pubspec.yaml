@@ -3,7 +3,7 @@ description: A flag quiz app.
 
 publish_to: 'none'
 
-version: 1.2.7+18
+version: 1.2.9+20
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -17,23 +17,23 @@ dependencies:
   get: ^4.6.5
   shared_preferences: ^2.0.15
   flutter_swipe_detector: ^2.0.0
-  google_mobile_ads: ^3.0.0
+  google_mobile_ads: ^5.1.0
   soundpool: ^2.3.0
-  purchases_flutter: ^5.2.3
+  purchases_flutter: ^6.30.2
   animated_widgets: ^1.1.0
   shake: ^2.1.0
   rate_my_app: ^2.0.0
   flutter_email_sender: ^6.0.1
   url_launcher: ^6.1.12
   launch_app_store: ^1.0.2
-  share_plus: ^7.0.2
+  share_plus: ^9.0.0
   auto_size_text: ^3.0.0
   gdpr_dialog: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true

@@ -65,7 +65,7 @@ class _GuessPageState extends State<GuessPage> {
     setInit();
     createBannerAd();
     detector = ShakeDetector.autoStart(
-      onPhoneShake: () {
+      onPhoneShake: (_) {
         setState(() {
           allLetters.shuffle();
         });

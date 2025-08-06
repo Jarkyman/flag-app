@@ -4,12 +4,12 @@ import 'package:flag_app/helper/dimensions.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/hint_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:gdpr_dialog/gdpr_dialog.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/route_helper.dart';
 import '../../widget/buttons/menu_button.dart';
+import '../../widget/show_consent_form.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,15 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    //GdprDialog.instance.resetDecision(); //For test only
-    GdprDialog.instance
-        .showDialog(isForTest: false, testDeviceId: '')
-        .then((onValue) {
-      setState(() {
-        status = 'dialog result == $onValue';
-        print('RESULT = $status');
-      });
-    });
+    showConsentForm(isForTest: false, testDeviceId: 'TEST_DEVICE_ID');
     super.initState();
   }
 

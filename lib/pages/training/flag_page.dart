@@ -358,7 +358,7 @@ class _FlagPageState extends State<FlagPage> {
                       hintPriceTwo: '1'),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(top: Dimensions.height10),
+                      padding: EdgeInsets.all(Dimensions.height10),
                       child: Container(
                         width: double.maxFinite,
                         //height: Dimensions.height20 * 14,

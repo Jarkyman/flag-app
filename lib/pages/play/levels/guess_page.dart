@@ -661,19 +661,19 @@ class _GuessPageState extends State<GuessPage> {
 
   void openHelpDialog() {
     Future.delayed(const Duration(seconds: 1), () {
-      if (_countDialogOpen == 0) {
+      //if (_countDialogOpen == 0) {
         if (!Get.find<SettingsController>().getFirstGuessHelp) {
           helpDialog(guessHelpWidgets());
           Get.find<SettingsController>().firstHelpGuessSave(true);
           _countDialogOpen++;
         }
-      }
+      //}
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    openHelpDialog();
+    //openHelpDialog();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -691,13 +691,14 @@ class _GuessPageState extends State<GuessPage> {
             icon: const Icon(Icons.arrow_back_ios_new),
           ),
           backgroundColor: AppColors.mainColor,
-          /*actions: [
-            GestureDetector(
-              onTap: () {
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.question_mark_outlined),
+              onPressed: () {
+                helpDialog(guessHelpWidgets());
               },
-              child: Icon(Icons.sports_volleyball_outlined),
             ),
-          ],*/
+          ],
         ),
         body: WillPopScope(
           onWillPop: () async {

@@ -5,50 +5,43 @@ import '../../helper/dimensions.dart';
 import '../help_widget.dart';
 
 void helpDialog(List<HelpWidget> helpWidgets) {
-  Get.defaultDialog(
-    title: '',
-    titlePadding: const EdgeInsets.only(top: 0),
-    backgroundColor: Colors.white,
-    radius: 30,
-    titleStyle: const TextStyle(
-      decoration: TextDecoration.underline,
-    ),
-    content: Stack(
-      children: [
-        Positioned(
-          top: -16,
-          right: -16,
-          child: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              Get.back();
-            },
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-          ),
-        ),
-        SizedBox(
-          width: Dimensions.width45 * 6,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  'Help'.tr,
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: Dimensions.font16 * 2,
-                  ),
+  showDialog(
+    context: Get.context!,
+    builder: (_) => Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      child: SizedBox(
+        width: Dimensions.width45 * 6,
+        height: Get.height * 0.5,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Get.back(),
+              ),
+            ),
+            Center(
+              child: Text(
+                'Help'.tr,
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontSize: Dimensions.font16 * 2,
                 ),
               ),
-              Column(
-                children: helpWidgets,
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: helpWidgets,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     ),
   );
 }

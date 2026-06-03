@@ -1,0 +1,1 @@
+flags, flag quiz, flag game, country quiz, geography, map quiz, trivia, capitals, world flags

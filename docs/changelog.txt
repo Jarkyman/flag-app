@@ -1,0 +1,27 @@
+<en-US>
+Huge update! Enjoy our new optimized UI, lightning-fast app launch, smoother navigation animations, and various bug fixes for an even better experience.
+</en-US>
+<da-DK>
+Kæmpe opdatering! Oplev vores nye optimerede design, lynhurtige opstart, blødere animationer ved navigering og adskillige fejlrettelser for en endnu bedre spiloplevelse.
+</da-DK>
+<de-DE>
+Großes Update! Freuen Sie sich auf unser neues, optimiertes Design, einen blitzschnellen App-Start, flüssigere Navigations-Animationen und diverse Fehlerbehebungen für ein noch besseres Erlebnis.
+</de-DE>
+<es-ES>
+¡Gran actualización! Disfruta de nuestro nuevo diseño optimizado, inicio de app ultrarrápido, animaciones de navegación más suaves y varias correcciones de errores para una experiencia aún mejor.
+</es-ES>
+<fr-FR>
+Énorme mise à jour ! Profitez de notre nouvelle interface optimisée, d'un démarrage d'application ultra-rapide, d'animations de navigation plus fluides et de diverses corrections de bugs pour une expérience encore meilleure.
+</fr-FR>
+<no-NO>
+Kjempestor oppdatering! Opplev vårt nye, optimaliserte design, lynrask oppstart, mykere navigasjonsanimasjoner og diverse feilrettinger for en enda bedre opplevelse.
+</no-NO>
+<pt-BR>
+Grande atualização! Aproveite nossa nova interface otimizada, inicialização de aplicativo ultrarrápida, animações de navegação mais suaves e várias correções de bugs para uma experiência ainda melhor.
+</pt-BR>
+<pt-PT>
+Grande atualização! Aproveite a nossa nova interface otimizada, arranque de aplicação ultrarrápido, animações de navegação mais suaves e várias correções de bugs para uma experiência ainda melhor.
+</pt-PT>
+<sv-SE>
+Jättestor uppdatering! Upplev vår nya optimerade design, blixtsnabba uppstart, mjukare navigationsanimationer och diverse felkorrigeringar för en ännu bättre upplevelse.
+</sv-SE>

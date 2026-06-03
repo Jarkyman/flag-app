@@ -19,6 +19,13 @@ class LevelsListPage extends StatefulWidget {
 
 class _LevelsListPageState extends State<LevelsListPage> {
   bool isSnackOpen = false;
+  late String argType;
+
+  @override
+  void initState() {
+    super.initState();
+    argType = Get.arguments[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +42,26 @@ class _LevelsListPageState extends State<LevelsListPage> {
               Expanded(
                 child: GetBuilder<LevelController>(
                   builder: (levelController) {
-                    debugPrint('Type = ${Get.arguments[0]}');
+                    debugPrint('Type = $argType');
                     return ListView.builder(
                         itemCount:
-                            levelController.getLevelAmount(Get.arguments[0]),
+                            levelController.getLevelAmount(argType),
                         itemBuilder: (context, index) {
                           String numOfDone = levelController
                               .getFinishedLevelsForLevel(
-                                  index + 1, Get.arguments[0])
+                                  index + 1, argType)
                               .toString();
 
                           String numTotal = levelController
                               .getAmountOfFieldsInLevels(
-                                  index + 1, Get.arguments[0])
+                                  index + 1, argType)
                               .toString();
 
                           int levelsCompleted = levelController
-                              .getFinishedLevels(Get.arguments[0]);
+                              .getFinishedLevels(argType);
 
                           bool isLocked = levelController.isLevelUnlocked(
-                              index, Get.arguments[0]);
+                              index, argType);
                           return GetBuilder<ShopController>(
                               builder: (shopController) {
                             bool levelsUnlock = shopController.isLevelsUnlocked;
@@ -75,7 +82,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
                                   if (!isLocked || levelsUnlock) {
                                     Get.toNamed(RouteHelper.getLevelPage(),
                                         arguments: [
-                                          Get.arguments[0],
+                                          argType,
                                           index + 1
                                         ]);
                                   } else {

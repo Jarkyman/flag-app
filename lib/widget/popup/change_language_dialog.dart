@@ -29,45 +29,85 @@ void updateLanguage(Locale locale) {
 }
 
 void buildLanguageDialog() {
-  Get.defaultDialog(
-    title: 'Choose Your Language'.tr,
-    middleText: "",
-    backgroundColor: AppColors.lightGreen,
-    content: SizedBox(
-      height: Dimensions.screenHeight / 2,
-      width: Dimensions.width45 * 6,
-      child: SingleChildScrollView(
-        child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                child: Padding(
-                  padding: EdgeInsets.all(Dimensions.width10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(locale[index]['name']),
-                      CircleAvatar(
-                        backgroundImage: AssetImage(
-                            'assets/image/flags/${locale[index]['locale'].toString().split('_')[1].toLowerCase()}.png'),
-                      ),
-                    ],
+  Get.dialog(
+    Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
+      ),
+      backgroundColor: AppColors.lightGreen,
+      child: Padding(
+        padding: EdgeInsets.all(Dimensions.width20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Choose Your Language'.tr,
+                  style: TextStyle(
+                    fontSize: Dimensions.font20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.mainBlackColor,
                   ),
                 ),
-                onTap: () {
-                  updateLanguage(locale[index]['locale']);
-                  Get.find<LevelController>().readLevels(reset: true);
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Get.back(),
+                  color: AppColors.mainBlackColor,
+                ),
+              ],
+            ),
+            SizedBox(height: Dimensions.height10),
+            SizedBox(
+              height: Dimensions.screenHeight / 2.2,
+              width: Dimensions.width45 * 6,
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: Dimensions.height10,
+                        horizontal: Dimensions.width10,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            locale[index]['name'],
+                            style: TextStyle(
+                              fontSize: Dimensions.font16,
+                              color: AppColors.mainBlackColor,
+                            ),
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage(
+                              'assets/image/flags/${locale[index]['locale'].toString().split('_')[1].toLowerCase()}.png',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      updateLanguage(locale[index]['locale']);
+                      Get.find<LevelController>().readLevels(reset: true);
+                    },
+                  );
                 },
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Divider(
-                color: AppColors.mainColor,
-              );
-            },
-            itemCount: locale.length),
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: AppColors.mainColor,
+                    thickness: 1,
+                  );
+                },
+                itemCount: locale.length,
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

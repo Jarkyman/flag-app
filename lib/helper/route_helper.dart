@@ -57,11 +57,11 @@ class RouteHelper {
     GetPage(
         name: shopPage,
         page: () => const ShopPage(),
-        transition: Transition.downToUp),
+        fullscreenDialog: true),
     GetPage(
         name: settingsPage,
         page: () => const SettingsPage(),
-        transition: Transition.downToUp),
+        fullscreenDialog: true),
     GetPage(
         name: playPage,
         page: () {

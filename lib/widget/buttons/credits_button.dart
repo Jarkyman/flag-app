@@ -15,15 +15,15 @@ class CreditsButton extends StatelessWidget {
 
   final String ccCredits = '\n\n${'Sound Effect from Pixabay'.tr}(https://pixabay.com/sound-effects)\n${'Countries are from Djiass map icon'.tr}(https://github.com/djaiss/mapsicon)';
 
-  final String emailAddress = 'hartvig.develop@gmail.com';
-  final Uri webPage = Uri.parse('http://flagsgame.epizy.com/support');
+  final String emailAddress = 'flags@hartvigsolutions.com';
+  final Uri webPage = Uri.parse('https://hartvigsolutions.com/#flags-game');
 
   final Email email = Email(
     body: '\n\n\n'
         'What did you experience?\n\n'
         'If you have any photos or documentation, please send it along.\n\n',
     subject: 'Report',
-    recipients: ['hartvig.develop@gmail.com'],
+    recipients: ['flags@hartvigsolutions.com'],
     isHTML: false,
   );
 

@@ -58,9 +58,17 @@ class _GuessPageState extends State<GuessPage> {
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
 
+  late String argType;
+  late int argLevel;
+  late int argFlagIndex;
+
   @override
   void initState() {
     super.initState();
+    argType = Get.arguments[0];
+    argLevel = Get.arguments[1];
+    argFlagIndex = Get.arguments[2];
+
     setInit();
     createBannerAd();
     detector = ShakeDetector.autoStart(
@@ -131,10 +139,10 @@ class _GuessPageState extends State<GuessPage> {
     setState(() {
       _loadInterstitialAd();
       var levelController = Get.find<LevelController>();
-      levels = levelController.getList(Get.arguments[0])!;
+      levels = levelController.getList(argType)!;
       levelList =
-          levelController.getLevelList(Get.arguments[1], Get.arguments[0]);
-      country = levelList[Get.arguments[2]];
+          levelController.getLevelList(argLevel, argType);
+      country = levelList[argFlagIndex];
       correctLettersList = getCorrectLettersList(country.country!);
       if (country.answerLetters!.isEmpty) {
         lettersListAnswer = getLettersListEmpty(country.country!);
@@ -144,7 +152,7 @@ class _GuessPageState extends State<GuessPage> {
       if (country.allLetters!.isEmpty) {
         allLetters =
             generateRandomLetters(country.country!.toUpperCase().split(''));
-        levelController.saveAllLetters(Get.arguments[0], country, allLetters);
+        levelController.saveAllLetters(argType, country, allLetters);
       } else {
         allLetters = country.allLetters!;
       }
@@ -160,8 +168,8 @@ class _GuessPageState extends State<GuessPage> {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
       Get.find<SoundController>().completeSound();
-      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
-      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
+      Get.find<LevelController>().guessed(argType, country, true);
+      Get.find<LevelController>().isNewLevelUnlocked(argType);
     } else {
       bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
@@ -410,7 +418,7 @@ class _GuessPageState extends State<GuessPage> {
       checkWin();
     }
     Get.find<LevelController>()
-        .saveAnswerLetters(Get.arguments[0], country, lettersListAnswer);
+        .saveAnswerLetters(argType, country, lettersListAnswer);
   }
 
   void removeLetter(String letter, int index, int wordIndex) {
@@ -565,9 +573,9 @@ class _GuessPageState extends State<GuessPage> {
         allLetters = reducedLetters;
         bombUsed = true;
         Get.find<LevelController>()
-            .saveBombUsed(Get.arguments[0], country, true);
+            .saveBombUsed(argType, country, true);
         Get.find<LevelController>()
-            .saveAllLetters(Get.arguments[0], country, allLetters);
+            .saveAllLetters(argType, country, allLetters);
       });
     }
   }
@@ -629,9 +637,9 @@ class _GuessPageState extends State<GuessPage> {
           allLetters = reducedLetters;
           bombUsed = true;
           Get.find<LevelController>()
-              .saveBombUsed(Get.arguments[0], country, true);
+              .saveBombUsed(argType, country, true);
           Get.find<LevelController>()
-              .saveAllLetters(Get.arguments[0], country, allLetters);
+              .saveAllLetters(argType, country, allLetters);
         });
         Get.find<HintController>().useHint(hints);
       }
@@ -643,11 +651,11 @@ class _GuessPageState extends State<GuessPage> {
   void useFinishHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
       //setState(() {
-      Get.find<LevelController>().guessed(Get.arguments[0], country, true);
+      Get.find<LevelController>().guessed(argType, country, true);
       //});
       Get.find<HintController>().useHint(hints);
       Get.find<SoundController>().completeSound();
-      Get.find<LevelController>().isNewLevelUnlocked(Get.arguments[0]);
+      Get.find<LevelController>().isNewLevelUnlocked(argType);
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
@@ -714,24 +722,24 @@ class _GuessPageState extends State<GuessPage> {
           },
           child: SwipeDetector(
             onSwipeRight: (value) {
-              int nextPageIndex = Get.arguments[2];
-              nextPageIndex = Get.arguments[2] - 1;
+              int nextPageIndex = argFlagIndex;
+              nextPageIndex = argFlagIndex - 1;
 
               if (nextPageIndex > -1) {
                 Get.find<SoundController>().windSound();
                 setState(() {
-                  Get.arguments[2] = nextPageIndex;
+                  argFlagIndex = nextPageIndex;
                   setInit();
                 });
               }
             },
             onSwipeLeft: (value) {
-              int nextPageIndex = Get.arguments[2];
-              nextPageIndex = Get.arguments[2] + 1;
+              int nextPageIndex = argFlagIndex;
+              nextPageIndex = argFlagIndex + 1;
               if (nextPageIndex < levelList.length) {
                 Get.find<SoundController>().windSound();
                 setState(() {
-                  Get.arguments[2] = nextPageIndex;
+                  argFlagIndex = nextPageIndex;
                   setInit();
                 });
               }
@@ -739,9 +747,9 @@ class _GuessPageState extends State<GuessPage> {
             child: BackgroundImage(
               child: GetBuilder<LevelController>(
                 builder: (levelController) {
-                  debugPrint('Type = ${Get.arguments[0]}');
-                  debugPrint('Level = ${Get.arguments[1]}');
-                  debugPrint('Flag index = ${Get.arguments[2]}');
+                  debugPrint('Type = $argType');
+                  debugPrint('Level = $argLevel');
+                  debugPrint('Flag index = $argFlagIndex');
 
                   String countryCodeImg =
                       Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
@@ -749,17 +757,17 @@ class _GuessPageState extends State<GuessPage> {
                       Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
                   if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
                       country.guessed! &&
-                      Get.arguments[0] == AppConstants.FLAGS) {
+                      argType == AppConstants.FLAGS) {
                     countryCodeImg =
                         '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                   }
-                  if (Get.arguments[0] == AppConstants.COUNTRIES) {
+                  if (argType == AppConstants.COUNTRIES) {
                     countryCodeImg =
                         '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                   }
                   if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
                       country.guessed! &&
-                      Get.arguments[0] == AppConstants.COC) {
+                      argType == AppConstants.COC) {
                     countryCodeImg =
                         '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
                   }
@@ -802,7 +810,7 @@ class _GuessPageState extends State<GuessPage> {
                               hintPriceThree: '1',
                             ),
                       SizedBox(height: Dimensions.height10),
-                      Get.arguments[0] == AppConstants.COUNTRIES
+                      argType == AppConstants.COUNTRIES
                           ? SizedBox(
                               height: Dimensions.height20 * 10,
                               child: Stack(
@@ -830,7 +838,7 @@ class _GuessPageState extends State<GuessPage> {
                                     }),*/
                                     child: Center(
                                       child: Image.asset(
-                                          'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
+                                          'assets/image/${argType.toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
                                           fit: BoxFit.contain,
                                           color: Colors.transparent),
                                     ),
@@ -854,7 +862,7 @@ class _GuessPageState extends State<GuessPage> {
                                           borderRadius: BorderRadius.circular(
                                               Dimensions.radius15),
                                           child: Image.asset(
-                                            'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                            'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -876,7 +884,7 @@ class _GuessPageState extends State<GuessPage> {
                                     borderRadius: BorderRadius.circular(
                                         Dimensions.radius10),
                                     child: Image.asset(
-                                      'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                      'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
                                       fit: BoxFit.contain,
                                     ),
                                   ),

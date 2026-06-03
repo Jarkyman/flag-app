@@ -24,9 +24,9 @@ Her er en liste over ting, der bør opdateres, rettes eller forbedres i appen, f
 // DONE: updater alle dependencis til det nyese, se "flutter pub outdated" for at se hvilke der er forældede.
 // DONE: fix 188 lint problemer i kodden, flutter analyze --fix og fix selv.
 
-// FIXME: vi har ny hjemmeside og "flagsgame.epizy" er nu "https://hartvigsolutions.com/#flags-game" og med "/download" til sidst, så får man download linket, som før var /app
+// DONE: vi har ny hjemmeside og "flagsgame.epizy" er nu "https://hartvigsolutions.com/#flags-game" og med "/download" til sidst, så får man download linket, som før var /app
 Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
-// TODO: Se på animationen af navigering, hvor vi naviger op fra budnen, så går den adnen skærm ud til siden og det ser undelrigt ud i vores animation. Den nye side skal bare komme op fra budnen og lukke ned mod bunden igen. tror det er settings og store der gør det. 
+// DONE: Se på animationen af navigering, hvor vi naviger op fra budnen, så går den adnen skærm ud til siden og det ser undelrigt ud i vores animation. Den nye side skal bare komme op fra budnen og lukke ned mod bunden igen. tror det er settings og store der gør det. 
 
-// TODO: Popup design skal rænkes, det kan godt blive lidt pænere. Language popup design skal blive pænere. Hjælpe popup design skal blive pænere, med lidt padding.
+// DONE: Popup design skal rænkes, det kan godt blive lidt pænere. Language popup design skal blive pænere. Hjælpe popup design skal blive pænere, med lidt padding.

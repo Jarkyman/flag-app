@@ -24,10 +24,14 @@ class LevelPage extends StatefulWidget {
 
 class _LevelPageState extends State<LevelPage> {
   BannerAd? _bannerAd;
+  late String argType;
+  late int argLevel;
 
   @override
   void initState() {
     super.initState();
+    argType = Get.arguments[0];
+    argLevel = Get.arguments[1];
     createBannerAd();
   }
 
@@ -67,7 +71,7 @@ class _LevelPageState extends State<LevelPage> {
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text('${'Level'.tr} ${Get.arguments[1]}'),
+        title: Text('${'Level'.tr} $argLevel'),
         backgroundColor: AppColors.mainColor,
       ),
       body: BackgroundImage(
@@ -84,10 +88,10 @@ class _LevelPageState extends State<LevelPage> {
                   ),
                   child: GetBuilder<LevelController>(
                     builder: (levelController) {
-                      debugPrint('Type = ${Get.arguments[0]}');
-                      debugPrint('Level = ${Get.arguments[1]}');
+                      debugPrint('Type = $argType');
+                      debugPrint('Level = $argLevel');
                       List<LevelModel> levels = levelController.getLevelList(
-                          Get.arguments[1], Get.arguments[0]);
+                          argLevel, argType);
                       return GridView.count(
                         childAspectRatio: 6 / 5,
                         mainAxisSpacing: Dimensions.height20,
@@ -100,7 +104,7 @@ class _LevelPageState extends State<LevelPage> {
                                   countryCodeImg == 'py' ||
                                   countryCodeImg == 'sv') &&
                               levels[index].guessed! &&
-                              Get.arguments[0] == AppConstants.FLAGS) {
+                              argType == AppConstants.FLAGS) {
                             countryCodeImg =
                                 '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}-full';
                           }
@@ -110,8 +114,8 @@ class _LevelPageState extends State<LevelPage> {
                               Get.toNamed(RouteHelper.getGuessPage(),
                                   arguments: [
                                     //Get.arguments[0][index],
-                                    Get.arguments[0],
-                                    Get.arguments[1],
+                                    argType,
+                                    argLevel,
                                     index
                                   ]);
                             },
@@ -120,8 +124,8 @@ class _LevelPageState extends State<LevelPage> {
                               child: LevelCard(
                                 guessed: levels[index].guessed!,
                                 image:
-                                    'assets/image/${Get.arguments[0].toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                option: Get.arguments[0],
+                                    'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                option: argType,
                               ),
                             ),
                           );

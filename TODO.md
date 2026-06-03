@@ -10,7 +10,7 @@ Her er en liste over ting, der bør opdateres, rettes eller forbedres i appen, f
 // DONE {M} [ui, design] (H): Opdater appens overordnede design til et mere moderne udtryk med bedre farvepaletter i stedet for standardfarver.
 // DONE {M} [ui, theme] (M): Opdater `ThemeData` i `main.dart` til at bruge Material 3 (`useMaterial3: true`) og en moderne `ColorScheme`.
 // DONE {S} [ui, animation] (H): Tilføj flere micro-animationer, f.eks. når man gætter rigtigt/forkert (shake-effekt, konfetti) og blødere side-overgange.
-// TODO {C} [ui, splash] (M): Udskift den manuelle `splash_page.dart` med pakken `flutter_native_splash` for en mere flydende og lynhurtig opstart uden hardcodede ventetider.
+// DONE {C} [ui, splash] (M): Udskift den manuelle `splash_page.dart` med pakken `flutter_native_splash` for en mere flydende og lynhurtig opstart uden hardcodede ventetider.
 
 ## 🏗️ Arkitektur & Kodekvalitet
 // DONE {M} [architecture, init] (H): Refaktorér indlæsningen af data i `splash_page.dart`. Lige nu bruger du sekventielle `await`, hvilket gør opstarten unødigt langsom. Brug `Future.wait` til at køre uafhængige requests parallelt.
@@ -25,3 +25,8 @@ Her er en liste over ting, der bør opdateres, rettes eller forbedres i appen, f
 // DONE: fix 188 lint problemer i kodden, flutter analyze --fix og fix selv.
 
 // FIXME: vi har ny hjemmeside og "flagsgame.epizy" er nu "https://hartvigsolutions.com/#flags-game" og med "/download" til sidst, så får man download linket, som før var /app
+Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
+
+// TODO: Se på animationen af navigering, hvor vi naviger op fra budnen, så går den adnen skærm ud til siden og det ser undelrigt ud i vores animation. Den nye side skal bare komme op fra budnen og lukke ned mod bunden igen. tror det er settings og store der gør det. 
+
+// TODO: Popup design skal rænkes, det kan godt blive lidt pænere. Language popup design skal blive pænere. Hjælpe popup design skal blive pænere, med lidt padding.

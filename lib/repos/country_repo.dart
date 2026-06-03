@@ -7,8 +7,14 @@ class CountryRepo {
 
   Future<String> readCountries(Locale locale) async {
     String lang = locale.toString().split('_')[1].toLowerCase();
-    final String response =
-        await rootBundle.loadString('assets/json/$lang/countries.json');
-    return response;
+    try {
+      final String response =
+          await rootBundle.loadString('assets/json/$lang/countries.json');
+      return response;
+    } catch (e) {
+      final String response =
+          await rootBundle.loadString('assets/json/en/countries.json');
+      return response;
+    }
   }
 }

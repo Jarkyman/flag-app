@@ -9,11 +9,10 @@ class LevelCard extends StatelessWidget {
   final String option;
 
   const LevelCard(
-      {Key? key,
+      {super.key,
       required this.guessed,
       required this.image,
-      required this.option})
-      : super(key: key);
+      required this.option});
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ import '../widget/buttons/custom_close_button.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                             onChanged: (value) {
                               soundController.soundSettingsSave(value);
                             },
-                            activeColor: AppColors.mainColor,
+                            activeThumbColor: AppColors.mainColor,
                             inactiveThumbColor: AppColors.mainColor,
                             inactiveTrackColor: AppColors.textColorGray,
                           ),
@@ -111,8 +111,9 @@ class SettingsPage extends StatelessWidget {
                       SettingsButton(
                         title: 'Share app'.tr,
                         onTap: () {
-                          Share.share(
-                              'Check out this app \nhttp://flagsgame.epizy.com/app');
+                          SharePlus.instance.share(ShareParams(
+                              text:
+                                  'Check out this app \nhttps://hartvigsolutions.com/#flags-game/download'));
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width10),
@@ -138,8 +139,7 @@ class SettingsPage extends StatelessWidget {
 class IconWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
-  const IconWidget({Key? key, required this.icon, this.color = Colors.white})
-      : super(key: key);
+  const IconWidget({super.key, required this.icon, this.color = Colors.white});
 
   @override
   Widget build(BuildContext context) {

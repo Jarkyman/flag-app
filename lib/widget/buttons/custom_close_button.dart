@@ -6,9 +6,7 @@ import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 
 class CustomCloseButton extends StatelessWidget {
-  const CustomCloseButton({
-    Key? key,
-  }) : super(key: key);
+  const CustomCloseButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class CustomCloseButton extends StatelessWidget {
             width: Dimensions.width20 * 2,
             height: Dimensions.height20 * 2,
             decoration: BoxDecoration(
-              color: AppColors.mainColor.withOpacity(0.2),
+              color: AppColors.mainColor.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
             ),
             child: const Center(

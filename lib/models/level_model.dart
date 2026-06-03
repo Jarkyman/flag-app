@@ -36,7 +36,7 @@ class LevelModel {
     return data;
   }
 
-  List<List<String>> deConvertList(var data) {
+  List<List<String>> deConvertList(List<String> data) {
     List<String> temp = [];
     List<List<String>> result = [];
     for (var d in data) {

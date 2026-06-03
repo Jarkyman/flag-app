@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
@@ -12,14 +11,13 @@ import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rate_my_app/rate_my_app.dart';
 
 import 'controllers/country_continent_controller.dart';
 import 'helper/dimensions.dart';
 import 'helper/route_helper.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashPageState();
@@ -31,53 +29,23 @@ class _SplashPageState extends State<SplashScreen>
   late AnimationController controller;
 
   Future<void> _loadResource() async {
-    print('loaded settings');
     await Get.find<SettingsController>().languageSettingRead();
-    print('loaded settings');
-    print('loading countries');
-    await Get.find<CountryController>().readCountries(Get.locale!);
-    print('loaded countries');
-    print('loading continents');
-    await Get.find<CountryContinentController>().readCountries(Get.locale!);
-    print('loaded continents');
-    print('loading score');
-    await Get.find<ScoreController>().readAllScores();
-    print('loaded score');
-    print('loading hints');
-    await Get.find<HintController>().readHints();
-    print('loaded hints');
-    print('loading levels');
-    await Get.find<LevelController>().readLevels();
+    await Future.wait([
+      Get.find<CountryController>().readCountries(Get.locale!),
+      Get.find<CountryContinentController>().readCountries(Get.locale!),
+      Get.find<ScoreController>().readAllScores(),
+      Get.find<HintController>().readHints(),
+      Get.find<LevelController>().readLevels(),
+      Get.find<ShopController>().loadShopSettings(),
+    ]);
     Get.find<LevelController>().initUnlockedLevels();
-    print('loaded levels');
-    print('loading sound');
     Get.find<SoundController>().init();
-    print('loaded sound');
-    print('loading shop');
-    await Get.find<ShopController>().loadShopSettings();
-    print('loaded shop');
-    print('loading review');
-    ReviewController.rateMyApp.init().then((_) {
-      for (var condition in ReviewController.rateMyApp.conditions) {
-        if (condition is DebuggableCondition) {
-          //print(condition.valuesAsString);
-        }
-      }
-    });
-    print('loaded review');
-    print(
-        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedFlagLevels}');
-    print(
-        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCountryLevels}');
-    print(
-        'Unlocked levels flag = ${Get.find<LevelController>().getUnlockedCOCLevels}');
-    print('Flutter phone locale = ${Platform.localeName}');
+    ReviewController.rateMyApp.init();
     if (controller.isCompleted) {
       Get.offNamed(RouteHelper.getInitial());
     } else {
       Timer(const Duration(seconds: 3),
           () => Get.offNamed(RouteHelper.getInitial()));
-      //Timer(Duration(seconds: 3), () => Get.off(TestPage()));
     }
   }
 

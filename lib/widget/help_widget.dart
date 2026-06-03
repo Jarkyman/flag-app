@@ -8,10 +8,10 @@ class HelpWidget extends StatelessWidget {
   final String description;
 
   const HelpWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

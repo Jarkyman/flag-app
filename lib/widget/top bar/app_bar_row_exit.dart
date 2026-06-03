@@ -8,9 +8,7 @@ import '../../helper/dimensions.dart';
 import '../hint_widget.dart';
 
 class AppBarRowExit extends StatelessWidget {
-  const AppBarRowExit({
-    Key? key,
-  }) : super(key: key);
+  const AppBarRowExit({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class AppBarRowExit extends StatelessWidget {
               width: Dimensions.width20 * 2,
               height: Dimensions.height20 * 2,
               decoration: BoxDecoration(
-                color: AppColors.mainColor.withOpacity(0.2),
+                color: AppColors.mainColor.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
               ),
               child: const Center(

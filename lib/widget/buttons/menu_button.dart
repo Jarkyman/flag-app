@@ -15,7 +15,7 @@ class MenuButton extends StatelessWidget {
   final bool loading;
 
   const MenuButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.title,
     this.subText = '',
@@ -23,7 +23,7 @@ class MenuButton extends StatelessWidget {
     this.active = true,
     this.loading = false,
     this.disable = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class MenuButton extends StatelessWidget {
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
           color: disable
-              ? AppColors.textColorGray.withOpacity(0.3)
-              : AppColors.correctColor.withOpacity(0.3),
+              ? AppColors.textColorGray.withValues(alpha: 0.3)
+              : AppColors.correctColor.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,

@@ -24,7 +24,7 @@ import '../../widget/popup/help_dialog.dart';
 import '../../widget/popup/wrong_guess_dialog.dart';
 
 class FlagPage extends StatefulWidget {
-  const FlagPage({Key? key}) : super(key: key);
+  const FlagPage({super.key});
 
   @override
   State<FlagPage> createState() => _FlagPageState();
@@ -65,7 +65,7 @@ class _FlagPageState extends State<FlagPage> {
       isLoading = false;
       isTryAgainUsed = false;
     });
-    print(Get.find<ScoreController>().getFlagScore);
+    debugPrint('Flag high score: ${Get.find<ScoreController>().getFlagScore}');
   }
 
   @override
@@ -94,7 +94,7 @@ class _FlagPageState extends State<FlagPage> {
             });
           },
           onAdFailedToLoad: (err) {
-            print('Failed to load an interstitial ad: ${err.message}');
+            debugPrint('Failed to load an interstitial ad: ${err.message}');
           },
         ),
       );
@@ -128,7 +128,7 @@ class _FlagPageState extends State<FlagPage> {
           setState(() {
             isAdLoaded = false;
           });
-          print('Failed to load a rewarded ad: ${err.message}');
+          debugPrint('Failed to load a rewarded ad: ${err.message}');
         },
       ),
     );
@@ -147,7 +147,7 @@ class _FlagPageState extends State<FlagPage> {
             });
           },
           onAdFailedToLoad: (ad, err) {
-            print('Failed to load a banner ad: ${err.message}');
+            debugPrint('Failed to load a banner ad: ${err.message}');
             ad.dispose();
           },
         ),
@@ -161,7 +161,7 @@ class _FlagPageState extends State<FlagPage> {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 4);
-        print(selectedCountry.countryName);
+        debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
@@ -214,7 +214,7 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   void openWrongDialog() {
-    print(isAdLoaded);
+    debugPrint('isAdLoaded: $isAdLoaded');
     wrongGuessDialog(
       score: score,
       isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
@@ -248,7 +248,7 @@ class _FlagPageState extends State<FlagPage> {
     return countryOptions.indexOf(selectedCountry);
   }
 
-  void useCorrectHint(hints) {
+  void useCorrectHint(int hints) {
     if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
       Get.find<HintController>().useHint(hints);
       checkWin(selectedCountry.countryName!, getCorrect());
@@ -422,7 +422,7 @@ class _FlagPageState extends State<FlagPage> {
                       _interstitialAd?.dispose();
                     }
                     return _bannerAd != null && !shopController.isAdsRemoved
-                        ? adBannerWidget(bannerAd: _bannerAd)
+                        ? AdBannerWidget(bannerAd: _bannerAd)
                         : Container();
                   })
                 ],

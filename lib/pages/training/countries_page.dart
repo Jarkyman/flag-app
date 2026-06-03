@@ -24,7 +24,7 @@ import '../../widget/buttons/guess_button.dart';
 import '../../widget/popup/help_dialog.dart';
 
 class CountriesPage extends StatefulWidget {
-  const CountriesPage({Key? key}) : super(key: key);
+  const CountriesPage({super.key});
 
   @override
   State<CountriesPage> createState() => _CountriesPageState();
@@ -94,7 +94,7 @@ class _CountriesPageState extends State<CountriesPage> {
             });
           },
           onAdFailedToLoad: (err) {
-            print('Failed to load an interstitial ad: ${err.message}');
+            debugPrint('Failed to load an interstitial ad: ${err.message}');
           },
         ),
       );
@@ -128,7 +128,7 @@ class _CountriesPageState extends State<CountriesPage> {
           setState(() {
             isAdLoaded = false;
           });
-          print('Failed to load a rewarded ad: ${err.message}');
+          debugPrint('Failed to load a rewarded ad: ${err.message}');
         },
       ),
     );
@@ -147,7 +147,7 @@ class _CountriesPageState extends State<CountriesPage> {
             });
           },
           onAdFailedToLoad: (ad, err) {
-            print('Failed to load a banner ad: ${err.message}');
+            debugPrint('Failed to load a banner ad: ${err.message}');
             ad.dispose();
           },
         ),
@@ -161,7 +161,7 @@ class _CountriesPageState extends State<CountriesPage> {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 4);
-        print(selectedCountry.countryName);
+        debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
@@ -247,7 +247,7 @@ class _CountriesPageState extends State<CountriesPage> {
     return countryOptions.indexOf(selectedCountry);
   }
 
-  void useCorrectHint(hints) {
+  void useCorrectHint(int hints) {
     if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
       Get.find<HintController>().useHint(hints);
       checkWin(selectedCountry.countryName!, getCorrect());
@@ -426,7 +426,7 @@ class _CountriesPageState extends State<CountriesPage> {
                       _interstitialAd?.dispose();
                     }
                     return _bannerAd != null && !shopController.isAdsRemoved
-                        ? adBannerWidget(bannerAd: _bannerAd)
+                        ? AdBannerWidget(bannerAd: _bannerAd)
                         : Container();
                   })
                 ],

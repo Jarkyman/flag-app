@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class adBannerWidget extends StatelessWidget {
-  const adBannerWidget({
-    Key? key,
+class AdBannerWidget extends StatelessWidget {
+  const AdBannerWidget({
+    super.key,
     required BannerAd? bannerAd,
-  })  : _bannerAd = bannerAd,
-        super(key: key);
+  }) : _bannerAd = bannerAd;
 
   final BannerAd? _bannerAd;
 

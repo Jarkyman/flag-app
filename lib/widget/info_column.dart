@@ -8,11 +8,11 @@ class InfoColumn extends StatelessWidget {
   final bool divider;
 
   const InfoColumn({
-    Key? key,
+    super.key,
     required this.info,
     required this.header,
     this.divider = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

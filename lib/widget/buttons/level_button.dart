@@ -13,13 +13,13 @@ class LevelButton extends StatelessWidget {
   final bool isLocked;
 
   const LevelButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.title,
     required this.numOfDone,
     required this.numTotal,
     this.isLocked = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class LevelButton extends StatelessWidget {
       child: Container(
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
-          color: AppColors.mainColor.withOpacity(0.4),
+          color: AppColors.mainColor.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> showConsentForm({bool isForTest = false, String? testDeviceId}) async {
@@ -22,7 +23,7 @@ Future<void> showConsentForm({bool isForTest = false, String? testDeviceId}) asy
     params,
         () async {
       // Tjek om vi overhovedet skal vise formularen
-      final status = consentInfo.getConsentStatus();
+      final status = await consentInfo.getConsentStatus();
       if (status == ConsentStatus.required) {
         final isAvailable = await consentInfo.isConsentFormAvailable();
         if (isAvailable) {
@@ -31,24 +32,24 @@ Future<void> showConsentForm({bool isForTest = false, String? testDeviceId}) asy
               form.show(
                     (FormError? showError) {
                   if (showError != null) {
-                    print('Fejl ved visning af formular: $showError');
+                    debugPrint('Fejl ved visning af formular: $showError');
                   } else {
-                    print('Samtykkeformular vist én gang');
+                    debugPrint('Samtykkeformular vist én gang');
                   }
                 },
               );
             },
                 (FormError loadError) {
-              print('Fejl ved indlæsning af formular: $loadError');
+              debugPrint('Fejl ved indlæsning af formular: $loadError');
             },
           );
         }
       } else {
-        print('Samtykkeformular ikke nødvendig (status: $status)');
+        debugPrint('Samtykkeformular ikke nødvendig (status: $status)');
       }
     },
         (FormError error) {
-      print('Fejl ved consent update: $error');
+      debugPrint('Fejl ved consent update: $error');
     },
   );
 }

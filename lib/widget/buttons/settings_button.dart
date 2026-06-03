@@ -11,11 +11,11 @@ class SettingsButton extends StatelessWidget {
   final Widget child;
 
   const SettingsButton({
-    Key? key,
+    super.key,
     required this.title,
     required this.onTap,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class SettingsButton extends StatelessWidget {
         width: Dimensions.width30 * 10,
         height: Dimensions.height20 * 4,
         decoration: BoxDecoration(
-          color: AppColors.correctColor.withOpacity(0.3),
+          color: AppColors.correctColor.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           border: Border.all(
             width: 2,

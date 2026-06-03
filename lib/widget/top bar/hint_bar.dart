@@ -23,7 +23,7 @@ class HintBar extends StatelessWidget {
   final bool disableTree;
 
   const HintBar({
-    Key? key,
+    super.key,
     required this.tapHintOne,
     required this.iconOne,
     required this.hintPriceOne,
@@ -36,7 +36,7 @@ class HintBar extends StatelessWidget {
     this.iconThree,
     this.hintPriceThree,
     this.disableTree = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class LetterTile extends StatelessWidget {
   final String letter;
 
-  const LetterTile({Key? key, required this.letter}) : super(key: key);
+  const LetterTile({super.key, required this.letter});
 
   @override
   Widget build(BuildContext context) {

@@ -1,22 +1,23 @@
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class GuessButton extends StatelessWidget {
-  String country;
-  VoidCallback onTap;
-  Color color;
-  Color textColor;
-  Color borderColor;
+  final String country;
+  final VoidCallback onTap;
+  final Color color;
+  final Color textColor;
+  final Color borderColor;
 
-  GuessButton({
-    Key? key,
+  const GuessButton({
+    super.key,
     required this.country,
     required this.onTap,
     this.color = Colors.white,
     required this.textColor,
     required this.borderColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,14 @@ class GuessButton extends StatelessWidget {
           ),
         ),
       ),
-    );
+    )
+        .animate(target: color == AppColors.wrongColor ? 1 : 0)
+        .shake(duration: 400.ms, hz: 4, offset: const Offset(5, 0))
+        .animate(target: color == AppColors.correctColor ? 1 : 0)
+        .scale(
+            duration: 300.ms,
+            curve: Curves.easeOutBack,
+            begin: const Offset(1, 1),
+            end: const Offset(1.05, 1.05));
   }
 }

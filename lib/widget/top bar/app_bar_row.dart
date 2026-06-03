@@ -9,9 +9,7 @@ import '../../helper/route_helper.dart';
 import '../hint_widget.dart';
 
 class AppBarRow extends StatelessWidget {
-  const AppBarRow({
-    Key? key,
-  }) : super(key: key);
+  const AppBarRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class AppBarRow extends StatelessWidget {
               width: Dimensions.width20 * 2,
               height: Dimensions.height20 * 2,
               decoration: BoxDecoration(
-                color: AppColors.mainColor.withOpacity(0.2),
+                color: AppColors.mainColor.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
               ),
               child: const Center(

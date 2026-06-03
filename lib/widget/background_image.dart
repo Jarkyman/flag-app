@@ -5,7 +5,7 @@ import '../helper/app_colors.dart';
 class BackgroundImage extends StatelessWidget {
   final Widget child;
 
-  const BackgroundImage({Key? key, required this.child}) : super(key: key);
+  const BackgroundImage({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ import '../../widget/buttons/menu_button.dart';
 import '../../widget/show_consent_form.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                         width: Dimensions.width20 * 2,
                         height: Dimensions.height20 * 2,
                         decoration: BoxDecoration(
-                          color: AppColors.mainColor.withOpacity(0.2),
+                          color: AppColors.mainColor.withValues(alpha: 0.2),
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20 * 2),
                         ),

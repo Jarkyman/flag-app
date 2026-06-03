@@ -20,7 +20,7 @@ final List locale = [
   {'name': 'Svenska', 'locale': const Locale('sv', 'SE')},
 ];
 
-updateLanguage(Locale locale) {
+void updateLanguage(Locale locale) {
   Get.back();
   Get.find<SettingsController>().languageSettingsSave(locale.toString());
   Get.find<CountryContinentController>().readCountries(locale);

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flag_app/controllers/country_continent_controller.dart';
-import 'package:flag_app/models/country_continent_model.dart';
+
 import 'package:flag_app/models/country_model.dart';
 import 'package:flag_app/repos/country_repo.dart';
 import 'package:get/get.dart';
@@ -99,50 +99,65 @@ class CountryController extends GetxController implements GetxService {
       readCountries(Get.locale!);
     }
 
-    List<CountryModel> all = [];
-    all.addAll(_countries);
-    all.shuffle();
     List<CountryModel> result = [];
     String selectedContinent = "";
-    int count = amount - 2;
 
+    // Find correct country
+    CountryModel? correctCountry;
     for (var country in _countries) {
       if (country.countryName == selectedCountry) {
+        correctCountry = country;
         result.add(country);
+        break;
       }
     }
 
-    Get.find<CountryContinentController>().getCountries.forEach((continent) {
-      if (result[0].countryName == continent.country) {
-        selectedContinent = continent.continent!;
-        print(selectedContinent);
-      }
-    });
+    if (correctCountry == null) return result;
 
-    for (int i = 0; i <= count; i++) {
-      if (all[i].countryName == selectedCountry ||
-          !sameContinent(selectedContinent, all[i].countryName!)) {
-        count++;
+    // Find continent for correct country
+    final continentController = Get.find<CountryContinentController>();
+    for (var continent in continentController.getCountries) {
+      if (correctCountry.countryName == continent.country) {
+        selectedContinent = continent.continent ?? "";
+        break;
+      }
+    }
+
+    // Pre-calculate continents map for O(1) lookups
+    Map<String, String> countryToContinent = {
+      for (var c in continentController.getCountries)
+        if (c.country != null && c.continent != null) c.country!: c.continent!
+    };
+
+    List<CountryModel> sameContinentCountries = [];
+    List<CountryModel> otherCountries = [];
+
+    for (var country in _countries) {
+      if (country.countryName == selectedCountry) continue;
+
+      String? continent = countryToContinent[country.countryName];
+      if (continent == selectedContinent && selectedContinent.isNotEmpty) {
+        sameContinentCountries.add(country);
       } else {
-        result.add(all[i]);
+        otherCountries.add(country);
       }
     }
+
+    sameContinentCountries.shuffle();
+    otherCountries.shuffle();
+
+    int needed = amount - 1;
+    if (sameContinentCountries.length >= needed) {
+      result.addAll(sameContinentCountries.take(needed));
+    } else {
+      result.addAll(sameContinentCountries);
+      int remaining = needed - sameContinentCountries.length;
+      result.addAll(otherCountries.take(remaining));
+    }
+
     result.shuffle();
     update();
 
     return result;
-  }
-
-  bool sameContinent(String selectedContinent, String selectedCountry) {
-    for (CountryContinentModel continent
-        in Get.find<CountryContinentController>().getCountries) {
-      if (selectedCountry == continent.country) {
-        if (continent.continent == selectedContinent) {
-          print('$selectedCountry $selectedContinent');
-          return true;
-        }
-      }
-    }
-    return false;
   }
 }

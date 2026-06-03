@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -32,7 +34,7 @@ class ShopController extends GetxController implements GetxService {
 
   Future<List<StoreProduct>> get getProducts async {
     _products =
-        await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
+        await Purchases.getProducts(_productsIds);
     return _products;
   }
 
@@ -45,18 +47,18 @@ class ShopController extends GetxController implements GetxService {
     );
     try {
       _products =
-          await Purchases.getProducts(_productsIds, type: PurchaseType.inapp);
+          await Purchases.getProducts(_productsIds);
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       _products = [];
     }
 
-    print(_products);
+    debugPrint(_products.toString());
     update();
   }
 
   Future<void> initPlatformState() async {
-    await Purchases.setDebugLogsEnabled(true);
+    await Purchases.setLogLevel(LogLevel.debug);
 
     PurchasesConfiguration? configuration;
     if (Platform.isAndroid) {
@@ -84,7 +86,7 @@ class ShopController extends GetxController implements GetxService {
       levelsUnlockSave(isUnlockLevels);
       removeAdsSave(isAdsRemove);
     } on PlatformException catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 

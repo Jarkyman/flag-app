@@ -2,7 +2,7 @@ import 'package:flag_app/helper/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class EmptyTile extends StatelessWidget {
-  const EmptyTile({Key? key}) : super(key: key);
+  const EmptyTile({super.key});
 
   @override
   Widget build(BuildContext context) {

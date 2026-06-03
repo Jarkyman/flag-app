@@ -12,12 +12,12 @@ class HintWidget extends StatelessWidget {
   final bool disable;
 
   const HintWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onTap,
     required this.num,
     this.disable = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class HintWidget extends StatelessWidget {
         height: Dimensions.height20 * 2,
         decoration: BoxDecoration(
           color: !disable
-              ? AppColors.mainColor.withOpacity(0.2)
-              : AppColors.textColorGray.withOpacity(0.2),
+              ? AppColors.mainColor.withValues(alpha: 0.2)
+              : AppColors.textColorGray.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
         ),
         child: Row(

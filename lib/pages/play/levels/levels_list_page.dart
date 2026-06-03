@@ -11,7 +11,7 @@ import '../../../helper/route_helper.dart';
 import '../../../widget/buttons/level_button.dart';
 
 class LevelsListPage extends StatefulWidget {
-  const LevelsListPage({Key? key}) : super(key: key);
+  const LevelsListPage({super.key});
 
   @override
   State<LevelsListPage> createState() => _LevelsListPageState();
@@ -35,7 +35,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
               Expanded(
                 child: GetBuilder<LevelController>(
                   builder: (levelController) {
-                    print('Type =' + Get.arguments[0]);
+                    debugPrint('Type = ${Get.arguments[0]}');
                     return ListView.builder(
                         itemCount:
                             levelController.getLevelAmount(Get.arguments[0]),
@@ -88,7 +88,7 @@ class _LevelsListPageState extends State<LevelsListPage> {
                                         'Unlock more levels'.tr,
                                         '${'You need to finish'.tr} ${levelController.getLevelsToComplete(index) - levelsCompleted + 1} ${'more, to unlock level'.tr} ${index + 1} ${'more, to unlock level2'.tr}',
                                         backgroundColor: AppColors.wrongColor
-                                            .withOpacity(0.3),
+                                            .withValues(alpha: 0.3),
                                       );
                                     }
                                   }

@@ -16,7 +16,7 @@ import '../../widget/Top bar/app_bar_row_exit.dart';
 import '../../widget/buttons/menu_button.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({Key? key}) : super(key: key);
+  const ShopPage({super.key});
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -38,7 +38,7 @@ class _ShopPageState extends State<ShopPage> {
 
   void _loadProducts() async {
     products = await Get.find<ShopController>().getProducts;
-    print(products);
+    debugPrint(products.toString());
     setState(() {
       loadingProduct = false;
     });
@@ -92,7 +92,7 @@ class _ShopPageState extends State<ShopPage> {
             isAdLoaded = false;
             loadAd = false;
           });
-          print('Failed to load a rewarded ad: ${err.message}');
+          debugPrint('Failed to load a rewarded ad: ${err.message}');
         },
       ),
     );
@@ -100,7 +100,7 @@ class _ShopPageState extends State<ShopPage> {
 
   void purchaseErrorSnackbar() {
     Get.snackbar('Purchase failed'.tr, 'Failed to buy, try again later'.tr,
-        backgroundColor: Colors.red.withOpacity(0.4));
+        backgroundColor: Colors.red.withValues(alpha: 0.4));
   }
 
   @override
@@ -126,10 +126,8 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            CustomerInfo customerInfo =
-                                await Purchases.purchaseProduct(
-                                    AppConstants.TEN_HINTS_ID,
-                                    type: PurchaseType.inapp);
+                            await Purchases.purchase(PurchaseParams.storeProduct( 
+                                getProductFromIdentifier(AppConstants.TEN_HINTS_ID)!));
                             for (int i = 1; i <= 2; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -156,10 +154,8 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            CustomerInfo customerInfo =
-                                await Purchases.purchaseProduct(
-                                    AppConstants.TWENTYFIVE_HINTS_ID,
-                                    type: PurchaseType.inapp);
+                            await Purchases.purchase(PurchaseParams.storeProduct( 
+                                getProductFromIdentifier(AppConstants.TWENTYFIVE_HINTS_ID)!));
                             for (int i = 1; i <= 5; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -186,10 +182,8 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            CustomerInfo customerInfo =
-                                await Purchases.purchaseProduct(
-                                    AppConstants.SIXTY_HINTS_ID,
-                                    type: PurchaseType.inapp);
+                            await Purchases.purchase(PurchaseParams.storeProduct( 
+                                getProductFromIdentifier(AppConstants.SIXTY_HINTS_ID)!));
                             for (int i = 1; i <= 12; i++) {
                               Get.find<HintController>().addHint(5);
                             }
@@ -220,11 +214,8 @@ class _ShopPageState extends State<ShopPage> {
                           onTap: () async {
                             if (!shopController.isLevelsUnlocked) {
                               try {
-                                CustomerInfo customerInfo =
-                                    await Purchases.purchaseProduct(
-                                        AppConstants.UNLOCK_LEVELS_ID,
-                                        type: PurchaseType.inapp);
-                                debugPrint('Purchase info: $customerInfo');
+                                await Purchases.purchase(PurchaseParams.storeProduct( 
+                                    getProductFromIdentifier(AppConstants.UNLOCK_LEVELS_ID)!));
                                 shopController.levelsUnlockSave(true);
                                 Get.find<SoundController>().completeSound();
                                 debugPrint('Levels unlocked');
@@ -258,11 +249,8 @@ class _ShopPageState extends State<ShopPage> {
                           onTap: () async {
                             if (!shopController.isAdsRemoved) {
                               try {
-                                CustomerInfo customerInfo =
-                                    await Purchases.purchaseProduct(
-                                        AppConstants.REMOVE_ADS_ID,
-                                        type: PurchaseType.inapp);
-                                debugPrint('Purchase info: $customerInfo');
+                                await Purchases.purchase(PurchaseParams.storeProduct( 
+                                    getProductFromIdentifier(AppConstants.REMOVE_ADS_ID)!));
                                 shopController.removeAdsSave(true);
                                 Get.find<SoundController>().completeSound();
                                 debugPrint('Removed adds');
@@ -310,8 +298,7 @@ class _ShopPageState extends State<ShopPage> {
                       MenuButton(
                         onTap: () async {
                           try {
-                            CustomerInfo restoredInfo =
-                                await Purchases.restorePurchases();
+                            final restoredInfo = await Purchases.restorePurchases();
                             final entitlementAds = restoredInfo.entitlements
                                 .all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
                             bool isAdsRemove = entitlementAds == true;
@@ -319,7 +306,7 @@ class _ShopPageState extends State<ShopPage> {
                             Get.find<ShopController>()
                                 .removeAdsSave(isAdsRemove);
                           } on PlatformException catch (e) {
-                            print(e);
+                            debugPrint(e.toString());
                           }
                         },
                         title: 'Restore Purchases'.tr,

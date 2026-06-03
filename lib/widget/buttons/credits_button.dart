@@ -8,8 +8,8 @@ import '../../helper/dimensions.dart';
 
 class CreditsButton extends StatelessWidget {
   CreditsButton({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String credits = 'Credits Words'.tr;
 
@@ -51,14 +51,17 @@ class CreditsButton extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height30,
                       ),
-                      Text(credits, textScaleFactor: 1),
+                      Text(
+                        credits,
+                        textScaler: TextScaler.noScaling,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
                             'Email: ',
-                            textScaleFactor: 1,
+                            textScaler: TextScaler.noScaling,
                           ),
                           GestureDetector(
                             onTap: () async {
@@ -66,7 +69,7 @@ class CreditsButton extends StatelessWidget {
                             },
                             child: Text(
                               emailAddress,
-                              textScaleFactor: 1,
+                              textScaler: TextScaler.noScaling,
                               style: const TextStyle(
                                 color: Colors.blue,
                               ),
@@ -78,7 +81,7 @@ class CreditsButton extends StatelessWidget {
                         children: [
                           const Text(
                             'Website: ',
-                            textScaleFactor: 1,
+                            textScaler: TextScaler.noScaling,
                           ),
                           GestureDetector(
                             onTap: () async {
@@ -90,7 +93,7 @@ class CreditsButton extends StatelessWidget {
                             },
                             child: const Text(
                               'support page',
-                              textScaleFactor: 1,
+                              textScaler: TextScaler.noScaling,
                               style: TextStyle(
                                 color: Colors.blue,
                               ),
@@ -100,7 +103,7 @@ class CreditsButton extends StatelessWidget {
                       ),
                       Text(
                         ccCredits,
-                        textScaleFactor: 1,
+                        textScaler: TextScaler.noScaling,
                       ),
                     ],
                   ),

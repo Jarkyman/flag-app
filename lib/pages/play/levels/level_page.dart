@@ -16,7 +16,7 @@ import '../../../helper/dimensions.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
 
 class LevelPage extends StatefulWidget {
-  const LevelPage({Key? key}) : super(key: key);
+  const LevelPage({super.key});
 
   @override
   State<LevelPage> createState() => _LevelPageState();
@@ -27,7 +27,6 @@ class _LevelPageState extends State<LevelPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     createBannerAd();
   }
@@ -50,7 +49,7 @@ class _LevelPageState extends State<LevelPage> {
           });
         },
         onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
+          debugPrint('Failed to load a banner ad: ${err.message}');
           ad.dispose();
         },
       ),
@@ -85,8 +84,8 @@ class _LevelPageState extends State<LevelPage> {
                   ),
                   child: GetBuilder<LevelController>(
                     builder: (levelController) {
-                      print('Type = ${Get.arguments[0]}');
-                      print('Level = ${Get.arguments[1]}');
+                      debugPrint('Type = ${Get.arguments[0]}');
+                      debugPrint('Level = ${Get.arguments[1]}');
                       List<LevelModel> levels = levelController.getLevelList(
                           Get.arguments[1], Get.arguments[0]);
                       return GridView.count(
@@ -132,7 +131,7 @@ class _LevelPageState extends State<LevelPage> {
                   ),
                 ),
               ),
-              if (_bannerAd != null) adBannerWidget(bannerAd: _bannerAd),
+              if (_bannerAd != null) AdBannerWidget(bannerAd: _bannerAd),
             ],
           ),
         ),

@@ -32,7 +32,7 @@ import '../../../widget/info_column.dart';
 import '../../../widget/popup/help_dialog.dart';
 
 class GuessPage extends StatefulWidget {
-  const GuessPage({Key? key}) : super(key: key);
+  const GuessPage({super.key});
 
   @override
   State<GuessPage> createState() => _GuessPageState();
@@ -46,7 +46,7 @@ class _GuessPageState extends State<GuessPage> {
   late List<List<String>> lettersListAnswer;
   late List<List<String>> wrongLettersList;
   late List<String> allLetters;
-  final int TILES_PR_ROW = 9;
+  final int tilesPrRow = 9;
   bool bombUsed = false;
   bool shakeTile = false;
   bool removeCountry = false;
@@ -60,7 +60,6 @@ class _GuessPageState extends State<GuessPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setInit();
     createBannerAd();
@@ -100,7 +99,7 @@ class _GuessPageState extends State<GuessPage> {
             });
           },
           onAdFailedToLoad: (err) {
-            print('Failed to load an interstitial ad: ${err.message}');
+            debugPrint('Failed to load an interstitial ad: ${err.message}');
           },
         ),
       );
@@ -120,7 +119,7 @@ class _GuessPageState extends State<GuessPage> {
             });
           },
           onAdFailedToLoad: (ad, err) {
-            print('Failed to load a banner ad: ${err.message}');
+            debugPrint('Failed to load a banner ad: ${err.message}');
             ad.dispose();
           },
         ),
@@ -228,11 +227,11 @@ class _GuessPageState extends State<GuessPage> {
     List<List<String>> lettersList = [];
     for (var word in words) {
       List<String> wordSplit = word.split('');
-      if (wordSplit.length > TILES_PR_ROW) {
+      if (wordSplit.length > tilesPrRow) {
         List<String> temp = [];
-        int maxLength = TILES_PR_ROW - 2;
+        int maxLength = tilesPrRow - 2;
         if (wordSplit.contains('-') &&
-            wordSplit.indexOf('-') + 1 <= TILES_PR_ROW) {
+            wordSplit.indexOf('-') + 1 <= tilesPrRow) {
           maxLength = wordSplit.indexOf('-') + 1;
         }
         for (int i = 0; i < wordSplit.length; i++) {
@@ -243,7 +242,7 @@ class _GuessPageState extends State<GuessPage> {
             lettersList.add(temp);
             temp = [];
             temp.add(wordSplit[i]);
-            if (temp.length >= TILES_PR_ROW) {
+            if (temp.length >= tilesPrRow) {
               maxLength += 2;
             }
           } else {
@@ -268,7 +267,7 @@ class _GuessPageState extends State<GuessPage> {
     if (lettersList.length > 1) {
       for (int i = 0; i < lettersList.length - 1; i++) {
         if ((lettersList[i].length + lettersList[i + 1].length) <=
-            TILES_PR_ROW - 1) {
+            tilesPrRow - 1) {
           lettersList[i].add('/');
           lettersList[i].addAll(lettersList[i + 1]);
           lettersList.removeAt(i + 1);
@@ -307,8 +306,8 @@ class _GuessPageState extends State<GuessPage> {
 
   List<String> generateRandomLetters(List<String> correctLetters) {
     List<String> result = correctLetters;
-    int tileRows = getAmountOfTileRows(TILES_PR_ROW);
-    int maxLetters = TILES_PR_ROW * tileRows;
+    int tileRows = getAmountOfTileRows(tilesPrRow);
+    int maxLetters = tilesPrRow * tileRows;
     Random random = Random();
 
     for (int i = 0; i < result.length; i++) {
@@ -415,8 +414,6 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void removeLetter(String letter, int index, int wordIndex) {
-    bool isDone = false;
-
     if (letter != '-' && letter != String.fromCharCode(8626)) {
       for (int i = 0; i < allLetters.length; i++) {
         setState(() {
@@ -432,7 +429,6 @@ class _GuessPageState extends State<GuessPage> {
           if (lettersListAnswer[wordIndex][index] == letter) {
             lettersListAnswer[wordIndex][index] = '';
             i = lettersListAnswer[wordIndex].length;
-            isDone = true;
           }
         });
       }
@@ -657,6 +653,8 @@ class _GuessPageState extends State<GuessPage> {
     }
   }
 
+  // Dialog open count - currently unused but kept for future use
+  // ignore: unused_field
   int _countDialogOpen = 0;
 
   void openHelpDialog() {
@@ -700,8 +698,10 @@ class _GuessPageState extends State<GuessPage> {
             ),
           ],
         ),
-        body: WillPopScope(
-          onWillPop: () async {
+        body: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) return;
             int randomInt = random.nextInt(10);
             if (_interstitialAd != null &&
                 randomInt == 3 &&
@@ -709,8 +709,8 @@ class _GuessPageState extends State<GuessPage> {
               _interstitialAd?.show();
             } else {
               Get.find<SoundController>().windSound();
+              Get.back();
             }
-            return true;
           },
           child: SwipeDetector(
             onSwipeRight: (value) {
@@ -739,9 +739,9 @@ class _GuessPageState extends State<GuessPage> {
             child: BackgroundImage(
               child: GetBuilder<LevelController>(
                 builder: (levelController) {
-                  print('Type = ${Get.arguments[0]}');
-                  print('Level = ${Get.arguments[1]}');
-                  print('Flag index = ${Get.arguments[2]}');
+                  debugPrint('Type = ${Get.arguments[0]}');
+                  debugPrint('Level = ${Get.arguments[1]}');
+                  debugPrint('Flag index = ${Get.arguments[2]}');
 
                   String countryCodeImg =
                       Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
@@ -910,8 +910,7 @@ class _GuessPageState extends State<GuessPage> {
         ));
   }
 
-  finishInfoBox(CountryModel country, bool isGuessed) {
-    var ad = adBannerWidget(bannerAd: _bannerAd);
+  Widget finishInfoBox(CountryModel country, bool isGuessed) {
     return GetBuilder<ShopController>(
       builder: (shopController) {
         return Stack(
@@ -923,7 +922,7 @@ class _GuessPageState extends State<GuessPage> {
                         ? Dimensions.screenHeight / 4.5
                         : Dimensions.screenHeight / 3.4,
                     decoration: BoxDecoration(
-                      color: AppColors.mainColor.withOpacity(0.4),
+                      color: AppColors.mainColor.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(Dimensions.radius30),
                         topRight: Radius.circular(Dimensions.radius30),
@@ -964,18 +963,18 @@ class _GuessPageState extends State<GuessPage> {
                     ),
                   )
                 : _bannerAd != null &&
-                        getAmountOfTileRows(TILES_PR_ROW) < 4 &&
+                        getAmountOfTileRows(tilesPrRow) < 4 &&
                         !shopController.isAdsRemoved
                     ? Container(
                         height: _bannerAd!.size.height.toDouble(),
                       )
                     : Container(),
             (_bannerAd != null &&
-                    getAmountOfTileRows(TILES_PR_ROW) < 4 &&
+                    getAmountOfTileRows(tilesPrRow) < 4 &&
                     !shopController.isAdsRemoved)
                 ? Positioned(
                     bottom: 0,
-                    child: adBannerWidget(bannerAd: _bannerAd),
+                    child: AdBannerWidget(bannerAd: _bannerAd),
                   )
                 : Container(
                     height: Dimensions.height20,
@@ -991,11 +990,11 @@ class _GuessPageState extends State<GuessPage> {
       padding: EdgeInsets.all(Dimensions.width10),
       child: Column(
           children:
-              List.generate(getAmountOfTileRows(TILES_PR_ROW), (rowIndex) {
+              List.generate(getAmountOfTileRows(tilesPrRow), (rowIndex) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(TILES_PR_ROW, (tileIndex) {
-            int index = tileIndex + (TILES_PR_ROW * rowIndex);
+          children: List.generate(tilesPrRow, (tileIndex) {
+            int index = tileIndex + (tilesPrRow * rowIndex);
 
             return Padding(
               padding: EdgeInsets.only(bottom: Dimensions.height10 / 2),

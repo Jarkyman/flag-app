@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
       translations: LocaleHandler(),
       locale: const Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flags Game - Quiz',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2E7D32)),
+        useMaterial3: true,
       ),
       //home: FlagPage(),
       //home: TestPage(),

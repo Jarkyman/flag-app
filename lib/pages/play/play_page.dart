@@ -10,10 +10,11 @@ import '../../widget/Top bar/app_bar_row.dart';
 import '../../widget/buttons/menu_button.dart';
 
 class PlayPage extends StatelessWidget {
-  const PlayPage({Key? key}) : super(key: key);
+  const PlayPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final levelController = Get.find<LevelController>();
     return Scaffold(
       body: BackgroundImage(
         child: SafeArea(
@@ -34,7 +35,7 @@ class PlayPage extends StatelessWidget {
                       },
                       title: 'Flags'.tr,
                       subText:
-                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.FLAGS)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.FLAGS)}',
+                          '${levelController.getFinishedLevelsTotal(AppConstants.FLAGS)}/${levelController.getAmountOfLevelsTotal(AppConstants.FLAGS)}',
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -46,7 +47,7 @@ class PlayPage extends StatelessWidget {
                       },
                       title: 'Countries'.tr,
                       subText:
-                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.COUNTRIES)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.COUNTRIES)}',
+                          '${levelController.getFinishedLevelsTotal(AppConstants.COUNTRIES)}/${levelController.getAmountOfLevelsTotal(AppConstants.COUNTRIES)}',
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -58,7 +59,7 @@ class PlayPage extends StatelessWidget {
                       },
                       title: 'Coat of arms'.tr,
                       subText:
-                          '${Get.find<LevelController>().getFinishedLevelsTotal(AppConstants.COC)}/${Get.find<LevelController>().getAmountOfLevelsTotal(AppConstants.COC)}',
+                          '${levelController.getFinishedLevelsTotal(AppConstants.COC)}/${levelController.getAmountOfLevelsTotal(AppConstants.COC)}',
                     ),
                   ],
                 ),

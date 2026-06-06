@@ -30,3 +30,8 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 // DONE: Se på animationen af navigering, hvor vi naviger op fra budnen, så går den adnen skærm ud til siden og det ser undelrigt ud i vores animation. Den nye side skal bare komme op fra budnen og lukke ned mod bunden igen. tror det er settings og store der gør det. 
 
 // DONE: Popup design skal rænkes, det kan godt blive lidt pænere. Language popup design skal blive pænere. Hjælpe popup design skal blive pænere, med lidt padding.
+
+
+## Ekstra opgaver (ikke prioriteret endnu)
+
+// TODO: Lav mulighed for at vælge kontinent i trænings spillene, så man kun ser lande fra det kontinent. Det kunne være en menu i top baren, eller andet?

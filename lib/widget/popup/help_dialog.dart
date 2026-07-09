@@ -1,51 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../helper/app_colors.dart';
 
 import '../../helper/dimensions.dart';
 import '../help_widget.dart';
+import 'app_dialog.dart';
 
 void helpDialog(List<HelpWidget> helpWidgets) {
   showDialog(
     context: Get.context!,
-    builder: (_) => Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Dimensions.radius20),
-      ),
-      backgroundColor: AppColors.lightGreen,
+    barrierColor: Colors.black.withValues(alpha: 0.42),
+    builder: (context) => AppDialog(
       child: Padding(
-        padding: EdgeInsets.all(Dimensions.width20),
-        child: SizedBox(
-          width: Dimensions.width45 * 6,
-          height: Get.height * 0.55,
+        padding: EdgeInsets.fromLTRB(
+          Dimensions.width20,
+          Dimensions.height20,
+          Dimensions.width20,
+          Dimensions.height25,
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: Dimensions.screenHeight * 0.62,
+          ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Help'.tr,
-                    style: TextStyle(
-                      fontSize: Dimensions.font20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.mainBlackColor,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Get.back(),
-                    color: AppColors.mainBlackColor,
-                  ),
-                ],
+              AppDialogHeader(
+                title: 'Help'.tr,
+                icon: Icons.lightbulb_outline_rounded,
               ),
-              SizedBox(height: Dimensions.height10),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: helpWidgets,
-                  ),
+              SizedBox(height: Dimensions.height20),
+              Flexible(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: helpWidgets.length,
+                  itemBuilder: (_, index) => helpWidgets[index],
+                  separatorBuilder: (_, separatorIndex) =>
+                      SizedBox(height: Dimensions.height10),
                 ),
               ),
             ],

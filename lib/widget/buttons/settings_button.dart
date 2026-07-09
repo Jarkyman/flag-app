@@ -8,49 +8,75 @@ import '../../helper/dimensions.dart';
 class SettingsButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final Widget child;
+  final Widget leading;
+  final Widget? trailing;
 
   const SettingsButton({
     super.key,
     required this.title,
     required this.onTap,
-    required this.child,
+    required this.leading,
+    this.trailing,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onTap();
-        Get.find<SoundController>().clickSound();
-      },
-      child: Container(
-        width: Dimensions.width30 * 10,
-        height: Dimensions.height20 * 4,
-        decoration: BoxDecoration(
-          color: AppColors.correctColor.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(Dimensions.radius15),
-          border: Border.all(
-            width: 2,
-            color: AppColors.mainColor,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          onTap();
+          Get.find<SoundController>().clickSound();
+        },
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
+        child: Ink(
+          height: Dimensions.height20 * 3.6,
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFCFFFE).withValues(alpha: 0.9),
+            borderRadius: BorderRadius.circular(Dimensions.radius20),
+            border: Border.all(
+              color: AppColors.mainColor.withValues(alpha: 0.16),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.mainBlackColor.withValues(alpha: 0.06),
+                blurRadius: Dimensions.radius15,
+                offset: Offset(0, Dimensions.height10 * 0.6),
+              ),
+            ],
           ),
-        ),
-        child: Stack(
-          children: [
-            Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: Dimensions.font20,
-                  fontWeight: FontWeight.w500,
+          child: Row(
+            children: [
+              Container(
+                width: Dimensions.width20 * 2.2,
+                height: Dimensions.height20 * 2.2,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppColors.mainColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(Dimensions.radius15),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: leading,
+              ),
+              SizedBox(width: Dimensions.width15),
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: AppColors.mainBlackColor,
+                    fontSize: Dimensions.font16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: child,
-            ),
-          ],
+              trailing ??
+                  const Icon(
+                    Icons.chevron_right_rounded,
+                    color: AppColors.textColorGray,
+                  ),
+            ],
+          ),
         ),
       ),
     );

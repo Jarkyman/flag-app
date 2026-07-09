@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../controllers/settings_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import 'app_dialog.dart';
 
 final List locale = [
   {'name': 'Brasileiro', 'locale': const Locale('pt', 'BR')},
@@ -30,85 +31,160 @@ void updateLanguage(Locale locale) {
 
 void buildLanguageDialog() {
   Get.dialog(
-    Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Dimensions.radius20),
-      ),
-      backgroundColor: AppColors.lightGreen,
+    AppDialog(
       child: Padding(
-        padding: EdgeInsets.all(Dimensions.width20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: EdgeInsets.fromLTRB(
+          Dimensions.width20,
+          Dimensions.height20,
+          Dimensions.width20,
+          Dimensions.height25,
+        ),
+        child: Builder(
+          builder: (context) {
+            final maxListHeight = Dimensions.screenHeight * 0.55;
+
+            return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Choose Your Language'.tr,
-                  style: TextStyle(
-                    fontSize: Dimensions.font20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.mainBlackColor,
+                AppDialogHeader(
+                  title: 'Choose Your Language'.tr,
+                  icon: Icons.translate_rounded,
+                ),
+                SizedBox(height: Dimensions.height20),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: maxListHeight),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: locale.length,
+                    itemBuilder: (context, index) {
+                      final languageLocale = locale[index]['locale'] as Locale;
+                      final isSelected = languageLocale == Get.locale;
+
+                      return _LanguageTile(
+                        name: locale[index]['name'] as String,
+                        locale: languageLocale,
+                        isSelected: isSelected,
+                        onTap: () {
+                          updateLanguage(languageLocale);
+                          Get.find<LevelController>().readLevels(reset: true);
+                        },
+                      );
+                    },
+                    separatorBuilder: (_, separatorIndex) =>
+                        SizedBox(height: Dimensions.height10),
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Get.back(),
-                  color: AppColors.mainBlackColor,
-                ),
               ],
-            ),
-            SizedBox(height: Dimensions.height10),
-            SizedBox(
-              height: Dimensions.screenHeight / 2.2,
-              width: Dimensions.width45 * 6,
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: Dimensions.height10,
-                        horizontal: Dimensions.width10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            locale[index]['name'],
-                            style: TextStyle(
-                              fontSize: Dimensions.font16,
-                              color: AppColors.mainBlackColor,
-                            ),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: AssetImage(
-                              'assets/image/flags/${locale[index]['locale'].toString().split('_')[1].toLowerCase()}.png',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      updateLanguage(locale[index]['locale']);
-                      Get.find<LevelController>().readLevels(reset: true);
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider(
-                    color: AppColors.mainColor,
-                    thickness: 1,
-                  );
-                },
-                itemCount: locale.length,
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     ),
+    barrierColor: Colors.black.withValues(alpha: 0.42),
   );
+}
+
+class _LanguageTile extends StatelessWidget {
+  final String name;
+  final Locale locale;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _LanguageTile({
+    required this.name,
+    required this.locale,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final countryCode = locale.countryCode!.toLowerCase();
+
+    return Material(
+      color: isSelected
+          ? AppColors.mainColor.withValues(alpha: 0.11)
+          : AppColors.lightGreen.withValues(alpha: 0.48),
+      borderRadius: BorderRadius.circular(Dimensions.radius15),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(Dimensions.radius15),
+        child: Container(
+          constraints: BoxConstraints(minHeight: Dimensions.height20 * 3.1),
+          padding: EdgeInsets.symmetric(
+            horizontal: Dimensions.width15,
+            vertical: Dimensions.height10,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.mainColor.withValues(alpha: 0.55)
+                  : AppColors.mainColor.withValues(alpha: 0.1),
+              width: Dimensions.width5 * (isSelected ? 0.3 : 0.2),
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: Dimensions.width20 * 2.3,
+                height: Dimensions.height30,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(Dimensions.radius10 * 0.7),
+                  border: Border.all(
+                    color: AppColors.mainBlackColor.withValues(alpha: 0.12),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: Dimensions.width5,
+                      offset: Offset(0, Dimensions.height10 * 0.2),
+                    ),
+                  ],
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Image.asset(
+                  'assets/image/flags/$countryCode.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: Dimensions.width15),
+              Expanded(
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    color: AppColors.mainBlackColor,
+                    fontSize: Dimensions.font16,
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  ),
+                ),
+              ),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                width: Dimensions.iconSize24,
+                height: Dimensions.iconSize24,
+                decoration: BoxDecoration(
+                  color: isSelected ? AppColors.mainColor : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.mainColor
+                        : AppColors.textColorGray.withValues(alpha: 0.45),
+                  ),
+                ),
+                child: isSelected
+                    ? Icon(
+                        Icons.check_rounded,
+                        color: Colors.white,
+                        size: Dimensions.iconSize16,
+                      )
+                    : null,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

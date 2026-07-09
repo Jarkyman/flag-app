@@ -11,9 +11,10 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
+import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../../widget/Top bar/app_bar_row_exit.dart';
-import '../../widget/buttons/menu_button.dart';
+import '../../widget/buttons/custom_close_button.dart';
+import '../../widget/buttons/shop_button.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -36,22 +37,60 @@ class _ShopPageState extends State<ShopPage> {
     _loadProducts();
   }
 
-  void _loadProducts() async {
-    products = await Get.find<ShopController>().getProducts;
-    debugPrint(products.toString());
-    setState(() {
-      loadingProduct = false;
-    });
+  Future<void> _loadProducts() async {
+    try {
+      final loadedProducts = await Get.find<ShopController>().getProducts;
+      if (!mounted) return;
+
+      setState(() {
+        products = loadedProducts;
+        loadingProduct = false;
+      });
+    } catch (error) {
+      debugPrint('Failed to load products: $error');
+      if (!mounted) return;
+
+      setState(() {
+        products = [];
+        loadingProduct = false;
+      });
+    }
   }
 
   StoreProduct? getProductFromIdentifier(String identifier) {
-    StoreProduct? result;
-    for (var product in products) {
-      if (product.identifier == identifier) {
-        result = product;
+    for (final product in products) {
+      if (product.identifier == identifier) return product;
+    }
+    return null;
+  }
+
+  String _priceFor(String identifier) {
+    return getProductFromIdentifier(identifier)?.priceString ?? '#';
+  }
+
+  Future<void> _purchaseProduct({
+    required String identifier,
+    required VoidCallback onPurchased,
+  }) async {
+    final product = getProductFromIdentifier(identifier);
+    if (product == null) return;
+
+    try {
+      await Purchases.purchase(PurchaseParams.storeProduct(product));
+      onPurchased();
+      Get.find<SoundController>().completeSound();
+    } on PlatformException catch (error) {
+      final errorCode = PurchasesErrorHelper.getErrorCode(error);
+      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
+        purchaseErrorSnackbar();
       }
     }
-    return result;
+  }
+
+  void _addHints(int incrementsOfFive) {
+    for (var i = 0; i < incrementsOfFive; i++) {
+      Get.find<HintController>().addHint(5);
+    }
   }
 
   @override
@@ -72,6 +111,7 @@ class _ShopPageState extends State<ShopPage> {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
+              if (!mounted) return;
               setState(() {
                 ad.dispose();
                 _rewardedAd = null;
@@ -79,35 +119,53 @@ class _ShopPageState extends State<ShopPage> {
               _loadRewardedAd();
             },
           );
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
           setState(() {
+            _rewardedAd = ad;
             isAdLoaded = true;
             loadAd = false;
           });
-          setState(() {
-            _rewardedAd = ad;
-          });
         },
-        onAdFailedToLoad: (err) {
+        onAdFailedToLoad: (error) {
+          if (!mounted) return;
           setState(() {
             isAdLoaded = false;
             loadAd = false;
           });
-          debugPrint('Failed to load a rewarded ad: ${err.message}');
+          debugPrint('Failed to load a rewarded ad: ${error.message}');
         },
       ),
     );
   }
 
   void purchaseErrorSnackbar() {
-    Get.snackbar('Purchase failed'.tr, 'Failed to buy, try again later'.tr,
-        backgroundColor: Colors.red.withValues(alpha: 0.4));
+    Get.snackbar(
+      'Purchase failed'.tr,
+      'Failed to buy, try again later'.tr,
+      backgroundColor: AppColors.wrongColor.withValues(alpha: 0.18),
+      colorText: AppColors.mainBlackColor,
+    );
+  }
+
+  Future<void> _restorePurchases() async {
+    try {
+      final restoredInfo = await Purchases.restorePurchases();
+      final entitlementAds = restoredInfo
+          .entitlements.all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
+      await Get.find<ShopController>().removeAdsSave(entitlementAds == true);
+    } on PlatformException catch (error) {
+      debugPrint(error.toString());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SwipeDetector(
-        onSwipeDown: (value) {
+        onSwipeDown: (_) {
           Get.find<SoundController>().windSound();
           Get.back();
         },
@@ -115,209 +173,186 @@ class _ShopPageState extends State<ShopPage> {
           child: SafeArea(
             child: Column(
               children: [
-                const AppBarRowExit(),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      MenuButton(
-                        onTap: () async {
-                          try {
-                            await Purchases.purchase(PurchaseParams.storeProduct( 
-                                getProductFromIdentifier(AppConstants.TEN_HINTS_ID)!));
-                            for (int i = 1; i <= 2; i++) {
-                              Get.find<HintController>().addHint(5);
-                            }
-                            Get.find<SoundController>().completeSound();
-                          } on PlatformException catch (e) {
-                            var errorCode =
-                                PurchasesErrorHelper.getErrorCode(e);
-                            if (errorCode !=
-                                PurchasesErrorCode.purchaseCancelledError) {
-                              purchaseErrorSnackbar();
-                            }
-                          }
-                        },
-                        title: 'Buy 10 hints'.tr,
-                        loading: loadingProduct,
-                        price:
-                            getProductFromIdentifier(AppConstants.TEN_HINTS_ID)
-                                    ?.priceString ??
-                                '#',
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      MenuButton(
-                        onTap: () async {
-                          try {
-                            await Purchases.purchase(PurchaseParams.storeProduct( 
-                                getProductFromIdentifier(AppConstants.TWENTYFIVE_HINTS_ID)!));
-                            for (int i = 1; i <= 5; i++) {
-                              Get.find<HintController>().addHint(5);
-                            }
-                            Get.find<SoundController>().completeSound();
-                          } on PlatformException catch (e) {
-                            var errorCode =
-                                PurchasesErrorHelper.getErrorCode(e);
-                            if (errorCode !=
-                                PurchasesErrorCode.purchaseCancelledError) {
-                              purchaseErrorSnackbar();
-                            }
-                          }
-                        },
-                        title: 'Buy 25 hints'.tr,
-                        loading: loadingProduct,
-                        price: getProductFromIdentifier(
-                                    AppConstants.TWENTYFIVE_HINTS_ID)
-                                ?.priceString ??
-                            '#',
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      MenuButton(
-                        onTap: () async {
-                          try {
-                            await Purchases.purchase(PurchaseParams.storeProduct( 
-                                getProductFromIdentifier(AppConstants.SIXTY_HINTS_ID)!));
-                            for (int i = 1; i <= 12; i++) {
-                              Get.find<HintController>().addHint(5);
-                            }
-                            Get.find<SoundController>().completeSound();
-                          } on PlatformException catch (e) {
-                            var errorCode =
-                                PurchasesErrorHelper.getErrorCode(e);
-                            if (errorCode !=
-                                PurchasesErrorCode.purchaseCancelledError) {
-                              purchaseErrorSnackbar();
-                            }
-                          }
-                        },
-                        title: 'Buy 60 hints'.tr,
-                        loading: loadingProduct,
-                        price: getProductFromIdentifier(
-                                    AppConstants.SIXTY_HINTS_ID)
-                                ?.priceString ??
-                            '#',
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      GetBuilder<ShopController>(builder: (shopController) {
-                        return MenuButton(
-                          active: !shopController.isLevelsUnlocked,
-                          disable: shopController.isLevelsUnlocked,
-                          onTap: () async {
-                            if (!shopController.isLevelsUnlocked) {
-                              try {
-                                await Purchases.purchase(PurchaseParams.storeProduct( 
-                                    getProductFromIdentifier(AppConstants.UNLOCK_LEVELS_ID)!));
-                                shopController.levelsUnlockSave(true);
-                                Get.find<SoundController>().completeSound();
-                                debugPrint('Levels unlocked');
-                              } on PlatformException catch (e) {
-                                var errorCode =
-                                    PurchasesErrorHelper.getErrorCode(e);
-                                if (errorCode !=
-                                    PurchasesErrorCode.purchaseCancelledError) {
-                                  debugPrint('Failed to purchase product. ');
-                                  purchaseErrorSnackbar();
-                                }
-                              }
-                            }
-                          },
-                          title: 'Unlock all levels'.tr,
-                          price: !shopController.isLevelsUnlocked
-                              ? getProductFromIdentifier(
-                                          AppConstants.UNLOCK_LEVELS_ID)
-                                      ?.priceString ??
-                                  '#'
-                              : '',
-                        );
-                      }),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      GetBuilder<ShopController>(builder: (shopController) {
-                        return MenuButton(
-                          active: !shopController.isAdsRemoved,
-                          disable: shopController.isAdsRemoved,
-                          onTap: () async {
-                            if (!shopController.isAdsRemoved) {
-                              try {
-                                await Purchases.purchase(PurchaseParams.storeProduct( 
-                                    getProductFromIdentifier(AppConstants.REMOVE_ADS_ID)!));
-                                shopController.removeAdsSave(true);
-                                Get.find<SoundController>().completeSound();
-                                debugPrint('Removed adds');
-                              } on PlatformException catch (e) {
-                                var errorCode =
-                                    PurchasesErrorHelper.getErrorCode(e);
-                                if (errorCode !=
-                                    PurchasesErrorCode.purchaseCancelledError) {
-                                  debugPrint('Failed to purchase product. ');
-                                  purchaseErrorSnackbar();
-                                }
-                              }
-                            }
-                          },
-                          title: 'Remove ads'.tr,
+                const _ShopHeader(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(
+                      Dimensions.width20,
+                      Dimensions.height15,
+                      Dimensions.width20,
+                      Dimensions.height30,
+                    ),
+                    child: Column(
+                      children: [
+                        ShopButton(
+                          title: 'Buy 10 hints'.tr,
+                          icon: Icons.lightbulb_outline_rounded,
                           loading: loadingProduct,
-                          price: !shopController.isAdsRemoved
-                              ? getProductFromIdentifier(
-                                          AppConstants.REMOVE_ADS_ID)
-                                      ?.priceString ??
-                                  '#'
-                              : '',
-                        );
-                      }),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      MenuButton(
-                        onTap: () {
-                          _rewardedAd?.show(
-                            onUserEarnedReward: (_, reward) {
-                              Get.find<HintController>().addHint(3);
-                              Get.find<SoundController>().completeSound();
-                            },
-                          );
-                        },
-                        active: isAdLoaded,
-                        loading: loadAd,
-                        disable: !isAdLoaded,
-                        title: 'Watch video (3 hints)'.tr,
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      MenuButton(
-                        onTap: () async {
-                          try {
-                            final restoredInfo = await Purchases.restorePurchases();
-                            final entitlementAds = restoredInfo.entitlements
-                                .all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
-                            bool isAdsRemove = entitlementAds == true;
-
-                            Get.find<ShopController>()
-                                .removeAdsSave(isAdsRemove);
-                          } on PlatformException catch (e) {
-                            debugPrint(e.toString());
-                          }
-                        },
-                        title: 'Restore Purchases'.tr,
-                      ),
-                    ],
+                          price: _priceFor(AppConstants.TEN_HINTS_ID),
+                          onTap: () => _purchaseProduct(
+                            identifier: AppConstants.TEN_HINTS_ID,
+                            onPurchased: () => _addHints(2),
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        ShopButton(
+                          title: 'Buy 25 hints'.tr,
+                          icon: Icons.lightbulb_outline_rounded,
+                          loading: loadingProduct,
+                          price: _priceFor(AppConstants.TWENTYFIVE_HINTS_ID),
+                          onTap: () => _purchaseProduct(
+                            identifier: AppConstants.TWENTYFIVE_HINTS_ID,
+                            onPurchased: () => _addHints(5),
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        ShopButton(
+                          title: 'Buy 60 hints'.tr,
+                          icon: Icons.lightbulb_outline_rounded,
+                          loading: loadingProduct,
+                          price: _priceFor(AppConstants.SIXTY_HINTS_ID),
+                          onTap: () => _purchaseProduct(
+                            identifier: AppConstants.SIXTY_HINTS_ID,
+                            onPurchased: () => _addHints(12),
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        GetBuilder<ShopController>(
+                          builder: (shopController) {
+                            final purchased = shopController.isLevelsUnlocked;
+                            return ShopButton(
+                              title: 'Unlock all levels'.tr,
+                              icon: Icons.lock_open_rounded,
+                              loading: loadingProduct && !purchased,
+                              price: purchased
+                                  ? ''
+                                  : _priceFor(AppConstants.UNLOCK_LEVELS_ID),
+                              disabled: purchased,
+                              purchased: purchased,
+                              onTap: () => _purchaseProduct(
+                                identifier: AppConstants.UNLOCK_LEVELS_ID,
+                                onPurchased: () =>
+                                    shopController.levelsUnlockSave(true),
+                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        GetBuilder<ShopController>(
+                          builder: (shopController) {
+                            final purchased = shopController.isAdsRemoved;
+                            return ShopButton(
+                              title: 'Remove ads'.tr,
+                              icon: Icons.block_rounded,
+                              loading: loadingProduct && !purchased,
+                              price: purchased
+                                  ? ''
+                                  : _priceFor(AppConstants.REMOVE_ADS_ID),
+                              disabled: purchased,
+                              purchased: purchased,
+                              onTap: () => _purchaseProduct(
+                                identifier: AppConstants.REMOVE_ADS_ID,
+                                onPurchased: () =>
+                                    shopController.removeAdsSave(true),
+                              ),
+                            );
+                          },
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        ShopButton(
+                          title: 'Watch video (3 hints)'.tr,
+                          icon: Icons.ondemand_video_rounded,
+                          loading: loadAd,
+                          disabled: !isAdLoaded,
+                          onTap: () {
+                            _rewardedAd?.show(
+                              onUserEarnedReward: (_, reward) {
+                                Get.find<HintController>().addHint(3);
+                                Get.find<SoundController>().completeSound();
+                              },
+                            );
+                          },
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        ShopButton(
+                          title: 'Restore Purchases'.tr,
+                          icon: Icons.restore_rounded,
+                          onTap: _restorePurchases,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ShopHeader extends StatelessWidget {
+  const _ShopHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: Dimensions.height20 * 3.2,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Text(
+            'Shop'.tr,
+            style: TextStyle(
+              color: AppColors.mainBlackColor,
+              fontSize: Dimensions.font26,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          Positioned(
+            left: 0,
+            child: SizedBox(
+              width: Dimensions.width20 * 3.2,
+              height: Dimensions.height20 * 3.2,
+              child: CustomCloseButton(),
+            ),
+          ),
+          Positioned(
+            right: Dimensions.width15,
+            child: GetBuilder<HintController>(
+              builder: (hintController) => Container(
+                height: Dimensions.height20 * 2,
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                decoration: BoxDecoration(
+                  color: AppColors.mainColor.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.lightbulb_outline_rounded,
+                      color: AppColors.mainColor,
+                      size: Dimensions.iconSize24,
+                    ),
+                    SizedBox(width: Dimensions.width5),
+                    Text(
+                      hintController.getHints > 9999
+                          ? '9999+'
+                          : hintController.getHints.toString(),
+                      style: TextStyle(
+                        color: AppColors.mainColor,
+                        fontSize: Dimensions.font16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

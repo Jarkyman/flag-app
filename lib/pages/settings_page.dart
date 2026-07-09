@@ -31,129 +31,133 @@ class SettingsPage extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                const CustomCloseButton(),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(
+                  width: double.infinity,
+                  height: Dimensions.height20 * 3.2,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      SettingsButton(
-                        title: 'Language'.tr,
-                        onTap: () {
-                          buildLanguageDialog();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(
-                                'assets/image/flags/${Get.locale.toString().split("_")[1].toLowerCase()}.png'),
-                          ),
+                      Text(
+                        '_Settings'.tr,
+                        style: TextStyle(
+                          color: AppColors.mainBlackColor,
+                          fontSize: Dimensions.font26,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      GetBuilder<SoundController>(builder: (soundController) {
-                        return SettingsButton(
-                          title: 'Sound'.tr,
-                          onTap: () {
-                            soundController
-                                .soundSettingsSave(!soundController.getSoundOn);
-                          },
-                          child: Switch(
-                            value: soundController.getSoundOn,
-                            onChanged: (value) {
-                              soundController.soundSettingsSave(value);
-                            },
-                            activeThumbColor: AppColors.mainColor,
-                            inactiveThumbColor: AppColors.mainColor,
-                            inactiveTrackColor: AppColors.textColorGray,
-                          ),
-                        );
-                      }),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      SettingsButton(
-                        title: 'Help'.tr,
-                        onTap: () {
-                          helpDialog(allHelpWidgets());
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: const IconWidget(
-                            icon: Icons.question_mark_outlined,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      SettingsButton(
-                        title: 'Review app'.tr,
-                        onTap: () {
-                          LaunchReview.launch(
-                              androidAppId: AppConstants.ANDROID_ID,
-                              iOSAppId: AppConstants.IOS_ID);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: const IconWidget(
-                            icon: Icons.star,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      SettingsButton(
-                        title: 'Share app'.tr,
-                        onTap: () {
-                          SharePlus.instance.share(ShareParams(
-                              text:
-                                  'Check out this app \nhttps://hartvigsolutions.com/#flags-game/download'));
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: Dimensions.width10),
-                          child: const IconWidget(
-                            icon: Icons.share,
-                          ),
+                      Positioned(
+                        left: 0,
+                        child: SizedBox(
+                          width: Dimensions.width20 * 3.2,
+                          height: Dimensions.height20 * 3.2,
+                          child: CustomCloseButton(),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Expanded(child: Container()),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(
+                      Dimensions.width20,
+                      Dimensions.height15,
+                      Dimensions.width20,
+                      Dimensions.height20,
+                    ),
+                    child: Column(
+                      children: [
+                        SettingsButton(
+                          title: 'Language'.tr,
+                          onTap: () {
+                            buildLanguageDialog();
+                          },
+                          leading: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Dimensions.width5,
+                              vertical: Dimensions.height10,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  Dimensions.radius10 / 2),
+                              child: Image.asset(
+                                'assets/image/flags/${Get.locale!.countryCode!.toLowerCase()}.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        GetBuilder<SoundController>(builder: (soundController) {
+                          return SettingsButton(
+                            title: 'Sound'.tr,
+                            onTap: () {
+                              soundController.soundSettingsSave(
+                                  !soundController.getSoundOn);
+                            },
+                            leading: Icon(
+                              soundController.getSoundOn
+                                  ? Icons.volume_up_rounded
+                                  : Icons.volume_off_rounded,
+                              color: AppColors.mainColor,
+                            ),
+                            trailing: Switch(
+                              value: soundController.getSoundOn,
+                              onChanged: (value) {
+                                soundController.soundSettingsSave(value);
+                              },
+                              activeThumbColor: AppColors.mainColor,
+                              inactiveThumbColor: AppColors.mainColor,
+                              inactiveTrackColor: AppColors.textColorGray,
+                            ),
+                          );
+                        }),
+                        SizedBox(height: Dimensions.height10),
+                        SettingsButton(
+                          title: 'Help'.tr,
+                          onTap: () {
+                            helpDialog(allHelpWidgets());
+                          },
+                          leading: const Icon(
+                            Icons.question_mark_rounded,
+                            color: AppColors.mainColor,
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        SettingsButton(
+                          title: 'Review app'.tr,
+                          onTap: () {
+                            LaunchReview.launch(
+                                androidAppId: AppConstants.ANDROID_ID,
+                                iOSAppId: AppConstants.IOS_ID);
+                          },
+                          leading: const Icon(
+                            Icons.star_rounded,
+                            color: AppColors.yellowColor,
+                          ),
+                        ),
+                        SizedBox(height: Dimensions.height10),
+                        SettingsButton(
+                          title: 'Share app'.tr,
+                          onTap: () {
+                            SharePlus.instance.share(ShareParams(
+                                text:
+                                    'Check out this app \nhttps://hartvigsolutions.com/#flags-game/download'));
+                          },
+                          leading: const Icon(
+                            Icons.ios_share_rounded,
+                            color: AppColors.mainColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 CreditsButton(),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class IconWidget extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  const IconWidget({super.key, required this.icon, this.color = Colors.white});
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      size: Dimensions.iconSize16 * 2,
-      color: Colors.white,
-      shadows: const [
-        Shadow(blurRadius: 6, color: Colors.black),
-        Shadow(blurRadius: 6, color: Colors.black),
-        Shadow(blurRadius: 6, color: Colors.black),
-        Shadow(blurRadius: 6, color: Colors.black),
-        Shadow(blurRadius: 6, color: Colors.black),
-      ],
     );
   }
 }

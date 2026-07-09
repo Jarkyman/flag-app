@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import 'app_dialog.dart';
 
 void wrongGuessDialog({
   required int score,
@@ -12,83 +13,89 @@ void wrongGuessDialog({
   required VoidCallback onTapCancel,
   bool adLoaded = false,
 }) {
-  Get.defaultDialog(
-    title: 'Wrong country'.tr,
-    middleText: '${'You score is'.tr} $score',
-    backgroundColor: Colors.white,
-    radius: 30,
-    barrierDismissible: false,
-    onWillPop: () async => false,
-    confirm: isTryAgainUsed
-        ? Container()
-        : GestureDetector(
-            onTap: () {
-              onTapConfirm();
-              Get.find<SoundController>().clickSound();
-            },
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: Dimensions.width10,
-                right: Dimensions.width10,
-                bottom: Dimensions.height10,
+  Get.dialog(
+    PopScope(
+      canPop: false,
+      child: AppDialog(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            Dimensions.width20,
+            Dimensions.height20,
+            Dimensions.width20,
+            Dimensions.height25,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppDialogHeader(
+                title: 'Wrong country'.tr,
+                icon: Icons.close_rounded,
+                accentColor: AppColors.wrongColor,
+                showCloseButton: false,
               ),
-              child: Container(
-                height: Dimensions.height20 * 3,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius15),
-                  border: Border.all(
-                    width: 2,
-                    color: adLoaded
-                        ? AppColors.mainColor
-                        : AppColors.textColorGray,
-                  ),
+              SizedBox(height: Dimensions.height20),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.width20,
+                  vertical: Dimensions.height20,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                decoration: BoxDecoration(
+                  color: AppColors.lightGreen.withValues(alpha: 0.68),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                ),
+                child: Column(
                   children: [
-                    const Icon(Icons.ondemand_video),
-                    SizedBox(
-                      width: Dimensions.width10,
-                    ),
                     Text(
-                      'Continue'.tr,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                      'You score is'.tr,
                       style: TextStyle(
-                        color:
-                            adLoaded ? Colors.black : AppColors.textColorGray,
+                        color: AppColors.textColorGray,
+                        fontSize: Dimensions.font16 * 0.9,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.height10 * 0.2),
+                    Text(
+                      '$score',
+                      style: TextStyle(
+                        color: AppColors.mainBlackColor,
+                        fontSize: Dimensions.font26 * 1.3,
+                        fontWeight: FontWeight.w800,
+                        height: 1.1,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
-    cancel: GestureDetector(
-      onTap: () {
-        onTapCancel();
-        Get.find<SoundController>().clickSound();
-      },
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: Dimensions.width10,
-          right: Dimensions.width10,
-          bottom: Dimensions.height10,
-        ),
-        child: Container(
-          height: Dimensions.height20 * 3,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimensions.radius15),
-            border: Border.all(
-              width: 2,
-              color: AppColors.mainColor,
-            ),
-          ),
-          child: Center(
-            child: Text('Start over'.tr),
+              SizedBox(height: Dimensions.height20),
+              if (!isTryAgainUsed) ...[
+                AppDialogButton(
+                  label: 'Continue'.tr,
+                  icon: Icons.ondemand_video_rounded,
+                  onPressed: adLoaded
+                      ? () {
+                          onTapConfirm();
+                          Get.find<SoundController>().clickSound();
+                        }
+                      : null,
+                ),
+                SizedBox(height: Dimensions.height10),
+              ],
+              AppDialogButton(
+                label: 'Start over'.tr,
+                icon: Icons.refresh_rounded,
+                primary: isTryAgainUsed,
+                onPressed: () {
+                  onTapCancel();
+                  Get.find<SoundController>().clickSound();
+                },
+              ),
+            ],
           ),
         ),
       ),
     ),
+    barrierDismissible: false,
+    barrierColor: Colors.black.withValues(alpha: 0.48),
   );
 }

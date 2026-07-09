@@ -13,8 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'controllers/country_continent_controller.dart';
+import 'helper/app_constants.dart';
 import 'helper/dimensions.dart';
 import 'helper/route_helper.dart';
+import 'pages/home/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,11 +44,26 @@ class _SplashPageState extends State<SplashScreen>
     Get.find<SoundController>().init();
     ReviewController.rateMyApp.init();
     if (controller.isCompleted) {
-      Get.offNamed(RouteHelper.getInitial());
+      _navigateToHome();
     } else {
-      Timer(const Duration(seconds: 3),
-          () => Get.offNamed(RouteHelper.getInitial()));
+      Timer(const Duration(seconds: 3), _navigateToHome);
     }
+  }
+
+  void _navigateToHome() {
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder<void>(
+        settings: RouteSettings(name: RouteHelper.getInitial()),
+        transitionDuration: const Duration(milliseconds: 700),
+        reverseTransitionDuration: Duration.zero,
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const HomePage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            child,
+      ),
+    );
   }
 
   @override
@@ -72,16 +89,21 @@ class _SplashPageState extends State<SplashScreen>
                 ScaleTransition(
                   scale: animation,
                   child: Center(
-                    child: Image.asset(
-                      'assets/image/flag_ball.png',
-                      width: Dimensions.splashImg,
+                    child: Hero(
+                      tag: AppConstants.FLAG_BALL_HERO,
+                      createRectTween: (begin, end) =>
+                          MaterialRectCenterArcTween(begin: begin, end: end),
+                      child: Image.asset(
+                        'assets/image/flag_ball.png',
+                        width: Dimensions.splashImg,
+                      ),
                     ),
                   ),
                 ),
-                const Positioned(
-                  bottom: 25,
-                  right: 25,
-                  child: CircularProgressIndicator(
+                Positioned(
+                  bottom: Dimensions.height25,
+                  right: Dimensions.width20 * 1.25,
+                  child: const CircularProgressIndicator(
                     color: AppColors.mainColor,
                   ),
                 )

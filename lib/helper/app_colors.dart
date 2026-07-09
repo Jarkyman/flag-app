@@ -13,4 +13,7 @@ class AppColors {
   static const Color mainBlackColor = Color(0xFF332d2b);
 
   static const Color yellowColor = Color(0xFFFBBF24);
+  static const Color skyColor = Color(0xFF4D8EC9);
+  static const Color coralColor = Color(0xFFF2766B);
+  static const Color purpleColor = Color(0xFF7E6CCB);
 }

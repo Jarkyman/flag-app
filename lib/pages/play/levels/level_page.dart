@@ -1,19 +1,19 @@
-import 'package:flag_app/controllers/level_controller.dart';
-import 'package:flag_app/helper/app_colors.dart';
-import 'package:flag_app/helper/app_constants.dart';
-import 'package:flag_app/helper/route_helper.dart';
-import 'package:flag_app/models/level_model.dart';
-import 'package:flag_app/widget/background_image.dart';
-import 'package:flag_app/widget/level_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../controllers/country_controller.dart';
+import '../../../controllers/level_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
+import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
+import '../../../helper/route_helper.dart';
+import '../../../models/level_model.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
+import '../../../widget/level_card.dart';
+import '../../../widget/menu_background.dart';
+import '../../../widget/menu_page_header.dart';
 
 class LevelPage extends StatefulWidget {
   const LevelPage({super.key});
@@ -48,88 +48,87 @@ class _LevelPageState extends State<LevelPage> {
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          setState(() {
-            _bannerAd = ad as BannerAd;
-          });
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
+          setState(() => _bannerAd = ad as BannerAd);
         },
-        onAdFailedToLoad: (ad, err) {
-          debugPrint('Failed to load a banner ad: ${err.message}');
+        onAdFailedToLoad: (ad, error) {
+          debugPrint('Failed to load a banner ad: ${error.message}');
           ad.dispose();
         },
       ),
     ).load();
   }
 
+  String countryImageCode(LevelModel level) {
+    var countryCode = Get.find<CountryController>()
+        .getCountryCode(level.country!)
+        .toLowerCase();
+    final usesFullFlag =
+        countryCode == 'ni' || countryCode == 'py' || countryCode == 'sv';
+
+    if (usesFullFlag && level.guessed! && argType == AppConstants.FLAGS) {
+      countryCode = '$countryCode-full';
+    }
+    return countryCode;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.find<SoundController>().clickSound();
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
-        title: Text('${'Level'.tr} $argLevel'),
-        backgroundColor: AppColors.mainColor,
-      ),
-      body: BackgroundImage(
+      body: MenuBackground(
         child: SafeArea(
+          bottom: false,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              MenuPageHeader(title: '${'Level'.tr} $argLevel'),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    left: Dimensions.width10,
-                    right: Dimensions.width10,
-                    top: Dimensions.height30,
+                  padding: EdgeInsets.fromLTRB(
+                    Dimensions.width15,
+                    Dimensions.height15,
+                    Dimensions.width15,
+                    Dimensions.height10,
                   ),
                   child: GetBuilder<LevelController>(
                     builder: (levelController) {
-                      debugPrint('Type = $argType');
-                      debugPrint('Level = $argLevel');
-                      List<LevelModel> levels = levelController.getLevelList(
-                          argLevel, argType);
-                      return GridView.count(
-                        childAspectRatio: 6 / 5,
-                        mainAxisSpacing: Dimensions.height20,
-                        crossAxisSpacing: Dimensions.height20,
-                        crossAxisCount: 4,
-                        children: List.generate(levels.length, (index) {
-                          String countryCodeImg =
-                              Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase();
-                          if ((countryCodeImg == 'ni' ||
-                                  countryCodeImg == 'py' ||
-                                  countryCodeImg == 'sv') &&
-                              levels[index].guessed! &&
-                              argType == AppConstants.FLAGS) {
-                            countryCodeImg =
-                                '${Get.find<CountryController>().getCountryCode(levels[index].country!).toLowerCase()}-full';
-                          }
+                      final levels =
+                          levelController.getLevelList(argLevel, argType);
+
+                      return GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 1,
+                          mainAxisSpacing: Dimensions.height15,
+                          crossAxisSpacing: Dimensions.width15,
+                        ),
+                        itemCount: levels.length,
+                        itemBuilder: (context, index) {
+                          final level = levels[index];
+                          final imageCode = countryImageCode(level);
+
                           return GestureDetector(
                             onTap: () {
                               Get.find<SoundController>().windSound();
-                              Get.toNamed(RouteHelper.getGuessPage(),
-                                  arguments: [
-                                    //Get.arguments[0][index],
-                                    argType,
-                                    argLevel,
-                                    index
-                                  ]);
+                              Get.toNamed(
+                                RouteHelper.getGuessPage(),
+                                arguments: [argType, argLevel, index],
+                              );
                             },
                             child: Hero(
-                              tag: countryCodeImg.toLowerCase(),
+                              tag: imageCode.toLowerCase(),
                               child: LevelCard(
-                                guessed: levels[index].guessed!,
+                                guessed: level.guessed!,
                                 image:
-                                    'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
+                                    'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.png',
                                 option: argType,
+                                number: index + 1,
                               ),
                             ),
                           );
-                        }),
+                        },
                       );
                     },
                   ),

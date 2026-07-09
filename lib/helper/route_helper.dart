@@ -55,9 +55,7 @@ class RouteHelper {
     GetPage(name: splashPage, page: () => const SplashScreen()),
     GetPage(name: initial, page: () => const HomePage()),
     GetPage(
-        name: shopPage,
-        page: () => const ShopPage(),
-        fullscreenDialog: true),
+        name: shopPage, page: () => const ShopPage(), fullscreenDialog: true),
     GetPage(
         name: settingsPage,
         page: () => const SettingsPage(),

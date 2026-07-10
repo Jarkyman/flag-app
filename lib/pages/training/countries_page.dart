@@ -17,8 +17,10 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
+import '../../models/training_continent.dart';
 import '../../widget/ads/ad_banner_widget.dart';
 import '../../widget/menu_background.dart';
+import '../../widget/popup/continent_filter_dialog.dart';
 import '../../widget/popup/help_dialog.dart';
 import '../../widget/training/training_game_widgets.dart';
 
@@ -44,6 +46,7 @@ class _CountriesPageState extends State<CountriesPage> {
   bool isTryAgainUsed = false;
   bool isDelay = false;
   bool isAdLoaded = false;
+  TrainingContinent selectedContinent = TrainingContinent.all;
 
   Random random = Random();
 
@@ -58,10 +61,15 @@ class _CountriesPageState extends State<CountriesPage> {
     _loadRewardedAd();
     _loadInterstitialAd();
     setState(() {
-      selectedCountry = Get.find<CountryController>().getACountry();
-      countryOptions = Get.find<CountryController>()
-          .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getCountriesScore;
+      selectedCountry = Get.find<CountryController>().getACountry(
+        continent: _continentFilter,
+      );
+      countryOptions = Get.find<CountryController>().generateCountries(
+        selectedCountry.countryName.toString(),
+        4,
+        continent: _continentFilter,
+      );
+      highScore = _recordFor(selectedContinent);
       isLoading = false;
       isTryAgainUsed = false;
     });
@@ -158,9 +166,14 @@ class _CountriesPageState extends State<CountriesPage> {
   void generateCountries() {
     setState(() {
       const Duration(milliseconds: 500).delay(() {
-        selectedCountry = Get.find<CountryController>().getACountry();
-        countryOptions = Get.find<CountryController>()
-            .generateCountries(selectedCountry.countryName.toString(), 4);
+        selectedCountry = Get.find<CountryController>().getACountry(
+          continent: _continentFilter,
+        );
+        countryOptions = Get.find<CountryController>().generateCountries(
+          selectedCountry.countryName.toString(),
+          4,
+          continent: _continentFilter,
+        );
         debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
@@ -186,7 +199,11 @@ class _CountriesPageState extends State<CountriesPage> {
         if (score > highScore) {
           hasNewRecordThisRun = true;
           highScore = score;
-          Get.find<ScoreController>().saveCountriesScore(highScore);
+          Get.find<ScoreController>().saveTrainingScore(
+            TrainingScoreGame.whichCountry,
+            selectedContinent,
+            highScore,
+          );
         }
       });
       generateCountries();
@@ -198,7 +215,11 @@ class _CountriesPageState extends State<CountriesPage> {
         if (score > highScore) {
           hasNewRecordThisRun = true;
           highScore = score;
-          Get.find<ScoreController>().saveCountriesScore(highScore);
+          Get.find<ScoreController>().saveTrainingScore(
+            TrainingScoreGame.whichCountry,
+            selectedContinent,
+            highScore,
+          );
         }
       });
       const Duration(milliseconds: 500).delay(() {
@@ -232,7 +253,9 @@ class _CountriesPageState extends State<CountriesPage> {
       },
       onTapCancel: () {
         wrongChoice(selected);
-        Get.find<CountryController>().resetCount();
+        Get.find<CountryController>().resetCount(
+          continent: _continentFilter,
+        );
         Get.close(1);
       },
     );
@@ -281,6 +304,60 @@ class _CountriesPageState extends State<CountriesPage> {
 
   int _countDialogOpen = 0;
 
+  String? get _continentFilter => selectedContinent == TrainingContinent.all
+      ? null
+      : selectedContinent.assetNameFor(Get.locale!);
+
+  int _recordFor(TrainingContinent continent) {
+    return Get.find<ScoreController>().getTrainingScore(
+      TrainingScoreGame.whichCountry,
+      continent,
+    );
+  }
+
+  Future<void> _chooseContinent() async {
+    final nextContinent = await showContinentFilterDialog(
+      context: context,
+      selectedContinent: selectedContinent,
+      accentColor: AppColors.skyColor,
+      recordFor: _recordFor,
+    );
+    if (!mounted ||
+        nextContinent == null ||
+        nextContinent == selectedContinent) {
+      return;
+    }
+
+    final continentFilter = nextContinent == TrainingContinent.all
+        ? null
+        : nextContinent.assetNameFor(Get.locale!);
+    final countryController = Get.find<CountryController>();
+    final nextCountry = countryController.getACountry(
+      continent: continentFilter,
+    );
+    final nextOptions = countryController.generateCountries(
+      nextCountry.countryName.toString(),
+      4,
+      continent: continentFilter,
+    );
+
+    setState(() {
+      selectedContinent = nextContinent;
+      selectedCountry = nextCountry;
+      countryOptions = nextOptions;
+      correctColor = [false, false, false, false];
+      wrongColor = [false, false, false, false];
+      score = 0;
+      highScore = _recordFor(nextContinent);
+      hasNewRecordThisRun = false;
+      isTryAgainUsed = false;
+      fiftyFiftyUsed = false;
+      checkUsed = false;
+      isDelay = false;
+      isLoading = false;
+    });
+  }
+
   void openHelpDialog() {
     Future.delayed(const Duration(seconds: 1), () {
       if (_countDialogOpen == 0) {
@@ -312,6 +389,8 @@ class _CountriesPageState extends State<CountriesPage> {
                     score: score,
                     highScore: highScore,
                     accentColor: AppColors.skyColor,
+                    selectedContinent: selectedContinent,
+                    onContinentTap: isDelay ? null : _chooseContinent,
                   ),
                   TrainingHintActions(
                     onCorrectAnswer: () => useCorrectHint(3),

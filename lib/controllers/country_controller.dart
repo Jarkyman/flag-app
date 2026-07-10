@@ -7,13 +7,16 @@ import 'package:flag_app/models/country_model.dart';
 import 'package:flag_app/repos/country_repo.dart';
 import 'package:get/get.dart';
 
+import '../helper/training_country_filter.dart';
+
 class CountryController extends GetxController implements GetxService {
   CountryRepo countryRepo;
 
   CountryController({required this.countryRepo});
 
-  int _countryCount = 0;
   List<CountryModel> _countries = [];
+  final Map<String, List<CountryModel>> _countryPools = {};
+  final Map<String, int> _countryCounts = {};
 
   List<CountryModel> get getCountries => _countries;
 
@@ -21,6 +24,7 @@ class CountryController extends GetxController implements GetxService {
     final list =
         json.decode(await countryRepo.readCountries(locale)) as List<dynamic>;
     _countries = [];
+    _clearCountryPools();
     _countries = list.map((e) => CountryModel.fromJson(e)).toList();
     Get.find<CountryContinentController>()
         .readCountries(locale)
@@ -39,6 +43,7 @@ class CountryController extends GetxController implements GetxService {
       }
     });
     _countries = result;
+    _clearCountryPools();
   }
 
   List<CountryModel> getTestObj() {
@@ -64,23 +69,40 @@ class CountryController extends GetxController implements GetxService {
     return countryCode;
   }
 
-  CountryModel getACountry() {
+  CountryModel getACountry({String? continent}) {
     if (_countries.isEmpty) {
       readCountries(Get.locale!);
     }
-    if (_countryCount == 0) {
-      _countries.shuffle();
+
+    final key = continent ?? '__all__';
+    final pool = _countryPools.putIfAbsent(
+      key,
+      () {
+        final countries = continent == null
+            ? List<CountryModel>.of(_countries)
+            : _countriesForContinent(continent);
+        countries.shuffle();
+        return countries;
+      },
+    );
+    if (pool.isEmpty) {
+      throw StateError('No countries found for continent: $continent');
     }
-    CountryModel result = _countries[_countryCount];
-    _countryCount++;
-    if (_countryCount >= _countries.length) {
-      _countryCount = 0;
+
+    var count = _countryCounts[key] ?? 0;
+    if (count >= pool.length) {
+      pool.shuffle();
+      count = 0;
     }
+    final result = pool[count];
+    _countryCounts[key] = count + 1;
     return result;
   }
 
-  void resetCount() {
-    _countryCount = 0;
+  void resetCount({String? continent}) {
+    final key = continent ?? '__all__';
+    _countryCounts[key] = 0;
+    _countryPools[key]?.shuffle();
   }
 
   CountryModel getCountryByName(String countryName) {
@@ -94,9 +116,25 @@ class CountryController extends GetxController implements GetxService {
     return country!;
   }
 
-  List<CountryModel> generateCountries(String selectedCountry, int amount) {
+  List<CountryModel> generateCountries(
+    String selectedCountry,
+    int amount, {
+    String? continent,
+  }) {
     if (_countries.isEmpty) {
       readCountries(Get.locale!);
+    }
+
+    if (continent != null) {
+      final result = TrainingCountryFilter.buildOptions(
+        countries: _countries,
+        continentEntries: Get.find<CountryContinentController>().getCountries,
+        continentName: continent,
+        selectedCountry: selectedCountry,
+        amount: amount,
+      );
+      update();
+      return result;
     }
 
     List<CountryModel> result = [];
@@ -159,5 +197,18 @@ class CountryController extends GetxController implements GetxService {
     update();
 
     return result;
+  }
+
+  List<CountryModel> _countriesForContinent(String continent) {
+    return TrainingCountryFilter.countriesForContinent(
+      countries: _countries,
+      continentEntries: Get.find<CountryContinentController>().getCountries,
+      continentName: continent,
+    );
+  }
+
+  void _clearCountryPools() {
+    _countryPools.clear();
+    _countryCounts.clear();
   }
 }

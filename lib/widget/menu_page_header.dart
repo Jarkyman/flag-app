@@ -13,6 +13,7 @@ class MenuPageHeader extends StatelessWidget {
   final Color leadingAccentColor;
   final bool showHintBadge;
   final Widget? trailing;
+  final double? titleHorizontalPadding;
 
   const MenuPageHeader({
     super.key,
@@ -22,6 +23,7 @@ class MenuPageHeader extends StatelessWidget {
     this.leadingAccentColor = AppColors.mainColor,
     this.showHintBadge = true,
     this.trailing,
+    this.titleHorizontalPadding,
   });
 
   @override
@@ -33,7 +35,9 @@ class MenuPageHeader extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.width45 * 2),
+            padding: EdgeInsets.symmetric(
+              horizontal: titleHorizontalPadding ?? Dimensions.width45 * 2,
+            ),
             child: AutoSizeText(
               title,
               maxLines: 1,

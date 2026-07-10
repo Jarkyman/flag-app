@@ -16,8 +16,10 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
+import '../../models/training_continent.dart';
 import '../../widget/ads/ad_banner_widget.dart';
 import '../../widget/menu_background.dart';
+import '../../widget/popup/continent_filter_dialog.dart';
 import '../../widget/popup/help_dialog.dart';
 import '../../widget/popup/wrong_guess_dialog.dart';
 import '../../widget/training/training_game_widgets.dart';
@@ -44,6 +46,7 @@ class _FlagPageState extends State<FlagPage> {
   bool isTryAgainUsed = false;
   bool isDelay = false;
   bool isAdLoaded = false;
+  TrainingContinent selectedContinent = TrainingContinent.all;
 
   Random random = Random();
 
@@ -58,14 +61,19 @@ class _FlagPageState extends State<FlagPage> {
     _loadRewardedAd();
     _loadInterstitialAd();
     setState(() {
-      selectedCountry = Get.find<CountryController>().getACountry();
-      countryOptions = Get.find<CountryController>()
-          .generateCountries(selectedCountry.countryName.toString(), 4);
-      highScore = Get.find<ScoreController>().getFlagScore;
+      selectedCountry = Get.find<CountryController>().getACountry(
+        continent: _continentFilter,
+      );
+      countryOptions = Get.find<CountryController>().generateCountries(
+        selectedCountry.countryName.toString(),
+        4,
+        continent: _continentFilter,
+      );
+      highScore = _recordFor(selectedContinent);
       isLoading = false;
       isTryAgainUsed = false;
     });
-    debugPrint('Flag high score: ${Get.find<ScoreController>().getFlagScore}');
+    debugPrint('Flag high score: $highScore');
   }
 
   @override
@@ -158,9 +166,14 @@ class _FlagPageState extends State<FlagPage> {
   void generateCountries() {
     setState(() {
       const Duration(milliseconds: 500).delay(() {
-        selectedCountry = Get.find<CountryController>().getACountry();
-        countryOptions = Get.find<CountryController>()
-            .generateCountries(selectedCountry.countryName.toString(), 4);
+        selectedCountry = Get.find<CountryController>().getACountry(
+          continent: _continentFilter,
+        );
+        countryOptions = Get.find<CountryController>().generateCountries(
+          selectedCountry.countryName.toString(),
+          4,
+          continent: _continentFilter,
+        );
         debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
@@ -186,7 +199,11 @@ class _FlagPageState extends State<FlagPage> {
         if (score > highScore) {
           hasNewRecordThisRun = true;
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveTrainingScore(
+            TrainingScoreGame.findFlag,
+            selectedContinent,
+            highScore,
+          );
         }
       });
       generateCountries();
@@ -198,7 +215,11 @@ class _FlagPageState extends State<FlagPage> {
         if (score > highScore) {
           hasNewRecordThisRun = true;
           highScore = score;
-          Get.find<ScoreController>().saveFlagScore(highScore);
+          Get.find<ScoreController>().saveTrainingScore(
+            TrainingScoreGame.findFlag,
+            selectedContinent,
+            highScore,
+          );
         }
       });
       const Duration(milliseconds: 500).delay(() {
@@ -233,7 +254,9 @@ class _FlagPageState extends State<FlagPage> {
       },
       onTapCancel: () {
         wrongChoice(selected);
-        Get.find<CountryController>().resetCount();
+        Get.find<CountryController>().resetCount(
+          continent: _continentFilter,
+        );
         Get.close(1);
       },
     );
@@ -282,6 +305,60 @@ class _FlagPageState extends State<FlagPage> {
 
   int _countDialogOpen = 0;
 
+  String? get _continentFilter => selectedContinent == TrainingContinent.all
+      ? null
+      : selectedContinent.assetNameFor(Get.locale!);
+
+  int _recordFor(TrainingContinent continent) {
+    return Get.find<ScoreController>().getTrainingScore(
+      TrainingScoreGame.findFlag,
+      continent,
+    );
+  }
+
+  Future<void> _chooseContinent() async {
+    final nextContinent = await showContinentFilterDialog(
+      context: context,
+      selectedContinent: selectedContinent,
+      accentColor: AppColors.coralColor,
+      recordFor: _recordFor,
+    );
+    if (!mounted ||
+        nextContinent == null ||
+        nextContinent == selectedContinent) {
+      return;
+    }
+
+    final continentFilter = nextContinent == TrainingContinent.all
+        ? null
+        : nextContinent.assetNameFor(Get.locale!);
+    final countryController = Get.find<CountryController>();
+    final nextCountry = countryController.getACountry(
+      continent: continentFilter,
+    );
+    final nextOptions = countryController.generateCountries(
+      nextCountry.countryName.toString(),
+      4,
+      continent: continentFilter,
+    );
+
+    setState(() {
+      selectedContinent = nextContinent;
+      selectedCountry = nextCountry;
+      countryOptions = nextOptions;
+      correctColor = [false, false, false, false];
+      wrongColor = [false, false, false, false];
+      score = 0;
+      highScore = _recordFor(nextContinent);
+      hasNewRecordThisRun = false;
+      isTryAgainUsed = false;
+      fiftyFiftyUsed = false;
+      checkUsed = false;
+      isDelay = false;
+      isLoading = false;
+    });
+  }
+
   void openHelpDialog() {
     Future.delayed(const Duration(seconds: 1), () {
       if (_countDialogOpen == 0) {
@@ -313,6 +390,8 @@ class _FlagPageState extends State<FlagPage> {
                     score: score,
                     highScore: highScore,
                     accentColor: AppColors.coralColor,
+                    selectedContinent: selectedContinent,
+                    onContinentTap: isDelay ? null : _chooseContinent,
                   ),
                   TrainingHintActions(
                     onCorrectAnswer: () => useCorrectHint(3),

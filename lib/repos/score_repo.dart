@@ -37,12 +37,31 @@ class ScoreRepo {
   }
 
   Future<int> readCountriesScore() async {
-    int score =
-        sharedPreferences.getInt(AppConstants.COUNTRIES_SCORE) ?? 0;
+    int score = sharedPreferences.getInt(AppConstants.COUNTRIES_SCORE) ?? 0;
     return score;
   }
 
   Future<bool> saveCountriesScore(int score) async {
     return await sharedPreferences.setInt(AppConstants.COUNTRIES_SCORE, score);
+  }
+
+  int readTrainingScore(String gameKey, String continentId) {
+    return sharedPreferences.getInt(trainingScoreKey(gameKey, continentId)) ??
+        0;
+  }
+
+  Future<bool> saveTrainingScore(
+    String gameKey,
+    String continentId,
+    int score,
+  ) async {
+    return sharedPreferences.setInt(
+      trainingScoreKey(gameKey, continentId),
+      score,
+    );
+  }
+
+  String trainingScoreKey(String gameKey, String continentId) {
+    return '$gameKey-$continentId';
   }
 }

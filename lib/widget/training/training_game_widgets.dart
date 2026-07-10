@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../../models/training_continent.dart';
+import '../app_controls.dart';
 import '../menu_page_header.dart';
 
 enum TrainingAnswerState { idle, correct, wrong, disabled }
@@ -13,6 +15,8 @@ class TrainingGameHeader extends StatelessWidget {
   final int score;
   final int highScore;
   final Color accentColor;
+  final TrainingContinent selectedContinent;
+  final VoidCallback? onContinentTap;
 
   const TrainingGameHeader({
     super.key,
@@ -20,13 +24,30 @@ class TrainingGameHeader extends StatelessWidget {
     required this.score,
     required this.highScore,
     required this.accentColor,
+    required this.selectedContinent,
+    required this.onContinentTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MenuPageHeader(title: title),
+        MenuPageHeader(
+          title: title,
+          titleHorizontalPadding: Dimensions.width45 * 2.75,
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _TrainingContinentButton(
+                continent: selectedContinent,
+                accentColor: accentColor,
+                onTap: onContinentTap,
+              ),
+              SizedBox(width: Dimensions.width5),
+              const MenuHintBadge(),
+            ],
+          ),
+        ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
           child: Container(
@@ -75,6 +96,74 @@ class TrainingGameHeader extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _TrainingContinentButton extends StatelessWidget {
+  final TrainingContinent continent;
+  final Color accentColor;
+  final VoidCallback? onTap;
+
+  const _TrainingContinentButton({
+    required this.continent,
+    required this.accentColor,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = onTap != null;
+
+    return AnimatedOpacity(
+      opacity: enabled ? 1 : 0.45,
+      duration: const Duration(milliseconds: 180),
+      child: IgnorePointer(
+        ignoring: !enabled,
+        child: Stack(
+          children: [
+            AppControlButton(
+              icon: Icons.travel_explore_rounded,
+              onTap: onTap ?? () {},
+              accentColor: accentColor,
+              semanticLabel:
+                  '${'Filter by continent'.tr}: ${continent.translationKey.tr}',
+            ),
+            if (continent != TrainingContinent.all)
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  constraints: BoxConstraints(
+                    minWidth: Dimensions.width20,
+                    minHeight: Dimensions.height10 * 1.45,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width5 * 0.45,
+                  ),
+                  decoration: BoxDecoration(
+                    color: accentColor,
+                    borderRadius: BorderRadius.circular(Dimensions.radius10),
+                    border: Border.all(
+                      color: const Color(0xFFFCFFFE),
+                      width: Dimensions.width5 * 0.3,
+                    ),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    continent.shortCode,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Dimensions.font16 * 0.52,
+                      fontWeight: FontWeight.w900,
+                      height: 1,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

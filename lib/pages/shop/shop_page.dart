@@ -13,8 +13,8 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../../widget/buttons/custom_close_button.dart';
 import '../../widget/buttons/shop_button.dart';
+import '../../widget/menu_page_header.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -173,7 +173,12 @@ class _ShopPageState extends State<ShopPage> {
           child: SafeArea(
             child: Column(
               children: [
-                const _ShopHeader(),
+                MenuPageHeader(
+                  title: 'Shop'.tr,
+                  leadingIcon: Icons.close_rounded,
+                  leadingAccentColor: AppColors.coralColor,
+                  trailing: const MenuHintBadge(interactive: false),
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(
@@ -287,72 +292,6 @@ class _ShopPageState extends State<ShopPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ShopHeader extends StatelessWidget {
-  const _ShopHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: Dimensions.height20 * 3.2,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Text(
-            'Shop'.tr,
-            style: TextStyle(
-              color: AppColors.mainBlackColor,
-              fontSize: Dimensions.font26,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          Positioned(
-            left: 0,
-            child: SizedBox(
-              width: Dimensions.width20 * 3.2,
-              height: Dimensions.height20 * 3.2,
-              child: CustomCloseButton(),
-            ),
-          ),
-          Positioned(
-            right: Dimensions.width15,
-            child: GetBuilder<HintController>(
-              builder: (hintController) => Container(
-                height: Dimensions.height20 * 2,
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                decoration: BoxDecoration(
-                  color: AppColors.mainColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.lightbulb_outline_rounded,
-                      color: AppColors.mainColor,
-                      size: Dimensions.iconSize24,
-                    ),
-                    SizedBox(width: Dimensions.width5),
-                    Text(
-                      hintController.getHints > 9999
-                          ? '9999+'
-                          : hintController.getHints.toString(),
-                      style: TextStyle(
-                        color: AppColors.mainColor,
-                        fontSize: Dimensions.font16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

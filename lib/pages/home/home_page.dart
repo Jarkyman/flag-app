@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     MenuRoundButton(
                       icon: Icons.settings_outlined,
+                      semanticLabel: '_Settings'.tr,
                       onTap: () => Get.toNamed(RouteHelper.getSettingsPage()),
                     ),
                     const MenuHintBadge(),

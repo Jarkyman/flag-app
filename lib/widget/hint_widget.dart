@@ -21,41 +21,68 @@ class HintWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (!disable) {
-          onTap();
-          Get.find<SoundController>().clickSound();
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.only(
-          left: Dimensions.width10,
-          right: Dimensions.width10,
-        ),
-        height: Dimensions.height20 * 2,
-        decoration: BoxDecoration(
-          color: !disable
-              ? AppColors.mainColor.withValues(alpha: 0.2)
-              : AppColors.textColorGray.withValues(alpha: 0.2),
-          borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
-        ),
-        child: Row(
-          children: [
-            Center(
-              child: icon,
-            ),
-            SizedBox(
-              width: Dimensions.width5,
-            ),
-            Text(
-              int.parse(num) > 9999 ? '9999+' : num,
-              style: TextStyle(
-                color: AppColors.mainColor,
-                fontSize: Dimensions.font16,
+    final parsedNumber = int.tryParse(num);
+    final label = parsedNumber != null && parsedNumber > 9999 ? '9999+' : num;
+
+    return AnimatedOpacity(
+      opacity: disable ? 0.42 : 1,
+      duration: const Duration(milliseconds: 180),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: disable
+              ? null
+              : () {
+                  onTap();
+                  if (Get.isRegistered<SoundController>()) {
+                    Get.find<SoundController>().clickSound();
+                  }
+                },
+          borderRadius: BorderRadius.circular(Dimensions.radius15),
+          child: Ink(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+            height: Dimensions.height20 * 2.2,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFCFFFE).withValues(alpha: 0.94),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
+              border: Border.all(
+                color: AppColors.mainColor.withValues(alpha: 0.18),
+                width: Dimensions.width5 * 0.2,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.mainBlackColor.withValues(alpha: 0.05),
+                  blurRadius: Dimensions.radius10,
+                  offset: Offset(0, Dimensions.height10 * 0.25),
+                ),
+              ],
             ),
-          ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                icon,
+                SizedBox(width: Dimensions.width5),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width5,
+                    vertical: Dimensions.height10 * 0.15,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.yellowColor.withValues(alpha: 0.16),
+                    borderRadius: BorderRadius.circular(Dimensions.radius10),
+                  ),
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      color: AppColors.mainBlackColor,
+                      fontSize: Dimensions.font16 * 0.88,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../app_controls.dart';
 
 class CustomCloseButton extends StatelessWidget {
   const CustomCloseButton({super.key});
@@ -14,25 +14,12 @@ class CustomCloseButton extends StatelessWidget {
       padding: EdgeInsets.all(Dimensions.height10),
       child: Align(
         alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () {
-            Get.find<SoundController>().clickSound();
-            Get.back();
-          },
-          child: Container(
-            width: Dimensions.width20 * 2,
-            height: Dimensions.height20 * 2,
-            decoration: BoxDecoration(
-              color: AppColors.mainColor.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.close,
-                color: AppColors.mainColor,
-              ),
-            ),
-          ),
+        child: AppControlButton(
+          icon: Icons.close_rounded,
+          accentColor: AppColors.coralColor,
+          semanticLabel: MaterialLocalizations.of(context).closeButtonTooltip,
+          size: Dimensions.height20 * 2,
+          onTap: Get.back,
         ),
       ),
     );

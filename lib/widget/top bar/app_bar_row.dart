@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/hint_controller.dart';
-import '../../controllers/sound_controller.dart';
-import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../../helper/route_helper.dart';
-import '../hint_widget.dart';
+import '../menu_page_header.dart';
 
 class AppBarRow extends StatelessWidget {
   const AppBarRow({super.key});
@@ -21,40 +17,12 @@ class AppBarRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () {
-              Get.find<SoundController>().clickSound();
-
-              Get.back();
-            },
-            child: Container(
-              width: Dimensions.width20 * 2,
-              height: Dimensions.height20 * 2,
-              decoration: BoxDecoration(
-                color: AppColors.mainColor.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
-              ),
-              child: const Center(
-                child: Icon(
-                  Icons.arrow_back_ios_outlined,
-                  color: AppColors.mainColor,
-                ),
-              ),
-            ),
+          MenuRoundButton(
+            icon: Icons.arrow_back_ios_new_rounded,
+            semanticLabel: MaterialLocalizations.of(context).backButtonTooltip,
+            onTap: Get.back,
           ),
-          GetBuilder<HintController>(builder: (hintController) {
-            return HintWidget(
-              onTap: () {
-                Get.find<SoundController>().clickSound();
-                Get.toNamed(RouteHelper.getShopPage());
-              },
-              icon: const Icon(
-                Icons.lightbulb_outline,
-                color: AppColors.mainColor,
-              ),
-              num: hintController.getHints.toString(),
-            );
-          }),
+          const MenuHintBadge(),
         ],
       ),
     );

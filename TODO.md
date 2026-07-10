@@ -31,6 +31,10 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE: Popup design skal rænkes, det kan godt blive lidt pænere. Language popup design skal blive pænere. Hjælpe popup design skal blive pænere, med lidt padding.
 
+## 🧪 Tests
+// DONE {C} [test, hints, bomb] (H): Tilføj en udtømmende unit-testmatrix for bomben og korrekt-bogstav-hintet med 18/27/36 bogstaver, svar- og dubletkombinationer, linjeskift, bindestreg, persistence og kendte regressioner.
+// TODO {C} [test, hints] (H): Lav automatiske tests af de resterende hint-flows. Dæk især korrekt svar/finish og 50/50 samt for få hints, gentagne tryk, disabled state, fratræk af hints, rewarded-ad-belønning præcis én gang og gemt state efter genåbning.
+
 
 ## Ekstra opgaver (ikke prioriteret endnu)
 

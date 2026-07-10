@@ -13,7 +13,7 @@ import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
-import '../widget/buttons/custom_close_button.dart';
+import '../widget/menu_page_header.dart';
 import '../widget/popup/change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -31,30 +31,11 @@ class SettingsPage extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: Dimensions.height20 * 3.2,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Text(
-                        '_Settings'.tr,
-                        style: TextStyle(
-                          color: AppColors.mainBlackColor,
-                          fontSize: Dimensions.font26,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        child: SizedBox(
-                          width: Dimensions.width20 * 3.2,
-                          height: Dimensions.height20 * 3.2,
-                          child: CustomCloseButton(),
-                        ),
-                      ),
-                    ],
-                  ),
+                MenuPageHeader(
+                  title: '_Settings'.tr,
+                  leadingIcon: Icons.close_rounded,
+                  leadingAccentColor: AppColors.coralColor,
+                  showHintBadge: false,
                 ),
                 Expanded(
                   child: SingleChildScrollView(

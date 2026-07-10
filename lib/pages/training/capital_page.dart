@@ -12,6 +12,7 @@ import '../../controllers/hint_controller.dart';
 import '../../controllers/sound_controller.dart';
 import '../../helper/dimensions.dart';
 import '../../widget/Top bar/hint_bar.dart';
+import '../../widget/app_controls.dart';
 import '../../widget/buttons/guess_button.dart';
 
 class CapitalPage extends StatefulWidget {
@@ -120,19 +121,23 @@ class _CapitalPageState extends State<CapitalPage> {
       highScore = Get.find<ScoreController>().getCapitalScore;
       isLoading = false;
     });
-    debugPrint('Capital high score: ${Get.find<ScoreController>().getCapitalScore}');
+    debugPrint(
+        'Capital high score: ${Get.find<ScoreController>().getCapitalScore}');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.find<SoundController>().clickSound();
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
+        leadingWidth: Dimensions.width20 * 3,
+        leading: Padding(
+          padding: EdgeInsets.all(Dimensions.height10 * 0.45),
+          child: AppControlButton(
+            icon: Icons.arrow_back_ios_new_rounded,
+            semanticLabel: MaterialLocalizations.of(context).backButtonTooltip,
+            size: Dimensions.height20 * 2,
+            onTap: Get.back,
+          ),
         ),
         title: Text(
           'Capitals'.tr,

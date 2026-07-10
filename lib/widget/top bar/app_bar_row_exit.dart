@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/hint_controller.dart';
-import '../../controllers/sound_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
-import '../hint_widget.dart';
+import '../menu_page_header.dart';
 
 class AppBarRowExit extends StatelessWidget {
   const AppBarRowExit({super.key});
@@ -20,36 +18,13 @@ class AppBarRowExit extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () {
-              Get.find<SoundController>().clickSound();
-              Get.back();
-            },
-            child: Container(
-              width: Dimensions.width20 * 2,
-              height: Dimensions.height20 * 2,
-              decoration: BoxDecoration(
-                color: AppColors.mainColor.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
-              ),
-              child: const Center(
-                child: Icon(
-                  Icons.close,
-                  color: AppColors.mainColor,
-                ),
-              ),
-            ),
+          MenuRoundButton(
+            icon: Icons.close_rounded,
+            accentColor: AppColors.coralColor,
+            semanticLabel: MaterialLocalizations.of(context).closeButtonTooltip,
+            onTap: Get.back,
           ),
-          GetBuilder<HintController>(builder: (hintController) {
-            return HintWidget(
-              onTap: () {},
-              icon: const Icon(
-                Icons.lightbulb_outline,
-                color: AppColors.mainColor,
-              ),
-              num: hintController.getHints.toString(),
-            );
-          }),
+          const MenuHintBadge(interactive: false),
         ],
       ),
     );

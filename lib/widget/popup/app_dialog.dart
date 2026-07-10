@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../app_controls.dart';
 
 class AppDialog extends StatelessWidget {
   final Widget child;
@@ -116,21 +117,12 @@ class AppDialogHeader extends StatelessWidget {
         ),
         if (showCloseButton) ...[
           SizedBox(width: Dimensions.width10),
-          IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.mainColor.withValues(alpha: 0.08),
-              foregroundColor: AppColors.mainBlackColor,
-              minimumSize: Size(
-                Dimensions.width20 * 2,
-                Dimensions.height20 * 2,
-              ),
-            ),
-            icon: Icon(
-              Icons.close_rounded,
-              size: Dimensions.iconSize24,
-            ),
+          AppControlButton(
+            icon: Icons.close_rounded,
+            accentColor: accentColor,
+            semanticLabel: MaterialLocalizations.of(context).closeButtonTooltip,
+            size: Dimensions.height20 * 2,
+            onTap: () => Navigator.of(context).pop(),
           ),
         ],
       ],

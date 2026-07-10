@@ -7,7 +7,6 @@ import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/models/level_model.dart';
-import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/tiles/empty_tile.dart';
 import 'package:flag_app/widget/tiles/letter_tile.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +22,13 @@ import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
 import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
+import '../../../helper/guess_puzzle_logic.dart';
 import '../../../helper/help_widgets.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
-import '../../../widget/Top bar/hint_bar.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
-import '../../../widget/info_column.dart';
+import '../../../widget/menu_background.dart';
+import '../../../widget/play/guess_game_widgets.dart';
 import '../../../widget/popup/help_dialog.dart';
 
 class GuessPage extends StatefulWidget {
@@ -49,7 +49,6 @@ class _GuessPageState extends State<GuessPage> {
   final int tilesPrRow = 9;
   bool bombUsed = false;
   bool shakeTile = false;
-  bool removeCountry = false;
 
   Random random = Random();
 
@@ -140,8 +139,7 @@ class _GuessPageState extends State<GuessPage> {
       _loadInterstitialAd();
       var levelController = Get.find<LevelController>();
       levels = levelController.getList(argType)!;
-      levelList =
-          levelController.getLevelList(argLevel, argType);
+      levelList = levelController.getLevelList(argLevel, argType);
       country = levelList[argFlagIndex];
       correctLettersList = getCorrectLettersList(country.country!);
       if (country.answerLetters!.isEmpty) {
@@ -231,76 +229,17 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   List<List<String>> getCorrectLettersList(String word) {
-    List<String> words = word.toUpperCase().split(' ');
-    List<List<String>> lettersList = [];
-    for (var word in words) {
-      List<String> wordSplit = word.split('');
-      if (wordSplit.length > tilesPrRow) {
-        List<String> temp = [];
-        int maxLength = tilesPrRow - 2;
-        if (wordSplit.contains('-') &&
-            wordSplit.indexOf('-') + 1 <= tilesPrRow) {
-          maxLength = wordSplit.indexOf('-') + 1;
-        }
-        for (int i = 0; i < wordSplit.length; i++) {
-          if (temp.length == maxLength || temp.contains('-')) {
-            if (!wordSplit.contains('-')) {
-              temp.add(String.fromCharCode(8626));
-            }
-            lettersList.add(temp);
-            temp = [];
-            temp.add(wordSplit[i]);
-            if (temp.length >= tilesPrRow) {
-              maxLength += 2;
-            }
-          } else {
-            temp.add(wordSplit[i]);
-          }
-        }
-        if (temp.isNotEmpty) {
-          if (temp.length <= 2) {
-            if (lettersList.last.contains(String.fromCharCode(8626))) {
-              lettersList.last.remove(String.fromCharCode(8626));
-            }
-            lettersList.last.addAll(temp);
-          } else {
-            lettersList.add(temp);
-          }
-        }
-      } else {
-        lettersList.add(word.split(''));
-      }
-    }
-
-    if (lettersList.length > 1) {
-      for (int i = 0; i < lettersList.length - 1; i++) {
-        if ((lettersList[i].length + lettersList[i + 1].length) <=
-            tilesPrRow - 1) {
-          lettersList[i].add('/');
-          lettersList[i].addAll(lettersList[i + 1]);
-          lettersList.removeAt(i + 1);
-        }
-      }
-    }
-
-    return lettersList;
+    return GuessPuzzleLogic.buildCorrectLetters(
+      word,
+      tilesPerRow: tilesPrRow,
+    );
   }
 
   List<List<String>> getLettersListEmpty(String word) {
-    List<List<String>> lettersList = getCorrectLettersList(word);
-
-    for (var words in lettersList) {
-      for (int i = 0; i < words.length; i++) {
-        if (words[i] == '-' ||
-            words[i] == String.fromCharCode(8626) ||
-            words[i] == '/') {
-        } else {
-          words[i] = '';
-        }
-      }
-    }
-
-    return lettersList;
+    return GuessPuzzleLogic.buildEmptyAnswer(
+      word,
+      tilesPerRow: tilesPrRow,
+    );
   }
 
   int getAmountOfTileRows(int amount) {
@@ -454,63 +393,27 @@ class _GuessPageState extends State<GuessPage> {
 
   void useFirstLetterHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
-      String letter = '';
-      int index = 0;
-      bool isDone = false;
-      List<String> usedLetters = [];
+      final result = GuessPuzzleLogic.applyCorrectLetterHint(
+        correctLetters: correctLettersList,
+        answerLetters: lettersListAnswer,
+        allLetters: allLetters,
+      );
 
-      for (var use in lettersListAnswer) {
-        usedLetters.addAll(use);
-      }
+      if (result.applied) {
+        setState(() {
+          lettersListAnswer = result.answerLetters;
+          allLetters = result.allLetters;
+        });
 
-      for (int i = 0; i < lettersListAnswer.length; i++) {
-        for (int j = 0; j < lettersListAnswer[i].length; j++) {
-          if (lettersListAnswer[i][j] == '') {
-            letter = correctLettersList[i][j];
-            isDone = true;
-            j = lettersListAnswer[i].length;
-          } else if (lettersListAnswer[i][j] != correctLettersList[i][j]) {
-            for (int k = 0; k < allLetters.length; k++) {
-              if (allLetters[k] == '') {
-                removeLetter(lettersListAnswer[i][j], j, i);
-                isDone = true;
-                letter = correctLettersList[i][j];
-                k = allLetters.length;
-                j = lettersListAnswer[i].length;
-              }
-            }
-          }
-        }
-        if (isDone) {
-          i = lettersListAnswer.length;
-        }
-      }
-
-      if (allLetters.contains(letter)) {
-        for (int i = 0; i < allLetters.length; i++) {
-          if (allLetters[i] == letter) {
-            index = i;
-          }
-        }
-        putLetterInBox(letter, index);
+        final levelController = Get.find<LevelController>();
+        levelController.saveAnswerLetters(
+          argType,
+          country,
+          lettersListAnswer,
+        );
+        levelController.saveAllLetters(argType, country, allLetters);
         Get.find<HintController>().useHint(hints);
-      } else if (usedLetters.contains(letter)) {
-        for (int i = 0; i < lettersListAnswer.length; i++) {
-          if (lettersListAnswer[i].contains(letter)) {
-            int letterIndex = lettersListAnswer[i].indexOf(letter);
-            if (lettersListAnswer[i][letterIndex] !=
-                correctLettersList[i][letterIndex]) {
-              removeLetter(letter, letterIndex, i);
-              for (int j = 0; j < allLetters.length; j++) {
-                if (allLetters[j] == letter) {
-                  index = j;
-                }
-              }
-              putLetterInBox(letter, index);
-              Get.find<HintController>().useHint(hints);
-            }
-          }
-        }
+        checkWin();
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
@@ -519,133 +422,38 @@ class _GuessPageState extends State<GuessPage> {
 
   void useBombStart() {
     if (!bombUsed) {
-      List<String> reducedLetters = [];
-      List<String> tempAllList = [];
-      List<String> correctList =
-          country.country!.removeAllWhitespace.toUpperCase().split('');
-      List<String> usedLetters = [];
-      List<String> correctUsedLetters = [];
-
-      for (var use in lettersListAnswer) {
-        usedLetters.addAll(use);
-      }
-      usedLetters.removeWhere((element) => element == '');
-
-      for (var use in usedLetters) {
-        if (correctList.contains(use)) {
-          correctList.remove(use);
-        } else {
-          correctUsedLetters.add(use);
-        }
-      }
-
-      for (int i = 0; i < allLetters.length; i++) {
-        tempAllList.add(allLetters[i]);
-        reducedLetters.add('');
-      }
-
-      for (int j = 0; j < correctList.length; j++) {
-        int index = tempAllList.indexOf(correctList[j]);
-        tempAllList[index] = '';
-        reducedLetters[index] = correctList[j];
-      }
-
-      correctUsedLetters.remove(String.fromCharCode(8626));
-      correctUsedLetters.remove('-');
-
-      for (int i = 0; i < usedLetters.length; i++) {
-        bool tempDone = false;
-        if (correctUsedLetters.contains(usedLetters[i])) {
-          for (int j = 0; j < lettersListAnswer.length; j++) {
-            if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
-              for (int k = 0; k < lettersListAnswer[j].length; k++) {
-                if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
-                  lettersListAnswer[j][k] = '';
-                  tempDone = true;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      setState(() {
-        allLetters = reducedLetters;
-        bombUsed = true;
-        Get.find<LevelController>()
-            .saveBombUsed(argType, country, true);
-        Get.find<LevelController>()
-            .saveAllLetters(argType, country, allLetters);
-      });
+      _applyBomb();
     }
   }
 
   void useBombHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
       if (!bombUsed) {
-        List<String> reducedLetters = [];
-        List<String> tempAllList = [];
-        List<String> correctList =
-            country.country!.removeAllWhitespace.toUpperCase().split('');
-        List<String> usedLetters = [];
-        List<String> correctUsedLetters = [];
-
-        for (var use in lettersListAnswer) {
-          usedLetters.addAll(use);
-        }
-        usedLetters.removeWhere((element) => element == '');
-
-        for (var use in usedLetters) {
-          if (correctList.contains(use)) {
-            correctList.remove(use);
-          } else {
-            correctUsedLetters.add(use);
-          }
-        }
-
-        for (int i = 0; i < allLetters.length; i++) {
-          tempAllList.add(allLetters[i]);
-          reducedLetters.add('');
-        }
-
-        for (int j = 0; j < correctList.length; j++) {
-          int index = tempAllList.indexOf(correctList[j]);
-          tempAllList[index] = '';
-          reducedLetters[index] = correctList[j];
-        }
-
-        correctUsedLetters.remove(String.fromCharCode(8626));
-        correctUsedLetters.remove('-');
-
-        for (int i = 0; i < usedLetters.length; i++) {
-          bool tempDone = false;
-          if (correctUsedLetters.contains(usedLetters[i])) {
-            for (int j = 0; j < lettersListAnswer.length; j++) {
-              if (lettersListAnswer[j].contains(usedLetters[i]) && !tempDone) {
-                for (int k = 0; k < lettersListAnswer[j].length; k++) {
-                  if (lettersListAnswer[j][k] == usedLetters[i] && !tempDone) {
-                    lettersListAnswer[j][k] = '';
-                    tempDone = true;
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        setState(() {
-          allLetters = reducedLetters;
-          bombUsed = true;
-          Get.find<LevelController>()
-              .saveBombUsed(argType, country, true);
-          Get.find<LevelController>()
-              .saveAllLetters(argType, country, allLetters);
-        });
+        _applyBomb();
         Get.find<HintController>().useHint(hints);
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
+  }
+
+  void _applyBomb() {
+    final result = GuessPuzzleLogic.applyBomb(
+      correctLetters: correctLettersList,
+      answerLetters: lettersListAnswer,
+      allLetters: allLetters,
+    );
+
+    setState(() {
+      lettersListAnswer = result.answerLetters;
+      allLetters = result.allLetters;
+      bombUsed = true;
+    });
+
+    final levelController = Get.find<LevelController>();
+    levelController.saveAnswerLetters(argType, country, lettersListAnswer);
+    levelController.saveBombUsed(argType, country, true);
+    levelController.saveAllLetters(argType, country, allLetters);
   }
 
   void useFinishHint(int hints) {
@@ -668,365 +476,297 @@ class _GuessPageState extends State<GuessPage> {
   void openHelpDialog() {
     Future.delayed(const Duration(seconds: 1), () {
       //if (_countDialogOpen == 0) {
-        if (!Get.find<SettingsController>().getFirstGuessHelp) {
-          helpDialog(guessHelpWidgets());
-          Get.find<SettingsController>().firstHelpGuessSave(true);
-          _countDialogOpen++;
-        }
+      if (!Get.find<SettingsController>().getFirstGuessHelp) {
+        helpDialog(guessHelpWidgets());
+        Get.find<SettingsController>().firstHelpGuessSave(true);
+        _countDialogOpen++;
+      }
       //}
     });
+  }
+
+  void _closePage() {
+    final randomInt = random.nextInt(10);
+    if (_interstitialAd != null &&
+        randomInt == 3 &&
+        !Get.find<ShopController>().isAdsRemoved) {
+      _interstitialAd?.show();
+    } else {
+      Get.find<SoundController>().windSound();
+      Get.back();
+    }
+  }
+
+  Color get _accentColor {
+    switch (argType) {
+      case AppConstants.FLAGS:
+        return AppColors.coralColor;
+      case AppConstants.COUNTRIES:
+        return AppColors.skyColor;
+      case AppConstants.COC:
+        return AppColors.purpleColor;
+      default:
+        return AppColors.mainColor;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     //openHelpDialog();
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              int randomInt = random.nextInt(10);
-              if (_interstitialAd != null &&
-                  randomInt == 3 &&
-                  !Get.find<ShopController>().isAdsRemoved) {
-                _interstitialAd?.show();
-              } else {
-                Get.find<SoundController>().windSound();
-                Get.back();
-              }
-            },
-            icon: const Icon(Icons.arrow_back_ios_new),
-          ),
-          backgroundColor: AppColors.mainColor,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.question_mark_outlined),
-              onPressed: () {
-                helpDialog(guessHelpWidgets());
-              },
-            ),
-          ],
-        ),
-        body: PopScope(
-          canPop: false,
-          onPopInvokedWithResult: (didPop, result) async {
-            if (didPop) return;
-            int randomInt = random.nextInt(10);
-            if (_interstitialAd != null &&
-                randomInt == 3 &&
-                !Get.find<ShopController>().isAdsRemoved) {
-              _interstitialAd?.show();
-            } else {
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (!didPop) _closePage();
+        },
+        child: SwipeDetector(
+          onSwipeRight: (value) {
+            final nextPageIndex = argFlagIndex - 1;
+            if (nextPageIndex > -1) {
               Get.find<SoundController>().windSound();
-              Get.back();
+              setState(() {
+                argFlagIndex = nextPageIndex;
+                setInit();
+              });
             }
           },
-          child: SwipeDetector(
-            onSwipeRight: (value) {
-              int nextPageIndex = argFlagIndex;
-              nextPageIndex = argFlagIndex - 1;
-
-              if (nextPageIndex > -1) {
-                Get.find<SoundController>().windSound();
-                setState(() {
-                  argFlagIndex = nextPageIndex;
-                  setInit();
-                });
-              }
-            },
-            onSwipeLeft: (value) {
-              int nextPageIndex = argFlagIndex;
-              nextPageIndex = argFlagIndex + 1;
-              if (nextPageIndex < levelList.length) {
-                Get.find<SoundController>().windSound();
-                setState(() {
-                  argFlagIndex = nextPageIndex;
-                  setInit();
-                });
-              }
-            },
-            child: BackgroundImage(
+          onSwipeLeft: (value) {
+            final nextPageIndex = argFlagIndex + 1;
+            if (nextPageIndex < levelList.length) {
+              Get.find<SoundController>().windSound();
+              setState(() {
+                argFlagIndex = nextPageIndex;
+                setInit();
+              });
+            }
+          },
+          child: MenuBackground(
+            child: SafeArea(
+              bottom: false,
               child: GetBuilder<LevelController>(
                 builder: (levelController) {
-                  debugPrint('Type = $argType');
-                  debugPrint('Level = $argLevel');
-                  debugPrint('Flag index = $argFlagIndex');
+                  final countryController = Get.find<CountryController>();
+                  final baseCountryCode = countryController
+                      .getCountryCode(country.country!)
+                      .toLowerCase();
+                  var imageCode = baseCountryCode;
 
-                  String countryCodeImg =
-                      Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
-                  String countryCodeImgCountry =
-                      Get.find<CountryController>().getCountryCode(country.country!).toLowerCase();
-                  if (AppConstants.FULL_FLAG_LIST.contains(countryCodeImg) &&
+                  if (AppConstants.FULL_FLAG_LIST.contains(imageCode) &&
                       country.guessed! &&
                       argType == AppConstants.FLAGS) {
-                    countryCodeImg =
-                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                    imageCode = '$baseCountryCode-full';
                   }
                   if (argType == AppConstants.COUNTRIES) {
-                    countryCodeImg =
-                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                    imageCode = '$baseCountryCode-full';
                   }
-                  if (AppConstants.FULL_COC_LIST.contains(countryCodeImg) &&
+                  if (AppConstants.FULL_COC_LIST.contains(imageCode) &&
                       country.guessed! &&
                       argType == AppConstants.COC) {
-                    countryCodeImg =
-                        '${Get.find<CountryController>().getCountryCode(country.country!).toLowerCase()}-full';
+                    imageCode = '$baseCountryCode-full';
                   }
+
+                  final countryModel =
+                      countryController.getCountryByName(country.country!);
+
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      country.guessed!
-                          ? Container(
-                              height: Dimensions.height20 * 2,
-                            )
-                          : HintBar(
-                              tapHintOne: () {
-                                useFinishHint(5);
-                              },
-                              iconOne: const Icon(
-                                Icons.check,
-                                color: AppColors.mainColor,
-                              ),
-                              hintPriceOne: '5',
-                              tapHintTwo: () {
-                                if (!bombUsed) {
-                                  useBombHint(2);
-                                }
-                              },
-                              iconTwo: ImageIcon(
-                                const AssetImage('assets/icon/bomb.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
-                              ),
-                              hintPriceTwo: '2',
-                              disableTwo: bombUsed,
-                              tapHintThree: () {
-                                useFirstLetterHint(1);
-                              },
-                              iconThree: ImageIcon(
-                                const AssetImage('assets/icon/a.png'),
-                                color: AppColors.mainColor,
-                                size: Dimensions.iconSize24,
-                              ),
-                              hintPriceThree: '1',
-                            ),
-                      SizedBox(height: Dimensions.height10),
-                      argType == AppConstants.COUNTRIES
-                          ? SizedBox(
-                              height: Dimensions.height20 * 10,
-                              child: Stack(
-                                children: [
-                                  Hero(
-                                    tag:
-                                        countryCodeImgCountry.toLowerCase(),
-                                    /*flightShuttleBuilder:
-                                        ((flightContext, animation, _, __, ___) {
-                                      animation.addStatusListener((status) {
-                                        if (status == AnimationStatus.completed) {
-                                          setState(() {
-                                            removeCountry = true;
-                                            print('hero done');
-                                          });
-                                        } else if (status ==
-                                            AnimationStatus.dismissed) {
-                                          setState(() {
-                                            removeCountry = false;
-                                            print('hero dismiss');
-                                          });
-                                        }
-                                      });
-                                      return Container();
-                                    }),*/
-                                    child: Center(
-                                      child: Image.asset(
-                                          'assets/image/${argType.toString().toLowerCase()}/${countryCodeImgCountry.toLowerCase()}.png',
-                                          fit: BoxFit.contain,
-                                          color: Colors.transparent),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      height: Dimensions.height20 * 10,
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: Dimensions.height20),
-                                      decoration: const BoxDecoration(),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              Dimensions.radius15),
-                                          border: Border.all(
-                                            width: 1,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                              Dimensions.radius15),
-                                          child: Image.asset(
-                                            'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Hero(
-                              tag: countryCodeImg.toLowerCase(),
-                              child: Container(
-                                height: Dimensions.height20 * 10,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: Dimensions.height20),
-                                decoration: const BoxDecoration(),
-                                child: Center(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.radius10),
-                                    child: Image.asset(
-                                      'assets/image/${argType.toString().toLowerCase()}/${countryCodeImg.toLowerCase()}.png',
-                                      fit: BoxFit.contain,
-                                    ),
+                      GuessGameHeader(
+                        title: '${'Level'.tr} $argLevel',
+                        subtitle:
+                            '${argType.tr}  •  ${argFlagIndex + 1}/${levelList.length}',
+                        onBack: _closePage,
+                        onHelp: () => helpDialog(guessHelpWidgets()),
+                      ),
+                      if (!country.guessed!)
+                        GuessHintActions(
+                          onFinish: () => useFinishHint(5),
+                          onBomb: bombUsed ? null : () => useBombHint(2),
+                          onLetter: () => useFirstLetterHint(1),
+                          accentColor: _accentColor,
+                        ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width15,
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(height: Dimensions.height10 * 0.4),
+                              SizedBox(
+                                height: Dimensions.height20 * 9.3,
+                                child: GuessPromptCard(
+                                  accentColor: _accentColor,
+                                  child: _promptImage(
+                                    imageCode: imageCode,
+                                    heroCode: baseCountryCode,
                                   ),
                                 ),
                               ),
-                            ),
-                      country.guessed!
-                          ? Expanded(
-                              child: guessTiles(correctLettersList, true),
-                            )
-                          : Expanded(
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  guessTiles(lettersListAnswer, false),
-                                  tilesAtBottom(),
-                                ],
-                              ),
-                            ),
-                      finishInfoBox(
-                          Get.find<CountryController>()
-                              .getCountryByName(country.country!),
-                          !country.guessed!),
+                              SizedBox(height: Dimensions.height10),
+                              if (country.guessed!) ...[
+                                guessTiles(
+                                  correctLettersList,
+                                  true,
+                                  _accentColor,
+                                ),
+                                const Spacer(),
+                                GuessFactsCard(
+                                  accentColor: _accentColor,
+                                  facts: _countryFacts(countryModel),
+                                ),
+                              ] else
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      guessTiles(
+                                        lettersListAnswer,
+                                        false,
+                                        _accentColor,
+                                      ),
+                                      const Spacer(),
+                                      GuessLetterTray(
+                                        accentColor: _accentColor,
+                                        child: tilesAtBottom(_accentColor),
+                                      ),
+                                      SizedBox(
+                                        height: Dimensions.height10,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      _buildBanner(),
                     ],
                   );
                 },
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
-  Widget finishInfoBox(CountryModel country, bool isGuessed) {
+  Widget _promptImage({
+    required String imageCode,
+    required String heroCode,
+  }) {
+    final imagePath =
+        'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.png';
+
+    if (argType == AppConstants.COUNTRIES) {
+      return Stack(
+        children: [
+          Positioned.fill(
+            child: Hero(
+              tag: heroCode.toLowerCase(),
+              child: Image.asset(
+                'assets/image/${argType.toLowerCase()}/${heroCode.toLowerCase()}.png',
+                fit: BoxFit.contain,
+                color: Colors.transparent,
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Image.asset(imagePath, fit: BoxFit.contain),
+          ),
+        ],
+      );
+    }
+
+    return Hero(
+      tag: imageCode.toLowerCase(),
+      child: Image.asset(imagePath, fit: BoxFit.contain),
+    );
+  }
+
+  List<GuessFactData> _countryFacts(CountryModel country) {
+    final countryName =
+        country.countryName!.toLowerCase() == 'Côte dIvoire'.toLowerCase()
+            ? 'Côte d\'Ivoire'
+            : firstLetterUpperCase(country.countryName!);
+
+    return [
+      GuessFactData(
+        icon: Icons.public_rounded,
+        label: 'Continent'.tr,
+        value: firstLetterUpperCase(
+          Get.find<CountryContinentController>()
+              .getContinentNameByCountryModel(country),
+        ),
+      ),
+      GuessFactData(
+        icon: Icons.flag_rounded,
+        label: 'Country'.tr,
+        value: countryName,
+      ),
+      GuessFactData(
+        icon: Icons.location_city_rounded,
+        label: 'Capital'.tr,
+        value: firstLetterUpperCase(country.capital!),
+      ),
+      GuessFactData(
+        icon: Icons.payments_rounded,
+        label: 'Currency'.tr,
+        value:
+            '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
+      ),
+    ];
+  }
+
+  Widget _buildBanner() {
     return GetBuilder<ShopController>(
       builder: (shopController) {
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            !isGuessed
-                ? Container(
-                    height: country.countryCode!.toLowerCase() == 'vc'
-                        ? Dimensions.screenHeight / 4.5
-                        : Dimensions.screenHeight / 3.4,
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor.withValues(alpha: 0.4),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(Dimensions.radius30),
-                        topRight: Radius.circular(Dimensions.radius30),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: Dimensions.width20,
-                          right: Dimensions.width20,
-                          top: Dimensions.width20),
-                      child: Column(
-                        children: [
-                          InfoColumn(
-                            header: 'Continent'.tr,
-                            info: firstLetterUpperCase(
-                                Get.find<CountryContinentController>()
-                                    .getContinentNameByCountryModel(country)),
-                          ),
-                          InfoColumn(
-                            header: 'Country'.tr,
-                            info: country.countryName!.toLowerCase() ==
-                                    'Côte dIvoire'.toLowerCase()
-                                ? 'Côte d\'Ivoire'
-                                : firstLetterUpperCase(country.countryName!),
-                          ),
-                          InfoColumn(
-                            header: 'Capital'.tr,
-                            info: firstLetterUpperCase(country.capital!),
-                          ),
-                          InfoColumn(
-                            header: 'Currency'.tr,
-                            info:
-                                '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
-                            divider: false,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                : _bannerAd != null &&
-                        getAmountOfTileRows(tilesPrRow) < 4 &&
-                        !shopController.isAdsRemoved
-                    ? Container(
-                        height: _bannerAd!.size.height.toDouble(),
-                      )
-                    : Container(),
-            (_bannerAd != null &&
-                    getAmountOfTileRows(tilesPrRow) < 4 &&
-                    !shopController.isAdsRemoved)
-                ? Positioned(
-                    bottom: 0,
-                    child: AdBannerWidget(bannerAd: _bannerAd),
-                  )
-                : Container(
-                    height: Dimensions.height20,
-                  ),
-          ],
-        );
+        final showBanner = !country.guessed! &&
+            _bannerAd != null &&
+            getAmountOfTileRows(tilesPrRow) < 4 &&
+            !shopController.isAdsRemoved;
+
+        return showBanner
+            ? AdBannerWidget(bannerAd: _bannerAd!)
+            : const SizedBox.shrink();
       },
     );
   }
 
-  Padding tilesAtBottom() {
-    return Padding(
-      padding: EdgeInsets.all(Dimensions.width10),
-      child: Column(
-          children:
-              List.generate(getAmountOfTileRows(tilesPrRow), (rowIndex) {
+  Widget tilesAtBottom(Color accentColor) {
+    return Column(
+      children: List.generate(getAmountOfTileRows(tilesPrRow), (rowIndex) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(tilesPrRow, (tileIndex) {
-            int index = tileIndex + (tilesPrRow * rowIndex);
+            final index = tileIndex + (tilesPrRow * rowIndex);
 
             return Padding(
               padding: EdgeInsets.only(bottom: Dimensions.height10 / 2),
               child: allLetters[index] == ''
-                  ? const EmptyTile()
+                  ? EmptyTile(accentColor: accentColor)
                   : GestureDetector(
                       onTap: () {
                         putLetterInBox(allLetters[index], index);
                       },
-                      child: LetterTile(letter: allLetters[index]),
+                      child: LetterTile(
+                        letter: allLetters[index],
+                        accentColor: accentColor,
+                      ),
                     ),
             );
           }),
         );
-      })),
+      }),
     );
   }
 
-  Padding guessTiles(List<List<String>> identifier, bool isGuessed) {
+  Padding guessTiles(
+    List<List<String>> identifier,
+    bool isGuessed,
+    Color accentColor,
+  ) {
     return Padding(
-      padding: EdgeInsets.only(
-          left: Dimensions.width5,
-          right: Dimensions.width5,
-          top: Dimensions.height10),
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.width5),
       child: Column(
         children: List.generate(lettersListAnswer.length, (index) {
           return Padding(
@@ -1036,6 +776,7 @@ class _GuessPageState extends State<GuessPage> {
               identifier[index],
               index,
               isGuessed,
+              accentColor,
             ),
           );
         }),
@@ -1044,14 +785,23 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   Wrap tileList(
-      List<String> words, List<String> answer, int wordIndex, bool isGuessed) {
+    List<String> words,
+    List<String> answer,
+    int wordIndex,
+    bool isGuessed,
+    Color accentColor,
+  ) {
     return Wrap(
-      spacing: 5,
-      runSpacing: 5,
+      alignment: WrapAlignment.center,
+      spacing: Dimensions.width5,
+      runSpacing: Dimensions.height10 / 2,
       children: List.generate(
         words.length,
         (index) => answer[index] == ''
-            ? const EmptyTile()
+            ? EmptyTile(
+                accentColor: accentColor,
+                isAnswer: true,
+              )
             : answer[index] == '/'
                 ? Container(
                     width: Dimensions.screenWidth / 10,
@@ -1079,7 +829,11 @@ class _GuessPageState extends State<GuessPage> {
                           removeLetter(answer[index], index, wordIndex);
                         }
                       },
-                      child: LetterTile(letter: answer[index]),
+                      child: LetterTile(
+                        letter: answer[index],
+                        accentColor: accentColor,
+                        isAnswer: true,
+                      ),
                     ),
                   ),
       ),

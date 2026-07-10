@@ -2,18 +2,26 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/hint_controller.dart';
-import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
-import '../helper/route_helper.dart';
+import 'app_controls.dart';
 
 class MenuPageHeader extends StatelessWidget {
   final String title;
+  final IconData leadingIcon;
+  final VoidCallback? onLeadingTap;
+  final Color leadingAccentColor;
+  final bool showHintBadge;
+  final Widget? trailing;
 
   const MenuPageHeader({
     super.key,
     required this.title,
+    this.leadingIcon = Icons.arrow_back_ios_new_rounded,
+    this.onLeadingTap,
+    this.leadingAccentColor = AppColors.mainColor,
+    this.showHintBadge = true,
+    this.trailing,
   });
 
   @override
@@ -40,14 +48,19 @@ class MenuPageHeader extends StatelessWidget {
           Positioned(
             left: Dimensions.width10,
             child: MenuRoundButton(
-              icon: Icons.arrow_back_ios_new_rounded,
-              onTap: Get.back,
+              icon: leadingIcon,
+              onTap: onLeadingTap ?? Get.back,
+              accentColor: leadingAccentColor,
+              semanticLabel: leadingIcon == Icons.close_rounded
+                  ? MaterialLocalizations.of(context).closeButtonTooltip
+                  : MaterialLocalizations.of(context).backButtonTooltip,
             ),
           ),
-          Positioned(
-            right: Dimensions.width10,
-            child: const MenuHintBadge(),
-          ),
+          if (trailing != null || showHintBadge)
+            Positioned(
+              right: Dimensions.width10,
+              child: trailing ?? const MenuHintBadge(),
+            ),
         ],
       ),
     );
@@ -57,80 +70,38 @@ class MenuPageHeader extends StatelessWidget {
 class MenuRoundButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
+  final Color accentColor;
+  final String? semanticLabel;
 
   const MenuRoundButton({
     super.key,
     required this.icon,
     required this.onTap,
+    this.accentColor = AppColors.mainColor,
+    this.semanticLabel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.mainColor.withValues(alpha: 0.12),
-      shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: () {
-          Get.find<SoundController>().clickSound();
-          onTap();
-        },
-        child: SizedBox(
-          width: Dimensions.width20 * 2.2,
-          height: Dimensions.height20 * 2.2,
-          child: Icon(
-            icon,
-            color: AppColors.mainColor,
-            size: Dimensions.iconSize24,
-          ),
-        ),
-      ),
+    return AppControlButton(
+      icon: icon,
+      onTap: onTap,
+      accentColor: accentColor,
+      semanticLabel: semanticLabel,
     );
   }
 }
 
 class MenuHintBadge extends StatelessWidget {
-  const MenuHintBadge({super.key});
+  final bool interactive;
+
+  const MenuHintBadge({
+    super.key,
+    this.interactive = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HintController>(
-      builder: (hintController) {
-        final hints = hintController.getHints;
-        return Material(
-          color: AppColors.mainColor.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(Dimensions.radius30),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
-            onTap: () {
-              Get.find<SoundController>().clickSound();
-              Get.toNamed(RouteHelper.getShopPage());
-            },
-            child: Container(
-              height: Dimensions.height20 * 2.2,
-              padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.lightbulb_outline_rounded,
-                    color: AppColors.mainColor,
-                    size: Dimensions.iconSize24,
-                  ),
-                  SizedBox(width: Dimensions.width5),
-                  Text(
-                    hints > 9999 ? '9999+' : hints.toString(),
-                    style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontSize: Dimensions.font16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    return AppHintBadge(interactive: interactive);
   }
 }

@@ -38,7 +38,7 @@ class GuessPage extends StatefulWidget {
   State<GuessPage> createState() => _GuessPageState();
 }
 
-class _GuessPageState extends State<GuessPage> {
+class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   late List<LevelModel> levels;
   late List<LevelModel> levelList;
   late LevelModel country;
@@ -61,6 +61,11 @@ class _GuessPageState extends State<GuessPage> {
   late int argLevel;
   late int argFlagIndex;
 
+  final Map<int, GlobalKey> _letterTrayKeys = {};
+  final Map<String, GlobalKey> _answerTileKeys = {};
+  final Set<String> _arrivingTileIds = {};
+  final List<_ActiveLetterFlight> _activeLetterFlights = [];
+
   @override
   void initState() {
     super.initState();
@@ -81,6 +86,7 @@ class _GuessPageState extends State<GuessPage> {
 
   @override
   void dispose() {
+    _cancelLetterFlights();
     _bannerAd?.dispose();
     _interstitialAd?.dispose();
     detector.stopListening();
@@ -135,6 +141,9 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void setInit() {
+    _cancelLetterFlights();
+    _letterTrayKeys.clear();
+    _answerTileKeys.clear();
     setState(() {
       _loadInterstitialAd();
       var levelController = Get.find<LevelController>();
@@ -333,53 +342,307 @@ class _GuessPageState extends State<GuessPage> {
   }
 
   void putLetterInBox(String letter, int index) {
-    if (isAnswerFull()) {
-    } else {
-      bool isDone = false;
-      for (int j = 0; j < lettersListAnswer.length; j++) {
-        for (int i = 0; i < lettersListAnswer[j].length; i++) {
-          setState(() {
-            if (lettersListAnswer[j][i] == '') {
-              lettersListAnswer[j][i] = letter;
-              i = lettersListAnswer[j].length;
-              isDone = true;
-            }
-          });
-        }
-        if (isDone) {
-          j = lettersListAnswer.length;
+    final target = _firstEmptyAnswerSlot();
+    if (target == null) return;
+
+    _placeLetter(letter, index, target);
+    checkWin();
+  }
+
+  void _animateLetterToAnswer(String letter, int trayIndex) {
+    final target = _firstEmptyAnswerSlot();
+    if (target == null) return;
+
+    if (MediaQuery.maybeOf(context)?.disableAnimations ?? false) {
+      putLetterInBox(letter, trayIndex);
+      return;
+    }
+
+    final sourceBox = _renderBoxFor(_letterTrayKey(trayIndex));
+    final targetBox = _renderBoxFor(
+      _answerTileKey(target.wordIndex, target.letterIndex),
+    );
+    final arrivalId = _answerArrivalId(
+      target.wordIndex,
+      target.letterIndex,
+    );
+
+    if (sourceBox == null ||
+        targetBox == null ||
+        !_startLetterFlight(
+          letter: letter,
+          sourceBox: sourceBox,
+          targetBox: targetBox,
+          arrivalId: arrivalId,
+          landsInAnswer: true,
+        )) {
+      putLetterInBox(letter, trayIndex);
+      return;
+    }
+
+    _placeLetter(letter, trayIndex, target, arrivingTileId: arrivalId);
+    checkWin();
+  }
+
+  bool _startLetterFlight({
+    required String letter,
+    required RenderBox sourceBox,
+    required RenderBox targetBox,
+    required String arrivalId,
+    required bool landsInAnswer,
+  }) {
+    final overlay = Overlay.maybeOf(context, rootOverlay: true);
+    final overlayRenderObject = overlay?.context.findRenderObject();
+    if (overlay == null || overlayRenderObject is! RenderBox) return false;
+
+    final sourceRect = _rectInOverlay(sourceBox, overlayRenderObject);
+    final targetRect = _rectInOverlay(targetBox, overlayRenderObject);
+    final sourceCenter = sourceRect.center;
+    final targetCenter = targetRect.center;
+    final horizontalDirection = targetCenter.dx >= sourceCenter.dx ? 1.0 : -1.0;
+    final controlPoint = Offset(
+      (sourceCenter.dx + targetCenter.dx) / 2 +
+          Dimensions.width20 * horizontalDirection,
+      min(sourceCenter.dy, targetCenter.dy) - Dimensions.height20 * 1.6,
+    );
+    final controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 260),
+    );
+    final movement = CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeOutCubic,
+    );
+
+    late final OverlayEntry overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned.fill(
+        child: IgnorePointer(
+          child: AnimatedBuilder(
+            animation: movement,
+            builder: (context, child) {
+              final progress = movement.value;
+              final center = _quadraticPoint(
+                sourceCenter,
+                controlPoint,
+                targetCenter,
+                progress,
+              );
+              final scale = 1 + sin(pi * progress) * 0.12;
+              final rotation = sin(pi * progress) *
+                  Dimensions.width5 *
+                  0.016 *
+                  horizontalDirection;
+
+              return Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: center.dx - sourceRect.width / 2,
+                    top: center.dy - sourceRect.height / 2,
+                    width: sourceRect.width,
+                    height: sourceRect.height,
+                    child: Transform.rotate(
+                      angle: rotation,
+                      child: Transform.scale(
+                        scale: scale,
+                        child: child,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+            child: LetterTile(
+              letter: letter,
+              accentColor: _accentColor,
+              isAnswer: landsInAnswer,
+            ),
+          ),
+        ),
+      ),
+    );
+    final flight = _ActiveLetterFlight(
+      controller: controller,
+      overlayEntry: overlayEntry,
+      arrivalId: arrivalId,
+    );
+
+    overlay.insert(overlayEntry);
+    _activeLetterFlights.add(flight);
+    controller.forward().then((_) => _finishLetterFlight(flight));
+    return true;
+  }
+
+  _AnswerSlot? _firstEmptyAnswerSlot() {
+    for (var wordIndex = 0; wordIndex < lettersListAnswer.length; wordIndex++) {
+      for (var letterIndex = 0;
+          letterIndex < lettersListAnswer[wordIndex].length;
+          letterIndex++) {
+        if (lettersListAnswer[wordIndex][letterIndex] == '') {
+          return _AnswerSlot(wordIndex, letterIndex);
         }
       }
-
-      setState(() {
-        allLetters[index] = '';
-      });
-      checkWin();
     }
+    return null;
+  }
+
+  void _placeLetter(
+    String letter,
+    int trayIndex,
+    _AnswerSlot target, {
+    String? arrivingTileId,
+  }) {
+    setState(() {
+      lettersListAnswer[target.wordIndex][target.letterIndex] = letter;
+      allLetters[trayIndex] = '';
+      if (arrivingTileId != null) {
+        _arrivingTileIds.add(arrivingTileId);
+      }
+    });
     Get.find<LevelController>()
         .saveAnswerLetters(argType, country, lettersListAnswer);
   }
 
-  void removeLetter(String letter, int index, int wordIndex) {
-    if (letter != '-' && letter != String.fromCharCode(8626)) {
-      for (int i = 0; i < allLetters.length; i++) {
-        setState(() {
-          if (allLetters[i] == '') {
-            allLetters[i] = letter;
-            i = allLetters.length;
-          }
-        });
-      }
-
-      for (int i = 0; i < lettersListAnswer[wordIndex].length; i++) {
-        setState(() {
-          if (lettersListAnswer[wordIndex][index] == letter) {
-            lettersListAnswer[wordIndex][index] = '';
-            i = lettersListAnswer[wordIndex].length;
-          }
-        });
-      }
+  RenderBox? _renderBoxFor(GlobalKey key) {
+    final renderObject = key.currentContext?.findRenderObject();
+    if (renderObject is RenderBox && renderObject.hasSize) {
+      return renderObject;
     }
+    return null;
+  }
+
+  Rect _rectInOverlay(RenderBox tile, RenderBox overlay) {
+    return tile.localToGlobal(Offset.zero, ancestor: overlay) & tile.size;
+  }
+
+  Offset _quadraticPoint(
+    Offset start,
+    Offset control,
+    Offset end,
+    double progress,
+  ) {
+    final remaining = 1 - progress;
+    return start * (remaining * remaining) +
+        control * (2 * remaining * progress) +
+        end * (progress * progress);
+  }
+
+  void _finishLetterFlight(_ActiveLetterFlight flight) {
+    if (!_activeLetterFlights.remove(flight)) return;
+
+    if (flight.overlayEntry.mounted) {
+      flight.overlayEntry.remove();
+    }
+    flight.controller.dispose();
+    if (!mounted) return;
+
+    setState(() {
+      _arrivingTileIds.remove(flight.arrivalId);
+    });
+  }
+
+  void _cancelLetterFlights() {
+    for (final flight in List<_ActiveLetterFlight>.of(_activeLetterFlights)) {
+      if (flight.overlayEntry.mounted) {
+        flight.overlayEntry.remove();
+      }
+      flight.controller.dispose();
+    }
+    _activeLetterFlights.clear();
+    _arrivingTileIds.clear();
+  }
+
+  GlobalKey _letterTrayKey(int index) {
+    return _letterTrayKeys.putIfAbsent(index, GlobalKey.new);
+  }
+
+  GlobalKey _answerTileKey(int wordIndex, int letterIndex) {
+    final slotId = _answerSlotId(wordIndex, letterIndex);
+    return _answerTileKeys.putIfAbsent(slotId, GlobalKey.new);
+  }
+
+  String _answerSlotId(int wordIndex, int letterIndex) {
+    return '$wordIndex:$letterIndex';
+  }
+
+  String _answerArrivalId(int wordIndex, int letterIndex) {
+    return 'answer:${_answerSlotId(wordIndex, letterIndex)}';
+  }
+
+  String _trayArrivalId(int trayIndex) {
+    return 'tray:$trayIndex';
+  }
+
+  void removeLetter(String letter, int index, int wordIndex) {
+    if (letter == '-' || letter == String.fromCharCode(8626)) return;
+
+    final trayIndex = _firstEmptyTrayIndex();
+    if (trayIndex == null) return;
+
+    _returnLetterToTray(letter, index, wordIndex, trayIndex);
+  }
+
+  void _animateLetterBackToTray(String letter, int index, int wordIndex) {
+    if (letter == '-' || letter == String.fromCharCode(8626)) return;
+
+    final trayIndex = _firstEmptyTrayIndex();
+    if (trayIndex == null) return;
+
+    if (MediaQuery.maybeOf(context)?.disableAnimations ?? false) {
+      removeLetter(letter, index, wordIndex);
+      return;
+    }
+
+    final sourceBox = _renderBoxFor(_answerTileKey(wordIndex, index));
+    final targetBox = _renderBoxFor(_letterTrayKey(trayIndex));
+    final arrivalId = _trayArrivalId(trayIndex);
+
+    if (sourceBox == null ||
+        targetBox == null ||
+        !_startLetterFlight(
+          letter: letter,
+          sourceBox: sourceBox,
+          targetBox: targetBox,
+          arrivalId: arrivalId,
+          landsInAnswer: false,
+        )) {
+      removeLetter(letter, index, wordIndex);
+      return;
+    }
+
+    _returnLetterToTray(
+      letter,
+      index,
+      wordIndex,
+      trayIndex,
+      arrivingTileId: arrivalId,
+    );
+  }
+
+  int? _firstEmptyTrayIndex() {
+    for (var index = 0; index < allLetters.length; index++) {
+      if (allLetters[index] == '') return index;
+    }
+    return null;
+  }
+
+  void _returnLetterToTray(
+    String letter,
+    int answerIndex,
+    int wordIndex,
+    int trayIndex, {
+    String? arrivingTileId,
+  }) {
+    setState(() {
+      allLetters[trayIndex] = letter;
+      if (lettersListAnswer[wordIndex][answerIndex] == letter) {
+        lettersListAnswer[wordIndex][answerIndex] = '';
+      }
+      if (arrivingTileId != null) {
+        _arrivingTileIds.add(arrivingTileId);
+      }
+    });
   }
 
   String firstLetterUpperCase(String word) {
@@ -742,13 +1005,18 @@ class _GuessPageState extends State<GuessPage> {
 
             return Padding(
               padding: EdgeInsets.only(bottom: Dimensions.height10 / 2),
-              child: allLetters[index] == ''
-                  ? EmptyTile(accentColor: accentColor)
+              child: allLetters[index] == '' ||
+                      _arrivingTileIds.contains(_trayArrivalId(index))
+                  ? EmptyTile(
+                      key: _letterTrayKey(index),
+                      accentColor: accentColor,
+                    )
                   : GestureDetector(
                       onTap: () {
-                        putLetterInBox(allLetters[index], index);
+                        _animateLetterToAnswer(allLetters[index], index);
                       },
                       child: LetterTile(
+                        key: _letterTrayKey(index),
                         letter: allLetters[index],
                         accentColor: accentColor,
                       ),
@@ -797,46 +1065,75 @@ class _GuessPageState extends State<GuessPage> {
       runSpacing: Dimensions.height10 / 2,
       children: List.generate(
         words.length,
-        (index) => answer[index] == ''
-            ? EmptyTile(
+        (index) {
+          if (answer[index] == '/') {
+            return Container(width: Dimensions.screenWidth / 10);
+          }
+
+          final tileKey = _answerTileKey(wordIndex, index);
+          final isArriving = _arrivingTileIds.contains(
+            _answerArrivalId(wordIndex, index),
+          );
+          if (answer[index] == '' || isArriving) {
+            return EmptyTile(
+              key: tileKey,
+              accentColor: accentColor,
+              isAnswer: true,
+            );
+          }
+
+          return ShakeAnimatedWidget(
+            enabled: answer[index] == wrongLettersList[wordIndex][index] &&
+                    answer[index] != '-' &&
+                    answer[index] != String.fromCharCode(8626)
+                ? true
+                : shakeTile,
+            duration: const Duration(milliseconds: 500),
+            shakeAngle: answer[index] == wrongLettersList[wordIndex][index] &&
+                    answer[index] != '-' &&
+                    answer[index] != String.fromCharCode(8626)
+                ? Rotation.deg(x: 80)
+                : Rotation.deg(z: 40),
+            curve: Curves.linear,
+            child: GestureDetector(
+              onTap: () {
+                if (!isGuessed) {
+                  _animateLetterBackToTray(
+                    answer[index],
+                    index,
+                    wordIndex,
+                  );
+                }
+              },
+              child: LetterTile(
+                key: tileKey,
+                letter: answer[index],
                 accentColor: accentColor,
                 isAnswer: true,
-              )
-            : answer[index] == '/'
-                ? Container(
-                    width: Dimensions.screenWidth / 10,
-                  )
-                : ShakeAnimatedWidget(
-                    enabled:
-                        answer[index] == wrongLettersList[wordIndex][index] &&
-                                answer[index] != '/' &&
-                                answer[index] != '-' &&
-                                answer[index] != String.fromCharCode(8626)
-                            ? true
-                            : shakeTile,
-                    duration: const Duration(milliseconds: 500),
-                    shakeAngle:
-                        answer[index] == wrongLettersList[wordIndex][index] &&
-                                answer[index] != '/' &&
-                                answer[index] != '-' &&
-                                answer[index] != String.fromCharCode(8626)
-                            ? Rotation.deg(x: 80)
-                            : Rotation.deg(z: 40),
-                    curve: Curves.linear,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (!isGuessed) {
-                          removeLetter(answer[index], index, wordIndex);
-                        }
-                      },
-                      child: LetterTile(
-                        letter: answer[index],
-                        accentColor: accentColor,
-                        isAnswer: true,
-                      ),
-                    ),
-                  ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
+}
+
+class _AnswerSlot {
+  final int wordIndex;
+  final int letterIndex;
+
+  const _AnswerSlot(this.wordIndex, this.letterIndex);
+}
+
+class _ActiveLetterFlight {
+  final AnimationController controller;
+  final OverlayEntry overlayEntry;
+  final String arrivalId;
+
+  const _ActiveLetterFlight({
+    required this.controller,
+    required this.overlayEntry,
+    required this.arrivalId,
+  });
 }

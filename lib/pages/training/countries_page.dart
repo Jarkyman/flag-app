@@ -4,8 +4,6 @@ import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/country_model.dart';
-import 'package:flag_app/widget/Top%20bar/hint_bar.dart';
-import 'package:flag_app/widget/background_image.dart';
 import 'package:flag_app/widget/popup/wrong_guess_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,8 +18,9 @@ import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
 import '../../widget/ads/ad_banner_widget.dart';
-import '../../widget/buttons/guess_button.dart';
+import '../../widget/menu_background.dart';
 import '../../widget/popup/help_dialog.dart';
+import '../../widget/training/training_game_widgets.dart';
 
 class CountriesPage extends StatefulWidget {
   const CountriesPage({super.key});
@@ -41,6 +40,7 @@ class _CountriesPageState extends State<CountriesPage> {
   late int selected;
   int score = 0;
   late int highScore;
+  bool hasNewRecordThisRun = false;
   bool isTryAgainUsed = false;
   bool isDelay = false;
   bool isAdLoaded = false;
@@ -184,6 +184,7 @@ class _CountriesPageState extends State<CountriesPage> {
         isLoading = true;
         score++;
         if (score > highScore) {
+          hasNewRecordThisRun = true;
           highScore = score;
           Get.find<ScoreController>().saveCountriesScore(highScore);
         }
@@ -195,6 +196,7 @@ class _CountriesPageState extends State<CountriesPage> {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
         if (score > highScore) {
+          hasNewRecordThisRun = true;
           highScore = score;
           Get.find<ScoreController>().saveCountriesScore(highScore);
         }
@@ -216,6 +218,7 @@ class _CountriesPageState extends State<CountriesPage> {
   void openWrongDialog() {
     wrongGuessDialog(
       score: score,
+      isNewRecord: hasNewRecordThisRun,
       isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
@@ -239,6 +242,7 @@ class _CountriesPageState extends State<CountriesPage> {
     setState(() {
       generateCountries();
       isTryAgainUsed = false;
+      hasNewRecordThisRun = false;
       score = 0;
     });
   }
@@ -293,142 +297,103 @@ class _CountriesPageState extends State<CountriesPage> {
   Widget build(BuildContext context) {
     openHelpDialog();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.find<SoundController>().clickSound();
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
-        centerTitle: true,
-        title: Text(
-          score.toString(),
-          style: TextStyle(
-              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
-        ),
-        backgroundColor: AppColors.mainColor,
-        actions: [
-          GetBuilder<ScoreController>(builder: (scoreController) {
-            return Row(
-              children: [
-                const Icon(Icons.star),
-                SizedBox(
-                  width: Dimensions.width5 / 2,
-                ),
-                Text(
-                  highScore.toString(),
-                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
-                ),
-                SizedBox(
-                  width: Dimensions.width5,
-                ),
-              ],
-            );
-          }),
-        ],
-      ),
-      body: BackgroundImage(
+      body: MenuBackground(
         child: SafeArea(
+          bottom: false,
           child: GetBuilder<CountryController>(
             builder: (countryController) {
+              final imageCode =
+                  selectedCountry.countryCode.toString().toLowerCase();
+
               return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  HintBar(
-                      tapHintOne: () {
-                        useCorrectHint(3);
-                      },
-                      tapHintTwo: () {
-                        useFiftyFiftyHint(1);
-                      },
-                      iconOne: const Icon(
-                        Icons.check,
-                        color: AppColors.mainColor,
-                      ),
-                      iconTwo: ImageIcon(
-                        const AssetImage('assets/icon/fifty_fifty.png'),
-                        color: AppColors.mainColor,
-                        size: Dimensions.iconSize24 * 1.4,
-                      ),
-                      hintPriceOne: '3',
-                      hintPriceTwo: '1'),
+                  TrainingGameHeader(
+                    title: 'Which country'.tr,
+                    score: score,
+                    highScore: highScore,
+                    accentColor: AppColors.skyColor,
+                  ),
+                  TrainingHintActions(
+                    onCorrectAnswer: () => useCorrectHint(3),
+                    onFiftyFifty: () => useFiftyFiftyHint(1),
+                    correctAnswerUsed: checkUsed,
+                    fiftyFiftyUsed: fiftyFiftyUsed,
+                    accentColor: AppColors.skyColor,
+                  ),
                   Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      //height: Dimensions.height20 * 14,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: Dimensions.height20),
-                      child: Center(
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius15),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius15),
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        Dimensions.width15,
+                        0,
+                        Dimensions.width15,
+                        Dimensions.height10,
+                      ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: TrainingPromptCard(
+                              accentColor: AppColors.skyColor,
+                              padding: EdgeInsets.all(Dimensions.width20),
+                              child: Image.asset(
+                                'assets/image/countries/$imageCode-full.png',
+                                fit: BoxFit.contain,
                               ),
                             ),
-                            child: Image.asset(
-                              'assets/image/countries/${selectedCountry.countryCode.toString().toLowerCase()}-full.png',
-                              fit: BoxFit.contain,
+                          ),
+                          SizedBox(height: Dimensions.height15),
+                          Expanded(
+                            flex: 6,
+                            child: ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              itemCount: countryOptions.length,
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: Dimensions.height10),
+                              itemBuilder: (context, index) {
+                                final eliminated = fiftyFiftyUsed &&
+                                    !isDelay &&
+                                    wrongColor[index];
+                                final state = correctColor[index]
+                                    ? TrainingAnswerState.correct
+                                    : eliminated
+                                        ? TrainingAnswerState.disabled
+                                        : wrongColor[index]
+                                            ? TrainingAnswerState.wrong
+                                            : TrainingAnswerState.idle;
+
+                                return TrainingTextAnswerCard(
+                                  text: countryOptions[index]
+                                      .countryName
+                                      .toString(),
+                                  accentColor: AppColors.skyColor,
+                                  state: state,
+                                  onTap: isDelay || eliminated
+                                      ? null
+                                      : () => checkWin(
+                                            countryOptions[index]
+                                                .countryName
+                                                .toString(),
+                                            index,
+                                          ),
+                                );
+                              },
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: Dimensions.height10,
+                  GetBuilder<ShopController>(
+                    builder: (shopController) {
+                      if (shopController.isAdsRemoved) {
+                        _interstitialAd?.dispose();
+                      }
+                      return _bannerAd != null && !shopController.isAdsRemoved
+                          ? AdBannerWidget(bannerAd: _bannerAd)
+                          : const SizedBox.shrink();
+                    },
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return GuessButton(
-                            color: correctColor[index]
-                                ? AppColors.correctColor
-                                : wrongColor[index]
-                                    ? Colors.red
-                                    : Colors.white,
-                            textColor: correctColor[index]
-                                ? Colors.white
-                                : wrongColor[index]
-                                    ? Colors.white
-                                    : AppColors.mainColor,
-                            borderColor: correctColor[index]
-                                ? Colors.white
-                                : wrongColor[index]
-                                    ? Colors.white
-                                    : AppColors.mainColor,
-                            country:
-                                countryOptions[index].countryName.toString(),
-                            onTap: () {
-                              if (!isDelay) {
-                                if (!wrongColor[index]) {
-                                  checkWin(
-                                      countryOptions[index]
-                                          .countryName
-                                          .toString(),
-                                      index);
-                                }
-                              }
-                            },
-                          );
-                        }),
-                  ),
-                  GetBuilder<ShopController>(builder: (shopController) {
-                    if (shopController.isAdsRemoved) {
-                      _interstitialAd?.dispose();
-                    }
-                    return _bannerAd != null && !shopController.isAdsRemoved
-                        ? AdBannerWidget(bannerAd: _bannerAd)
-                        : Container();
-                  })
                 ],
               );
             },

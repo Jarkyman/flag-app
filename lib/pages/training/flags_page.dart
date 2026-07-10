@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -17,10 +16,11 @@ import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
 import '../../models/country_model.dart';
-import '../../widget/Top bar/hint_bar.dart';
 import '../../widget/ads/ad_banner_widget.dart';
+import '../../widget/menu_background.dart';
 import '../../widget/popup/help_dialog.dart';
 import '../../widget/popup/wrong_guess_dialog.dart';
+import '../../widget/training/training_game_widgets.dart';
 
 class FlagsPage extends StatefulWidget {
   const FlagsPage({super.key});
@@ -40,6 +40,7 @@ class _FlagsPageState extends State<FlagsPage> {
   late int selected;
   int score = 0;
   late int highScore;
+  bool hasNewRecordThisRun = false;
   bool isTryAgainUsed = false;
   bool isDelay = false;
   bool isAdLoaded = false;
@@ -63,7 +64,8 @@ class _FlagsPageState extends State<FlagsPage> {
       highScore = Get.find<ScoreController>().getFlagsScore;
       isLoading = false;
     });
-    debugPrint('Flags high score: ${Get.find<ScoreController>().getFlagsScore}');
+    debugPrint(
+        'Flags high score: ${Get.find<ScoreController>().getFlagsScore}');
   }
 
   @override
@@ -184,6 +186,7 @@ class _FlagsPageState extends State<FlagsPage> {
         isLoading = true;
         score++;
         if (score > highScore) {
+          hasNewRecordThisRun = true;
           highScore = score;
           Get.find<ScoreController>().saveFlagsScore(highScore);
         }
@@ -195,6 +198,7 @@ class _FlagsPageState extends State<FlagsPage> {
         correctColor[getCorrect()] = true;
         wrongColor[selected] = true;
         if (score > highScore) {
+          hasNewRecordThisRun = true;
           highScore = score;
           Get.find<ScoreController>().saveFlagsScore(highScore);
         }
@@ -216,6 +220,7 @@ class _FlagsPageState extends State<FlagsPage> {
   void openWrongDialog() {
     wrongGuessDialog(
       score: score,
+      isNewRecord: hasNewRecordThisRun,
       isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
@@ -239,6 +244,7 @@ class _FlagsPageState extends State<FlagsPage> {
     setState(() {
       generateCountries();
       isTryAgainUsed = false;
+      hasNewRecordThisRun = false;
       score = 0;
     });
   }
@@ -301,173 +307,101 @@ class _FlagsPageState extends State<FlagsPage> {
   Widget build(BuildContext context) {
     openHelpDialog();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.find<SoundController>().clickSound();
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
-        centerTitle: true,
-        title: Text(
-          score.toString(),
-          style: TextStyle(
-              fontSize: Dimensions.font26 * 1.2, color: AppColors.titleColor),
-        ),
-        backgroundColor: AppColors.mainColor,
-        actions: [
-          GetBuilder<ScoreController>(builder: (scoreController) {
-            return Row(
-              children: [
-                const Icon(Icons.star),
-                SizedBox(
-                  width: Dimensions.width5 / 2,
-                ),
-                Text(
-                  highScore.toString(),
-                  style: TextStyle(fontSize: Dimensions.font16 * 1.2),
-                ),
-                SizedBox(
-                  width: Dimensions.width5,
-                ),
-              ],
-            );
-          }),
-        ],
-      ),
-      body: BackgroundImage(
+      body: MenuBackground(
         child: SafeArea(
+          bottom: false,
           child: GetBuilder<CountryController>(builder: (countryController) {
             return Column(
               children: [
-                HintBar(
-                  tapHintOne: () {
-                    useCorrectHint(3);
-                  },
-                  tapHintTwo: () {
-                    useFiftyFiftyHint(1);
-                  },
-                  iconOne: const Icon(
-                    Icons.check,
-                    color: AppColors.mainColor,
-                  ),
-                  iconTwo: ImageIcon(
-                    const AssetImage('assets/icon/fifty_fifty.png'),
-                    color: AppColors.mainColor,
-                    size: Dimensions.iconSize24 * 1.4,
-                  ),
-                  hintPriceOne: '3',
-                  hintPriceTwo: '1',
+                TrainingGameHeader(
+                  title: 'Which flag'.tr,
+                  score: score,
+                  highScore: highScore,
+                  accentColor: AppColors.purpleColor,
                 ),
-                SizedBox(
-                  height: Dimensions.height30 * 2,
-                  child: Center(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          selectedCountry.countryName.toString(),
-                          style: TextStyle(
-                            fontSize: Dimensions.font26 * 2,
-                            fontWeight: FontWeight.bold,
+                TrainingHintActions(
+                  onCorrectAnswer: () => useCorrectHint(3),
+                  onFiftyFifty: () => useFiftyFiftyHint(1),
+                  correctAnswerUsed: checkUsed,
+                  fiftyFiftyUsed: fiftyFiftyUsed,
+                  accentColor: AppColors.purpleColor,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      Dimensions.width15,
+                      0,
+                      Dimensions.width15,
+                      Dimensions.height10,
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Dimensions.height20 * 4.5,
+                          child: TrainingTextPrompt(
+                            text: selectedCountry.countryName.toString(),
+                            accentColor: AppColors.purpleColor,
                           ),
                         ),
-                      ),
+                        SizedBox(height: Dimensions.height15),
+                        Expanded(
+                          child: GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.45,
+                              mainAxisSpacing: Dimensions.height10,
+                              crossAxisSpacing: Dimensions.width10,
+                            ),
+                            itemCount: countryOptions.length,
+                            itemBuilder: (context, index) {
+                              final eliminated = fiftyFiftyUsed &&
+                                  !isDelay &&
+                                  wrongColor[index];
+                              final state = correctColor[index]
+                                  ? TrainingAnswerState.correct
+                                  : eliminated
+                                      ? TrainingAnswerState.disabled
+                                      : wrongColor[index]
+                                          ? TrainingAnswerState.wrong
+                                          : TrainingAnswerState.idle;
+                              final imageCode = countryOptions[index]
+                                  .countryCode
+                                  .toString()
+                                  .toLowerCase();
+
+                              return TrainingFlagAnswerCard(
+                                image: 'assets/image/flags/$imageCode.png',
+                                accentColor: AppColors.purpleColor,
+                                state: state,
+                                onTap: isDelay || eliminated
+                                    ? null
+                                    : () => checkWin(
+                                          countryOptions[index]
+                                              .countryName
+                                              .toString(),
+                                          index,
+                                        ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const Divider(
-                  height: 20,
-                  thickness: 2,
-                  indent: 20,
-                  endIndent: 20,
-                  color: Colors.grey,
+                GetBuilder<ShopController>(
+                  builder: (shopController) {
+                    if (shopController.isAdsRemoved) {
+                      _interstitialAd?.dispose();
+                    }
+                    return _bannerAd != null && !shopController.isAdsRemoved
+                        ? AdBannerWidget(bannerAd: _bannerAd)
+                        : const SizedBox.shrink();
+                  },
                 ),
-                Expanded(
-                  child: GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    childAspectRatio: 3 / 2,
-                    mainAxisSpacing: Dimensions.height20,
-                    // Create a grid with 2 columns. If you change the scrollDirection to
-                    // horizontal, this produces 2 rows.
-                    crossAxisCount: 2,
-                    // Generate 100 widgets that display their index in the List.
-                    children: List.generate(6, (index) {
-                      return GestureDetector(
-                        onTap: () {
-                          if (!isDelay) {
-                            checkWin(
-                                countryOptions[index].countryName.toString(),
-                                index);
-                          }
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2 -
-                              Dimensions.width20,
-                          margin: EdgeInsets.symmetric(
-                            horizontal: Dimensions.height10,
-                          ),
-                          child: Stack(
-                            children: [
-                              Center(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius10),
-                                  child: Image.asset(
-                                    'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  height: Dimensions.height20 * 3.5,
-                                  width: Dimensions.height20 * 3.5,
-                                  decoration: BoxDecoration(
-                                    color: correctColor[index]
-                                        ? AppColors.correctColor
-                                        : wrongColor[index]
-                                            ? AppColors.wrongColor
-                                            : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(
-                                      Dimensions.radius20 * 3.5,
-                                    ),
-                                    border: Border.all(
-                                      width: 2,
-                                      color: correctColor[index]
-                                          ? Colors.black
-                                          : wrongColor[index]
-                                              ? Colors.black
-                                              : Colors.transparent,
-                                    ),
-                                  ),
-                                  child: correctColor[index]
-                                      ? Icon(
-                                          Icons.check,
-                                          size: Dimensions.iconSize16 * 2.5,
-                                        )
-                                      : wrongColor[index]
-                                          ? Icon(
-                                              Icons.close,
-                                              size: Dimensions.iconSize16 * 2.5,
-                                            )
-                                          : Container(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-                GetBuilder<ShopController>(builder: (shopController) {
-                  return _bannerAd != null && !shopController.isAdsRemoved
-                      ? AdBannerWidget(bannerAd: _bannerAd)
-                      : Container();
-                })
               ],
             );
           }),
@@ -476,19 +410,3 @@ class _FlagsPageState extends State<FlagsPage> {
     );
   }
 }
-/*
-image: DecorationImage(
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            correctColor[index]
-                                ? AppColors.correctColor
-                                : wrongColor[index]
-                                    ? AppColors.wrongColor
-                                    : Colors.transparent,
-                            BlendMode.color,
-                          ),
-                          image: AssetImage(
-                            'assets/image/flags/${countryOptions[index].countryCode.toString().toLowerCase()}.png',
-                          ),
-                        ),
- */

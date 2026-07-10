@@ -5,10 +5,14 @@ import '../../helper/dimensions.dart';
 
 class AppDialog extends StatelessWidget {
   final Widget child;
+  final Color accentColor;
+  final Color accentEndColor;
 
   const AppDialog({
     super.key,
     required this.child,
+    this.accentColor = AppColors.mainColor,
+    this.accentEndColor = AppColors.correctColor,
   });
 
   @override
@@ -29,7 +33,7 @@ class AppDialog extends StatelessWidget {
             color: const Color(0xFFFCFFFE),
             borderRadius: BorderRadius.circular(Dimensions.radius30),
             border: Border.all(
-              color: AppColors.mainColor.withValues(alpha: 0.18),
+              color: accentColor.withValues(alpha: 0.24),
             ),
             boxShadow: [
               BoxShadow(
@@ -44,7 +48,10 @@ class AppDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const _DialogAccent(),
+                _DialogAccent(
+                  color: accentColor,
+                  endColor: accentEndColor,
+                ),
                 child,
               ],
             ),
@@ -57,39 +64,50 @@ class AppDialog extends StatelessWidget {
 
 class AppDialogHeader extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final IconData? icon;
   final Color accentColor;
+  final Color titleColor;
   final bool showCloseButton;
+  final bool centerTitle;
 
   const AppDialogHeader({
     super.key,
     required this.title,
-    required this.icon,
+    this.icon,
     this.accentColor = AppColors.mainColor,
+    this.titleColor = AppColors.mainBlackColor,
     this.showCloseButton = true,
+    this.centerTitle = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: Dimensions.width20 * 2.2,
-          height: Dimensions.height20 * 2.2,
-          decoration: BoxDecoration(
-            color: accentColor.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(Dimensions.radius15),
+        if (icon != null) ...[
+          Container(
+            width: Dimensions.width20 * 2.2,
+            height: Dimensions.height20 * 2.2,
+            decoration: BoxDecoration(
+              color: accentColor.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
+            ),
+            child: Icon(
+              icon,
+              color: accentColor,
+              size: Dimensions.iconSize24,
+            ),
           ),
-          child: Icon(icon, color: accentColor, size: Dimensions.iconSize24),
-        ),
-        SizedBox(width: Dimensions.width15),
+          SizedBox(width: Dimensions.width15),
+        ],
         Expanded(
           child: Text(
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
+            textAlign: centerTitle ? TextAlign.center : TextAlign.left,
             style: TextStyle(
-              color: AppColors.mainBlackColor,
+              color: titleColor,
               fontSize: Dimensions.font20,
               fontWeight: FontWeight.w700,
               height: 1.15,
@@ -125,6 +143,8 @@ class AppDialogButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? icon;
   final bool primary;
+  final Color accentColor;
+  final Color? primaryForegroundColor;
 
   const AppDialogButton({
     super.key,
@@ -132,6 +152,8 @@ class AppDialogButton extends StatelessWidget {
     required this.onPressed,
     this.icon,
     this.primary = true,
+    this.accentColor = AppColors.mainColor,
+    this.primaryForegroundColor,
   });
 
   @override
@@ -157,9 +179,11 @@ class AppDialogButton extends StatelessWidget {
           backgroundColor: WidgetStateProperty.resolveWith(
             (states) => states.contains(WidgetState.disabled)
                 ? AppColors.textColorGray.withValues(alpha: 0.3)
-                : AppColors.mainColor,
+                : accentColor,
           ),
-          foregroundColor: const WidgetStatePropertyAll(Colors.white),
+          foregroundColor: WidgetStatePropertyAll(
+            primaryForegroundColor ?? Colors.white,
+          ),
         ),
         icon: icon == null
             ? const SizedBox.shrink()
@@ -173,7 +197,7 @@ class AppDialogButton extends StatelessWidget {
       style: buttonStyle.copyWith(
         foregroundColor: const WidgetStatePropertyAll(AppColors.mainBlackColor),
         side: WidgetStatePropertyAll(
-          BorderSide(color: AppColors.mainColor.withValues(alpha: 0.55)),
+          BorderSide(color: accentColor.withValues(alpha: 0.62)),
         ),
       ),
       icon: icon == null
@@ -185,15 +209,21 @@ class AppDialogButton extends StatelessWidget {
 }
 
 class _DialogAccent extends StatelessWidget {
-  const _DialogAccent();
+  final Color color;
+  final Color endColor;
+
+  const _DialogAccent({
+    required this.color,
+    required this.endColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: Dimensions.height10 / 2,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.mainColor, AppColors.correctColor],
+          colors: [color, endColor],
         ),
       ),
     );

@@ -37,3 +37,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 // TODO: Lav mulighed for at vælge kontinent i trænings spillene, så man kun ser lande fra det kontinent. Det kunne være en menu i top baren, eller andet?
 
 // DONE: ryd lidt op i design på popups, så de ser pænere ud. F.eks. hjælpe popup, language popup, settings popup.
+
+// DONE: Remove "X" button from wrong guess popup, it dosent do anything.
+
+// TODO: Add achevements with apple and goolge play services.

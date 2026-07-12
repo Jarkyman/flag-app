@@ -459,10 +459,13 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
                 ],
               );
             },
-            child: LetterTile(
-              letter: letter,
-              accentColor: _accentColor,
-              isAnswer: landsInAnswer,
+            child: Material(
+              type: MaterialType.transparency,
+              child: LetterTile(
+                letter: letter,
+                accentColor: _accentColor,
+                isAnswer: landsInAnswer,
+              ),
             ),
           ),
         ),

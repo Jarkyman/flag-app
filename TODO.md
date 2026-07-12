@@ -58,7 +58,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game] (H): Behold bannerreklamen i bunden af word-siden efter korrekt svar, og reservér bannerets højde før indlæsning, så bogstaverne ikke flytter sig, når reklamen vises.
 
-// FIXME {M} [game] (M): på word siden, når bogstaverne animerer op og ned, så kommer der en lille gul steg under, ved ikke om det kun er på debug, men tænker vi skal fixe det.
+// DONE {M} [game] (M): Giv det flyvende bogstav i word-animationens root-overlay en transparent Material-kontekst, så Flutters gule fallback-understregning ikke vises.
 
 // DONE {M} [game] (M): Erstat swipe-pakkens fejlbehæftede positionsgenbrug på word-siden med en lokal vandret dragmåling og minimumsafstand, så tryk aldrig navigerer til næste eller forrige opgave.
 

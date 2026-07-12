@@ -52,7 +52,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE: Opret de 23 achievements og tre leaderboards i App Store Connect med dansk/engelsk lokalisering, billeder, 915 point og tre skjulte achievements.
 
-// FIXME {M} [game] (H): Aserbajdsjan står til at ligge i Eruopa, det deltvis rigtigt, men det er mest i asien, så vi skal have flyttet det til asien.
+// DONE {M} [game] (H): Flyt Aserbajdsjan fra Europa til Asien i alle ni sprogassets.
 
 // FIXME {M} [game] (H): Fjern teksten i toppen af "trænings" spillene. Så der ikke står noget (fx "find flages")
 

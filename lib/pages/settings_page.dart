@@ -3,7 +3,6 @@ import 'package:flag_app/helper/help_widgets.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flag_app/widget/popup/help_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:launch_app_store/launch_app_store.dart';
 import 'package:share_plus/share_plus.dart';
@@ -11,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import '../controllers/sound_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
+import '../widget/app_swipe_detector.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
 import '../widget/menu_page_header.dart';
@@ -22,8 +22,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SwipeDetector(
-        onSwipeDown: (value) {
+      body: AppSwipeDetector(
+        onSwipeDown: () {
           Get.find<SoundController>().windSound();
           Get.back();
         },

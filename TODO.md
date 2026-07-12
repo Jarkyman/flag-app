@@ -60,7 +60,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // FIXME {M} [game] (M): på word siden, når bogstaverne animerer op og ned, så kommer der en lille gul steg under, ved ikke om det kun er på debug, men tænker vi skal fixe det.
 
-// FIXME {M} [game] (M): på word siden, hvis man trykker ude i siden så naviger den til næste flag, det skal kun virke med et swipe fra siden ikke tryk.
+// DONE {M} [game] (M): Erstat swipe-pakkens fejlbehæftede positionsgenbrug på word-siden med en lokal vandret dragmåling og minimumsafstand, så tryk aldrig navigerer til næste eller forrige opgave.
 
 // TODO {M} [game-services] (H): Implementer Game Center og Play Games Services, for at "gemme" highscores, level-progress og lifetime correct-answer tællere, samt achievements og leaderboards. Implementér også backfill af scores og native overlays.
 

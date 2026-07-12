@@ -16,7 +16,6 @@ dependencies:
   flutter_svg: ^2.3.0
   get: ^4.7.3
   shared_preferences: ^2.5.5
-  flutter_swipe_detector: ^2.0.0
   google_mobile_ads: ^8.0.0
   audioplayers: ^6.7.0
   purchases_flutter: ^10.2.0

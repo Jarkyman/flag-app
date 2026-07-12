@@ -11,7 +11,6 @@ import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/tiles/empty_tile.dart';
 import 'package:flag_app/widget/tiles/letter_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shake/shake.dart';
@@ -29,6 +28,7 @@ import '../../../helper/help_widgets.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
+import '../../../widget/app_swipe_detector.dart';
 import '../../../widget/menu_background.dart';
 import '../../../widget/play/guess_game_widgets.dart';
 import '../../../widget/popup/help_dialog.dart';
@@ -770,6 +770,15 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     }
   }
 
+  void _navigateToAdjacentLevel(int direction) {
+    final nextPageIndex = argFlagIndex + direction;
+    if (nextPageIndex < 0 || nextPageIndex >= levelList.length) return;
+
+    Get.find<SoundController>().windSound();
+    argFlagIndex = nextPageIndex;
+    setInit();
+  }
+
   Color get _accentColor {
     switch (argType) {
       case AppConstants.FLAGS:
@@ -792,27 +801,9 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         onPopInvokedWithResult: (didPop, result) async {
           if (!didPop) _closePage();
         },
-        child: SwipeDetector(
-          onSwipeRight: (value) {
-            final nextPageIndex = argFlagIndex - 1;
-            if (nextPageIndex > -1) {
-              Get.find<SoundController>().windSound();
-              setState(() {
-                argFlagIndex = nextPageIndex;
-                setInit();
-              });
-            }
-          },
-          onSwipeLeft: (value) {
-            final nextPageIndex = argFlagIndex + 1;
-            if (nextPageIndex < levelList.length) {
-              Get.find<SoundController>().windSound();
-              setState(() {
-                argFlagIndex = nextPageIndex;
-                setInit();
-              });
-            }
-          },
+        child: AppSwipeDetector(
+          onSwipeRight: () => _navigateToAdjacentLevel(-1),
+          onSwipeLeft: () => _navigateToAdjacentLevel(1),
           child: MenuBackground(
             child: SafeArea(
               bottom: false,

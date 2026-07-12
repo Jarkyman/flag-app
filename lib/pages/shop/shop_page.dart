@@ -4,7 +4,6 @@ import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/background_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -13,6 +12,7 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../../widget/app_swipe_detector.dart';
 import '../../widget/buttons/shop_button.dart';
 import '../../widget/menu_page_header.dart';
 
@@ -164,8 +164,8 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SwipeDetector(
-        onSwipeDown: (_) {
+      body: AppSwipeDetector(
+        onSwipeDown: () {
           Get.find<SoundController>().windSound();
           Get.back();
         },

@@ -18,6 +18,13 @@ class GameProgressRepo {
     await sharedPreferences.setInt(_correctAnswersKey(game), nextValue);
   }
 
+  Future<void> saveCorrectAnswers(
+    TrainingScoreGame game,
+    int value,
+  ) {
+    return sharedPreferences.setInt(_correctAnswersKey(game), value);
+  }
+
   int syncedGoogleSteps(String achievementKey) {
     return sharedPreferences.getInt(_syncedGoogleStepsKey(achievementKey)) ?? 0;
   }

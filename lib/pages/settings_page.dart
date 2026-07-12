@@ -15,6 +15,7 @@ import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
 import '../widget/menu_page_header.dart';
 import '../widget/popup/change_language_dialog.dart';
+import '../widget/popup/cloud_save_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -92,6 +93,15 @@ class SettingsPage extends StatelessWidget {
                             ),
                           );
                         }),
+                        SizedBox(height: Dimensions.height10),
+                        SettingsButton(
+                          title: 'Cloud save'.tr,
+                          onTap: buildCloudSaveDialog,
+                          leading: const Icon(
+                            Icons.cloud_done_rounded,
+                            color: AppColors.skyColor,
+                          ),
+                        ),
                         SizedBox(height: Dimensions.height10),
                         SettingsButton(
                           title: 'Help'.tr,

@@ -2,6 +2,7 @@ import 'package:flag_app/repos/score_repo.dart';
 import 'package:get/get.dart';
 
 import '../models/training_continent.dart';
+import '../cloud_save/cloud_save_auto_save.dart';
 
 class ScoreController extends GetxController implements GetxService {
   final ScoreRepo scoreRepo;
@@ -40,7 +41,8 @@ class ScoreController extends GetxController implements GetxService {
 
   Future<void> saveFlagScore(int score) async {
     _flagScore = score;
-    scoreRepo.saveFlagScore(score);
+    await scoreRepo.saveFlagScore(score);
+    scheduleCloudAutoSave();
   }
 
   Future<void> readFlagsScore() async {
@@ -49,7 +51,8 @@ class ScoreController extends GetxController implements GetxService {
 
   Future<void> saveFlagsScore(int score) async {
     _flagsScore = score;
-    scoreRepo.saveFlagsScore(score);
+    await scoreRepo.saveFlagsScore(score);
+    scheduleCloudAutoSave();
   }
 
   Future<void> readCapitalScore() async {
@@ -58,7 +61,8 @@ class ScoreController extends GetxController implements GetxService {
 
   Future<void> saveCapitalScore(int score) async {
     _capitalScore = score;
-    scoreRepo.saveCapitalScore(score);
+    await scoreRepo.saveCapitalScore(score);
+    scheduleCloudAutoSave();
   }
 
   Future<void> readCountriesScore() async {
@@ -67,7 +71,8 @@ class ScoreController extends GetxController implements GetxService {
 
   Future<void> saveCountriesScore(int score) async {
     _countriesScore = score;
-    scoreRepo.saveCountriesScore(score);
+    await scoreRepo.saveCountriesScore(score);
+    scheduleCloudAutoSave();
   }
 
   int getTrainingScore(
@@ -110,5 +115,6 @@ class ScoreController extends GetxController implements GetxService {
 
     _continentScores.putIfAbsent(game, () => {})[continent.id] = score;
     await scoreRepo.saveTrainingScore(game.storageKey, continent.id, score);
+    scheduleCloudAutoSave();
   }
 }

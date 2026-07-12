@@ -10,6 +10,8 @@ import '../game_services/game_services_gateway.dart';
 import '../game_services/models/game_services_catalog.dart';
 import '../game_services/models/remote_achievement_progress.dart';
 import '../models/training_continent.dart';
+import '../cloud_save/cloud_save_session.dart';
+import '../cloud_save/cloud_save_auto_save.dart';
 
 enum GameServicesStatus {
   idle,
@@ -21,7 +23,8 @@ enum GameServicesStatus {
 
 typedef GameServicesCatalogLoader = Future<GameServicesCatalog> Function();
 
-class GameServicesController extends GetxController implements GetxService {
+class GameServicesController extends GetxController
+    implements GetxService, CloudSaveSession {
   final GameProgressRepo progressRepo;
   final GameProgressSnapshotBuilder snapshotBuilder;
   final GameServicesGateway gateway;
@@ -47,6 +50,7 @@ class GameServicesController extends GetxController implements GetxService {
 
   bool _initializationRequested = false;
   bool _isSignedIn = false;
+  @override
   bool get isSignedIn => _isSignedIn;
 
   bool get isConfigured =>
@@ -67,7 +71,18 @@ class GameServicesController extends GetxController implements GetxService {
     return _enqueue(_initialize);
   }
 
+  @override
   Future<void> signIn() => _enqueue(_signInAndSync);
+
+  @override
+  Future<void> syncStoredProgress() {
+    return _enqueue(() async {
+      if (!await _ensureSignedIn()) return;
+      await _syncAchievements(force: true);
+      await _syncLeaderboards(force: true);
+      update();
+    });
+  }
 
   Future<void> recordTrainingCorrect({
     required TrainingScoreGame game,
@@ -76,6 +91,7 @@ class GameServicesController extends GetxController implements GetxService {
   }) {
     return _enqueue(() async {
       await progressRepo.incrementCorrectAnswers(game);
+      scheduleCloudAutoSave();
       await _syncAchievements(force: false);
       if (continent == TrainingContinent.all) {
         await _submitScoreForGame(game, streak, force: false);

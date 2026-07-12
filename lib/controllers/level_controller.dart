@@ -4,6 +4,7 @@ import 'package:flag_app/repos/level_repo.dart';
 import 'package:get/get.dart';
 
 import '../models/level_model.dart';
+import '../cloud_save/cloud_save_auto_save.dart';
 
 class LevelController extends GetxController implements GetxService {
   final LevelRepo levelRepo;
@@ -327,6 +328,8 @@ class LevelController extends GetxController implements GetxService {
 
   Future<bool> saveLevels(String option) async {
     List<LevelModel> levelModels = getList(option)!;
-    return await levelRepo.saveLevels(levelModels, option);
+    final saved = await levelRepo.saveLevels(levelModels, option);
+    if (saved) scheduleCloudAutoSave();
+    return saved;
   }
 }

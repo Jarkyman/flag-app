@@ -2,6 +2,7 @@ import 'package:flag_app/helper/route_helper.dart';
 import 'package:get/get.dart';
 
 import '../repos/hint_repo.dart';
+import '../cloud_save/cloud_save_auto_save.dart';
 
 class HintController extends GetxController implements GetxService {
   final HintRepo hintRepo;
@@ -20,7 +21,8 @@ class HintController extends GetxController implements GetxService {
 
   Future<void> saveHints(int hints) async {
     _hints = hints;
-    hintRepo.saveHints(hints);
+    await hintRepo.saveHints(hints);
+    scheduleCloudAutoSave();
   }
 
   void addHint(int hints) {

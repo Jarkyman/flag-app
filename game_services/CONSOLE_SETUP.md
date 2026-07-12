@@ -20,6 +20,9 @@ før login, achievements og leaderboards kan fungere på rigtige konti.
   `Prepare for Submission`. Achievement-totalen er 915 af 1.000 point.
 - Intet er tilføjet til review eller en appversion endnu. Det sker først efter
   sandbox-test og sammen med den næste release.
+- App-koden har nu iCloud Documents-entitlements for containeren
+  `iCloud.com.Hartvig-Develop.flags`. Containeren skal stadig oprettes/tilknyttes
+  App ID'et i Apple Developer, og provisioning profiles skal regenereres.
 
 1. Åbn appen med bundle-ID `com.Hartvig-Develop.flags` i App Store Connect.
 2. Aktivér Game Center for appen. Xcode-projektets entitlement er allerede sat.
@@ -35,6 +38,10 @@ før login, achievements og leaderboards kan fungere på rigtige konti.
 5. Tilføj komponenterne til den næste appversion og indsend dem til review.
 6. Test med en Sandbox Apple Account på en rigtig enhed eller simulator med
    Game Center-login.
+7. Aktivér iCloud capability med **iCloud Documents**, vælg containeren
+   `iCloud.com.Hartvig-Develop.flags`, og kontrollér at den nye provisioning
+   profile indeholder containeren. Spilleren skal også være logget ind på
+   iCloud med iCloud Drive slået til.
 
 Apple-ID'erne er permanente, når komponenterne er oprettet. Ret derfor ikke
 `appleId` i kataloget bagefter.
@@ -72,6 +79,8 @@ Apple-ID'erne er permanente, når komponenterne er oprettet. Ret derfor ikke
   viser `1 - 3 of 3` og `Ready to publish to everyone` for alle tre.
 - Alle tre leaderboard-ID'er er skrevet tilbage til
   `leaderboards/catalog.json`. Alle 26 Google-ID'er er dermed udfyldt.
+- Cloud-save-koden bruger Google Saved Games/Snapshots og sender et coverbillede
+  med hver automatisk backup. Saved Games skal stadig slås til for spillet.
 
 1. Åbn Play Games Services for pakken `com.hartvig_develop.flags` i Play Console.
 2. Opret/tilknyt Play Games-projektet og OAuth credentials for både debug- og
@@ -92,6 +101,9 @@ Apple-ID'erne er permanente, når komponenterne er oprettet. Ret derfor ikke
    når alle 26 ID'er er udfyldt, så en halv konfiguration ikke kan ramme spillere.
 7. Tilføj testkonti, publicér Play Games Services-konfigurationen og test med en
    build signeret med en SHA-1, der er registreret i credentials.
+8. Gå til **Grow users > Play Games Services > Setup and management >
+   Configuration**, vælg **Edit properties**, slå **Saved Games** til og gem.
+   Google oplyser, at aktivering kan tage op til 24 timer.
 
 Play Console kan eksportere en XML-fil via **Get resources**. Project ID'et kan
 kopieres direkte til `games-ids.xml`; de øvrige værdier kopieres til katalogernes
@@ -106,9 +118,15 @@ kopieres direkte til `games-ids.xml`; de øvrige værdier kopieres til kataloger
 5. Sæt en ny `All`-rekord og kontrollér det rigtige leaderboard.
 6. Vælg et kontinent og kontrollér, at scoren ikke rammer et online leaderboard.
 7. Log ud/afvis login og kontrollér, at gameplay og lokal tracking fortsætter.
+8. Ændr lokal progression, vent på autosave-statussen i Settings, og gendan
+   derefter backup'en efter endnu en lokal ændring.
+9. Gentag restore på en anden enhed med samme platformkonto, og kontrollér
+   levels, hints, alle lokale rekorder og lifetime-tællere.
 
 Officielle guides:
 
 - [Flutter: achievements og leaderboards](https://docs.flutter.dev/cookbook/games/achievements-leaderboard)
 - [Apple: Game Center-komponenter](https://developer.apple.com/help/app-store-connect/configure-game-center/overview-of-configuring-game-center/)
+- [Apple: Gem spildata i iCloud](https://developer.apple.com/documentation/gamekit/saving-the-player-s-game-data-to-an-icloud-account)
 - [Google: Play Games Services setup](https://developer.android.com/games/pgs/console/setup)
+- [Google: Aktivér Saved Games](https://developer.android.com/games/pgs/console/enable-features)

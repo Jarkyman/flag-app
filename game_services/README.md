@@ -16,6 +16,17 @@ tilbage i katalogerne.
 - Apple-point i alt: 915 af de tilladte 1.000.
 - Gameplay virker normalt uden login eller netværk; lokal tracking fortsætter,
   og gemt progress synkroniseres ved næste succesfulde login.
+- Appen har versionsstyret cloud-autosave med beskyttet backup-historik. Ændringer
+  samles med debounce og flushes, når appen går i baggrunden. Ved opstart hentes
+  cloud-save færdigt på splash-skærmen, før Home kan åbnes. Manglende remote-data
+  udløser aldrig en tom upload under launch, og før første autosave foretages en
+  ny remote-check.
+- Den oprindelige `flags-game-cloud-save-v1` er nu read-only. Nye saves skifter
+  mellem to v2-slots, så den aktive og den forrige backup ikke overskrives på
+  samme tid. En tom backup vælges aldrig over en backup med reel progression.
+  Settings viser status og tilbyder en bekræftet restore.
+  Backup'en indeholder levels, alle lokale rekorder, hints og lifetime-tællere,
+  men ikke køb; RevenueCat er fortsat source of truth for entitlements.
 
 ## Mapper
 
@@ -70,6 +81,10 @@ App-integrationen bruger `games_services` 5.1.0 og er implementeret med:
 - native achievement- og leaderboard-overlays fra den nye Game services-side;
 - Game Center-entitlement og Play Games-manifestkonfiguration;
 - unit tests af katalog, alle 23 regler, offline tracking og `All`-afgrænsning.
+- remote-first autosave og launch-sync via Google Saved Games og GameKit/iCloud samt
+  eksplicit bekræftelse før en manuel restore overskriver lokal progression;
+- schema-validering før restore og automatisk backfill til achievements og
+  leaderboards efter en succesfuld restore.
 
 De 23 achievements og tre `All`-leaderboards er nu oprettet som komplette drafts
 i både App Store Connect og Play Console. Apple-komponenterne har dansk og
@@ -77,3 +92,7 @@ engelsk lokalisering samt billeder; Google-komponenterne har ikoner og alle 26
 genererede ID'er er skrevet tilbage i katalogerne. Komponenterne er endnu ikke
 tilføjet en iOS-appversion eller publiceret i Play Games Services, fordi begge
 platforme først skal testes. Se `CONSOLE_SETUP.md`.
+
+Cloud-save-koden og iOS-entitlements er implementeret. Før enhedstest skal
+Saved Games aktiveres i Play Console, og iCloud-containeren skal registreres hos
+Apple samt indgå i appens provisioning profile. Se `CONSOLE_SETUP.md`.

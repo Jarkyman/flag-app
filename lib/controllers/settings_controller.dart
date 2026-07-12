@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:flag_app/controllers/country_controller.dart';
-import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/repos/settings_repo.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +19,6 @@ class SettingsController extends GetxController implements GetxService {
     List<String> localeList = localeString.toString().split('_');
     _locale = Locale(localeList[0], localeList[1]);
     Get.updateLocale(_locale);
-    Get.find<CountryController>().readCountries(_locale);
-    Get.find<LevelController>().readLevels();
     _firstGuessHelp = await settingsRepo.firstHelpGuessRead();
     _firstTrainHelp = await settingsRepo.firstHelpTrainRead();
   }

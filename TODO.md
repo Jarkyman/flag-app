@@ -62,7 +62,17 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game] (M): Erstat swipe-pakkens fejlbehæftede positionsgenbrug på word-siden med en lokal vandret dragmåling og minimumsafstand, så tryk aldrig navigerer til næste eller forrige opgave.
 
-// TODO {M} [game-services] (H): Implementer Game Center og Play Games Services, for at "gemme" highscores, level-progress og lifetime correct-answer tællere, samt achievements og leaderboards. Implementér også backfill af scores og native overlays.
+// DONE {M} [game-services] (H): Implementér valgfrit Game Center-/Play Games-login, online All-highscores, achievement-sync fra level-progress og lifetime correct-answer tællere, backfill af gemte lokale scores/levels samt native achievement- og leaderboard-overlays.
+
+// DONE {M} [game-services, cloud-save] (H): Tilføj remote-first launch-sync før Home, versionsstyret autosave med debounce og app-pause-flush samt read-only legacy-backup og to roterende autosave-slots. En tom førstegangsstate må aldrig uploades under launch eller vælges over reel progression. Settings viser status og bekræftet manuel restore. RevenueCat-køb gemmes ikke i backup'en.
+
+// TODO {S} [ios, game-center, cloud-save, release] (H): Opret eller tilknyt iCloud-containeren `iCloud.com.Hartvig-Develop.flags` til appens App ID i Apple Developer, aktivér iCloud Documents og regenerér provisioning profiles. Kontrollér derefter, at release-signeringen indeholder de nye iCloud-entitlements.
+
+// TODO {S} [android, play-games, cloud-save, release] (H): Aktivér Saved Games i Play Console og gennemfør Save/Restore-test mellem to Android-enheder med samme testkonto før release.
+
+// TODO {S} [ios, game-center, cloud-save, release] (H): Gennemfør automatisk launch-restore og manuel Restore-test mellem to iOS-enheder med samme iCloud-/Game Center-testkonto før release.
+
+// TODO {M} [ads] (H): do we need a button in settigns with "Ad privacy choises"
 
 // TODO {M} [game-services, localization] (H): fjern ord som training, da jeg ikke syntes at de 3 spille modes på startskærmen skal hede trænings baner, find på noget andet så det bare lyder som et spil og ikke en træning.
 

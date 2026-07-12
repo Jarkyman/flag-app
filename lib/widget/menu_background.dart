@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import 'background_image.dart';
 
@@ -17,30 +17,7 @@ class MenuBackground extends StatelessWidget {
     return BackgroundImage(
       child: Stack(
         children: [
-          Positioned(
-            top: -Dimensions.height45,
-            right: -Dimensions.width45,
-            child: _MenuBubble(
-              size: Dimensions.height45 * 3.4,
-              color: AppColors.mainColor,
-            ),
-          ),
-          Positioned(
-            top: Dimensions.height45 * 4.2,
-            left: -Dimensions.width45 * 1.6,
-            child: _MenuBubble(
-              size: Dimensions.height45 * 2.4,
-              color: AppColors.yellowColor,
-            ),
-          ),
-          Positioned(
-            bottom: -Dimensions.height45,
-            right: -Dimensions.width45 * 1.2,
-            child: _MenuBubble(
-              size: Dimensions.height45 * 3,
-              color: AppColors.skyColor,
-            ),
-          ),
+          const Positioned.fill(child: _AnimatedDottedWorldMap()),
           Positioned.fill(child: child),
         ],
       ),
@@ -48,26 +25,111 @@ class MenuBackground extends StatelessWidget {
   }
 }
 
-class _MenuBubble extends StatelessWidget {
-  final double size;
-  final Color color;
+class _AnimatedDottedWorldMap extends StatefulWidget {
+  const _AnimatedDottedWorldMap();
 
-  const _MenuBubble({
-    required this.size,
-    required this.color,
+  @override
+  State<_AnimatedDottedWorldMap> createState() =>
+      _AnimatedDottedWorldMapState();
+}
+
+class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  bool? _animationsEnabled;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 48),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final animationsEnabled = !MediaQuery.disableAnimationsOf(context);
+    if (_animationsEnabled == animationsEnabled) return;
+
+    _animationsEnabled = animationsEnabled;
+    if (animationsEnabled) {
+      _controller.repeat();
+    } else {
+      _controller
+        ..stop()
+        ..value = 0.25;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mapHeight = Dimensions.screenHeight * 1.32;
+    final mapWidth = mapHeight * 1.5;
+
+    return IgnorePointer(
+      child: ClipRect(
+        child: RepaintBoundary(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(-mapWidth * _controller.value, 0),
+                child: child,
+              );
+            },
+            child: OverflowBox(
+              alignment: Alignment.centerLeft,
+              minWidth: mapWidth * 2,
+              maxWidth: mapWidth * 2,
+              minHeight: mapHeight,
+              maxHeight: mapHeight,
+              child: Row(
+                children: [
+                  _DottedWorldMapImage(
+                    width: mapWidth,
+                    height: mapHeight,
+                  ),
+                  _DottedWorldMapImage(
+                    width: mapWidth,
+                    height: mapHeight,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DottedWorldMapImage extends StatelessWidget {
+  final double width;
+  final double height;
+
+  const _DottedWorldMapImage({
+    required this.width,
+    required this.height,
   });
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.07),
-          shape: BoxShape.circle,
-          border: Border.all(color: color.withValues(alpha: 0.08)),
-        ),
+    return Opacity(
+      opacity: 0.13,
+      child: SvgPicture.asset(
+        'assets/image/dotted_world_map.svg',
+        width: width,
+        height: height,
+        fit: BoxFit.fill,
       ),
     );
   }

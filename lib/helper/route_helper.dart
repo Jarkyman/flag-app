@@ -1,4 +1,5 @@
 import 'package:flag_app/pages/play/levels/guess_page.dart';
+import 'package:flag_app/pages/game_services/game_services_page.dart';
 import 'package:flag_app/pages/play/levels/levels_list_page.dart';
 import 'package:flag_app/pages/settings_page.dart';
 import 'package:flag_app/pages/shop/shop_page.dart';
@@ -26,6 +27,7 @@ class RouteHelper {
   static const String flagsPage = '/flags-page';
   static const String capitalPage = '/capital-page';
   static const String countriesPage = '/countries-page';
+  static const String gameServicesPage = '/game-services-page';
 
   static String getSplashPage() => splashPage;
 
@@ -51,6 +53,8 @@ class RouteHelper {
 
   static String getCountriesPage() => countriesPage;
 
+  static String getGameServicesPage() => gameServicesPage;
+
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => const SplashScreen()),
     GetPage(name: initial, page: () => const HomePage()),
@@ -72,5 +76,9 @@ class RouteHelper {
     GetPage(name: flagsPage, page: () => const FlagsPage()),
     GetPage(name: capitalPage, page: () => const CapitalPage()),
     GetPage(name: countriesPage, page: () => const CountriesPage()),
+    GetPage(
+      name: gameServicesPage,
+      page: () => const GameServicesPage(),
+    ),
   ];
 }

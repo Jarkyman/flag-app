@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../controllers/country_controller.dart';
+import '../../controllers/game_services_controller.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/review_controller.dart';
 import '../../controllers/score_controller.dart';
@@ -208,6 +210,13 @@ class _FlagsPageState extends State<FlagsPage> {
         }
         generateCountries();
       });
+      unawaited(
+        Get.find<GameServicesController>().recordTrainingCorrect(
+          game: TrainingScoreGame.matchFlags,
+          continent: selectedContinent,
+          streak: score,
+        ),
+      );
     } else {
       Get.find<SoundController>().wrongSound();
       setState(() {

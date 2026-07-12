@@ -122,6 +122,14 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: Dimensions.height10),
                       MenuButton(
+                        onTap: () =>
+                            Get.toNamed(RouteHelper.getGameServicesPage()),
+                        title: 'Game services'.tr,
+                        icon: Icons.emoji_events_rounded,
+                        accentColor: AppColors.goldColor,
+                      ),
+                      SizedBox(height: Dimensions.height10),
+                      MenuButton(
                         onTap: () => Get.toNamed(RouteHelper.getShopPage()),
                         title: 'Shop'.tr,
                         icon: Icons.shopping_bag_outlined,

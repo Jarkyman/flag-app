@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flag_app/controllers/country_controller.dart';
+import 'package:flag_app/controllers/game_services_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/review_controller.dart';
@@ -43,6 +44,7 @@ class _SplashPageState extends State<SplashScreen>
     Get.find<LevelController>().initUnlockedLevels();
     Get.find<SoundController>().init();
     ReviewController.rateMyApp.init();
+    unawaited(Get.find<GameServicesController>().initialize());
     if (controller.isCompleted) {
       _navigateToHome();
     } else {

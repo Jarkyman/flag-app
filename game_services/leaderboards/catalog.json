@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "scoreFormat": "integer",
+  "sortOrder": "high_to_low",
+  "resetPolicy": "never",
+  "submitRule": "selected_continent == all",
+  "leaderboards": [
+    {
+      "key": "leaderboard.find_flag.all",
+      "appleId": "flags.leaderboard.find_flag.all",
+      "googleId": "CgkIh8ycnPYFEAIQGA",
+      "game": "find_flag",
+      "localRecordKey": "flag-score",
+      "icon": "find_flag_all.png"
+    },
+    {
+      "key": "leaderboard.match_flags.all",
+      "appleId": "flags.leaderboard.match_flags.all",
+      "googleId": "CgkIh8ycnPYFEAIQGQ",
+      "game": "match_flags",
+      "localRecordKey": "flags-score",
+      "icon": "match_flags_all.png"
+    },
+    {
+      "key": "leaderboard.which_country.all",
+      "appleId": "flags.leaderboard.which_country.all",
+      "googleId": "CgkIh8ycnPYFEAIQGg",
+      "game": "which_country",
+      "localRecordKey": "countries-score",
+      "icon": "which_country_all.png"
+    }
+  ]
+}

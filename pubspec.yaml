@@ -31,6 +31,7 @@ dependencies:
   flutter_animate: ^4.5.2
   confetti: ^0.8.0
   flutter_native_splash: ^2.4.8
+  games_services: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -56,3 +57,5 @@ flutter:
     - assets/json/us/
     - assets/icon/
     - assets/sound/
+    - game_services/achievements/catalog.json
+    - game_services/leaderboards/catalog.json

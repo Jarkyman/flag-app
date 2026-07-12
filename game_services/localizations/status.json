@@ -1,0 +1,13 @@
+{
+  "complete": ["da-DK", "en-US"],
+  "pendingHumanReview": [
+    "de-DE",
+    "es-ES",
+    "fr-FR",
+    "nb-NO",
+    "pt-BR",
+    "pt-PT",
+    "sv-SE"
+  ],
+  "note": "Platformstekster oversættes efter godkendelse af dansk og engelsk navn/kriterium, så ændringer ikke skal vedligeholdes ni steder."
+}

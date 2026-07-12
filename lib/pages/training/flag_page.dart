@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flag_app/controllers/country_controller.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../controllers/hint_controller.dart';
+import '../../controllers/game_services_controller.dart';
 import '../../controllers/review_controller.dart';
 import '../../controllers/settings_controller.dart';
 import '../../controllers/shop_controller.dart';
@@ -206,6 +208,13 @@ class _FlagPageState extends State<FlagPage> {
           );
         }
       });
+      unawaited(
+        Get.find<GameServicesController>().recordTrainingCorrect(
+          game: TrainingScoreGame.findFlag,
+          continent: selectedContinent,
+          streak: score,
+        ),
+      );
       generateCountries();
     } else {
       Get.find<SoundController>().wrongSound();

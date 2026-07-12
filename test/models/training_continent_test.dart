@@ -57,6 +57,13 @@ void main() {
       ...TrainingContinent.values.map((continent) => continent.translationKey),
       'Choose continent',
       'Filter by continent',
+      'Game services',
+      'Achievements',
+      'Leaderboards',
+      'Connected',
+      'Not connected',
+      'Sign in',
+      'Platform setup required',
     };
 
     for (final locale in localeJson) {

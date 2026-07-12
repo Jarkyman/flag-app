@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:animated_widgets/widgets/rotation_animated.dart';
@@ -16,6 +17,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shake/shake.dart';
 
 import '../../../controllers/country_controller.dart';
+import '../../../controllers/game_services_controller.dart';
 import '../../../controllers/hint_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
@@ -174,9 +176,13 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   void checkWin() {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
+      final wasAlreadyGuessed = country.guessed == true;
       Get.find<SoundController>().completeSound();
       Get.find<LevelController>().guessed(argType, country, true);
       Get.find<LevelController>().isNewLevelUnlocked(argType);
+      if (!wasAlreadyGuessed) {
+        unawaited(Get.find<GameServicesController>().refreshLevelProgress());
+      }
     } else {
       bool done = true;
       for (int i = 0; i < lettersListAnswer.length; i++) {
@@ -721,12 +727,16 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
 
   void useFinishHint(int hints) {
     if (Get.find<HintController>().getHints >= hints) {
+      final wasAlreadyGuessed = country.guessed == true;
       //setState(() {
       Get.find<LevelController>().guessed(argType, country, true);
       //});
       Get.find<HintController>().useHint(hints);
       Get.find<SoundController>().completeSound();
       Get.find<LevelController>().isNewLevelUnlocked(argType);
+      if (!wasAlreadyGuessed) {
+        unawaited(Get.find<GameServicesController>().refreshLevelProgress());
+      }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }

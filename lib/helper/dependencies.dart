@@ -1,5 +1,6 @@
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/country_controller.dart';
+import 'package:flag_app/controllers/game_services_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
 import 'package:flag_app/controllers/score_controller.dart';
@@ -18,6 +19,10 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../game_services/game_progress_repo.dart';
+import '../game_services/game_progress_snapshot_builder.dart';
+import '../game_services/game_services_gateway.dart';
+import '../game_services/platform_game_services_gateway.dart';
 import 'locale_handler.dart';
 
 Future<void> init() async {
@@ -37,6 +42,8 @@ Future<void> init() async {
   Get.lazyPut(() => LevelRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => SettingsRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => ShopRepo(sharedPreferences: sharedPreferences));
+  Get.lazyPut(() => GameProgressRepo(sharedPreferences: sharedPreferences));
+  Get.lazyPut<GameServicesGateway>(() => PlatformGameServicesGateway());
 
   //Controller
   Get.lazyPut(() => CountryController(countryRepo: Get.find()));
@@ -47,4 +54,18 @@ Future<void> init() async {
   Get.lazyPut(() => SoundController(settingsRepo: Get.find()));
   Get.lazyPut(() => SettingsController(settingsRepo: Get.find()));
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+  Get.lazyPut(
+    () => GameProgressSnapshotBuilder(
+      progressRepo: Get.find(),
+      scoreController: Get.find(),
+      levelController: Get.find(),
+    ),
+  );
+  Get.lazyPut(
+    () => GameServicesController(
+      progressRepo: Get.find(),
+      snapshotBuilder: Get.find(),
+      gateway: Get.find(),
+    ),
+  );
 }

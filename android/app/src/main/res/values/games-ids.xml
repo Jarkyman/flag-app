@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Achievement and leaderboard IDs are stored in game_services/*/catalog.json. -->
+    <string name="game_services_project_id" translatable="false">203533264391</string>
+</resources>

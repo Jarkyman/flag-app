@@ -1,0 +1,134 @@
+{
+  "locale": "en-US",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Find Flag — World",
+      "description": "Highest all-countries streak in Find Flag."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Match Flags — World",
+      "description": "Highest all-countries streak in Match Flags."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Which Country — World",
+      "description": "Highest all-countries streak in Which Country."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "First Flag",
+      "description": "Answer one training question correctly.",
+      "earnedDescription": "You answered your first training question correctly."
+    },
+    "achievement.streak_5_any": {
+      "name": "On a Roll",
+      "description": "Reach a streak of 5 in any training game.",
+      "earnedDescription": "You reached a streak of 5."
+    },
+    "achievement.streak_10_any": {
+      "name": "Double Digits",
+      "description": "Reach a streak of 10 in any training game.",
+      "earnedDescription": "You reached a streak of 10."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Flag Spotter",
+      "description": "Answer 10 Find Flag questions correctly.",
+      "earnedDescription": "You found 10 flags correctly."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "Match Maker",
+      "description": "Answer 10 Match Flags questions correctly.",
+      "earnedDescription": "You matched 10 flags correctly."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Map Reader",
+      "description": "Answer 10 Which Country questions correctly.",
+      "earnedDescription": "You identified 10 countries correctly."
+    },
+    "achievement.training_100_correct": {
+      "name": "Century Club",
+      "description": "Answer 100 training questions correctly.",
+      "earnedDescription": "You answered 100 training questions correctly."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Africa Explorer",
+      "description": "Reach a streak of 10 with the Africa filter.",
+      "earnedDescription": "You conquered a 10-streak in Africa."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Asia Explorer",
+      "description": "Reach a streak of 10 with the Asia filter.",
+      "earnedDescription": "You conquered a 10-streak in Asia."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Europe Explorer",
+      "description": "Reach a streak of 10 with the Europe filter.",
+      "earnedDescription": "You conquered a 10-streak in Europe."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "North America Explorer",
+      "description": "Reach a streak of 10 with the North America filter.",
+      "earnedDescription": "You conquered a 10-streak in North America."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Oceania Explorer",
+      "description": "Reach a streak of 10 with the Oceania filter.",
+      "earnedDescription": "You conquered a 10-streak in Oceania."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "South America Explorer",
+      "description": "Reach a streak of 10 with the South America filter.",
+      "earnedDescription": "You conquered a 10-streak in South America."
+    },
+    "achievement.world_tour": {
+      "name": "World Tour",
+      "description": "Reach a streak of 5 on every continent.",
+      "earnedDescription": "You completed a streak of 5 on every continent."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Word Traveller",
+      "description": "Solve 10 level puzzles.",
+      "earnedDescription": "You solved 10 level puzzles."
+    },
+    "achievement.complete_first_level": {
+      "name": "Level Up",
+      "description": "Complete your first level.",
+      "earnedDescription": "You completed your first level."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Flag Master",
+      "description": "Solve all 194 flag puzzles.",
+      "earnedDescription": "You completed every flag puzzle."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Country Master",
+      "description": "Solve all 194 country puzzles.",
+      "earnedDescription": "You completed every country puzzle."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Heraldry Master",
+      "description": "Solve all 194 coat of arms puzzles.",
+      "earnedDescription": "You completed every coat of arms puzzle."
+    },
+    "achievement.complete_all_levels": {
+      "name": "World Master",
+      "description": "Complete all flag, country and coat of arms puzzles.",
+      "earnedDescription": "You mastered every level category."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Perfect Flag Hunt",
+      "description": "Secret: reach 194 in Find Flag with the All filter.",
+      "earnedDescription": "You found every flag in one perfect world tour."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Perfect Match",
+      "description": "Secret: reach 194 in Match Flags with the All filter.",
+      "earnedDescription": "You matched every flag in one perfect world tour."
+    },
+    "achievement.perfect_which_country": {
+      "name": "The Whole World",
+      "description": "Secret: reach 194 in Which Country with the All filter.",
+      "earnedDescription": "You identified the whole world in one perfect run."
+    }
+  }
+}

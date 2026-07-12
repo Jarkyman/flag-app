@@ -1,0 +1,79 @@
+# Game Center og Google Play Games Services
+
+Denne mappe er projektets source of truth for leaderboards, achievements,
+lokaliseringer og platformenes billedaktiver. Platformkomponenterne skal oprettes
+ud fra katalogerne her; genererede ID'er fra Google Play Console skrives derefter
+tilbage i katalogerne.
+
+## Besluttet scope
+
+- Tre klassiske high-to-low leaderboards, ét for hvert træningsspil.
+- Kun spil med kontinentfilteret `All` må indsende scores online.
+- 23 achievements: 20 synlige og tre skjulte perfekte gennemløb.
+- Et perfekt gennemløb er en streak på 194 i `All`. Rådata har 249 poster, men
+  `CountryController.removeUnUsed()` beholder de 194 lande, som findes i
+  `continents.json`. Det svarer til én hel faktisk spilrotation uden genstart.
+- Apple-point i alt: 915 af de tilladte 1.000.
+- Gameplay virker normalt uden login eller netværk; lokal tracking fortsætter,
+  og gemt progress synkroniseres ved næste succesfulde login.
+
+## Mapper
+
+- `achievements/catalog.json`: stabile nøgler, platform-ID'er, kriterier,
+  progression, point, backfill og ikonfil.
+- `leaderboards/catalog.json`: de tre online high scores og regler for submit.
+- `localizations/`: platformstekster. Dansk og engelsk er skrevet som første
+  godkendelsesgrundlag; de øvrige app-sprog er markeret i `status.json`.
+- `*/icons/master/`: 1024 x 1024 masterbilleder.
+- `*/icons/apple/`: Apple-eksporter i 1024 x 1024.
+- `*/icons/google/`: Google-eksporter i 512 x 512.
+- `icon_briefs.md`: motiv og farver for hvert billede.
+
+## Implementerede regler
+
+1. Login er valgfrit og må aldrig blokere spillet.
+2. En leaderboard-score indsendes kun, når spilleren spiller med `All`.
+3. Ved login indsendes alle tre gemte `All`-rekorder, så offline rekorder syncer.
+4. Best-streak- og level-achievements backfilles fra gemt data.
+5. Lifetime-tællere kan ikke udledes sikkert fra den nuværende app og begynder
+   derfor ved den version, der introducerer tællerne.
+6. Progression må kun bevæge sig fremad. En lavere rapporteret værdi må aldrig
+   overskrive tidligere achievement-progress.
+7. Google-ID'er genereres i Play Console og skrives tilbage i katalogerne.
+   Alle 23 achievement-ID'er og tre leaderboard-ID'er er udfyldt.
+   Apple-ID'erne i kataloget behandles som permanente.
+
+## Platformkrav
+
+- Apple achievement-billeder: 1024 x 1024, JPG eller PNG, RGB.
+- Google achievement- og leaderboard-ikoner: 512 x 512, JPG eller PNG.
+- Ikonerne er tekstfrie, så samme billede kan bruges på alle sprog.
+- Google kræver samme achievement-ikon på tværs af lokaliseringer.
+- Apple leaderboard-billeder er valgfrie, men medtages for et ensartet udtryk.
+
+Officiel dokumentation:
+
+- [Apple achievements](https://developer.apple.com/help/app-store-connect/reference/game-center/achievements/)
+- [Apple leaderboards](https://developer.apple.com/help/app-store-connect/reference/game-center/leaderboards/)
+- [Google achievements](https://developer.android.com/games/pgs/achievements)
+- [Google leaderboards](https://developer.android.com/games/pgs/leaderboards)
+
+## Status
+
+App-integrationen bruger `games_services` 5.1.0 og er implementeret med:
+
+- valgfrit login efter splash-load;
+- automatisk backfill af eksisterende rekorder og level-progress;
+- permanente lifetime-tællere fra denne version og frem;
+- absolut achievement-progress på iOS og delta-sync mod Googles remote steps;
+- leaderboard-submit udelukkende fra kontinentfilteret `All`;
+- native achievement- og leaderboard-overlays fra den nye Game services-side;
+- Game Center-entitlement og Play Games-manifestkonfiguration;
+- unit tests af katalog, alle 23 regler, offline tracking og `All`-afgrænsning.
+
+De 23 achievements og tre `All`-leaderboards er nu oprettet som komplette drafts
+i både App Store Connect og Play Console. Apple-komponenterne har dansk og
+engelsk lokalisering samt billeder; Google-komponenterne har ikoner og alle 26
+genererede ID'er er skrevet tilbage i katalogerne. Komponenterne er endnu ikke
+tilføjet en iOS-appversion eller publiceret i Play Games Services, fordi begge
+platforme først skal testes. Se `CONSOLE_SETUP.md`.

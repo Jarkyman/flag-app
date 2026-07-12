@@ -33,15 +33,41 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 ## 🧪 Tests
 // DONE {C} [test, hints, bomb] (H): Tilføj en udtømmende unit-testmatrix for bomben og korrekt-bogstav-hintet med 18/27/36 bogstaver, svar- og dubletkombinationer, linjeskift, bindestreg, persistence og kendte regressioner.
-// TODO {C} [test, hints] (H): Lav automatiske tests af de resterende hint-flows. Dæk især korrekt svar/finish og 50/50 samt for få hints, gentagne tryk, disabled state, fratræk af hints, rewarded-ad-belønning præcis én gang og gemt state efter genåbning.
+// DONE {C} [test, hints] (H): Lav automatiske tests af de resterende hint-flows. Dæk især korrekt svar/finish og 50/50 samt for få hints, gentagne tryk, disabled state, fratræk af hints, rewarded-ad-belønning præcis én gang og gemt state efter genåbning.
 
 
 ## Ekstra opgaver (ikke prioriteret endnu)
 
-// TODO: Lav mulighed for at vælge kontinent i trænings spillene, så man kun ser lande fra det kontinent. Det kunne være en menu i top baren, eller andet?
+// DONE: Lav mulighed for at vælge kontinent i trænings spillene, så man kun ser lande fra det kontinent. Det kunne være en menu i top baren, eller andet?
 
 // DONE: ryd lidt op i design på popups, så de ser pænere ud. F.eks. hjælpe popup, language popup, settings popup.
 
 // DONE: Remove "X" button from wrong guess popup, it dosent do anything.
 
-// TODO: Add achevements with apple and goolge play services.
+// DONE: Add achievements og leaderboards med Apple Game Center og Google Play Games Services, lokal/offline tracking, backfill og native overlays.
+
+// DONE: Achievements er backwards compatible for gemte highscores og level-progress. Lifetime correct-answer tællere starter fra release-versionen.
+
+// DONE: Opret de 23 achievements og tre leaderboards i Google Play Console, og indsæt Googles 26 genererede ID'er samt project ID.
+
+// DONE: Opret de 23 achievements og tre leaderboards i App Store Connect med dansk/engelsk lokalisering, billeder, 915 point og tre skjulte achievements.
+
+// FIXME {M} [game] (H): Aserbajdsjan står til at ligge i Eruopa, det deltvis rigtigt, men det er mest i asien, så vi skal have flyttet det til asien.
+
+// FIXME {M} [game] (H): Fjern teksten i toppen af "trænings" spillene. Så der ikke står noget (fx "find flages")
+
+// FIXME {M} [game] (H): på word siden, så skal vi have en reklame i bunden også efter man har gættet rigtigt. Og inden man har gættet skal vi have en usynlig boks som fylder reklamen, så bogstaverne ikke rykker sig nor reklamne popper ind og det ser pænere ud de er løftet lidt op. 
+
+// FIXME {M} [game] (M): på word siden, når bogstaverne animerer op og ned, så kommer der en lille gul steg under, ved ikke om det kun er på debug, men tænker vi skal fixe det.
+
+// TODO {M} [game-services] (H): Implementer Game Center og Play Games Services, for at "gemme" highscores, level-progress og lifetime correct-answer tællere, samt achievements og leaderboards. Implementér også backfill af scores og native overlays.
+
+// TODO {M} [game-services, localization] (H): fjern ord som training, da jeg ikke syntes at de 3 spille modes på startskærmen skal hede trænings baner, find på noget andet så det bare lyder som et spil og ikke en træning.
+
+// DONE {M} [game-services, release] (H): Tilføj Game Center-komponenterne til næste iOS-version, publicér Play Games Services-projektet, upload release-builds og test begge platforme med sandbox/testere før release.
+
+// TODO {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk.
+
+// TODO {M} [analytics, firebase] (H): Implementér Firebase Analytics efter samme setup som i de andre apps. Track centrale, ikke-personhenførbare events for skærmvisninger, spilstart/-slut, korrekte/forkerte svar, streak/ny rekord, kontinentfilter, hintbrug og Game Center/Play Games-flow. Opdatér også privacy-/consent-konfiguration og test events på både Android og iOS.
+
+// TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når Android/iOS game-services er testet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.

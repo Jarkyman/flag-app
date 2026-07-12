@@ -394,7 +394,6 @@ class _CountriesPageState extends State<CountriesPage> {
               return Column(
                 children: [
                   TrainingGameHeader(
-                    title: 'Which country'.tr,
                     score: score,
                     highScore: highScore,
                     accentColor: AppColors.skyColor,

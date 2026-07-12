@@ -11,7 +11,6 @@ import '../menu_page_header.dart';
 enum TrainingAnswerState { idle, correct, wrong, disabled }
 
 class TrainingGameHeader extends StatelessWidget {
-  final String title;
   final int score;
   final int highScore;
   final Color accentColor;
@@ -20,7 +19,6 @@ class TrainingGameHeader extends StatelessWidget {
 
   const TrainingGameHeader({
     super.key,
-    required this.title,
     required this.score,
     required this.highScore,
     required this.accentColor,
@@ -33,8 +31,7 @@ class TrainingGameHeader extends StatelessWidget {
     return Column(
       children: [
         MenuPageHeader(
-          title: title,
-          titleHorizontalPadding: Dimensions.width45 * 2.75,
+          title: '',
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -54,7 +54,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game] (H): Flyt Aserbajdsjan fra Europa til Asien i alle ni sprogassets.
 
-// FIXME {M} [game] (H): Fjern teksten i toppen af "trænings" spillene. Så der ikke står noget (fx "find flages")
+// DONE {M} [game] (H): Fjern teksten i toppen af træningsspillene, så headeren kun viser navigation, kontinent og hints.
 
 // FIXME {M} [game] (H): på word siden, så skal vi have en reklame i bunden også efter man har gættet rigtigt. Og inden man har gættet skal vi have en usynlig boks som fylder reklamen, så bogstaverne ikke rykker sig nor reklamne popper ind og det ser pænere ud de er løftet lidt op. 
 

@@ -395,7 +395,6 @@ class _FlagPageState extends State<FlagPage> {
               return Column(
                 children: [
                   TrainingGameHeader(
-                    title: 'Find flags'.tr,
                     score: score,
                     highScore: highScore,
                     accentColor: AppColors.coralColor,

@@ -283,15 +283,6 @@ class GuessFactsCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            width: Dimensions.width30,
-            height: Dimensions.height10 * 0.35,
-            decoration: BoxDecoration(
-              color: accentColor.withValues(alpha: 0.35),
-              borderRadius: BorderRadius.circular(Dimensions.radius10),
-            ),
-          ),
-          SizedBox(height: Dimensions.height10 * 0.35),
           ...List.generate(facts.length, (index) {
             final fact = facts[index];
             return _GuessFactRow(

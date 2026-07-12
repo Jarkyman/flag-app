@@ -856,6 +856,11 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
                           onBomb: bombUsed ? null : () => useBombHint(2),
                           onLetter: () => useFirstLetterHint(1),
                           accentColor: _accentColor,
+                        )
+                      else
+                        SizedBox(
+                          height: Dimensions.height10 * 1.4 +
+                              Dimensions.height20 * 2.35,
                         ),
                       Expanded(
                         child: Padding(
@@ -887,6 +892,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
                                   accentColor: _accentColor,
                                   facts: _countryFacts(countryModel),
                                 ),
+                                SizedBox(height: Dimensions.height10),
                               ] else
                                 Expanded(
                                   child: Column(
@@ -993,14 +999,19 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   Widget _buildBanner() {
     return GetBuilder<ShopController>(
       builder: (shopController) {
-        final showBanner = !country.guessed! &&
-            _bannerAd != null &&
-            getAmountOfTileRows(tilesPrRow) < 4 &&
-            !shopController.isAdsRemoved;
+        final hasRoomForBanner =
+            country.guessed! || getAmountOfTileRows(tilesPrRow) < 4;
+        if (shopController.isAdsRemoved || !hasRoomForBanner) {
+          return const SizedBox.shrink();
+        }
 
-        return showBanner
-            ? AdBannerWidget(bannerAd: _bannerAd!)
-            : const SizedBox.shrink();
+        return SizedBox(
+          width: double.infinity,
+          height: AdSize.banner.height.toDouble(),
+          child: _bannerAd == null
+              ? null
+              : Center(child: AdBannerWidget(bannerAd: _bannerAd!)),
+        );
       },
     );
   }

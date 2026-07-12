@@ -56,9 +56,11 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game] (H): Fjern teksten i toppen af træningsspillene, så headeren kun viser navigation, kontinent og hints.
 
-// FIXME {M} [game] (H): på word siden, så skal vi have en reklame i bunden også efter man har gættet rigtigt. Og inden man har gættet skal vi have en usynlig boks som fylder reklamen, så bogstaverne ikke rykker sig nor reklamne popper ind og det ser pænere ud de er løftet lidt op. 
+// DONE {M} [game] (H): Behold bannerreklamen i bunden af word-siden efter korrekt svar, og reservér bannerets højde før indlæsning, så bogstaverne ikke flytter sig, når reklamen vises.
 
 // FIXME {M} [game] (M): på word siden, når bogstaverne animerer op og ned, så kommer der en lille gul steg under, ved ikke om det kun er på debug, men tænker vi skal fixe det.
+
+// FIXME {M} [game] (M): på word siden, hvis man trykker ude i siden så naviger den til næste flag, det skal kun virke med et swipe fra siden ikke tryk.
 
 // TODO {M} [game-services] (H): Implementer Game Center og Play Games Services, for at "gemme" highscores, level-progress og lifetime correct-answer tællere, samt achievements og leaderboards. Implementér også backfill af scores og native overlays.
 

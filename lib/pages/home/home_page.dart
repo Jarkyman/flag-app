@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,8 +22,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    showConsentForm(isForTest: false, testDeviceId: 'TEST_DEVICE_ID');
     super.initState();
+    unawaited(showConsentForm());
   }
 
   @override

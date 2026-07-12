@@ -8,6 +8,7 @@ import 'package:launch_app_store/launch_app_store.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../controllers/sound_controller.dart';
+import '../controllers/ad_consent_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/app_swipe_detector.dart';
@@ -103,6 +104,51 @@ class SettingsPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: Dimensions.height10),
+                        GetBuilder<AdConsentController>(
+                          builder: (adConsentController) {
+                            if (!adConsentController.isPrivacyOptionsRequired) {
+                              return const SizedBox.shrink();
+                            }
+                            return Column(
+                              children: [
+                                SettingsButton(
+                                  title: 'Ad privacy choices'.tr,
+                                  onTap: () async {
+                                    final shown = await adConsentController
+                                        .showPrivacyOptions();
+                                    if (!shown &&
+                                        adConsentController.lastError != null) {
+                                      Get.snackbar(
+                                        'Something went wrong'.tr,
+                                        'Could not open ad privacy choices'.tr,
+                                        snackPosition: SnackPosition.BOTTOM,
+                                        margin: EdgeInsets.all(
+                                          Dimensions.width15,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  leading: const Icon(
+                                    Icons.privacy_tip_rounded,
+                                    color: AppColors.purpleColor,
+                                  ),
+                                  trailing: adConsentController.isLoading
+                                      ? SizedBox(
+                                          width: Dimensions.iconSize24,
+                                          height: Dimensions.iconSize24,
+                                          child:
+                                              const CircularProgressIndicator(
+                                            color: AppColors.purpleColor,
+                                            strokeWidth: 3,
+                                          ),
+                                        )
+                                      : null,
+                                ),
+                                SizedBox(height: Dimensions.height10),
+                              ],
+                            );
+                          },
+                        ),
                         SettingsButton(
                           title: 'Help'.tr,
                           onTap: () {

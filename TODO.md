@@ -72,7 +72,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {S} [ios, game-center, cloud-save, release] (H): Gennemfør automatisk launch-restore og manuel Restore-test mellem to iOS-enheder med samme iCloud-/Game Center-testkonto før release.
 
-// TODO {M} [ads] (H): do we need a button in settigns with "Ad privacy choises"
+// DONE {M} [ads, privacy, ump] (H): Tilføj en dynamisk "Ad privacy choices"-række i Settings, som kun er synlig og interaktiv, når Google UMP returnerer `PrivacyOptionsRequirementStatus.required`. Brug Googles native privacy-options-form, genberegn status efter formularen og brug det anbefalede consent-flow ved hver appstart.
 
 // TODO {M} [game-services, localization] (H): fjern ord som training, da jeg ikke syntes at de 3 spille modes på startskærmen skal hede trænings baner, find på noget andet så det bare lyder som et spil og ikke en træning.
 

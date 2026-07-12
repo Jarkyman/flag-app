@@ -1,4 +1,5 @@
 import 'package:flag_app/controllers/country_continent_controller.dart';
+import 'package:flag_app/controllers/ad_consent_controller.dart';
 import 'package:flag_app/controllers/cloud_save_controller.dart';
 import 'package:flag_app/controllers/country_controller.dart';
 import 'package:flag_app/controllers/game_services_controller.dart';
@@ -24,6 +25,8 @@ import '../cloud_save/cloud_save_gateway.dart';
 import '../cloud_save/cloud_save_local_repository.dart';
 import '../cloud_save/cloud_save_store.dart';
 import '../cloud_save/platform_cloud_save_gateway.dart';
+import '../ads/ad_consent_gateway.dart';
+import '../ads/platform_ad_consent_gateway.dart';
 
 import '../game_services/game_progress_repo.dart';
 import '../game_services/game_progress_snapshot_builder.dart';
@@ -54,6 +57,7 @@ Future<void> init() async {
   Get.put<GameProgressRepo>(gameProgressRepo, permanent: true);
   Get.lazyPut<GameServicesGateway>(() => PlatformGameServicesGateway());
   Get.lazyPut<CloudSaveGateway>(() => PlatformCloudSaveGateway());
+  Get.lazyPut<AdConsentGateway>(() => PlatformAdConsentGateway());
 
   //Controller
   Get.lazyPut(() => CountryController(countryRepo: Get.find()));
@@ -64,6 +68,7 @@ Future<void> init() async {
   Get.lazyPut(() => SoundController(settingsRepo: Get.find()));
   Get.lazyPut(() => SettingsController(settingsRepo: Get.find()));
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+  Get.lazyPut(() => AdConsentController(gateway: Get.find()));
   Get.lazyPut(
     () => GameProgressSnapshotBuilder(
       progressRepo: gameProgressRepo,

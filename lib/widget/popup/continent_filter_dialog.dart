@@ -161,6 +161,7 @@ class _ContinentOption extends StatelessWidget {
                       AutoSizeText(
                         continent.translationKey.tr,
                         maxLines: 2,
+                        wrapWords: false,
                         presetFontSizes: [
                           Dimensions.font16 * 0.82,
                           Dimensions.font16 * 0.72,

@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 import 'controllers/country_continent_controller.dart';
 import 'helper/app_constants.dart';
 import 'helper/dimensions.dart';
+import 'helper/image_decode_size.dart';
 import 'helper/route_helper.dart';
 import 'pages/home/home_page.dart';
 
@@ -110,6 +111,11 @@ class _SplashPageState extends State<SplashScreen>
                       child: Image.asset(
                         'assets/image/flag_ball.png',
                         width: Dimensions.splashImg,
+                        cacheWidth: imageDecodeWidth(
+                          logicalWidth: Dimensions.splashImg,
+                          devicePixelRatio:
+                              MediaQuery.devicePixelRatioOf(context),
+                        ),
                       ),
                     ),
                   ),

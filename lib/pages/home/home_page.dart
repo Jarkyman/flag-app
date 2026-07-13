@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/app_constants.dart';
 import '../../helper/dimensions.dart';
+import '../../helper/image_decode_size.dart';
 import '../../helper/route_helper.dart';
 import '../../widget/buttons/menu_button.dart';
 import '../../widget/menu_background.dart';
@@ -80,7 +81,14 @@ class _HomePageState extends State<HomePage> {
                             begin: begin,
                             end: end,
                           ),
-                          child: Image.asset('assets/image/flag_ball.png'),
+                          child: Image.asset(
+                            'assets/image/flag_ball.png',
+                            cacheWidth: imageDecodeWidth(
+                              logicalWidth: Dimensions.height45 * 3.1,
+                              devicePixelRatio:
+                                  MediaQuery.devicePixelRatioOf(context),
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: Dimensions.height10),

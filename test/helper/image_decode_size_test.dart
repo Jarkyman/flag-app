@@ -21,4 +21,14 @@ void main() {
       460,
     );
   });
+
+  test('caps large decode requests at the raster asset limit', () {
+    expect(
+      imageDecodeWidth(
+        logicalWidth: 1024,
+        devicePixelRatio: 3,
+      ),
+      maximumRasterAssetDimension,
+    );
+  });
 }

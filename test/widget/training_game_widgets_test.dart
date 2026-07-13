@@ -39,4 +39,31 @@ void main() {
     expect(resizedImage.width, lessThan(2560));
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('metadata-cleaned Serbia flag decodes successfully',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      GetMaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 390 / 2,
+            height: 200,
+            child: TrainingFlagAnswerCard(
+              image: 'assets/image/flags/rs.png',
+              accentColor: AppColors.purpleColor,
+              state: TrainingAnswerState.idle,
+              onTap: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Image), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

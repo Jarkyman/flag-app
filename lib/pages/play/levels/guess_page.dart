@@ -61,6 +61,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
 
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
+  bool _isInterstitialAdLoading = false;
 
   late String argType;
   late int argLevel;
@@ -79,6 +80,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     argFlagIndex = Get.arguments[2];
 
     setInit();
+    _loadInterstitialAd();
     unawaited(
       Get.find<AnalyticsController>().gameStarted(
         gameMode: 'word_$_analyticsCategory',
@@ -104,29 +106,54 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   }
 
   void _loadInterstitialAd() {
-    if (!Get.find<ShopController>().isAdsRemoved) {
-      InterstitialAd.load(
-        adUnitId: AdHelper.interstitialAdUnitId,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-              onAdDismissedFullScreenContent: (ad) {
-                Get.find<SoundController>().windSound();
-                Get.back();
-              },
-            );
-
-            setState(() {
-              _interstitialAd = ad;
-            });
-          },
-          onAdFailedToLoad: (err) {
-            debugPrint('Failed to load an interstitial ad: ${err.message}');
-          },
-        ),
-      );
+    if (Get.find<ShopController>().isAdsRemoved ||
+        _interstitialAd != null ||
+        _isInterstitialAdLoading) {
+      return;
     }
+
+    _isInterstitialAdLoading = true;
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _isInterstitialAdLoading = false;
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
+
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: _closeAfterInterstitial,
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              debugPrint(
+                'Failed to show an interstitial ad: ${error.message}',
+              );
+              _closeAfterInterstitial(ad);
+            },
+          );
+
+          setState(() {
+            _interstitialAd?.dispose();
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          _isInterstitialAdLoading = false;
+          debugPrint('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
+  void _closeAfterInterstitial(InterstitialAd ad) {
+    ad.dispose();
+    if (!mounted) return;
+
+    _interstitialAd = null;
+    Get.find<SoundController>().windSound();
+    Get.back();
   }
 
   void createBannerAd() {
@@ -137,7 +164,12 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         size: AdSize.banner,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
+            if (!mounted) {
+              ad.dispose();
+              return;
+            }
             setState(() {
+              _bannerAd?.dispose();
               _bannerAd = ad as BannerAd;
             });
           },
@@ -155,7 +187,6 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     _letterTrayKeys.clear();
     _answerTileKeys.clear();
     setState(() {
-      _loadInterstitialAd();
       var levelController = Get.find<LevelController>();
       levels = levelController.getList(argType)!;
       levelList = levelController.getLevelList(argLevel, argType);

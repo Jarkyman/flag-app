@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'helper/dependencies.dart' as dep;
+import 'helper/image_memory_manager.dart';
 import 'helper/route_helper.dart';
 import 'analytics/analytics_navigator_observer.dart';
 import 'controllers/analytics_controller.dart';
@@ -12,6 +13,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ImageMemoryManager.configureCache();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

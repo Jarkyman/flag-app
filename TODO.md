@@ -94,7 +94,9 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console.
 
-// TODO {S} [assets, performance, release] (M): Normalisér de 10 flagassets over 1600 px (`bo`, `fi`, `md`, `my`, `sg`, `st`, `tk`, `ve`, `ws`, `zm`) til maks. 1600 px bredde med bevaret aspect ratio og høj PNG-kvalitet. Kontrollér visuelt på telefon og tablet, kør asset-integritetstesten, og bekræft at ingen billeder opskaleres eller mister synlig detalje.
+// DONE {S} [assets, performance, release] (H): Alle 31 rasterassets over 1600 px er normaliseret til maks. 1600 px på længste side med bevaret aspect ratio og transparens: 10 flag, 20 våbenskjold og ét landekort. Unødvendig EXIF-/tekst-/tids-/DPI-metadata er fjernet fra hele rastersamlingen, mens farveinformation er bevaret; samlet fylder de 31 nedskalerede filer 155.404 bytes mindre end originalerne. Runtime-decodes har samme grænse, `Which country` og flag-bolden dekodes i visningsstørrelse, og Flutters LRU-billedcache beholder nyligt brugte billeder inden for et 48 MiB-budget uden at blive nulstillet ved navigation. Flutters standardgrænse på 1000 poster bevares kun som en praktisk irrelevant sikkerhedsgrænse. Regressionstests scanner alle rasterassets uden at dekode dem.
+
+// TODO {S} [assets, performance, release] (H): Kør en afsluttende profile/release-stresstest på fysisk iPhone og Android: gennemse mange Guess/word-billeder i alle tre kategorier, skift sprog flere gange, spil alle tre quizmodes, forlad/genåbn levels og bekræft både hurtig cache-genvisning og stabil hukommelse uden OOM, manglende glyph-atlas eller synligt kvalitetstab.
 
 // TODO {S} [debug, game] (L): Fjern det midlertidige `kDebugMode`-badge med det korrekte landenavn fra Guess/word-billedkortet, når den manuelle gennemgang af alle lande er afsluttet.
 

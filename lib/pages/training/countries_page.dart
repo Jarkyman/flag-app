@@ -20,6 +20,7 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
+import '../../helper/image_decode_size.dart';
 import '../../models/training_continent.dart';
 import '../../widget/ads/ad_banner_widget.dart';
 import '../../widget/menu_background.dart';
@@ -518,6 +519,11 @@ class _CountriesPageState extends State<CountriesPage> {
                               child: Image.asset(
                                 'assets/image/countries/$imageCode-full.png',
                                 fit: BoxFit.contain,
+                                cacheWidth: imageDecodeWidth(
+                                  logicalWidth: Dimensions.screenWidth,
+                                  devicePixelRatio:
+                                      MediaQuery.devicePixelRatioOf(context),
+                                ),
                               ),
                             ),
                           ),

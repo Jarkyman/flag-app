@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../helper/dimensions.dart';
@@ -40,13 +41,14 @@ class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   bool? _animationsEnabled;
+  bool? _tickerEnabled;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 48),
+      duration: DottedWorldMapTimeline.duration,
     );
   }
 
@@ -55,15 +57,25 @@ class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
     super.didChangeDependencies();
 
     final animationsEnabled = !MediaQuery.disableAnimationsOf(context);
-    if (_animationsEnabled == animationsEnabled) return;
+    final tickerEnabled = TickerMode.valuesOf(context).enabled;
+    if (_animationsEnabled == animationsEnabled &&
+        _tickerEnabled == tickerEnabled) {
+      return;
+    }
 
     _animationsEnabled = animationsEnabled;
-    if (animationsEnabled) {
-      _controller.repeat();
-    } else {
+    _tickerEnabled = tickerEnabled;
+    if (!animationsEnabled) {
       _controller
         ..stop()
-        ..value = 0.25;
+        ..value = DottedWorldMapTimeline.reducedMotionPhase;
+    } else if (tickerEnabled) {
+      _controller
+        ..stop()
+        ..value = DottedWorldMapTimeline.currentPhase
+        ..repeat();
+    } else {
+      _controller.stop();
     }
   }
 
@@ -85,6 +97,7 @@ class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
             animation: _controller,
             builder: (context, child) {
               return Transform.translate(
+                key: const ValueKey('dotted-world-map-translation'),
                 offset: Offset(-mapWidth * _controller.value, 0),
                 child: child,
               );
@@ -123,6 +136,21 @@ class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
         ),
       ),
     );
+  }
+}
+
+class DottedWorldMapTimeline {
+  static const Duration duration = Duration(seconds: 48);
+  static const double reducedMotionPhase = 0.25;
+
+  static double get currentPhase => phaseAt(
+        SchedulerBinding.instance.currentFrameTimeStamp,
+      );
+
+  static double phaseAt(Duration elapsed) {
+    final durationMicroseconds = duration.inMicroseconds;
+    final elapsedInCycle = elapsed.inMicroseconds % durationMicroseconds;
+    return elapsedInCycle / durationMicroseconds;
   }
 }
 

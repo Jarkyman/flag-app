@@ -41,4 +41,63 @@ void main() {
 
     expect(find.byType(SvgPicture), findsNothing);
   });
+
+  test('dotted map timeline wraps without resetting its cycle', () {
+    expect(
+      DottedWorldMapTimeline.phaseAt(const Duration(seconds: 12)),
+      closeTo(0.25, 0.0001),
+    );
+    expect(
+      DottedWorldMapTimeline.phaseAt(const Duration(seconds: 60)),
+      closeTo(0.25, 0.0001),
+    );
+  });
+
+  testWidgets('dotted map keeps its timeline across push and pop',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 804));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final navigatorKey = GlobalKey<NavigatorState>();
+
+    await tester.pumpWidget(
+      GetMaterialApp(
+        navigatorKey: navigatorKey,
+        home: const Scaffold(
+          body: MenuBackground(child: SizedBox.expand()),
+        ),
+      ),
+    );
+    await tester.pump(const Duration(seconds: 12));
+    final beforePush = _visibleMapOffset(tester);
+
+    navigatorKey.currentState!.push(
+      MaterialPageRoute<void>(
+        builder: (context) => const Scaffold(
+          body: MenuBackground(child: SizedBox.expand()),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    final afterPush = _visibleMapOffset(tester);
+
+    expect(afterPush.abs(), greaterThan(beforePush.abs()));
+
+    navigatorKey.currentState!.pop();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    final afterPop = _visibleMapOffset(tester);
+
+    expect(afterPop.abs(), greaterThan(afterPush.abs()));
+    expect(tester.takeException(), isNull);
+  });
+}
+
+double _visibleMapOffset(WidgetTester tester) {
+  final transforms = tester.widgetList<Transform>(
+    find.byKey(const ValueKey('dotted-world-map-translation')),
+  );
+
+  expect(transforms, isNotEmpty);
+  return transforms.last.transform.storage[12];
 }

@@ -10,9 +10,14 @@ tilbage i katalogerne.
 - Tre klassiske high-to-low leaderboards, ét for hvert af spillene på Home.
 - Kun spil med kontinentfilteret `All` må indsende scores online.
 - 23 achievements: 20 synlige og tre skjulte perfekte gennemløb.
-- Et perfekt gennemløb er en streak på 194 i `All`. Rådata har 249 poster, men
-  `CountryController.removeUnUsed()` beholder de 194 lande, som findes i
-  `continents.json`. Det svarer til én hel faktisk spilrotation uden genstart.
+- Den aktuelle app-pulje er 197 lande: 193 FN-medlemmer, Vatikanstaten,
+  Palæstina, Taiwan og Kosovo. Rådata har 250 land/territorieposter, mens
+  `CountryController.removeUnUsed()` beholder landene i `continents.json`.
+- De seks komplette achievements er fortsat konfigureret med 194 trin i
+  kataloget og platformskonsollernes endnu ikke udgivne kladder. De skal
+  opdateres direkte til 197 som beskrevet i den højprioriterede TODO, før
+  første Game Services-udgivelse. Der kræves ingen migration af live
+  achievement-progress.
 - Apple-point i alt: 915 af de tilladte 1.000.
 - Gameplay virker normalt uden login eller netværk; lokal tracking fortsætter,
   og gemt progress synkroniseres ved næste succesfulde login.

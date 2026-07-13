@@ -16,7 +16,7 @@
     "Level": 1
   },
   {
-    "Country": "Malawi",
+    "Country": "Malaui",
     "Level": 1
   },
   {
@@ -104,7 +104,7 @@
     "Level": 2
   },
   {
-    "Country": "Timor Oriental",
+    "Country": "Timor-Leste",
     "Level": 3
   },
   {
@@ -160,7 +160,7 @@
     "Level": 2
   },
   {
-    "Country": "Arabia Saudita",
+    "Country": "Arabia Saudí",
     "Level": 3
   },
   {
@@ -200,11 +200,11 @@
     "Level": 3
   },
   {
-    "Country": "República Democrática Del Congo",
+    "Country": "República Democrática del Congo",
     "Level": 10
   },
   {
-    "Country": "Qatar",
+    "Country": "Catar",
     "Level": 3
   },
   {
@@ -240,7 +240,7 @@
     "Level": 3
   },
   {
-    "Country": "Bangladesh",
+    "Country": "Bangladés",
     "Level": 4
   },
   {
@@ -344,7 +344,7 @@
     "Level": 5
   },
   {
-    "Country": "Djibouti",
+    "Country": "Yibuti",
     "Level": 5
   },
   {
@@ -364,11 +364,11 @@
     "Level": 5
   },
   {
-    "Country": "Benin",
+    "Country": "Benín",
     "Level": 5
   },
   {
-    "Country": "Palau",
+    "Country": "Palaos",
     "Level": 5
   },
   {
@@ -412,7 +412,7 @@
     "Level": 6
   },
   {
-    "Country": "Santo Tomé Y Príncipe",
+    "Country": "Santo Tomé y Príncipe",
     "Level": 10
   },
   {
@@ -436,7 +436,7 @@
     "Level": 6
   },
   {
-    "Country": "Guinea-Bissau",
+    "Country": "Guinea-Bisáu",
     "Level": 6
   },
   {
@@ -472,7 +472,7 @@
     "Level": 6
   },
   {
-    "Country": "Bosnia Y Herzegovina",
+    "Country": "Bosnia y Herzegovina",
     "Level": 6
   },
   {
@@ -528,7 +528,7 @@
     "Level": 7
   },
   {
-    "Country": "República Checa",
+    "Country": "Chequia",
     "Level": 7
   },
   {
@@ -768,11 +768,23 @@
     "Level": 10
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunéi",
     "Level": 10
   },
   {
     "Country": "Siria",
     "Level": 3
+  },
+  {
+    "Country": "Palestina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwán",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
+    "Level": 10
   }
 ]

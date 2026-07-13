@@ -8,7 +8,7 @@
     "Level": 1
   },
   {
-    "Country": "El Salvador",
+    "Country": "Salvador",
     "Level": 2
   },
   {
@@ -160,7 +160,7 @@
     "Level": 2
   },
   {
-    "Country": "Congo",
+    "Country": "Congo-Brazzaville",
     "Level": 3
   },
   {
@@ -192,7 +192,7 @@
     "Level": 3
   },
   {
-    "Country": "Palau",
+    "Country": "Palaos",
     "Level": 3
   },
   {
@@ -204,7 +204,7 @@
     "Level": 8
   },
   {
-    "Country": "Sao tomé et principe",
+    "Country": "Sao Tomé-et-Principe",
     "Level": 10
   },
   {
@@ -296,7 +296,7 @@
     "Level": 4
   },
   {
-    "Country": "Libéria",
+    "Country": "Liberia",
     "Level": 4
   },
   {
@@ -328,7 +328,7 @@
     "Level": 5
   },
   {
-    "Country": "Egypte",
+    "Country": "Égypte",
     "Level": 5
   },
   {
@@ -368,7 +368,7 @@
     "Level": 5
   },
   {
-    "Country": "Cité du Vatican",
+    "Country": "État de la Cité du Vatican",
     "Level": 5
   },
   {
@@ -416,11 +416,11 @@
     "Level": 1
   },
   {
-    "Country": "Timor-Leste",
+    "Country": "Timor oriental",
     "Level": 6
   },
   {
-    "Country": "Tchèque",
+    "Country": "Tchéquie",
     "Level": 6
   },
   {
@@ -556,7 +556,7 @@
     "Level": 7
   },
   {
-    "Country": "Brunéi Darussalam",
+    "Country": "Brunei",
     "Level": 7
   },
   {
@@ -576,7 +576,7 @@
     "Level": 8
   },
   {
-    "Country": "Vietnam",
+    "Country": "Viêt Nam",
     "Level": 8
   },
   {
@@ -600,7 +600,7 @@
     "Level": 3
   },
   {
-    "Country": "Bélarus",
+    "Country": "Biélorussie",
     "Level": 8
   },
   {
@@ -616,7 +616,7 @@
     "Level": 8
   },
   {
-    "Country": "Saint-Kitts et Nevis",
+    "Country": "Saint-Christophe-et-Niévès",
     "Level": 8
   },
   {
@@ -628,7 +628,7 @@
     "Level": 8
   },
   {
-    "Country": "Émirats Arabes Unis",
+    "Country": "Émirats arabes unis",
     "Level": 8
   },
   {
@@ -652,7 +652,7 @@
     "Level": 9
   },
   {
-    "Country": "Antigua et Barbuda",
+    "Country": "Antigua-et-Barbuda",
     "Level": 9
   },
   {
@@ -672,7 +672,7 @@
     "Level": 9
   },
   {
-    "Country": "Arabie Saoudite",
+    "Country": "Arabie saoudite",
     "Level": 9
   },
   {
@@ -732,7 +732,7 @@
     "Level": 10
   },
   {
-    "Country": "Nigéria",
+    "Country": "Nigeria",
     "Level": 10
   },
   {
@@ -740,7 +740,7 @@
     "Level": 3
   },
   {
-    "Country": "République démocratique du Congo",
+    "Country": "Congo-Kinshasa",
     "Level": 10
   },
   {
@@ -752,7 +752,7 @@
     "Level": 10
   },
   {
-    "Country": "Kirghizistan",
+    "Country": "Kirghizstan",
     "Level": 10
   },
   {
@@ -773,6 +773,18 @@
   },
   {
     "Country": "Norvège",
+    "Level": 10
+  },
+  {
+    "Country": "Palestine",
+    "Level": 10
+  },
+  {
+    "Country": "Taïwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
     "Level": 10
   }
 ]

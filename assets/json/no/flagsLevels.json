@@ -36,7 +36,7 @@
     "Level": 1
   },
   {
-    "Country": "Den Demokratiske Republikken Kongo",
+    "Country": "Kongo",
     "Level": 10
   },
   {
@@ -80,7 +80,7 @@
     "Level": 1
   },
   {
-    "Country": "Dominikanske Republikk",
+    "Country": "Den dominikanske republikk",
     "Level": 2
   },
   {
@@ -100,7 +100,7 @@
     "Level": 2
   },
   {
-    "Country": "Den Sentralafrikanske Republikk",
+    "Country": "Den sentralafrikanske republikk",
     "Level": 2
   },
   {
@@ -152,7 +152,7 @@
     "Level": 2
   },
   {
-    "Country": "Luxembourg",
+    "Country": "Luxemburg",
     "Level": 2
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "De Forente Arabiske Emirater",
+    "Country": "De forente arabiske emirater",
     "Level": 5
   },
   {
@@ -376,7 +376,7 @@
     "Level": 5
   },
   {
-    "Country": "Kongo",
+    "Country": "Kongo-Brazzaville",
     "Level": 5
   },
   {
@@ -404,7 +404,7 @@
     "Level": 6
   },
   {
-    "Country": "Hviterussland",
+    "Country": "Belarus",
     "Level": 6
   },
   {
@@ -476,7 +476,7 @@
     "Level": 6
   },
   {
-    "Country": "Mikronesia",
+    "Country": "Mikronesiaføderasjonen",
     "Level": 6
   },
   {
@@ -700,7 +700,7 @@
     "Level": 9
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunei",
     "Level": 9
   },
   {
@@ -772,7 +772,19 @@
     "Level": 8
   },
   {
-    "Country": "Sao Tome og Principe",
+    "Country": "São Tomé og Príncipe",
+    "Level": 10
+  },
+  {
+    "Country": "Palestina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
     "Level": 10
   }
 ]

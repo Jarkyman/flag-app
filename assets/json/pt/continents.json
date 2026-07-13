@@ -17,7 +17,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Burkina Faso"
+    "Country": "Burquina Faso"
   },
   {
     "Continent": "África",
@@ -45,15 +45,15 @@
   },
   {
     "Continent": "África",
-    "Country": "Congo"
+    "Country": "Congo-Brazzaville"
   },
   {
     "Continent": "África",
-    "Country": "República Democrática do Congo"
+    "Country": "Congo-Kinshasa"
   },
   {
     "Continent": "África",
-    "Country": "Djibuti"
+    "Country": "Jibuti"
   },
   {
     "Continent": "África",
@@ -97,7 +97,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Quênia"
+    "Country": "Quénia"
   },
   {
     "Continent": "África",
@@ -117,7 +117,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Malawi"
+    "Country": "Maláui"
   },
   {
     "Continent": "África",
@@ -129,7 +129,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Maurício"
+    "Country": "Maurícia"
   },
   {
     "Continent": "África",
@@ -165,7 +165,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Seychelles"
+    "Country": "Seicheles"
   },
   {
     "Continent": "África",
@@ -181,7 +181,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Sul do Sudão"
+    "Country": "Sudão do Sul"
   },
   {
     "Continent": "África",
@@ -189,7 +189,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Eswatini"
+    "Country": "Essuatíni"
   },
   {
     "Continent": "África",
@@ -225,7 +225,7 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Bangladesh"
+    "Country": "Bangladeche"
   },
   {
     "Continent": "Ásia",
@@ -233,7 +233,7 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Brunei Darussalam"
+    "Country": "Brunei"
   },
   {
     "Continent": "Ásia",
@@ -289,11 +289,11 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Coréia do Sul"
+    "Country": "Coreia do Sul"
   },
   {
     "Continent": "Ásia",
-    "Country": "Kuwait"
+    "Country": "Koweit"
   },
   {
     "Continent": "Ásia",
@@ -340,7 +340,7 @@
     "Country": "Catar"
   },
   {
-    "Continent": "Ásia",
+    "Continent": "Europa",
     "Country": "Rússia"
   },
   {
@@ -349,11 +349,11 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Cingapura"
+    "Country": "Singapura"
   },
   {
     "Continent": "Ásia",
-    "Country": "Sri Lanka"
+    "Country": "Sri Lanca"
   },
   {
     "Continent": "Ásia",
@@ -373,7 +373,7 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Turcomenistão"
+    "Country": "Turquemenistão"
   },
   {
     "Continent": "Ásia",
@@ -381,7 +381,7 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Uzbequistão"
+    "Country": "Usbequistão"
   },
   {
     "Continent": "Ásia",
@@ -389,7 +389,7 @@
   },
   {
     "Continent": "Ásia",
-    "Country": "Iêmen"
+    "Country": "Iémen"
   },
   {
     "Continent": "Europa",
@@ -400,8 +400,8 @@
     "Country": "Andorra"
   },
   {
-    "Continent": "Europa",
-    "Country": "Armênia"
+    "Continent": "Ásia",
+    "Country": "Arménia"
   },
   {
     "Continent": "Europa",
@@ -432,12 +432,12 @@
     "Country": "Croácia"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Ásia",
     "Country": "Chipre"
   },
   {
     "Continent": "Europa",
-    "Country": "República Checa"
+    "Country": "Chéquia"
   },
   {
     "Continent": "Europa",
@@ -445,7 +445,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Estônia"
+    "Country": "Estónia"
   },
   {
     "Continent": "Europa",
@@ -456,7 +456,7 @@
     "Country": "França"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Ásia",
     "Country": "Geórgia"
   },
   {
@@ -489,7 +489,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Liechtenstein"
+    "Country": "Listenstaine"
   },
   {
     "Continent": "Europa",
@@ -501,7 +501,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Macedônia do Norte"
+    "Country": "Macedónia do Norte"
   },
   {
     "Continent": "Europa",
@@ -521,7 +521,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Holanda"
+    "Country": "Países Baixos"
   },
   {
     "Continent": "Europa",
@@ -541,7 +541,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "San Marino"
+    "Country": "São Marinho"
   },
   {
     "Continent": "Europa",
@@ -553,7 +553,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Eslovênia"
+    "Country": "Eslovénia"
   },
   {
     "Continent": "Europa",
@@ -580,95 +580,95 @@
     "Country": "Cidade do Vaticano"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Antígua e Barbuda"
   },
   {
-    "Continent": "América Do Norte",
-    "Country": "Bahamas"
+    "Continent": "América do Norte",
+    "Country": "Baamas"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Barbados"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Belize"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Canadá"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Costa Rica"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Cuba"
   },
   {
-    "Continent": "América Do Norte",
-    "Country": "Dominica"
+    "Continent": "América do Norte",
+    "Country": "Domínica"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "República Dominicana"
   },
   {
-    "Continent": "América Do Norte",
-    "Country": "El Salvador"
+    "Continent": "América do Norte",
+    "Country": "Salvador"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Granada"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Guatemala"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Haiti"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Honduras"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Jamaica"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "México"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Nicarágua"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Panamá"
   },
   {
-    "Continent": "América Do Norte",
-    "Country": "São Cristóvão e Nevis"
+    "Continent": "América do Norte",
+    "Country": "São Cristóvão e Neves"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Santa Lúcia"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "São Vicente e Granadinas"
   },
   {
-    "Continent": "América Do Norte",
-    "Country": "Trinidad e Tobago"
+    "Continent": "América do Norte",
+    "Country": "Trindade e Tobago"
   },
   {
-    "Continent": "América Do Norte",
+    "Continent": "América do Norte",
     "Country": "Estados Unidos"
   },
   {
@@ -681,7 +681,7 @@
   },
   {
     "Continent": "Oceania",
-    "Country": "Kiribati"
+    "Country": "Quiribáti"
   },
   {
     "Continent": "Oceania",
@@ -705,7 +705,7 @@
   },
   {
     "Continent": "Oceania",
-    "Country": "Papua Nova Guiné"
+    "Country": "Papua-Nova Guiné"
   },
   {
     "Continent": "Oceania",
@@ -728,51 +728,63 @@
     "Country": "Vanuatu"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Argentina"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Bolívia"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Brasil"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Chile"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Colômbia"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Equador"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Guiana"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Paraguai"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Peru"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Suriname"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Uruguai"
   },
   {
-    "Continent": "América Do Sul",
+    "Continent": "América do Sul",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Ásia",
+    "Country": "Palestina"
+  },
+  {
+    "Continent": "Ásia",
+    "Country": "Taiwan"
+  },
+  {
+    "Continent": "Europa",
+    "Country": "Kosovo"
   }
 ]

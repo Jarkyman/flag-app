@@ -78,6 +78,8 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk. Alle ni sprog er gemt i både App Store Connect og Play Console; Apple-komponenterne er Ready for Review, og Google-ændringerne er drafts.
 
+// TODO {M} [game-services, achievements, localization] (H): Opdatér de seks komplette achievements direkte fra 194 til 197 inden første Game Services-udgivelse: tre level-achievements og de tre skjulte perfekte All-streaks. Ret katalogets steps/triggers, alle ni platformstekster, tests samt de endnu ikke udgivne værdier i App Store Connect og Play Console. Der kræves ingen migration af eksisterende platformprogress, da achievements ikke er i produktion endnu.
+
 // DONE {M} [analytics, firebase] (H): Implementér Firebase Analytics efter samme setup som i de andre apps. Track centrale, ikke-personhenførbare events for skærmvisninger, spilstart/-slut, korrekte/forkerte svar, streak/ny rekord, kontinentfilter, hintbrug og Game Center/Play Games-flow. Opdatér også privacy-/consent-konfiguration og test events på både Android og iOS.
 
 // DONE {S} [analytics, privacy, settings] (H): Analytics er slået til som standard og kan slås fra permanent i Settings. Vis en lokaliseret bekræftelses-popup før opt-out, forklar kort at navn, e-mail og andre direkte identificerende oplysninger ikke indsamles, og at anonyme brugs- og spildata bruges til at forbedre appen. Opt-out stopper collection, tilbagekalder analytics-storage consent og nulstiller Firebase-installationsdata.

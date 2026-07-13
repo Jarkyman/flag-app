@@ -36,7 +36,7 @@
     "Level": 1
   },
   {
-    "Country": "République démocratique du Congo",
+    "Country": "Congo-Kinshasa",
     "Level": 10
   },
   {
@@ -48,7 +48,7 @@
     "Level": 1
   },
   {
-    "Country": "Vietnam",
+    "Country": "Viêt Nam",
     "Level": 1
   },
   {
@@ -72,7 +72,7 @@
     "Level": 1
   },
   {
-    "Country": "El Salvador",
+    "Country": "Salvador",
     "Level": 1
   },
   {
@@ -84,7 +84,7 @@
     "Level": 2
   },
   {
-    "Country": "Timor-Leste",
+    "Country": "Timor oriental",
     "Level": 2
   },
   {
@@ -120,7 +120,7 @@
     "Level": 2
   },
   {
-    "Country": "Nigéria",
+    "Country": "Nigeria",
     "Level": 2
   },
   {
@@ -244,7 +244,7 @@
     "Level": 4
   },
   {
-    "Country": "Egypte",
+    "Country": "Égypte",
     "Level": 4
   },
   {
@@ -328,7 +328,7 @@
     "Level": 5
   },
   {
-    "Country": "Kirghizistan",
+    "Country": "Kirghizstan",
     "Level": 5
   },
   {
@@ -336,7 +336,7 @@
     "Level": 5
   },
   {
-    "Country": "Libéria",
+    "Country": "Liberia",
     "Level": 5
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "Émirats Arabes Unis",
+    "Country": "Émirats arabes unis",
     "Level": 5
   },
   {
@@ -376,7 +376,7 @@
     "Level": 5
   },
   {
-    "Country": "Congo",
+    "Country": "Congo-Brazzaville",
     "Level": 5
   },
   {
@@ -404,11 +404,11 @@
     "Level": 6
   },
   {
-    "Country": "Bélarus",
+    "Country": "Biélorussie",
     "Level": 6
   },
   {
-    "Country": "Arabie Saoudite",
+    "Country": "Arabie saoudite",
     "Level": 6
   },
   {
@@ -472,7 +472,7 @@
     "Level": 6
   },
   {
-    "Country": "Tchèque",
+    "Country": "Tchéquie",
     "Level": 6
   },
   {
@@ -596,7 +596,7 @@
     "Level": 8
   },
   {
-    "Country": "Palau",
+    "Country": "Palaos",
     "Level": 8
   },
   {
@@ -616,11 +616,11 @@
     "Level": 8
   },
   {
-    "Country": "Antigua et Barbuda",
+    "Country": "Antigua-et-Barbuda",
     "Level": 8
   },
   {
-    "Country": "Saint-Kitts et Nevis",
+    "Country": "Saint-Christophe-et-Niévès",
     "Level": 8
   },
   {
@@ -652,7 +652,7 @@
     "Level": 9
   },
   {
-    "Country": "Cité du Vatican",
+    "Country": "État de la Cité du Vatican",
     "Level": 9
   },
   {
@@ -700,7 +700,7 @@
     "Level": 9
   },
   {
-    "Country": "Brunéi Darussalam",
+    "Country": "Brunei",
     "Level": 9
   },
   {
@@ -772,7 +772,19 @@
     "Level": 8
   },
   {
-    "Country": "Sao tomé et principe",
+    "Country": "Sao Tomé-et-Principe",
+    "Level": 10
+  },
+  {
+    "Country": "Palestine",
+    "Level": 10
+  },
+  {
+    "Country": "Taïwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
     "Level": 10
   }
 ]

@@ -7,7 +7,7 @@
     "total_area": 468,
     "population": 77265,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "CA",
     "lang_name": "Catalana"
@@ -19,8 +19,8 @@
     "country_demonym": "Emirians",
     "total_area": 83600,
     "population": 9890402,
-    "currency_code": "UAE",
-    "currency_name": "Dirham",
+    "currency_code": "AED",
+    "currency_name": "dírham de los Emiratos Árabes Unidos",
     "currency_symbol": "د.إ",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -33,7 +33,7 @@
     "total_area": 652230,
     "population": 38928346,
     "currency_code": "AFN",
-    "currency_name": "afganos afganos",
+    "currency_name": "afgani afgano",
     "currency_symbol": "؋",
     "lang_code": "FA",
     "lang_name": "persas"
@@ -46,8 +46,8 @@
     "total_area": 442,
     "population": 97929,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -72,7 +72,7 @@
     "total_area": 28748,
     "population": 2877797,
     "currency_code": "ALL",
-    "currency_name": "Lek albanés",
+    "currency_name": "lek albanés",
     "currency_symbol": "L",
     "lang_code": "SQ",
     "lang_name": "Albanés"
@@ -98,7 +98,7 @@
     "total_area": 1246700,
     "population": 32866272,
     "currency_code": "AOA",
-    "currency_name": "Kwanza angoleño",
+    "currency_name": "kuanza angoleño",
     "currency_symbol": "Kz",
     "lang_code": "PT",
     "lang_name": "Portugués"
@@ -124,7 +124,7 @@
     "total_area": 2780400,
     "population": 45195774,
     "currency_code": "ARS",
-    "currency_name": "Peso argentino",
+    "currency_name": "peso argentino",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -164,7 +164,7 @@
     "population": 25499884,
     "currency_code": "AUD",
     "currency_name": "dólar australiano",
-    "currency_symbol": "$",
+    "currency_symbol": "AUD",
     "lang_code": "EN",
     "lang_name": "inglés"
   },
@@ -202,7 +202,7 @@
     "total_area": 86600,
     "population": 10139177,
     "currency_code": "AZN",
-    "currency_name": "Manat azerbaiyano",
+    "currency_name": "manat azerbaiyano",
     "currency_symbol": "₼",
     "lang_code": "AZ",
     "lang_name": "Azerbaiyano"
@@ -215,7 +215,7 @@
     "total_area": 51197,
     "population": 3280819,
     "currency_code": "BAM",
-    "currency_name": "Marco convertible",
+    "currency_name": "marco convertible de Bosnia y Herzegovina",
     "currency_symbol": "KM",
     "lang_code": "HR",
     "lang_name": "croata"
@@ -227,21 +227,21 @@
     "country_demonym": "barbadenses",
     "total_area": 430,
     "population": 287375,
-    "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
+    "currency_code": "BBD",
+    "currency_name": "dólar barbadense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "inglés"
   },
   {
     "country_code": "BD",
-    "country_name": "Bangladesh",
+    "country_name": "Bangladés",
     "capital": "Dhaka",
     "country_demonym": "Bangladeshis",
     "total_area": 143998,
     "population": 164689383,
     "currency_code": "BDT",
-    "currency_name": "Bangladeshi Taka",
+    "currency_name": "taka bangladesí",
     "currency_symbol": "৳",
     "lang_code": "BN",
     "lang_name": "Bangla"
@@ -267,8 +267,8 @@
     "total_area": 274200,
     "population": 20903273,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -279,9 +279,9 @@
     "country_demonym": "búlgaros",
     "total_area": 110879,
     "population": 6948445,
-    "currency_code": "BGN",
-    "currency_name": "Lev búlgaro",
-    "currency_symbol": "лв",
+    "currency_code": "EUR",
+    "currency_name": "euro",
+    "currency_symbol": "€",
     "lang_code": "GB",
     "lang_name": "búlgaro"
   },
@@ -293,7 +293,7 @@
     "total_area": 760,
     "population": 1701575,
     "currency_code": "BHD",
-    "currency_name": "dinar bahreiní",
+    "currency_name": "dinar bareiní",
     "currency_symbol": "BD",
     "lang_code": "AR",
     "lang_name": "árabe"
@@ -301,26 +301,26 @@
   {
     "country_code": "BI",
     "country_name": "Burundi",
-    "capital": "Bujumbura",
+    "capital": "Gitega",
     "country_demonym": "burundeses",
     "total_area": 27830,
     "population": 11890784,
     "currency_code": "BIF",
-    "currency_name": "franco de Burundi",
+    "currency_name": "franco burundés",
     "currency_symbol": "FBu",
     "lang_code": "FR",
     "lang_name": "francés"
   },
   {
     "country_code": "BJ",
-    "country_name": "Benin",
+    "country_name": "Benín",
     "capital": "Porto-Novo",
     "country_demonym": "Beninese",
     "total_area": 112622,
     "population": 12123200,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -352,13 +352,13 @@
   },
   {
     "country_code": "BN",
-    "country_name": "Brunei Darussalam",
+    "country_name": "Brunéi",
     "capital": "Bandar Seri Begawan",
     "country_demonym": "bruneanos",
     "total_area": 5765,
     "population": 437479,
-    "currency_code": "SGD",
-    "currency_name": "dólar de Brunei",
+    "currency_code": "BND",
+    "currency_name": "dólar bruneano",
     "currency_symbol": "$",
     "lang_code": "MS",
     "lang_name": "malayo"
@@ -371,7 +371,7 @@
     "total_area": 1098581,
     "population": 11673021,
     "currency_code": "BOB",
-    "currency_name": "Boliviano",
+    "currency_name": "boliviano",
     "currency_symbol": "Bs",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -397,8 +397,8 @@
     "total_area": 8514877,
     "population": 212559417,
     "currency_code": "BRL",
-    "currency_name": "Real brasileño",
-    "currency_symbol": "R$",
+    "currency_name": "real brasileño",
+    "currency_symbol": "BRL",
     "lang_code": "PT",
     "lang_name": "Portugués"
   },
@@ -423,7 +423,7 @@
     "total_area": 38394,
     "population": 771608,
     "currency_code": "BTN",
-    "currency_name": "ngultrum butanés",
+    "currency_name": "gultrum butanés",
     "currency_symbol": "Nu.",
     "lang_code": "EN",
     "lang_name": "inglés"
@@ -449,7 +449,7 @@
     "total_area": 581730,
     "population": 2351627,
     "currency_code": "BWP",
-    "currency_name": "Botswana Pula",
+    "currency_name": "pula botsuano",
     "currency_symbol": "P",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -461,8 +461,8 @@
     "country_demonym": "Bielorrusos",
     "total_area": 207600,
     "population": 9449323,
-    "currency_code": "BYR",
-    "currency_name": "Rublo bielorruso",
+    "currency_code": "BYN",
+    "currency_name": "rublo bielorruso",
     "currency_symbol": "Br",
     "lang_code": "BE",
     "lang_name": "Bielorruso"
@@ -475,7 +475,7 @@
     "total_area": 22966,
     "population": 397628,
     "currency_code": "BZD",
-    "currency_name": "Dólar de Belice",
+    "currency_name": "dólar beliceño",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -488,8 +488,8 @@
     "total_area": 9984670,
     "population": 37742154,
     "currency_code": "CAD",
-    "currency_name": "Dólar canadiense",
-    "currency_symbol": "$",
+    "currency_name": "dólar canadiense",
+    "currency_symbol": "CAD",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -527,8 +527,8 @@
     "total_area": 622984,
     "population": 4829767,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -540,8 +540,8 @@
     "total_area": 342000,
     "population": 5518087,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "EN",
     "lang_name": "Níger-congo"
   },
@@ -566,8 +566,8 @@
     "total_area": 322463,
     "population": 26378274,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -592,7 +592,7 @@
     "total_area": 756102,
     "population": 19116201,
     "currency_code": "CLP",
-    "currency_name": "Peso chileno",
+    "currency_name": "peso chileno",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -605,8 +605,8 @@
     "total_area": 475440,
     "population": 26545863,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -618,8 +618,8 @@
     "total_area": 9596961,
     "population": 1439323776,
     "currency_code": "CNY",
-    "currency_name": "Yuanes chinos",
-    "currency_symbol": "¥",
+    "currency_name": "yuan renminbi",
+    "currency_symbol": "CNY",
     "lang_code": "ZH",
     "lang_name": "chino"
   },
@@ -644,7 +644,7 @@
     "total_area": 51100,
     "population": 5094118,
     "currency_code": "CRC",
-    "currency_name": "Colón costarricense",
+    "currency_name": "colón costarricense",
     "currency_symbol": "₡",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -656,8 +656,8 @@
     "country_demonym": "Cubanos",
     "total_area": 110860,
     "population": 11326616,
-    "currency_code": "CUC",
-    "currency_name": "Peso Convertible Cubano",
+    "currency_code": "CUP",
+    "currency_name": "peso cubano",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -670,7 +670,7 @@
     "total_area": 4033,
     "population": 555987,
     "currency_code": "CVE",
-    "currency_name": "Escudo de Cabo Verde",
+    "currency_name": "escudo de Cabo Verde",
     "currency_symbol": "$",
     "lang_code": "PT",
     "lang_name": "Portugués"
@@ -716,13 +716,13 @@
   },
   {
     "country_code": "CZ",
-    "country_name": "República Checa",
+    "country_name": "Chequia",
     "capital": "Praga",
     "country_demonym": "Checos",
     "total_area": 78867,
     "population": 10708981,
     "currency_code": "CZK",
-    "currency_name": "Corona checa",
+    "currency_name": "corona checa",
     "currency_symbol": "Kč",
     "lang_code": "CS",
     "lang_name": "Checo"
@@ -735,20 +735,20 @@
     "total_area": 357022,
     "population": 83783942,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "DE",
     "lang_name": "Alemán"
   },
   {
     "country_code": "DJ",
-    "country_name": "Djibouti",
+    "country_name": "Yibuti",
     "capital": "Djibouti",
     "country_demonym": "Djibutianos",
     "total_area": 23200,
     "population": 988000,
     "currency_code": "DJF",
-    "currency_name": "Franco de Djibouti",
+    "currency_name": "franco yibutiano",
     "currency_symbol": "Fdj",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -761,7 +761,7 @@
     "total_area": 43094,
     "population": 5792202,
     "currency_code": "DKK",
-    "currency_name": "Corona danesa",
+    "currency_name": "corona danesa",
     "currency_symbol": "kr.",
     "lang_code": "DA",
     "lang_name": "Danés"
@@ -774,8 +774,8 @@
     "total_area": 751,
     "population": 71986,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -787,7 +787,7 @@
     "total_area": 48670,
     "population": 10847910,
     "currency_code": "DOP",
-    "currency_name": "Peso dominicano",
+    "currency_name": "peso dominicano",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -800,7 +800,7 @@
     "total_area": 2381741,
     "population": 43851044,
     "currency_code": "DZD",
-    "currency_name": "Dinar argelino",
+    "currency_name": "dinar argelino",
     "currency_symbol": "DA",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -813,8 +813,8 @@
     "total_area": 283561,
     "population": 17643054,
     "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
-    "currency_symbol": "$",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "ES",
     "lang_name": "español"
   },
@@ -826,7 +826,7 @@
     "total_area": 45228,
     "population": 1326535,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "ET",
     "lang_name": "Estoniana"
@@ -839,7 +839,7 @@
     "total_area": 1001450,
     "population": 102334404,
     "currency_code": "EGP",
-    "currency_name": "Libra egipcia",
+    "currency_name": "libra egipcia",
     "currency_symbol": "E£",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -865,7 +865,7 @@
     "total_area": 117600,
     "population": 3546421,
     "currency_code": "ERN",
-    "currency_name": "Eritrea Nakfa",
+    "currency_name": "nakfa eritreo",
     "currency_symbol": "Nkf",
     "lang_code": "TI",
     "lang_name": "Tigrinya"
@@ -878,7 +878,7 @@
     "total_area": 505370,
     "population": 46754778,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -891,7 +891,7 @@
     "total_area": 1104300,
     "population": 114963588,
     "currency_code": "ETB",
-    "currency_name": "birr etíope",
+    "currency_name": "bir etíope",
     "currency_symbol": "Br",
     "lang_code": "AM",
     "lang_name": "amárico"
@@ -904,7 +904,7 @@
     "total_area": 338145,
     "population": 5540720,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "FI",
     "lang_name": "Finlandés"
@@ -943,8 +943,8 @@
     "total_area": 702,
     "population": 548914,
     "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
-    "currency_symbol": "$",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -969,7 +969,7 @@
     "total_area": 643801,
     "population": 65273511,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -982,8 +982,8 @@
     "total_area": 267667,
     "population": 2225734,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -995,8 +995,8 @@
     "total_area": 243610,
     "population": 67886011,
     "currency_code": "GBP",
-    "currency_name": "Libra esterlina",
-    "currency_symbol": "£",
+    "currency_name": "libra esterlina",
+    "currency_symbol": "GBP",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1008,8 +1008,8 @@
     "total_area": 344,
     "population": 112523,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1021,7 +1021,7 @@
     "total_area": 69700,
     "population": 3989167,
     "currency_code": "GEL",
-    "currency_name": "Lari georgiano",
+    "currency_name": "lari georgiano",
     "currency_symbol": "₾",
     "lang_code": "KA",
     "lang_name": "Georgiano"
@@ -1060,7 +1060,7 @@
     "total_area": 238533,
     "population": 31072940,
     "currency_code": "GHS",
-    "currency_name": "nuevos cedi ghaneses",
+    "currency_name": "cedi ghanés",
     "currency_symbol": "GH₵",
     "lang_code": "EE",
     "lang_name": "oveja"
@@ -1099,7 +1099,7 @@
     "total_area": 11295,
     "population": 2416668,
     "currency_code": "GMD",
-    "currency_name": "Gambian Dalasi",
+    "currency_name": "dalasi gambiano",
     "currency_symbol": "D",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -1133,13 +1133,13 @@
   {
     "country_code": "GQ",
     "country_name": "Guinea Ecuatorial",
-    "capital": "Malabo",
+    "capital": "Ciudad de la Paz",
     "country_demonym": "Guineanos Ecuatoriales",
     "total_area": 28051,
     "population": 1402985,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "ES",
     "lang_name": "Español"
   },
@@ -1151,7 +1151,7 @@
     "total_area": 131957,
     "population": 10423054,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "EL",
     "lang_name": "Griego"
@@ -1177,7 +1177,7 @@
     "total_area": 108889,
     "population": 17915568,
     "currency_code": "GTQ",
-    "currency_name": "Quetzal guatemalteco",
+    "currency_name": "quetzal guatemalteco",
     "currency_symbol": "Q",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -1197,14 +1197,14 @@
   },
   {
     "country_code": "GW",
-    "country_name": "Guinea-Bissau",
+    "country_name": "Guinea-Bisáu",
     "capital": "Bissau",
     "country_demonym": "Bissau-Guineans",
     "total_area": 36125,
     "population": 1968001,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "PT",
     "lang_name": "Portugués"
   },
@@ -1216,7 +1216,7 @@
     "total_area": 214969,
     "population": 786552,
     "currency_code": "GYD",
-    "currency_name": "Dólar guyanés",
+    "currency_name": "dólar guyanés",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -1267,9 +1267,9 @@
     "country_demonym": "croatas",
     "total_area": 56594,
     "population": 4105267,
-    "currency_code": "HRK",
-    "currency_name": "kuna croata",
-    "currency_symbol": "kn",
+    "currency_code": "EUR",
+    "currency_name": "euro",
+    "currency_symbol": "€",
     "lang_code": "HR",
     "lang_name": "croata"
   },
@@ -1281,7 +1281,7 @@
     "total_area": 27750,
     "population": 11402528,
     "currency_code": "HTG",
-    "currency_name": "gourde haitiano",
+    "currency_name": "gurde haitiano",
     "currency_symbol": "G",
     "lang_code": "FR",
     "lang_name": "francés"
@@ -1294,7 +1294,7 @@
     "total_area": 93028,
     "population": 9660351,
     "currency_code": "HUF",
-    "currency_name": "Florín húngaro",
+    "currency_name": "forinto húngaro",
     "currency_symbol": "Ft",
     "lang_code": "HU",
     "lang_name": "Húngaro"
@@ -1320,7 +1320,7 @@
     "total_area": 70273,
     "population": 4937786,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "GA",
     "lang_name": "Irlandés"
@@ -1333,8 +1333,8 @@
     "total_area": 20770,
     "population": 8655535,
     "currency_code": "ILS",
-    "currency_name": "nuevo shekel israelí",
-    "currency_symbol": "₪",
+    "currency_name": "nuevo séquel israelí",
+    "currency_symbol": "ILS",
     "lang_code": "HE",
     "lang_name": "hebreo"
   },
@@ -1360,7 +1360,7 @@
     "population": 1380004385,
     "currency_code": "INR",
     "currency_name": "rupia india",
-    "currency_symbol": "₹",
+    "currency_symbol": "INR",
     "lang_code": "HI",
     "lang_name": "hindi"
   },
@@ -1385,7 +1385,7 @@
     "total_area": 438317,
     "population": 40222493,
     "currency_code": "IQD",
-    "currency_name": "Dinar iraquí",
+    "currency_name": "dinar iraquí",
     "currency_symbol": "د.ع",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -1411,7 +1411,7 @@
     "total_area": 103000,
     "population": 341243,
     "currency_code": "ISK",
-    "currency_name": "corona de Islandia",
+    "currency_name": "corona islandesa",
     "currency_symbol": "kr",
     "lang_code": "IS",
     "lang_name": "islandés"
@@ -1424,7 +1424,7 @@
     "total_area": 301340,
     "population": 60461826,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "IT",
     "lang_name": "Italiano"
@@ -1450,7 +1450,7 @@
     "total_area": 10991,
     "population": 2961167,
     "currency_code": "JMD",
-    "currency_name": "dólar jamaiquino",
+    "currency_name": "dólar jamaicano",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "inglés (inglés jamaiquino)"
@@ -1476,8 +1476,8 @@
     "total_area": 377915,
     "population": 126476461,
     "currency_code": "JPY",
-    "currency_name": "Yen japonés",
-    "currency_symbol": "¥",
+    "currency_name": "yen japonés",
+    "currency_symbol": "JPY",
     "lang_code": "JA",
     "lang_name": "Japonés"
   },
@@ -1502,7 +1502,7 @@
     "total_area": 199951,
     "population": 6524195,
     "currency_code": "KGS",
-    "currency_name": "Kyrgyzstani Som",
+    "currency_name": "som kirguís",
     "currency_symbol": "Лв",
     "lang_code": "RU",
     "lang_name": "Ruso"
@@ -1515,7 +1515,7 @@
     "total_area": 181035,
     "population": 16718965,
     "currency_code": "KHR",
-    "currency_name": "Riel camboyano",
+    "currency_name": "riel camboyano",
     "currency_symbol": "៛",
     "lang_code": "KM",
     "lang_name": "Khmer"
@@ -1528,8 +1528,8 @@
     "total_area": 811,
     "population": 119449,
     "currency_code": "AUD",
-    "currency_name": "Dólar australiano",
-    "currency_symbol": "$",
+    "currency_name": "dólar australiano",
+    "currency_symbol": "AUD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1541,7 +1541,7 @@
     "total_area": 2235,
     "population": 869601,
     "currency_code": "KMF",
-    "currency_name": "Franco de Comoras",
+    "currency_name": "franco comorense",
     "currency_symbol": "CF",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -1554,8 +1554,8 @@
     "total_area": 261,
     "population": 53199,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1581,7 +1581,7 @@
     "population": 51269185,
     "currency_code": "KRW",
     "currency_name": "won surcoreano",
-    "currency_symbol": "₩",
+    "currency_symbol": "KRW",
     "lang_code": "KO",
     "lang_name": "coreano"
   },
@@ -1593,7 +1593,7 @@
     "total_area": 17818,
     "population": 4270571,
     "currency_code": "KWD",
-    "currency_name": "Dinar kuwaití",
+    "currency_name": "dinar kuwaití",
     "currency_symbol": "KD",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -1619,7 +1619,7 @@
     "total_area": 2724900,
     "population": 18776707,
     "currency_code": "KZT",
-    "currency_name": "tenge kazajo",
+    "currency_name": "tengue kazajo",
     "currency_symbol": "₸",
     "lang_code": "RU",
     "lang_name": "ruso"
@@ -1632,7 +1632,7 @@
     "total_area": 236800,
     "population": 7275560,
     "currency_code": "LAK",
-    "currency_name": "Lao Kip",
+    "currency_name": "kip laosiano",
     "currency_symbol": "₭",
     "lang_code": "LO",
     "lang_name": "Lao"
@@ -1645,7 +1645,7 @@
     "total_area": 10400,
     "population": 6825445,
     "currency_code": "LBP",
-    "currency_name": "Libra libanesa",
+    "currency_name": "libra libanesa",
     "currency_symbol": "LL",
     "lang_code": "AR",
     "lang_name": "Arábica"
@@ -1658,8 +1658,8 @@
     "total_area": 616,
     "population": 183627,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1679,12 +1679,12 @@
   {
     "country_code": "LK",
     "country_name": "Sri Lanka",
-    "capital": "Colombo",
+    "capital": "Sri Jayawardenepura Kotte",
     "country_demonym": "Srilanqueses",
     "total_area": 65610,
     "population": 21413249,
     "currency_code": "LKR",
-    "currency_name": "Rupia de Sri Lanka",
+    "currency_name": "rupia esrilanquesa",
     "currency_symbol": "රු",
     "lang_code": "TA",
     "lang_name": "Tamil"
@@ -1697,7 +1697,7 @@
     "total_area": 111369,
     "population": 5057681,
     "currency_code": "LRD",
-    "currency_name": "Dólar liberiano",
+    "currency_name": "dólar liberiano",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -1710,7 +1710,7 @@
     "total_area": 30355,
     "population": 2142249,
     "currency_code": "LSL",
-    "currency_name": "Lesotho Loti",
+    "currency_name": "loti lesotense",
     "currency_symbol": "M",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -1722,9 +1722,9 @@
     "country_demonym": "lituanos",
     "total_area": 65300,
     "population": 2722289,
-    "currency_code": "LTL",
-    "currency_name": "litas lituanos",
-    "currency_symbol": "Lt",
+    "currency_code": "EUR",
+    "currency_name": "euro",
+    "currency_symbol": "€",
     "lang_code": "LT",
     "lang_name": "lituanos"
   },
@@ -1736,7 +1736,7 @@
     "total_area": 2586,
     "population": 625978,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -1749,7 +1749,7 @@
     "total_area": 64589,
     "population": 1886198,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "LV",
     "lang_name": "Letón"
@@ -1762,7 +1762,7 @@
     "total_area": 1759540,
     "population": 6871292,
     "currency_code": "LYD",
-    "currency_name": "Dinar libio",
+    "currency_name": "dinar libio",
     "currency_symbol": "LD",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -1775,7 +1775,7 @@
     "total_area": 446550,
     "population": 36910560,
     "currency_code": "MAD",
-    "currency_name": "Dirham marroquí",
+    "currency_name": "dírham marroquí",
     "currency_symbol": "DH",
     "lang_code": "AR",
     "lang_name": "árabe"
@@ -1788,7 +1788,7 @@
     "total_area": 2,
     "population": 39242,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -1814,7 +1814,7 @@
     "total_area": 13812,
     "population": 628066,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "SR",
     "lang_name": "Serbio"
@@ -1840,7 +1840,7 @@
     "total_area": 587041,
     "population": 27691018,
     "currency_code": "MGA",
-    "currency_name": "Ariary malgache",
+    "currency_name": "ariari malgache",
     "currency_symbol": "Ar",
     "lang_code": "FR",
     "lang_name": "francés"
@@ -1853,8 +1853,8 @@
     "total_area": 181,
     "population": 59190,
     "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
-    "currency_symbol": "$",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -1866,7 +1866,7 @@
     "total_area": 25713,
     "population": 2083374,
     "currency_code": "MKD",
-    "currency_name": "denar macedonio",
+    "currency_name": "dinar macedonio",
     "currency_symbol": "den",
     "lang_code": "MK",
     "lang_name": "macedonio"
@@ -1879,20 +1879,20 @@
     "total_area": 1240192,
     "population": 20250833,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "francés"
   },
   {
     "country_code": "MM",
     "country_name": "Myanmar",
-    "capital": "Pyinmana",
+    "capital": "Nay Pyi Taw",
     "country_demonym": "Birmano",
     "total_area": 676578,
     "population": 54409800,
     "currency_code": "MMK",
-    "currency_name": "Myanmar Kyat",
+    "currency_name": "kiat de Myanmar",
     "currency_symbol": "K",
     "lang_code": "MY",
     "lang_name": "Birmano"
@@ -1905,7 +1905,7 @@
     "total_area": 1564116,
     "population": 3278290,
     "currency_code": "MNT",
-    "currency_name": "Mongolian Tugrik",
+    "currency_name": "tugrik mongol",
     "currency_symbol": "₮",
     "lang_code": "MN",
     "lang_name": "Mongolian"
@@ -1956,7 +1956,7 @@
     "country_demonym": "mauritanos",
     "total_area": 1030700,
     "population": 4649658,
-    "currency_code": "MRO",
+    "currency_code": "MRU",
     "currency_name": "uguiya mauritano",
     "currency_symbol": "UM",
     "lang_code": "AR",
@@ -1983,7 +1983,7 @@
     "total_area": 316,
     "population": 441543,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "MT",
     "lang_name": "Maltés"
@@ -1996,7 +1996,7 @@
     "total_area": 2040,
     "population": 1271768,
     "currency_code": "MUR",
-    "currency_name": "Rupia de Mauricio",
+    "currency_name": "rupia mauriciana",
     "currency_symbol": "₨",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -2009,20 +2009,20 @@
     "total_area": 298,
     "population": 540544,
     "currency_code": "MVR",
-    "currency_name": "Maldivas Rufiyaa",
+    "currency_name": "rufiya maldiva",
     "currency_symbol": "Rf",
     "lang_code": "DV",
     "lang_name": "Maldivas"
   },
   {
     "country_code": "MW",
-    "country_name": "Malawi",
+    "country_name": "Malaui",
     "capital": "Lilongwe",
     "country_demonym": "Malawianos",
     "total_area": 118484,
     "population": 19129952,
     "currency_code": "MWK",
-    "currency_name": "Kwacha de Malawi",
+    "currency_name": "kuacha malauí",
     "currency_symbol": "K",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2035,8 +2035,8 @@
     "total_area": 1964375,
     "population": 128932753,
     "currency_code": "MXN",
-    "currency_name": "Peso mexicano",
-    "currency_symbol": "$",
+    "currency_name": "peso mexicano",
+    "currency_symbol": "MXN",
     "lang_code": "ES",
     "lang_name": "Español"
   },
@@ -2048,7 +2048,7 @@
     "total_area": 329847,
     "population": 32365999,
     "currency_code": "MYR",
-    "currency_name": "Ringgit de Malasia",
+    "currency_name": "ringit malasio",
     "currency_symbol": "RM",
     "lang_code": "MS",
     "lang_name": "Malayo"
@@ -2099,9 +2099,9 @@
     "country_demonym": "Nigeriens",
     "total_area": 1186408,
     "population": 24206644,
-    "currency_code": "NZD",
-    "currency_name": "Dólar de Nueva Zelanda",
-    "currency_symbol": "$",
+    "currency_code": "XOF",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -2126,7 +2126,7 @@
     "total_area": 923768,
     "population": 206139589,
     "currency_code": "NGN",
-    "currency_name": "naira nigeriana",
+    "currency_name": "naira nigeriano",
     "currency_symbol": "₦",
     "lang_code": "EN",
     "lang_name": "inglés"
@@ -2139,7 +2139,7 @@
     "total_area": 130370,
     "population": 6624554,
     "currency_code": "NIO",
-    "currency_name": "Nicaragüense CÓrdoba",
+    "currency_name": "córdoba oro",
     "currency_symbol": "C$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -2152,7 +2152,7 @@
     "total_area": 41543,
     "population": 17134872,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "NL",
     "lang_name": "Holandés"
@@ -2165,7 +2165,7 @@
     "total_area": 323802,
     "population": 5421241,
     "currency_code": "NOK",
-    "currency_name": "Coronas noruegas",
+    "currency_name": "corona noruega",
     "currency_symbol": "kr",
     "lang_code": "NO",
     "lang_name": "Noruego"
@@ -2192,7 +2192,7 @@
     "population": 10824,
     "currency_code": "AUD",
     "currency_name": "dólar australiano",
-    "currency_symbol": "$",
+    "currency_symbol": "AUD",
     "lang_code": "EN",
     "lang_name": "inglés"
   },
@@ -2218,7 +2218,7 @@
     "population": 4822233,
     "currency_code": "NZD",
     "currency_name": "dólar neozelandés",
-    "currency_symbol": "$",
+    "currency_symbol": "NZD",
     "lang_code": "EN",
     "lang_name": "inglés"
   },
@@ -2230,7 +2230,7 @@
     "total_area": 309500,
     "population": 5106626,
     "currency_code": "OMR",
-    "currency_name": "Rial omaní",
+    "currency_name": "rial omaní",
     "currency_symbol": "ر.ع.",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -2243,7 +2243,7 @@
     "total_area": 75420,
     "population": 4314767,
     "currency_code": "PAB",
-    "currency_name": "Balboa panameño",
+    "currency_name": "balboa panameño",
     "currency_symbol": "B/.",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -2256,7 +2256,7 @@
     "total_area": 1285216,
     "population": 32971854,
     "currency_code": "PEN",
-    "currency_name": "Nuevo Sol Peruano",
+    "currency_name": "sol peruano",
     "currency_symbol": "S/",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -2282,7 +2282,7 @@
     "total_area": 462840,
     "population": 8947024,
     "currency_code": "PGK",
-    "currency_name": "Papúa China",
+    "currency_name": "kina papú",
     "currency_symbol": "K",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2295,8 +2295,8 @@
     "total_area": 300000,
     "population": 109581078,
     "currency_code": "PHP",
-    "currency_name": "Peso filipino",
-    "currency_symbol": "₱",
+    "currency_name": "peso filipino",
+    "currency_symbol": "PHP",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -2308,7 +2308,7 @@
     "total_area": 796095,
     "population": 220892340,
     "currency_code": "PKR",
-    "currency_name": "Rupia de Pakistán",
+    "currency_name": "rupia pakistaní",
     "currency_symbol": "₨",
     "lang_code": "UR",
     "lang_name": "Urdu"
@@ -2321,7 +2321,7 @@
     "total_area": 312685,
     "population": 37846611,
     "currency_code": "PLN",
-    "currency_name": "Zloty polaco",
+    "currency_name": "esloti polaco",
     "currency_symbol": "zł",
     "lang_code": "PL",
     "lang_name": "Polaco"
@@ -2368,15 +2368,15 @@
   {
     "country_code": "PS",
     "country_name": "Palestina",
-    "capital": "-",
+    "capital": "Jerusalén Este / Ramala",
     "country_demonym": "palestinos",
     "total_area": 5860,
     "population": 5101414,
     "currency_code": "ILS",
-    "currency_name": "Nueva israel shekel",
-    "currency_symbol": "₪",
-    "lang_code": "EN",
-    "lang_name": "inglés"
+    "currency_name": "nuevo séquel israelí",
+    "currency_symbol": "ILS",
+    "lang_code": "AR",
+    "lang_name": "Árabe"
   },
   {
     "country_code": "PT",
@@ -2386,21 +2386,21 @@
     "total_area": 92090,
     "population": 10196709,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "PT",
     "lang_name": "Portugués"
   },
   {
     "country_code": "PW",
-    "country_name": "Palau",
+    "country_name": "Palaos",
     "capital": "Ngerulmudu",
     "country_demonym": "palauanos",
     "total_area": 459,
     "population": 18094,
     "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
-    "currency_symbol": "$",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "EN",
     "lang_name": "inglés"
   },
@@ -2412,20 +2412,20 @@
     "total_area": 406752,
     "population": 7132538,
     "currency_code": "PYG",
-    "currency_name": "Paraguayan GuaranÍ",
+    "currency_name": "guaraní paraguayo",
     "currency_symbol": "₲",
     "lang_code": "ES",
     "lang_name": "Español"
   },
   {
     "country_code": "QA",
-    "country_name": "Qatar",
+    "country_name": "Catar",
     "capital": "Doha",
     "country_demonym": "Qataris",
     "total_area": 11586,
     "population": 2881053,
     "currency_code": "QAR",
-    "currency_name": "Riyal qatarí",
+    "currency_name": "rial catarí",
     "currency_symbol": "QR",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -2451,7 +2451,7 @@
     "total_area": 238391,
     "population": 19237691,
     "currency_code": "RON",
-    "currency_name": "nuevos lei rumanos",
+    "currency_name": "leu rumano",
     "currency_symbol": "RON",
     "lang_code": "RO",
     "lang_name": "rumanos"
@@ -2464,7 +2464,7 @@
     "total_area": 77474,
     "population": 8737371,
     "currency_code": "RSD",
-    "currency_name": "Dinar serbio",
+    "currency_name": "dinar serbio",
     "currency_symbol": "din",
     "lang_code": "SR",
     "lang_name": "Serbio"
@@ -2477,7 +2477,7 @@
     "total_area": 17098242,
     "population": 145934462,
     "currency_code": "RUB",
-    "currency_name": "Rublo Ruso",
+    "currency_name": "rublo ruso",
     "currency_symbol": "₽",
     "lang_code": "RU",
     "lang_name": "Ruso"
@@ -2490,14 +2490,14 @@
     "total_area": 26338,
     "population": 12952218,
     "currency_code": "RWF",
-    "currency_name": "Franco ruandés",
+    "currency_name": "franco ruandés",
     "currency_symbol": "FRw",
     "lang_code": "FR",
     "lang_name": "francés"
   },
   {
     "country_code": "SA",
-    "country_name": "Arabia Saudita",
+    "country_name": "Arabia Saudí",
     "capital": "Riyadh",
     "country_demonym": "saudíes",
     "total_area": 2149690,
@@ -2516,7 +2516,7 @@
     "total_area": 28896,
     "population": 686884,
     "currency_code": "SBD",
-    "currency_name": "Dólar salomonense",
+    "currency_name": "dólar salomonense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2529,7 +2529,7 @@
     "total_area": 455,
     "population": 98347,
     "currency_code": "SCR",
-    "currency_name": "Rupia de Seychelles",
+    "currency_name": "rupia seychellense",
     "currency_symbol": "SR",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -2555,7 +2555,7 @@
     "total_area": 450295,
     "population": 10099265,
     "currency_code": "SEK",
-    "currency_name": "Corona sueca",
+    "currency_name": "corona sueca",
     "currency_symbol": "kr",
     "lang_code": "SV",
     "lang_name": "Sueco"
@@ -2568,7 +2568,7 @@
     "total_area": 697,
     "population": 5850342,
     "currency_code": "SGD",
-    "currency_name": "Dólar de Singapur",
+    "currency_name": "dólar singapurense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2594,7 +2594,7 @@
     "total_area": 20273,
     "population": 2078938,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "SL",
     "lang_name": "Esloveno"
@@ -2620,7 +2620,7 @@
     "total_area": 49035,
     "population": 5459642,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "SK",
     "lang_name": "Eslovaco"
@@ -2632,8 +2632,8 @@
     "country_demonym": "Sammarinese",
     "total_area": 71740,
     "population": 7976983,
-    "currency_code": "SLL",
-    "currency_name": "Sierra Leona Leona",
+    "currency_code": "SLE",
+    "currency_name": "leona sierraleonesa",
     "currency_symbol": "Le",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2646,7 +2646,7 @@
     "total_area": 61,
     "population": 33931,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "IT",
     "lang_name": "Italiano"
@@ -2659,8 +2659,8 @@
     "total_area": 196722,
     "population": 16743927,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -2685,7 +2685,7 @@
     "total_area": 163820,
     "population": 586632,
     "currency_code": "SRD",
-    "currency_name": "Dólar surinamés",
+    "currency_name": "dólar surinamés",
     "currency_symbol": "$",
     "lang_code": "NL",
     "lang_name": "Holandés"
@@ -2698,7 +2698,7 @@
     "total_area": 644329,
     "population": 11193725,
     "currency_code": "SSP",
-    "currency_name": "Libra de Sudán del Sur",
+    "currency_name": "libra sursudanesa",
     "currency_symbol": "SD",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2710,8 +2710,8 @@
     "country_demonym": "Santo Tomé",
     "total_area": 964,
     "population": 219159,
-    "currency_code": "STD",
-    "currency_name": "Droba",
+    "currency_code": "STN",
+    "currency_name": "dobra santotomense",
     "currency_symbol": "Db",
     "lang_code": "PT",
     "lang_name": "Portugués"
@@ -2723,9 +2723,9 @@
     "country_demonym": "Salvadoreños",
     "total_area": 21041,
     "population": 6486205,
-    "currency_code": "NOK",
-    "currency_name": "Coronas noruegas",
-    "currency_symbol": "kr",
+    "currency_code": "USD",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "ES",
     "lang_name": "Español"
   },
@@ -2763,7 +2763,7 @@
     "total_area": 17364,
     "population": 1160164,
     "currency_code": "SZL",
-    "currency_name": "Swazi Lilangeni",
+    "currency_name": "lilangeni esuatiní",
     "currency_symbol": "L",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2789,8 +2789,8 @@
     "total_area": 1284000,
     "population": 16425864,
     "currency_code": "XAF",
-    "currency_name": "Cfa Franc Beac",
-    "currency_symbol": "FCFA",
+    "currency_name": "franco CFA de África Central",
+    "currency_symbol": "XAF",
     "lang_code": "AR",
     "lang_name": "árabe"
   },
@@ -2815,8 +2815,8 @@
     "total_area": 56785,
     "population": 8278724,
     "currency_code": "XOF",
-    "currency_name": "Cfa Franc Bceao",
-    "currency_symbol": "CFA",
+    "currency_name": "franco CFA de África Occidental",
+    "currency_symbol": "XOF",
     "lang_code": "FR",
     "lang_name": "Francés"
   },
@@ -2828,7 +2828,7 @@
     "total_area": 513120,
     "population": 69799978,
     "currency_code": "THB",
-    "currency_name": "baht tailandés",
+    "currency_name": "bat tailandés",
     "currency_symbol": "฿",
     "lang_code": "TH",
     "lang_name": "tailandés"
@@ -2841,7 +2841,7 @@
     "total_area": 143100,
     "population": 9537645,
     "currency_code": "TJS",
-    "currency_name": "Tayikistán Somoni",
+    "currency_name": "somoni tayiko",
     "currency_symbol": "ЅM",
     "lang_code": "FA",
     "lang_name": "Persa"
@@ -2861,14 +2861,14 @@
   },
   {
     "country_code": "TL",
-    "country_name": "Timor Oriental",
+    "country_name": "Timor-Leste",
     "capital": "Dili",
     "country_demonym": "Timorense",
     "total_area": 14874,
     "population": 1318445,
-    "currency_code": "NZD",
-    "currency_name": "Dólar neozelandés",
-    "currency_symbol": "$",
+    "currency_code": "USD",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "PT",
     "lang_name": "Portugués"
   },
@@ -2880,7 +2880,7 @@
     "total_area": 488100,
     "population": 6031200,
     "currency_code": "TMT",
-    "currency_name": "Turkmenistán Manat",
+    "currency_name": "manat turcomano",
     "currency_symbol": "T",
     "lang_code": "RU",
     "lang_name": "Ruso"
@@ -2893,7 +2893,7 @@
     "total_area": 163610,
     "population": 11818619,
     "currency_code": "TND",
-    "currency_name": "Dinar tunecino",
+    "currency_name": "dinar tunecino",
     "currency_symbol": "DT",
     "lang_code": "AR",
     "lang_name": "Árabe literario"
@@ -2906,7 +2906,7 @@
     "total_area": 747,
     "population": 105695,
     "currency_code": "TOP",
-    "currency_name": "Tongan Pa'anga",
+    "currency_name": "paanga tongano",
     "currency_symbol": "T$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2932,7 +2932,7 @@
     "total_area": 5128,
     "population": 1399488,
     "currency_code": "TTD",
-    "currency_name": "Dólar de Trinidad/Tobago",
+    "currency_name": "dólar de Trinidad y Tobago",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2946,7 +2946,7 @@
     "population": 11792,
     "currency_code": "AUD",
     "currency_name": "dólar australiano",
-    "currency_symbol": "$",
+    "currency_symbol": "AUD",
     "lang_code": "EN",
     "lang_name": "inglés tuvaluano"
   },
@@ -2958,8 +2958,8 @@
     "total_area": 35980,
     "population": 23816775,
     "currency_code": "TWD",
-    "currency_name": "dólar de Taiwán",
-    "currency_symbol": "NT$",
+    "currency_name": "nuevo dólar taiwanés",
+    "currency_symbol": "TWD",
     "lang_code": "ZH",
     "lang_name": "Tw chino"
   },
@@ -2971,7 +2971,7 @@
     "total_area": 947300,
     "population": 59734218,
     "currency_code": "TZS",
-    "currency_name": "Chelín de Tanzania",
+    "currency_name": "chelín tanzano",
     "currency_symbol": "TSh",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -2979,7 +2979,7 @@
   {
     "country_code": "UA",
     "country_name": "Ucrania",
-    "capital": "Kiev",
+    "capital": "Kyiv",
     "country_demonym": "ucranianos",
     "total_area": 603550,
     "population": 43733762,
@@ -3023,8 +3023,8 @@
     "total_area": 9826675,
     "population": 331002651,
     "currency_code": "USD",
-    "currency_name": "Dólar estadounidense",
-    "currency_symbol": "$",
+    "currency_name": "dólar estadounidense",
+    "currency_symbol": "US$",
     "lang_code": "EN",
     "lang_name": "dólar estadounidense"
   },
@@ -3035,8 +3035,8 @@
     "country_demonym": "Uruguayans",
     "total_area": 176215,
     "population": 3473730,
-    "currency_code": "UYI",
-    "currency_name": "Peso uruguayo",
+    "currency_code": "UYU",
+    "currency_name": "peso uruguayo",
     "currency_symbol": "$",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -3049,7 +3049,7 @@
     "total_area": 447400,
     "population": 33469203,
     "currency_code": "UZS",
-    "currency_name": "Uzbekistán Som",
+    "currency_name": "sum uzbeko",
     "currency_symbol": "som",
     "lang_code": "UZ",
     "lang_name": "Uzbeko"
@@ -3062,7 +3062,7 @@
     "total_area": 0.44,
     "population": 801,
     "currency_code": "EUR",
-    "currency_name": "Euro",
+    "currency_name": "euro",
     "currency_symbol": "€",
     "lang_code": "EN",
     "lang_name": "Latín"
@@ -3075,8 +3075,8 @@
     "total_area": 389,
     "population": 110940,
     "currency_code": "XCD",
-    "currency_name": "Dólar del Caribe Oriental",
-    "currency_symbol": "$",
+    "currency_name": "dólar del Caribe Oriental",
+    "currency_symbol": "XCD",
     "lang_code": "EN",
     "lang_name": "Inglés"
   },
@@ -3087,8 +3087,8 @@
     "country_demonym": "Venezolanos",
     "total_area": 912050,
     "population": 28435940,
-    "currency_code": "VEF",
-    "currency_name": "Bolívar venezolano",
+    "currency_code": "VES",
+    "currency_name": "bolívar venezolano",
     "currency_symbol": "Bs.S.",
     "lang_code": "ES",
     "lang_name": "Español"
@@ -3140,7 +3140,7 @@
     "total_area": 12189,
     "population": 307145,
     "currency_code": "VUV",
-    "currency_name": "Vanuatu Vatu",
+    "currency_name": "vatu vanuatense",
     "currency_symbol": "VT",
     "lang_code": "FR",
     "lang_name": "Francés"
@@ -3166,7 +3166,7 @@
     "total_area": 2831,
     "population": 198414,
     "currency_code": "WST",
-    "currency_name": "Samoan Tala",
+    "currency_name": "tala samoano",
     "currency_symbol": "WS$",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -3179,7 +3179,7 @@
     "total_area": 527968,
     "population": 29825964,
     "currency_code": "YER",
-    "currency_name": "Rial yemení",
+    "currency_name": "rial yemení",
     "currency_symbol": "﷼",
     "lang_code": "AR",
     "lang_name": "Árabe"
@@ -3200,7 +3200,7 @@
   {
     "country_code": "ZA",
     "country_name": "Sudáfrica",
-    "capital": "Ciudad del Cabo",
+    "capital": "Pretoria / Ciudad del Cabo / Bloemfontein",
     "country_demonym": "sudafricanos",
     "total_area": 1219090,
     "population": 59308690,
@@ -3218,7 +3218,7 @@
     "total_area": 752618,
     "population": 18383955,
     "currency_code": "ZMW",
-    "currency_name": "Zambian Kwacha",
+    "currency_name": "kuacha zambiano",
     "currency_symbol": "K",
     "lang_code": "EN",
     "lang_name": "Inglés"
@@ -3230,10 +3230,23 @@
     "country_demonym": "Zimbabue",
     "total_area": 390757,
     "population": 14862924,
-    "currency_code": "ZWD",
-    "currency_name": "Dólar de Zimbabue",
+    "currency_code": "ZWG",
+    "currency_name": "oro zimbabuense",
     "currency_symbol": "$",
     "lang_code": "EN",
     "lang_name": "Inglés"
+  },
+  {
+    "country_code": "XK",
+    "country_name": "Kosovo",
+    "capital": "Pristina",
+    "country_demonym": "kosovares",
+    "total_area": 10887,
+    "population": 1585666,
+    "currency_code": "EUR",
+    "currency_name": "euro",
+    "currency_symbol": "€",
+    "lang_code": "SQ",
+    "lang_name": "Albanés"
   }
 ]

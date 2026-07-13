@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../helper/level_progress_merge.dart';
+
 class LevelRepo {
   final SharedPreferences sharedPreferences;
 
@@ -21,32 +23,17 @@ class LevelRepo {
     List<LevelModel> levelModels = [];
     levelModels = list.map((e) => LevelModel.fromJson(e)).toList();
 
-    if (sharedPreferences.getStringList(option) != null) {
-      List<String> responsePref = sharedPreferences.getStringList(option)!;
-      List<LevelModel> levelModelPref = [];
-      for (var element in responsePref) {
-        levelModelPref.add(LevelModel.fromJson(jsonDecode(element)));
-      }
-      for (int i = 0; i < levelModels.length; i++) {
-        if (levelModelPref[i].guessed!) {
-          levelModels[i].guessed = true;
-        }
-        if (levelModelPref[i].bombUsed!) {
-          levelModels[i].bombUsed = true;
-        }
-        if (!reset) {
-          if (levelModelPref[i].allLetters != null ||
-              levelModelPref[i].allLetters!.isNotEmpty) {
-            levelModels[i].allLetters = levelModelPref[i].allLetters!;
-          }
-          if (levelModelPref[i].answerLetters != null ||
-              levelModelPref[i].answerLetters!.isNotEmpty) {
-            levelModels[i].answerLetters = levelModelPref[i].answerLetters!;
-          }
-        }
-      }
-    }
-    return levelModels;
+    final responsePref = sharedPreferences.getStringList(option);
+    if (responsePref == null) return levelModels;
+
+    final savedLevels = responsePref
+        .map((element) => LevelModel.fromJson(jsonDecode(element)))
+        .toList(growable: false);
+    return mergeSavedLevelProgress(
+      templates: levelModels,
+      savedLevels: savedLevels,
+      restorePuzzleLetters: !reset,
+    );
   }
 
   Future<bool> saveLevels(List<LevelModel> levelList, String option) async {

@@ -45,11 +45,11 @@
   },
   {
     "Continent": "Africa",
-    "Country": "Congo"
+    "Country": "Congo - Brazzaville"
   },
   {
     "Continent": "Africa",
-    "Country": "Democratic Republic of Congo"
+    "Country": "Congo - Kinshasa"
   },
   {
     "Continent": "Africa",
@@ -233,7 +233,7 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Brunei Darussalam"
+    "Country": "Brunei"
   },
   {
     "Continent": "Asia",
@@ -340,7 +340,7 @@
     "Country": "Qatar"
   },
   {
-    "Continent": "Asia",
+    "Continent": "Europe",
     "Country": "Russia"
   },
   {
@@ -369,7 +369,7 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Turkey"
+    "Country": "Türkiye"
   },
   {
     "Continent": "Asia",
@@ -400,7 +400,7 @@
     "Country": "Andorra"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asia",
     "Country": "Armenia"
   },
   {
@@ -432,7 +432,7 @@
     "Country": "Croatia"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asia",
     "Country": "Cyprus"
   },
   {
@@ -456,7 +456,7 @@
     "Country": "France"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asia",
     "Country": "Georgia"
   },
   {
@@ -774,5 +774,17 @@
   {
     "Continent": "South America",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Asia",
+    "Country": "Palestine"
+  },
+  {
+    "Continent": "Asia",
+    "Country": "Taiwan"
+  },
+  {
+    "Continent": "Europe",
+    "Country": "Kosovo"
   }
 ]

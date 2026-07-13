@@ -45,11 +45,11 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Congo"
+    "Country": "Congo-Brazzaville"
   },
   {
     "Continent": "Afrika",
-    "Country": "Demokratiske Republik Congo"
+    "Country": "Congo-Kinshasa"
   },
   {
     "Continent": "Afrika",
@@ -157,7 +157,7 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Sao Tome og Principe"
+    "Country": "São Tomé og Príncipe"
   },
   {
     "Continent": "Afrika",
@@ -233,7 +233,7 @@
   },
   {
     "Continent": "Asien",
-    "Country": "Brunei Darussalam"
+    "Country": "Brunei"
   },
   {
     "Continent": "Asien",
@@ -340,7 +340,7 @@
     "Country": "Qatar"
   },
   {
-    "Continent": "Asien",
+    "Continent": "Europa",
     "Country": "Rusland"
   },
   {
@@ -377,7 +377,7 @@
   },
   {
     "Continent": "Asien",
-    "Country": "Forenede Arabiske Emirater"
+    "Country": "De Forenede Arabiske Emirater"
   },
   {
     "Continent": "Asien",
@@ -400,7 +400,7 @@
     "Country": "Andorra"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Armenien"
   },
   {
@@ -413,7 +413,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Hviderusland"
+    "Country": "Belarus"
   },
   {
     "Continent": "Europa",
@@ -432,7 +432,7 @@
     "Country": "Kroatien"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Cypern"
   },
   {
@@ -456,7 +456,7 @@
     "Country": "Frankrig"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Georgien"
   },
   {
@@ -521,7 +521,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Holland"
+    "Country": "Nederlandene"
   },
   {
     "Continent": "Europa",
@@ -774,5 +774,17 @@
   {
     "Continent": "Sydamerika",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Asien",
+    "Country": "Palæstina"
+  },
+  {
+    "Continent": "Asien",
+    "Country": "Taiwan"
+  },
+  {
+    "Continent": "Europa",
+    "Country": "Kosovo"
   }
 ]

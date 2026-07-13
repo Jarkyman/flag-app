@@ -80,7 +80,7 @@
     "Level": 1
   },
   {
-    "Country": "Turkey",
+    "Country": "Türkiye",
     "Level": 2
   },
   {
@@ -200,7 +200,7 @@
     "Level": 3
   },
   {
-    "Country": "Democratic Republic of Congo",
+    "Country": "Congo - Kinshasa",
     "Level": 10
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "Congo",
+    "Country": "Congo - Brazzaville",
     "Level": 5
   },
   {
@@ -768,11 +768,23 @@
     "Level": 10
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunei",
     "Level": 10
   },
   {
     "Country": "Syria",
     "Level": 3
+  },
+  {
+    "Country": "Palestine",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
+    "Level": 10
   }
 ]

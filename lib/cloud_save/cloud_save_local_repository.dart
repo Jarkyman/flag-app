@@ -5,6 +5,7 @@ import '../controllers/level_controller.dart';
 import '../controllers/score_controller.dart';
 import '../game_services/game_progress_repo.dart';
 import '../helper/app_constants.dart';
+import '../helper/level_progress_merge.dart';
 import '../models/level_model.dart';
 import '../models/training_continent.dart';
 import 'cloud_save_store.dart';
@@ -166,20 +167,21 @@ class CloudSaveLocalRepository implements CloudSaveStore {
     List<Map<String, dynamic>> rawLevels,
   ) {
     final localLevels = levelController.getList(option)!;
-    if (rawLevels.length != localLevels.length) {
+    const legacyLevelCount = 194;
+    final isSupportedLegacySave = rawLevels.length == legacyLevelCount &&
+        localLevels.length > legacyLevelCount;
+    if (!isSupportedLegacySave && rawLevels.length != localLevels.length) {
       throw FormatException(
         'Cloud save has ${rawLevels.length} $option entries; '
-        'this app version expects ${localLevels.length}.',
+        'this app version expects $legacyLevelCount or ${localLevels.length}.',
       );
     }
 
-    final restored = rawLevels.map(LevelModel.fromJson).toList(growable: false);
-    for (var index = 0; index < restored.length; index++) {
-      if (restored[index].level != localLevels[index].level) {
-        throw FormatException('Cloud save has invalid $option ordering.');
-      }
-    }
-    return restored;
+    return mergeSavedLevelProgress(
+      templates: localLevels,
+      savedLevels: rawLevels.map(LevelModel.fromJson).toList(growable: false),
+      strictOrdering: true,
+    );
   }
 
   Map<String, int> _validatedScores(Map<String, int> rawScores) {

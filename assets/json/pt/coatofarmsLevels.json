@@ -16,7 +16,7 @@
     "Level": 1
   },
   {
-    "Country": "Malawi",
+    "Country": "Maláui",
     "Level": 1
   },
   {
@@ -28,7 +28,7 @@
     "Level": 1
   },
   {
-    "Country": "San Marino",
+    "Country": "São Marinho",
     "Level": 1
   },
   {
@@ -64,7 +64,7 @@
     "Level": 1
   },
   {
-    "Country": "Sri Lanka",
+    "Country": "Sri Lanca",
     "Level": 1
   },
   {
@@ -84,7 +84,7 @@
     "Level": 2
   },
   {
-    "Country": "Turcomenistão",
+    "Country": "Turquemenistão",
     "Level": 6
   },
   {
@@ -124,7 +124,7 @@
     "Level": 2
   },
   {
-    "Country": "Trinidad e Tobago",
+    "Country": "Trindade e Tobago",
     "Level": 8
   },
   {
@@ -136,7 +136,7 @@
     "Level": 7
   },
   {
-    "Country": "Quênia",
+    "Country": "Quénia",
     "Level": 2
   },
   {
@@ -200,7 +200,7 @@
     "Level": 3
   },
   {
-    "Country": "República Democrática Do Congo",
+    "Country": "Congo-Kinshasa",
     "Level": 10
   },
   {
@@ -208,7 +208,7 @@
     "Level": 3
   },
   {
-    "Country": "Burkina Faso",
+    "Country": "Burquina Faso",
     "Level": 3
   },
   {
@@ -228,7 +228,7 @@
     "Level": 3
   },
   {
-    "Country": "Sul do Sudão",
+    "Country": "Sudão do Sul",
     "Level": 3
   },
   {
@@ -240,7 +240,7 @@
     "Level": 3
   },
   {
-    "Country": "Bangladesh",
+    "Country": "Bangladeche",
     "Level": 4
   },
   {
@@ -320,7 +320,7 @@
     "Level": 4
   },
   {
-    "Country": "Iêmen",
+    "Country": "Iémen",
     "Level": 5
   },
   {
@@ -344,7 +344,7 @@
     "Level": 5
   },
   {
-    "Country": "Djibuti",
+    "Country": "Jibuti",
     "Level": 5
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "Congo",
+    "Country": "Congo-Brazzaville",
     "Level": 5
   },
   {
@@ -372,11 +372,11 @@
     "Level": 5
   },
   {
-    "Country": "Bahamas",
+    "Country": "Baamas",
     "Level": 5
   },
   {
-    "Country": "Maurício",
+    "Country": "Maurícia",
     "Level": 5
   },
   {
@@ -412,7 +412,7 @@
     "Level": 6
   },
   {
-    "Country": "São Tomé E Príncipe",
+    "Country": "São Tomé e Príncipe",
     "Level": 10
   },
   {
@@ -468,7 +468,7 @@
     "Level": 6
   },
   {
-    "Country": "Coréia do Sul",
+    "Country": "Coreia do Sul",
     "Level": 6
   },
   {
@@ -476,7 +476,7 @@
     "Level": 6
   },
   {
-    "Country": "Kuwait",
+    "Country": "Koweit",
     "Level": 6
   },
   {
@@ -496,7 +496,7 @@
     "Level": 7
   },
   {
-    "Country": "Seychelles",
+    "Country": "Seicheles",
     "Level": 7
   },
   {
@@ -528,11 +528,11 @@
     "Level": 7
   },
   {
-    "Country": "República Checa",
+    "Country": "Chéquia",
     "Level": 7
   },
   {
-    "Country": "Uzbequistão",
+    "Country": "Usbequistão",
     "Level": 7
   },
   {
@@ -540,7 +540,7 @@
     "Level": 7
   },
   {
-    "Country": "Eslovênia",
+    "Country": "Eslovénia",
     "Level": 7
   },
   {
@@ -552,7 +552,7 @@
     "Level": 2
   },
   {
-    "Country": "Estônia",
+    "Country": "Estónia",
     "Level": 7
   },
   {
@@ -560,11 +560,11 @@
     "Level": 7
   },
   {
-    "Country": "Papua Nova Guiné",
+    "Country": "Papua-Nova Guiné",
     "Level": 8
   },
   {
-    "Country": "Holanda",
+    "Country": "Países Baixos",
     "Level": 8
   },
   {
@@ -584,7 +584,7 @@
     "Level": 8
   },
   {
-    "Country": "Dominica",
+    "Country": "Domínica",
     "Level": 8
   },
   {
@@ -604,11 +604,11 @@
     "Level": 4
   },
   {
-    "Country": "Armênia",
+    "Country": "Arménia",
     "Level": 8
   },
   {
-    "Country": "El Salvador",
+    "Country": "Salvador",
     "Level": 8
   },
   {
@@ -640,7 +640,7 @@
     "Level": 8
   },
   {
-    "Country": "Eswatini",
+    "Country": "Essuatíni",
     "Level": 9
   },
   {
@@ -680,7 +680,7 @@
     "Level": 9
   },
   {
-    "Country": "Macedônia do Norte",
+    "Country": "Macedónia do Norte",
     "Level": 9
   },
   {
@@ -704,7 +704,7 @@
     "Level": 9
   },
   {
-    "Country": "Liechtenstein",
+    "Country": "Listenstaine",
     "Level": 9
   },
   {
@@ -712,11 +712,11 @@
     "Level": 9
   },
   {
-    "Country": "Cingapura",
+    "Country": "Singapura",
     "Level": 9
   },
   {
-    "Country": "São Cristóvão e Nevis",
+    "Country": "São Cristóvão e Neves",
     "Level": 9
   },
   {
@@ -760,7 +760,7 @@
     "Level": 10
   },
   {
-    "Country": "Kiribati",
+    "Country": "Quiribáti",
     "Level": 10
   },
   {
@@ -768,11 +768,23 @@
     "Level": 10
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunei",
     "Level": 10
   },
   {
     "Country": "Síria",
     "Level": 3
+  },
+  {
+    "Country": "Palestina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
+    "Level": 10
   }
 ]

@@ -32,7 +32,7 @@
     "Level": 1
   },
   {
-    "Country": "Antigua Och Barbuda",
+    "Country": "Antigua och Barbuda",
     "Level": 10
   },
   {
@@ -48,7 +48,7 @@
     "Level": 1
   },
   {
-    "Country": "Centralafrikanska Republiken",
+    "Country": "Centralafrikanska republiken",
     "Level": 10
   },
   {
@@ -124,7 +124,7 @@
     "Level": 2
   },
   {
-    "Country": "Trinidad Och Tobago",
+    "Country": "Trinidad och Tobago",
     "Level": 8
   },
   {
@@ -200,7 +200,7 @@
     "Level": 3
   },
   {
-    "Country": "Demokratiska Republiken Kongo",
+    "Country": "Kongo-Kinshasa",
     "Level": 10
   },
   {
@@ -224,7 +224,7 @@
     "Level": 3
   },
   {
-    "Country": "Vitryssland",
+    "Country": "Belarus",
     "Level": 3
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "Kongo",
+    "Country": "Kongo-Brazzaville",
     "Level": 5
   },
   {
@@ -412,7 +412,7 @@
     "Level": 6
   },
   {
-    "Country": "Sao Tomé och Principe",
+    "Country": "São Tomé och Príncipe",
     "Level": 10
   },
   {
@@ -460,7 +460,7 @@
     "Level": 6
   },
   {
-    "Country": "Mocambique",
+    "Country": "Moçambique",
     "Level": 6
   },
   {
@@ -472,7 +472,7 @@
     "Level": 6
   },
   {
-    "Country": "Bosnien Och Hercegovina",
+    "Country": "Bosnien och Hercegovina",
     "Level": 6
   },
   {
@@ -544,7 +544,7 @@
     "Level": 7
   },
   {
-    "Country": "Dominikanska Republiken",
+    "Country": "Dominikanska republiken",
     "Level": 7
   },
   {
@@ -572,7 +572,7 @@
     "Level": 8
   },
   {
-    "Country": "Saint Vincent Och Grenadinerna",
+    "Country": "Saint Vincent och Grenadinerna",
     "Level": 10
   },
   {
@@ -716,7 +716,7 @@
     "Level": 9
   },
   {
-    "Country": "Saint Kitts Och Nevis",
+    "Country": "Saint Kitts och Nevis",
     "Level": 9
   },
   {
@@ -768,11 +768,23 @@
     "Level": 10
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunei",
     "Level": 10
   },
   {
     "Country": "Syrien",
     "Level": 3
+  },
+  {
+    "Country": "Palestina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
+    "Level": 10
   }
 ]

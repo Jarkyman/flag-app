@@ -9,7 +9,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Benin"
+    "Country": "Benín"
   },
   {
     "Continent": "África",
@@ -53,7 +53,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Djibouti"
+    "Country": "Yibuti"
   },
   {
     "Continent": "África",
@@ -89,7 +89,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Guinea-Bissau"
+    "Country": "Guinea-Bisáu"
   },
   {
     "Continent": "África",
@@ -117,7 +117,7 @@
   },
   {
     "Continent": "África",
-    "Country": "Malawi"
+    "Country": "Malaui"
   },
   {
     "Continent": "África",
@@ -225,7 +225,7 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Bangladesh"
+    "Country": "Bangladés"
   },
   {
     "Continent": "Asia",
@@ -233,7 +233,7 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Brunei Darussalam"
+    "Country": "Brunéi"
   },
   {
     "Continent": "Asia",
@@ -249,7 +249,7 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Timor Oriental"
+    "Country": "Timor-Leste"
   },
   {
     "Continent": "Asia",
@@ -337,15 +337,15 @@
   },
   {
     "Continent": "Asia",
-    "Country": "Qatar"
+    "Country": "Catar"
   },
   {
-    "Continent": "Asia",
+    "Continent": "Europa",
     "Country": "Rusia"
   },
   {
     "Continent": "Asia",
-    "Country": "Arabia Saudita"
+    "Country": "Arabia Saudí"
   },
   {
     "Continent": "Asia",
@@ -400,7 +400,7 @@
     "Country": "Andorra"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asia",
     "Country": "Armenia"
   },
   {
@@ -432,12 +432,12 @@
     "Country": "Croacia"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asia",
     "Country": "Chipre"
   },
   {
     "Continent": "Europa",
-    "Country": "República Checa"
+    "Country": "Chequia"
   },
   {
     "Continent": "Europa",
@@ -456,7 +456,7 @@
     "Country": "Francia"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asia",
     "Country": "Georgia"
   },
   {
@@ -701,7 +701,7 @@
   },
   {
     "Continent": "Oceanía",
-    "Country": "Palau"
+    "Country": "Palaos"
   },
   {
     "Continent": "Oceanía",
@@ -774,5 +774,17 @@
   {
     "Continent": "América del Sur",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Asia",
+    "Country": "Palestina"
+  },
+  {
+    "Continent": "Asia",
+    "Country": "Taiwán"
+  },
+  {
+    "Continent": "Europa",
+    "Country": "Kosovo"
   }
 ]

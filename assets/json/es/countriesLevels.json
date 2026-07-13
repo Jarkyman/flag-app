@@ -104,7 +104,7 @@
     "Level": 9
   },
   {
-    "Country": "Guinea-Bissau",
+    "Country": "Guinea-Bisáu",
     "Level": 9
   },
   {
@@ -144,7 +144,7 @@
     "Level": 2
   },
   {
-    "Country": "Benin",
+    "Country": "Benín",
     "Level": 2
   },
   {
@@ -192,7 +192,7 @@
     "Level": 3
   },
   {
-    "Country": "Palau",
+    "Country": "Palaos",
     "Level": 3
   },
   {
@@ -304,7 +304,7 @@
     "Level": 4
   },
   {
-    "Country": "Malawi",
+    "Country": "Malaui",
     "Level": 4
   },
   {
@@ -360,7 +360,7 @@
     "Level": 5
   },
   {
-    "Country": "Bangladesh",
+    "Country": "Bangladés",
     "Level": 5
   },
   {
@@ -416,11 +416,11 @@
     "Level": 1
   },
   {
-    "Country": "Timor Oriental",
+    "Country": "Timor-Leste",
     "Level": 6
   },
   {
-    "Country": "República Checa",
+    "Country": "Chequia",
     "Level": 6
   },
   {
@@ -556,7 +556,7 @@
     "Level": 7
   },
   {
-    "Country": "Brunei Darussalam",
+    "Country": "Brunéi",
     "Level": 7
   },
   {
@@ -608,7 +608,7 @@
     "Level": 8
   },
   {
-    "Country": "Qatar",
+    "Country": "Catar",
     "Level": 8
   },
   {
@@ -672,7 +672,7 @@
     "Level": 9
   },
   {
-    "Country": "Arabia Saudita",
+    "Country": "Arabia Saudí",
     "Level": 9
   },
   {
@@ -768,11 +768,23 @@
     "Level": 10
   },
   {
-    "Country": "Djibouti",
+    "Country": "Yibuti",
     "Level": 10
   },
   {
     "Country": "Noruega",
+    "Level": 10
+  },
+  {
+    "Country": "Palestina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwán",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
     "Level": 10
   }
 ]

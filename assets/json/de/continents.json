@@ -13,7 +13,7 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Botswana"
+    "Country": "Botsuana"
   },
   {
     "Continent": "Afrika",
@@ -29,7 +29,7 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Kap Verde"
+    "Country": "Cabo Verde"
   },
   {
     "Continent": "Afrika",
@@ -45,11 +45,11 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Kongo"
+    "Country": "Kongo-Brazzaville"
   },
   {
     "Continent": "Afrika",
-    "Country": "Demokratische Republik Kongo"
+    "Country": "Kongo-Kinshasa"
   },
   {
     "Continent": "Afrika",
@@ -157,7 +157,7 @@
   },
   {
     "Continent": "Afrika",
-    "Country": "Sao Tome und Principe"
+    "Country": "São Tomé und Príncipe"
   },
   {
     "Continent": "Afrika",
@@ -340,7 +340,7 @@
     "Country": "Katar"
   },
   {
-    "Continent": "Asien",
+    "Continent": "Europa",
     "Country": "Russland"
   },
   {
@@ -400,7 +400,7 @@
     "Country": "Andorra"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Armenien"
   },
   {
@@ -413,7 +413,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Weißrussland"
+    "Country": "Belarus"
   },
   {
     "Continent": "Europa",
@@ -432,7 +432,7 @@
     "Country": "Kroatien"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Zypern"
   },
   {
@@ -456,7 +456,7 @@
     "Country": "Frankreich"
   },
   {
-    "Continent": "Europa",
+    "Continent": "Asien",
     "Country": "Georgien"
   },
   {
@@ -509,7 +509,7 @@
   },
   {
     "Continent": "Europa",
-    "Country": "Moldawien"
+    "Country": "Republik Moldau"
   },
   {
     "Continent": "Europa",
@@ -774,5 +774,17 @@
   {
     "Continent": "Südamerika",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Asien",
+    "Country": "Palästina"
+  },
+  {
+    "Continent": "Asien",
+    "Country": "Taiwan"
+  },
+  {
+    "Continent": "Europa",
+    "Country": "Kosovo"
   }
 ]

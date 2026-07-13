@@ -45,11 +45,11 @@
   },
   {
     "Continent": "Afrique",
-    "Country": "Congo"
+    "Country": "Congo-Brazzaville"
   },
   {
     "Continent": "Afrique",
-    "Country": "République démocratique du Congo"
+    "Country": "Congo-Kinshasa"
   },
   {
     "Continent": "Afrique",
@@ -57,7 +57,7 @@
   },
   {
     "Continent": "Afrique",
-    "Country": "Egypte"
+    "Country": "Égypte"
   },
   {
     "Continent": "Afrique",
@@ -105,7 +105,7 @@
   },
   {
     "Continent": "Afrique",
-    "Country": "Libéria"
+    "Country": "Liberia"
   },
   {
     "Continent": "Afrique",
@@ -149,7 +149,7 @@
   },
   {
     "Continent": "Afrique",
-    "Country": "Nigéria"
+    "Country": "Nigeria"
   },
   {
     "Continent": "Afrique",
@@ -157,7 +157,7 @@
   },
   {
     "Continent": "Afrique",
-    "Country": "Sao tomé et principe"
+    "Country": "Sao Tomé-et-Principe"
   },
   {
     "Continent": "Afrique",
@@ -233,7 +233,7 @@
   },
   {
     "Continent": "Asie",
-    "Country": "Brunéi Darussalam"
+    "Country": "Brunei"
   },
   {
     "Continent": "Asie",
@@ -249,7 +249,7 @@
   },
   {
     "Continent": "Asie",
-    "Country": "Timor-Leste"
+    "Country": "Timor oriental"
   },
   {
     "Continent": "Asie",
@@ -297,7 +297,7 @@
   },
   {
     "Continent": "Asie",
-    "Country": "Kirghizistan"
+    "Country": "Kirghizstan"
   },
   {
     "Continent": "Asie",
@@ -340,12 +340,12 @@
     "Country": "Qatar"
   },
   {
-    "Continent": "Asie",
+    "Continent": "Europe",
     "Country": "Russie"
   },
   {
     "Continent": "Asie",
-    "Country": "Arabie Saoudite"
+    "Country": "Arabie saoudite"
   },
   {
     "Continent": "Asie",
@@ -377,7 +377,7 @@
   },
   {
     "Continent": "Asie",
-    "Country": "Émirats Arabes Unis"
+    "Country": "Émirats arabes unis"
   },
   {
     "Continent": "Asie",
@@ -385,7 +385,7 @@
   },
   {
     "Continent": "Asie",
-    "Country": "Vietnam"
+    "Country": "Viêt Nam"
   },
   {
     "Continent": "Asie",
@@ -400,7 +400,7 @@
     "Country": "Andorre"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asie",
     "Country": "Arménie"
   },
   {
@@ -413,7 +413,7 @@
   },
   {
     "Continent": "Europe",
-    "Country": "Bélarus"
+    "Country": "Biélorussie"
   },
   {
     "Continent": "Europe",
@@ -432,12 +432,12 @@
     "Country": "Croatie"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asie",
     "Country": "Chypre"
   },
   {
     "Continent": "Europe",
-    "Country": "Tchèque"
+    "Country": "Tchéquie"
   },
   {
     "Continent": "Europe",
@@ -456,7 +456,7 @@
     "Country": "France"
   },
   {
-    "Continent": "Europe",
+    "Continent": "Asie",
     "Country": "Géorgie"
   },
   {
@@ -577,11 +577,11 @@
   },
   {
     "Continent": "Europe",
-    "Country": "Cité du Vatican"
+    "Country": "État de la Cité du Vatican"
   },
   {
     "Continent": "Amérique du Nord",
-    "Country": "Antigua et Barbuda"
+    "Country": "Antigua-et-Barbuda"
   },
   {
     "Continent": "Amérique du Nord",
@@ -617,7 +617,7 @@
   },
   {
     "Continent": "Amérique du Nord",
-    "Country": "El Salvador"
+    "Country": "Salvador"
   },
   {
     "Continent": "Amérique du Nord",
@@ -653,7 +653,7 @@
   },
   {
     "Continent": "Amérique du Nord",
-    "Country": "Saint-Kitts et Nevis"
+    "Country": "Saint-Christophe-et-Niévès"
   },
   {
     "Continent": "Amérique du Nord",
@@ -701,7 +701,7 @@
   },
   {
     "Continent": "Océanie",
-    "Country": "Palau"
+    "Country": "Palaos"
   },
   {
     "Continent": "Océanie",
@@ -774,5 +774,17 @@
   {
     "Continent": "Amérique du Sud",
     "Country": "Venezuela"
+  },
+  {
+    "Continent": "Asie",
+    "Country": "Palestine"
+  },
+  {
+    "Continent": "Asie",
+    "Country": "Taïwan"
+  },
+  {
+    "Continent": "Europe",
+    "Country": "Kosovo"
   }
 ]

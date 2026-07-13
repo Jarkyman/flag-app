@@ -24,7 +24,7 @@
     "Level": 1
   },
   {
-    "Country": "Kap Verde",
+    "Country": "Cabo Verde",
     "Level": 1
   },
   {
@@ -120,7 +120,7 @@
     "Level": 2
   },
   {
-    "Country": "Botswana",
+    "Country": "Botsuana",
     "Level": 2
   },
   {
@@ -200,7 +200,7 @@
     "Level": 3
   },
   {
-    "Country": "Demokratische Republik Kongo",
+    "Country": "Kongo-Kinshasa",
     "Level": 10
   },
   {
@@ -224,7 +224,7 @@
     "Level": 3
   },
   {
-    "Country": "Weißrussland",
+    "Country": "Belarus",
     "Level": 3
   },
   {
@@ -352,7 +352,7 @@
     "Level": 5
   },
   {
-    "Country": "Kongo",
+    "Country": "Kongo-Brazzaville",
     "Level": 5
   },
   {
@@ -412,7 +412,7 @@
     "Level": 6
   },
   {
-    "Country": "Sao Tome Und Principe",
+    "Country": "São Tomé und Príncipe",
     "Level": 10
   },
   {
@@ -672,7 +672,7 @@
     "Level": 9
   },
   {
-    "Country": "Moldawien",
+    "Country": "Republik Moldau",
     "Level": 9
   },
   {
@@ -774,5 +774,17 @@
   {
     "Country": "Syrien",
     "Level": 3
+  },
+  {
+    "Country": "Palästina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
+    "Level": 10
   }
 ]

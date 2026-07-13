@@ -36,7 +36,7 @@
     "Level": 1
   },
   {
-    "Country": "Demokratische Republik Kongo",
+    "Country": "Kongo-Kinshasa",
     "Level": 10
   },
   {
@@ -348,7 +348,7 @@
     "Level": 5
   },
   {
-    "Country": "Botswana",
+    "Country": "Botsuana",
     "Level": 5
   },
   {
@@ -376,11 +376,11 @@
     "Level": 5
   },
   {
-    "Country": "Kongo",
+    "Country": "Kongo-Brazzaville",
     "Level": 5
   },
   {
-    "Country": "Moldawien",
+    "Country": "Republik Moldau",
     "Level": 5
   },
   {
@@ -404,7 +404,7 @@
     "Level": 6
   },
   {
-    "Country": "Weißrussland",
+    "Country": "Belarus",
     "Level": 6
   },
   {
@@ -584,7 +584,7 @@
     "Level": 8
   },
   {
-    "Country": "Kap Verde",
+    "Country": "Cabo Verde",
     "Level": 8
   },
   {
@@ -772,7 +772,19 @@
     "Level": 8
   },
   {
-    "Country": "Sao Tome und Principe",
+    "Country": "São Tomé und Príncipe",
+    "Level": 10
+  },
+  {
+    "Country": "Palästina",
+    "Level": 10
+  },
+  {
+    "Country": "Taiwan",
+    "Level": 10
+  },
+  {
+    "Country": "Kosovo",
     "Level": 10
   }
 ]

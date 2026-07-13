@@ -65,7 +65,7 @@ class GuessPuzzleLogic {
 
         for (int index = 0; index < wordSplit.length; index++) {
           if (temp.length == maxLength || temp.contains('-')) {
-            if (!wordSplit.contains('-')) temp.add(lineBreak);
+            if (!temp.contains('-')) temp.add(lineBreak);
             lettersList.add(temp);
             temp = [wordSplit[index]];
             if (temp.length >= tilesPerRow) maxLength += 2;
@@ -116,6 +116,25 @@ class GuessPuzzleLogic {
     }
 
     return result;
+  }
+
+  static List<List<String>> fitAnswerToLayout({
+    required List<List<String>> correctLetters,
+    required List<List<String>> answerLetters,
+  }) {
+    final savedLetters = answerLetters
+        .expand((row) => row)
+        .where((letter) => !isSeparator(letter))
+        .toList();
+    var savedIndex = 0;
+
+    return correctLetters.map((row) {
+      return row.map((correctLetter) {
+        if (isSeparator(correctLetter)) return correctLetter;
+        if (savedIndex >= savedLetters.length) return '';
+        return savedLetters[savedIndex++];
+      }).toList();
+    }).toList();
   }
 
   static GuessPuzzleState applyBomb({

@@ -96,6 +96,10 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {S} [assets, performance, release] (M): Normalisér de 10 flagassets over 1600 px (`bo`, `fi`, `md`, `my`, `sg`, `st`, `tk`, `ve`, `ws`, `zm`) til maks. 1600 px bredde med bevaret aspect ratio og høj PNG-kvalitet. Kontrollér visuelt på telefon og tablet, kør asset-integritetstesten, og bekræft at ingen billeder opskaleres eller mister synlig detalje.
 
+// TODO {S} [debug, game] (L): Fjern det midlertidige `kDebugMode`-badge med det korrekte landenavn fra Guess/word-billedkortet, når den manuelle gennemgang af alle lande er afsluttet.
+
+// DONE {M} [debug, hints] (L): Den midlertidige debug-belønning på 9000 hints er fjernet. Rewarded-videoen og dens lokaliserede knaptekst giver igen 3 hints i både debug- og release-builds; en allerede optjent testsaldo ændres ikke.
+
 // DONE {M} [game] (H): Fjern det animerede dotted world map fra de aktive spilleskærme, herunder de tre quizspil og Guess/word. Behold animationen på appens øvrige menu- og informationssider.
 
 // DONE {M} [release, version-2.0.0] (H): Alle ni sprog i docs-mappen er opdateret til version 2.0.0 med ASO-optimerede App Store-beskrivelser, promotionstekster og keywords samt Play Store-beskrivelser. Teksterne dækker det nye design, 197 lande, de seks spiltilstande, kontinentfilter, hints, Game Center/Play Games Services, 23 achievements og tre globale leaderboards.

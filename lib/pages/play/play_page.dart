@@ -15,7 +15,6 @@ class PlayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final levelController = Get.find<LevelController>();
     return Scaffold(
       body: MenuBackground(
         child: SafeArea(
@@ -23,51 +22,53 @@ class PlayPage extends StatelessWidget {
             children: [
               MenuPageHeader(title: 'Play'.tr),
               Expanded(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(
-                    Dimensions.width20,
-                    Dimensions.height30,
-                    Dimensions.width20,
-                    Dimensions.height30,
-                  ),
-                  child: Column(
-                    children: [
-                      MenuButton(
-                        onTap: () => Get.toNamed(
-                          RouteHelper.getLevelsListPage(),
-                          arguments: [AppConstants.FLAGS],
+                child: GetBuilder<LevelController>(
+                  builder: (levelController) => SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(
+                      Dimensions.width20,
+                      Dimensions.height30,
+                      Dimensions.width20,
+                      Dimensions.height30,
+                    ),
+                    child: Column(
+                      children: [
+                        MenuButton(
+                          onTap: () => Get.toNamed(
+                            RouteHelper.getLevelsListPage(),
+                            arguments: [AppConstants.FLAGS],
+                          ),
+                          title: 'Flags'.tr,
+                          icon: Icons.flag_rounded,
+                          accentColor: AppColors.coralColor,
+                          subText:
+                              '${levelController.getFinishedLevelsTotal(AppConstants.FLAGS)}/${levelController.getAmountOfLevelsTotal(AppConstants.FLAGS)}',
                         ),
-                        title: 'Flags'.tr,
-                        icon: Icons.flag_rounded,
-                        accentColor: AppColors.coralColor,
-                        subText:
-                            '${levelController.getFinishedLevelsTotal(AppConstants.FLAGS)}/${levelController.getAmountOfLevelsTotal(AppConstants.FLAGS)}',
-                      ),
-                      SizedBox(height: Dimensions.height15),
-                      MenuButton(
-                        onTap: () => Get.toNamed(
-                          RouteHelper.getLevelsListPage(),
-                          arguments: [AppConstants.COUNTRIES],
+                        SizedBox(height: Dimensions.height15),
+                        MenuButton(
+                          onTap: () => Get.toNamed(
+                            RouteHelper.getLevelsListPage(),
+                            arguments: [AppConstants.COUNTRIES],
+                          ),
+                          title: 'Countries'.tr,
+                          icon: Icons.public_rounded,
+                          accentColor: AppColors.skyColor,
+                          subText:
+                              '${levelController.getFinishedLevelsTotal(AppConstants.COUNTRIES)}/${levelController.getAmountOfLevelsTotal(AppConstants.COUNTRIES)}',
                         ),
-                        title: 'Countries'.tr,
-                        icon: Icons.public_rounded,
-                        accentColor: AppColors.skyColor,
-                        subText:
-                            '${levelController.getFinishedLevelsTotal(AppConstants.COUNTRIES)}/${levelController.getAmountOfLevelsTotal(AppConstants.COUNTRIES)}',
-                      ),
-                      SizedBox(height: Dimensions.height15),
-                      MenuButton(
-                        onTap: () => Get.toNamed(
-                          RouteHelper.getLevelsListPage(),
-                          arguments: [AppConstants.COC],
+                        SizedBox(height: Dimensions.height15),
+                        MenuButton(
+                          onTap: () => Get.toNamed(
+                            RouteHelper.getLevelsListPage(),
+                            arguments: [AppConstants.COC],
+                          ),
+                          title: 'Coat of arms'.tr,
+                          icon: Icons.shield_outlined,
+                          accentColor: AppColors.purpleColor,
+                          subText:
+                              '${levelController.getFinishedLevelsTotal(AppConstants.COC)}/${levelController.getAmountOfLevelsTotal(AppConstants.COC)}',
                         ),
-                        title: 'Coat of arms'.tr,
-                        icon: Icons.shield_outlined,
-                        accentColor: AppColors.purpleColor,
-                        subText:
-                            '${levelController.getFinishedLevelsTotal(AppConstants.COC)}/${levelController.getAmountOfLevelsTotal(AppConstants.COC)}',
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

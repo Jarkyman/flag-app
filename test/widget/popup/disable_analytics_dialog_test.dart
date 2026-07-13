@@ -48,6 +48,26 @@ void main() {
     expect(result, isTrue);
     expect(find.text('Turn off anonymous analytics?'), findsNothing);
   });
+
+  testWidgets('tapping outside closes the dialog and keeps analytics enabled',
+      (tester) async {
+    bool? result;
+    await tester.pumpWidget(
+      _TestApp(
+        onResult: (value) => result = value,
+      ),
+    );
+
+    await tester.tap(find.text('Open'));
+    await tester.pumpAndSettle();
+    expect(find.text('Turn off anonymous analytics?'), findsOneWidget);
+
+    await tester.tapAt(const Offset(5, 5));
+    await tester.pumpAndSettle();
+
+    expect(result, isFalse);
+    expect(find.text('Turn off anonymous analytics?'), findsNothing);
+  });
 }
 
 class _TestApp extends StatelessWidget {

@@ -61,7 +61,7 @@ Future<bool> showDisableAnalyticsDialog() async {
         ),
       ),
     ),
-    barrierDismissible: false,
+    barrierDismissible: true,
     barrierColor: Colors.black.withValues(alpha: 0.48),
   );
 

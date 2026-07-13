@@ -31,7 +31,7 @@ class GuessGameHeader extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width45 * 2.8,
+              horizontal: Dimensions.width45 * 2.4,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -64,28 +64,28 @@ class GuessGameHeader extends StatelessWidget {
           ),
           Positioned(
             left: Dimensions.width10,
-            child: AppControlButton(
-              icon: Icons.arrow_back_ios_new_rounded,
-              onTap: onBack,
-              semanticLabel:
-                  MaterialLocalizations.of(context).backButtonTooltip,
-            ),
-          ),
-          Positioned(
-            right: Dimensions.width10,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                AppControlButton(
+                  icon: Icons.arrow_back_ios_new_rounded,
+                  onTap: onBack,
+                  semanticLabel:
+                      MaterialLocalizations.of(context).backButtonTooltip,
+                ),
+                SizedBox(width: Dimensions.width5),
                 AppControlButton(
                   icon: Icons.question_mark_rounded,
                   onTap: onHelp,
                   accentColor: AppColors.skyColor,
                   semanticLabel: 'Help'.tr,
                 ),
-                SizedBox(width: Dimensions.width5),
-                const MenuHintBadge(),
               ],
             ),
+          ),
+          Positioned(
+            right: Dimensions.width10,
+            child: const MenuHintBadge(),
           ),
         ],
       ),
@@ -418,9 +418,13 @@ class _GuessFactRow extends StatelessWidget {
                 ),
               ),
               SizedBox(width: Dimensions.width10),
-              Expanded(
-                child: Text(
+              SizedBox(
+                width: Dimensions.width20 * 5.6,
+                child: AutoSizeText(
                   fact.label,
+                  maxLines: 1,
+                  minFontSize: Dimensions.font16 * 0.625,
+                  stepGranularity: Dimensions.font16 / 16,
                   style: TextStyle(
                     color: AppColors.textColorGray,
                     fontSize: Dimensions.font16 * 0.76,

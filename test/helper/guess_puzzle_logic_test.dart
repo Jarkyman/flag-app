@@ -22,6 +22,41 @@ void main() {
       _expectSolutionLetters(correct, 'GUINEA-BISSAU');
     });
 
+    test('shows a line-break tile after a long hyphenated segment', () {
+      final correct =
+          GuessPuzzleLogic.buildCorrectLetters('BOSNIEN-HERCEGOVINA');
+      final empty = GuessPuzzleLogic.buildEmptyAnswer('BOSNIEN-HERCEGOVINA');
+
+      expect(correct, [
+        'BOSNIEN-'.split(''),
+        [...'HERCEGOV'.split(''), GuessPuzzleLogic.lineBreak],
+        'INA'.split(''),
+      ]);
+      expect(empty[1].last, GuessPuzzleLogic.lineBreak);
+      _expectSolutionLetters(correct, 'BOSNIEN-HERCEGOVINA');
+    });
+
+    test('moves a saved answer into a layout with a new line-break tile', () {
+      final correct =
+          GuessPuzzleLogic.buildCorrectLetters('BOSNIEN-HERCEGOVINA');
+      final oldAnswer = [
+        ['B', 'O', '', '', '', '', '', '-'],
+        ['H', 'E', '', '', '', '', '', 'V'],
+        ['I', '', 'A'],
+      ];
+
+      final fitted = GuessPuzzleLogic.fitAnswerToLayout(
+        correctLetters: correct,
+        answerLetters: oldAnswer,
+      );
+
+      expect(fitted, [
+        ['B', 'O', '', '', '', '', '', '-'],
+        ['H', 'E', '', '', '', '', '', 'V', GuessPuzzleLogic.lineBreak],
+        ['I', '', 'A'],
+      ]);
+    });
+
     test('preserves a separator between short words', () {
       final correct = GuessPuzzleLogic.buildCorrectLetters('LA PAZ');
       final empty = GuessPuzzleLogic.buildEmptyAnswer('LA PAZ');
@@ -259,11 +294,15 @@ void main() {
       _PuzzleCase('standard regression word', 'FINLAND'),
       _PuzzleCase('next line', 'LIECHTENSTEIN'),
       _PuzzleCase('hyphen', 'GUINEA-BISSAU'),
+      _PuzzleCase(
+        'hyphen and next line',
+        'BOSNIEN-HERCEGOVINA',
+        poolSizes: [27, 36],
+      ),
     ];
-    const poolSizes = [18, 27, 36];
 
     for (final puzzle in puzzleCases) {
-      for (final poolSize in poolSizes) {
+      for (final poolSize in puzzle.poolSizes) {
         for (final selection in _Selection.values) {
           for (final hintSetup in _HintSetup.values) {
             test(
@@ -327,8 +366,13 @@ void main() {
 class _PuzzleCase {
   final String name;
   final String answer;
+  final List<int> poolSizes;
 
-  const _PuzzleCase(this.name, this.answer);
+  const _PuzzleCase(
+    this.name,
+    this.answer, {
+    this.poolSizes = const [18, 27, 36],
+  });
 }
 
 enum _Selection {

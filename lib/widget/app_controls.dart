@@ -94,11 +94,11 @@ class AppHintBadge extends StatelessWidget {
     return GetBuilder<HintController>(
       builder: (hintController) {
         final hints = hintController.getHints;
-        final label = hints > 9999 ? '9999+' : hints.toString();
+        final label = hints > 999 ? '999+' : hints.toString();
 
         return Semantics(
           button: interactive,
-          label: 'Hints: $label',
+          label: 'Hints: $hints',
           child: Material(
             color: Colors.transparent,
             child: InkWell(

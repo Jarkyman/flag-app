@@ -32,6 +32,7 @@ class _ShopPageState extends State<ShopPage> {
   bool loadingProduct = true;
   bool isAdLoaded = false;
   bool loadAd = true;
+  bool _restoringPurchases = false;
 
   @override
   void initState() {
@@ -173,13 +174,53 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   Future<void> _restorePurchases() async {
+    if (_restoringPurchases) return;
+
+    setState(() => _restoringPurchases = true);
     try {
-      final restoredInfo = await Purchases.restorePurchases();
-      final entitlementAds = restoredInfo
-          .entitlements.all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
-      await Get.find<ShopController>().removeAdsSave(entitlementAds == true);
-    } on PlatformException catch (error) {
-      debugPrint(error.toString());
+      final restoredPurchases =
+          await Get.find<ShopController>().restorePurchases();
+      if (!mounted) return;
+
+      if (restoredPurchases.isEmpty) {
+        Get.snackbar(
+          'Nothing to restore'.tr,
+          'No permanent purchases found'.tr,
+          backgroundColor: AppColors.mainColor.withValues(alpha: 0.14),
+          colorText: AppColors.mainBlackColor,
+        );
+        return;
+      }
+
+      final restoredNames = [
+        if (restoredPurchases.contains(RestoredPurchase.removeAds))
+          'Remove ads'.tr,
+        if (restoredPurchases.contains(RestoredPurchase.unlockLevels))
+          'Unlock all levels'.tr,
+      ];
+      Get.snackbar(
+        'Purchases restored'.tr,
+        'Restored purchases'.trParams({
+          'purchases': restoredNames.join(', '),
+        }),
+        backgroundColor: AppColors.correctColor.withValues(alpha: 0.18),
+        colorText: AppColors.mainBlackColor,
+      );
+      Get.find<SoundController>().completeSound();
+    } catch (error, stackTrace) {
+      debugPrint('Failed to restore purchases: $error\n$stackTrace');
+      if (!mounted) return;
+
+      Get.snackbar(
+        'Restore failed'.tr,
+        'Could not restore purchases'.tr,
+        backgroundColor: AppColors.wrongColor.withValues(alpha: 0.18),
+        colorText: AppColors.mainBlackColor,
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _restoringPurchases = false);
+      }
     }
   }
 
@@ -310,6 +351,7 @@ class _ShopPageState extends State<ShopPage> {
                         ShopButton(
                           title: 'Restore Purchases'.tr,
                           icon: Icons.restore_rounded,
+                          loading: _restoringPurchases,
                           onTap: _restorePurchases,
                         ),
                       ],

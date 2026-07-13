@@ -14,19 +14,29 @@ typedef StoreProductsLoader = Future<List<StoreProduct>> Function(
   required ProductCategory productCategory,
 });
 
+typedef PurchasesRestorer = Future<CustomerInfo> Function();
+
+enum RestoredPurchase {
+  removeAds,
+  unlockLevels,
+}
+
 class ShopController extends GetxController implements GetxService {
   final ShopRepo shopRepo;
   final StoreProductsLoader productsLoader;
+  final PurchasesRestorer purchasesRestorer;
 
   ShopController({
     required this.shopRepo,
     StoreProductsLoader? productsLoader,
-  }) : productsLoader = productsLoader ??
+    PurchasesRestorer? purchasesRestorer,
+  })  : productsLoader = productsLoader ??
             ((productIdentifiers, {required productCategory}) =>
                 Purchases.getProducts(
                   productIdentifiers,
                   productCategory: productCategory,
-                ));
+                )),
+        purchasesRestorer = purchasesRestorer ?? Purchases.restorePurchases;
 
   bool _levelsUnlocked = false;
 
@@ -60,8 +70,10 @@ class ShopController extends GetxController implements GetxService {
 
   Future<void> loadShopSettings() async {
     await initPlatformState();
-    levelsUnlockRead();
-    removeAdsRead();
+    await Future.wait([
+      levelsUnlockRead(),
+      removeAdsRead(),
+    ]);
     Purchases.addCustomerInfoUpdateListener(
       (_) => updateCustomerStatus(),
     );
@@ -92,21 +104,46 @@ class ShopController extends GetxController implements GetxService {
 
   Future updateCustomerStatus() async {
     try {
-      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-
-      final entitlementAds = customerInfo
-          .entitlements.all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive;
-      final entitlementLevel = customerInfo
-          .entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive;
-
-      bool isAdsRemove = entitlementAds == true;
-      bool isUnlockLevels = entitlementLevel == true;
-
-      levelsUnlockSave(isUnlockLevels);
-      removeAdsSave(isAdsRemove);
+      final customerInfo = await Purchases.getCustomerInfo();
+      await _savePermanentPurchases(_activePermanentPurchases(customerInfo));
     } on PlatformException catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  Future<Set<RestoredPurchase>> restorePurchases() async {
+    final customerInfo = await purchasesRestorer();
+    final restoredPurchases = _activePermanentPurchases(customerInfo);
+    await _savePermanentPurchases(restoredPurchases);
+    return restoredPurchases;
+  }
+
+  Set<RestoredPurchase> _activePermanentPurchases(
+    CustomerInfo customerInfo,
+  ) {
+    final restoredPurchases = <RestoredPurchase>{};
+
+    if (customerInfo
+            .entitlements.all[AppConstants.REMOVE_ADS_ID_ENT]?.isActive ==
+        true) {
+      restoredPurchases.add(RestoredPurchase.removeAds);
+    }
+    if (customerInfo
+            .entitlements.all[AppConstants.UNLOCK_LEVELS_ID_ENT]?.isActive ==
+        true) {
+      restoredPurchases.add(RestoredPurchase.unlockLevels);
+    }
+
+    return restoredPurchases;
+  }
+
+  Future<void> _savePermanentPurchases(
+    Set<RestoredPurchase> purchases,
+  ) async {
+    await Future.wait([
+      removeAdsSave(purchases.contains(RestoredPurchase.removeAds)),
+      levelsUnlockSave(purchases.contains(RestoredPurchase.unlockLevels)),
+    ]);
   }
 
   Future<void> levelsUnlockRead() async {

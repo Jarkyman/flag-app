@@ -18,7 +18,7 @@ dependencies:
   shared_preferences: ^2.5.5
   google_mobile_ads: ^8.0.0
   audioplayers: ^6.7.0
-  purchases_flutter: ^10.2.0
+  purchases_flutter: ^10.4.1
   animated_widgets: ^1.1.0
   shake: ^3.0.0
   rate_my_app: ^2.4.0

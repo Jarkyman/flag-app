@@ -108,27 +108,4 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 // DONE {M} [release, version-2.0.0] (H): `docs/changelog.txt` indeholder release notes til version 2.0.0 på alle ni sprog og holder sig under platformenes tekstgrænser.
 
 
-// TODO: Revenu cat message, did we fix this for version 2.0.0? I got the message after testing on my android device.
-
-"com.revenuecat.purchases:purchases has added this note for purchases:10.6.1:
-
-This version makes unnecessary API calls. Please update to a more recent version.
-
-Please consider upgrading com.revenuecat.purchases:purchases:10.6.1 in order to avoid issues in your future releases.
-
-Affected app bundles and APKs:
-
-version: 24 (1.4.0), release: 24 (1.4.0)
-If you have questions about this SDK, contact the SDK provider.
-
-com.revenuecat.purchases:purchases has added this note for purchases:10.6.1:
-
-This version makes unnecessary API calls. Please update to a more recent version.
-
-Please consider upgrading com.revenuecat.purchases:purchases:10.6.1 in order to avoid issues in your future releases.
-
-Affected app bundles and APKs:
-
-version: 24 (1.4.0), release: 24 (1.4.0)
-If you have questions about this SDK, contact the SDK provider."
-read more: https://support.google.com/googleplay/android-developer/answer/10358880
+// DONE {S} [android, purchases, release] (H): Opdatér RevenueCat før 2.0.0, så Google Plays SDK-advarsel for `com.revenuecat.purchases:purchases:10.6.1` ikke følger med i det nye build. `purchases_flutter` er opdateret fra 10.2.0 til 10.4.1, og Gradles `releaseRuntimeClasspath` er verificeret til native Android SDK 10.12.0. Den direkte non-subscription-produkt-test består, og `flutter analyze` er ren. Advarslen kan fortsat stå på den uforanderlige produktionsbuild `1.4.0+24`, men gælder ikke det kommende build.

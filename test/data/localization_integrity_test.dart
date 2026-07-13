@@ -89,6 +89,16 @@ void main() {
       }
     }
   });
+
+  test('purchase restore translations preserve their placeholder', () {
+    for (final locale in locales.entries) {
+      expect(
+        locale.value['Restored purchases'],
+        contains('@purchases'),
+        reason: '${locale.key} must preserve @purchases in restore feedback',
+      );
+    }
+  });
 }
 
 Map<String, Map<String, String>> _readLocales() {

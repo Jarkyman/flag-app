@@ -992,13 +992,6 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
                                           heroCode: baseCountryCode,
                                         ),
                                       ),
-                                      if (kDebugMode)
-                                        Positioned(
-                                          top: Dimensions.height10 * 0.5,
-                                          left: Dimensions.width20 * 2,
-                                          right: Dimensions.width20 * 2,
-                                          child: _debugAnswerBadge(),
-                                        ),
                                     ],
                                   ),
                                 ),
@@ -1094,44 +1087,6 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         imagePath,
         fit: BoxFit.contain,
         cacheWidth: cacheWidth,
-      ),
-    );
-  }
-
-  Widget _debugAnswerBadge() {
-    return IgnorePointer(
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: Dimensions.width10,
-          vertical: Dimensions.height10 * 0.35,
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.yellowColor.withValues(alpha: 0.94),
-          borderRadius: BorderRadius.circular(Dimensions.radius10),
-          border: Border.all(
-            color: AppColors.goldColor.withValues(alpha: 0.6),
-            width: Dimensions.width5 * 0.2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.mainBlackColor.withValues(alpha: 0.12),
-              blurRadius: Dimensions.radius10,
-              offset: Offset(0, Dimensions.height10 * 0.25),
-            ),
-          ],
-        ),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            'DEBUG  •  ${country.country}',
-            maxLines: 1,
-            style: TextStyle(
-              color: AppColors.mainBlackColor,
-              fontSize: Dimensions.font16 * 0.78,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ),
       ),
     );
   }

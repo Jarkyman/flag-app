@@ -76,12 +76,22 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game-services, release] (H): Tilføj Game Center-komponenterne til næste iOS-version, publicér Play Games Services-projektet, upload release-builds og test begge platforme med sandbox/testere før release.
 
-// TODO {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk.
+// DONE {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk. Alle ni sprog er gemt i både App Store Connect og Play Console; Apple-komponenterne er Ready for Review, og Google-ændringerne er drafts.
 
 // DONE {M} [analytics, firebase] (H): Implementér Firebase Analytics efter samme setup som i de andre apps. Track centrale, ikke-personhenførbare events for skærmvisninger, spilstart/-slut, korrekte/forkerte svar, streak/ny rekord, kontinentfilter, hintbrug og Game Center/Play Games-flow. Opdatér også privacy-/consent-konfiguration og test events på både Android og iOS.
+
+// DONE {S} [analytics, privacy, settings] (H): Analytics er slået til som standard og kan slås fra permanent i Settings. Vis en lokaliseret bekræftelses-popup før opt-out, forklar kort at navn, e-mail og andre direkte identificerende oplysninger ikke indsamles, og at anonyme brugs- og spildata bruges til at forbedre appen. Opt-out stopper collection, tilbagekalder analytics-storage consent og nulstiller Firebase-installationsdata.
+
+// DONE {S} [security, git, release] (H): Gennemgå alle ændrede og nye filer før det offentlige GitHub-commit. Bekræft at Firebase-mobilkonfigurationerne kun indeholder offentlige klientidentifikatorer, og at private nøgler, service accounts, client secrets, tokens, keystores, lokale stier og private mailadresser ikke committes. Udvid `.gitignore` med signing- og server-credential-formater.
 
 // TODO {S} [analytics, privacy, release] (H): Opdatér App Store App Privacy og Google Play Data Safety før 2.0.0, så anonym Firebase Analytics deklareres som brugsdata/appinteraktion til analytics, ikke knyttet til brugerens identitet og ikke brugt til tracking.
 
 // TODO {S} [analytics, reports] (M): Når de første events er synlige i Firebase, registrér de vigtigste parametre som GA4 Custom Definitions (mindst `game_mode`, `continent`, `hint_type`, `completion_method`, `reason`, `category`, `app_language` og `ads_removed`), så de kan bruges direkte i rapporter og Explorations.
 
 // TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når iCloud/Saved Games-platformopsætningen er afsluttet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.
+
+// TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console.
+
+// TODO {M} [release, version-2.0.0] (H): Updater alle sprog i docs mappen til version 2.0.0, så de matcher den nye appversion og de nye features, herunder Game Center/Play Games Services, kontinentfilter, hints, achievements og leaderboards.
+
+// TODO {M} [release, version-2.0.0] (H): lav en changelog fil så det er klar til release

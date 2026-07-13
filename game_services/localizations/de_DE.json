@@ -1,0 +1,134 @@
+{
+  "locale": "de-DE",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Flagge finden — Welt",
+      "description": "Höchste Serie mit allen Ländern in Flagge finden."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Flaggen zuordnen — Welt",
+      "description": "Höchste Serie mit allen Ländern in Flaggen zuordnen."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Welches Land — Welt",
+      "description": "Höchste Serie mit allen Ländern in Welches Land."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "Erste Flagge",
+      "description": "Beantworte eine Frage in einem beliebigen Spiel richtig.",
+      "earnedDescription": "Du hast deine erste Frage richtig beantwortet."
+    },
+    "achievement.streak_5_any": {
+      "name": "Läuft wie am Schnürchen",
+      "description": "Erreiche eine 5er-Serie in einem beliebigen Spiel.",
+      "earnedDescription": "Du hast eine 5er-Serie erreicht."
+    },
+    "achievement.streak_10_any": {
+      "name": "Zweistellig",
+      "description": "Erreiche eine 10er-Serie in einem beliebigen Spiel.",
+      "earnedDescription": "Du hast eine 10er-Serie erreicht."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Flaggenfinder",
+      "description": "Beantworte 10 Fragen in Flagge finden richtig.",
+      "earnedDescription": "Du hast 10 Flaggen richtig erkannt."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "Flaggenpaar",
+      "description": "Beantworte 10 Fragen in Flaggen zuordnen richtig.",
+      "earnedDescription": "Du hast 10 Flaggen richtig zugeordnet."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Länderkundig",
+      "description": "Beantworte 10 Fragen in Welches Land richtig.",
+      "earnedDescription": "Du hast 10 Länder richtig erkannt."
+    },
+    "achievement.training_100_correct": {
+      "name": "Hunderterclub",
+      "description": "Beantworte insgesamt 100 Fragen in den Spielen richtig.",
+      "earnedDescription": "Du hast insgesamt 100 Fragen richtig beantwortet."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Afrika-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Afrika-Filter.",
+      "earnedDescription": "Du hast in Afrika eine 10er-Serie geschafft."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Asien-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Asien-Filter.",
+      "earnedDescription": "Du hast in Asien eine 10er-Serie geschafft."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Europa-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Europa-Filter.",
+      "earnedDescription": "Du hast in Europa eine 10er-Serie geschafft."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "Nordamerika-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Nordamerika-Filter.",
+      "earnedDescription": "Du hast in Nordamerika eine 10er-Serie geschafft."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Ozeanien-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Ozeanien-Filter.",
+      "earnedDescription": "Du hast in Ozeanien eine 10er-Serie geschafft."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "Südamerika-Entdecker",
+      "description": "Erreiche eine 10er-Serie mit dem Südamerika-Filter.",
+      "earnedDescription": "Du hast in Südamerika eine 10er-Serie geschafft."
+    },
+    "achievement.world_tour": {
+      "name": "Weltreise",
+      "description": "Erreiche auf jedem Kontinent eine 5er-Serie.",
+      "earnedDescription": "Du hast auf jedem Kontinent eine 5er-Serie geschafft."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Wortreisender",
+      "description": "Löse 10 Levelrätsel.",
+      "earnedDescription": "Du hast 10 Levelrätsel gelöst."
+    },
+    "achievement.complete_first_level": {
+      "name": "Levelaufstieg",
+      "description": "Schließe dein erstes Level ab.",
+      "earnedDescription": "Du hast dein erstes Level abgeschlossen."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Flaggenmeister",
+      "description": "Löse alle 194 Flaggenrätsel.",
+      "earnedDescription": "Du hast alle Flaggenrätsel abgeschlossen."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Ländermeister",
+      "description": "Löse alle 194 Länderrätsel.",
+      "earnedDescription": "Du hast alle Länderrätsel abgeschlossen."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Wappenmeister",
+      "description": "Löse alle 194 Wappenrätsel.",
+      "earnedDescription": "Du hast alle Wappenrätsel abgeschlossen."
+    },
+    "achievement.complete_all_levels": {
+      "name": "Weltmeister",
+      "description": "Schließe alle Flaggen-, Länder- und Wappenrätsel ab.",
+      "earnedDescription": "Du hast jede Levelkategorie gemeistert."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Perfekte Flaggenjagd",
+      "description": "Geheim: Erreiche 194 in Flagge finden mit dem Filter Alle.",
+      "earnedDescription": "Du hast auf einer perfekten Weltreise jede Flagge erkannt."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Perfekte Zuordnung",
+      "description": "Geheim: Erreiche 194 in Flaggen zuordnen mit dem Filter Alle.",
+      "earnedDescription": "Du hast auf einer perfekten Weltreise jede Flagge zugeordnet."
+    },
+    "achievement.perfect_which_country": {
+      "name": "Die ganze Welt",
+      "description": "Geheim: Erreiche 194 in Welches Land mit dem Filter Alle.",
+      "earnedDescription": "Du hast die ganze Welt in einem perfekten Lauf erkannt."
+    }
+  }
+}

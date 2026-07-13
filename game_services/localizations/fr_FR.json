@@ -1,0 +1,134 @@
+{
+  "locale": "fr-FR",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Trouve le drapeau — Monde",
+      "description": "Meilleure série avec tous les pays dans Trouve le drapeau."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Associe les drapeaux — Monde",
+      "description": "Meilleure série avec tous les pays dans Associe les drapeaux."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Quel pays — Monde",
+      "description": "Meilleure série avec tous les pays dans Quel pays."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "Premier drapeau",
+      "description": "Réponds correctement à une question dans n’importe quel jeu.",
+      "earnedDescription": "Tu as répondu correctement à ta première question."
+    },
+    "achievement.streak_5_any": {
+      "name": "Bien lancé",
+      "description": "Atteins une série de 5 dans n’importe quel jeu.",
+      "earnedDescription": "Tu as atteint une série de 5."
+    },
+    "achievement.streak_10_any": {
+      "name": "Deux chiffres",
+      "description": "Atteins une série de 10 dans n’importe quel jeu.",
+      "earnedDescription": "Tu as atteint une série de 10."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Expert des drapeaux",
+      "description": "Réponds correctement à 10 questions dans Trouve le drapeau.",
+      "earnedDescription": "Tu as trouvé correctement 10 drapeaux."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "As des associations",
+      "description": "Réponds correctement à 10 questions dans Associe les drapeaux.",
+      "earnedDescription": "Tu as associé correctement 10 drapeaux."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Expert en géographie",
+      "description": "Réponds correctement à 10 questions dans Quel pays.",
+      "earnedDescription": "Tu as identifié correctement 10 pays."
+    },
+    "achievement.training_100_correct": {
+      "name": "Club des cent",
+      "description": "Réponds correctement à 100 questions dans les différents jeux.",
+      "earnedDescription": "Tu as répondu correctement à 100 questions dans les jeux."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Explorateur de l’Afrique",
+      "description": "Atteins une série de 10 avec le filtre Afrique.",
+      "earnedDescription": "Tu as réussi une série de 10 en Afrique."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Explorateur de l’Asie",
+      "description": "Atteins une série de 10 avec le filtre Asie.",
+      "earnedDescription": "Tu as réussi une série de 10 en Asie."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Explorateur de l’Europe",
+      "description": "Atteins une série de 10 avec le filtre Europe.",
+      "earnedDescription": "Tu as réussi une série de 10 en Europe."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "Explorateur d’Amérique du Nord",
+      "description": "Atteins une série de 10 avec le filtre Amérique du Nord.",
+      "earnedDescription": "Tu as réussi une série de 10 en Amérique du Nord."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Explorateur de l’Océanie",
+      "description": "Atteins une série de 10 avec le filtre Océanie.",
+      "earnedDescription": "Tu as réussi une série de 10 en Océanie."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "Explorateur d’Amérique du Sud",
+      "description": "Atteins une série de 10 avec le filtre Amérique du Sud.",
+      "earnedDescription": "Tu as réussi une série de 10 en Amérique du Sud."
+    },
+    "achievement.world_tour": {
+      "name": "Tour du monde",
+      "description": "Atteins une série de 5 sur chaque continent.",
+      "earnedDescription": "Tu as réussi une série de 5 sur chaque continent."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Voyageur des mots",
+      "description": "Résous 10 énigmes de niveau.",
+      "earnedDescription": "Tu as résolu 10 énigmes de niveau."
+    },
+    "achievement.complete_first_level": {
+      "name": "Niveau supérieur",
+      "description": "Termine ton premier niveau.",
+      "earnedDescription": "Tu as terminé ton premier niveau."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Maître des drapeaux",
+      "description": "Résous les 194 énigmes de drapeaux.",
+      "earnedDescription": "Tu as terminé toutes les énigmes de drapeaux."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Maître des pays",
+      "description": "Résous les 194 énigmes de pays.",
+      "earnedDescription": "Tu as terminé toutes les énigmes de pays."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Maître de l’héraldique",
+      "description": "Résous les 194 énigmes de blasons.",
+      "earnedDescription": "Tu as terminé toutes les énigmes de blasons."
+    },
+    "achievement.complete_all_levels": {
+      "name": "Maître du monde",
+      "description": "Termine toutes les énigmes de drapeaux, pays et blasons.",
+      "earnedDescription": "Tu as maîtrisé toutes les catégories de niveaux."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Chasse aux drapeaux parfaite",
+      "description": "Secret : atteins 194 dans Trouve le drapeau avec le filtre Tous.",
+      "earnedDescription": "Tu as trouvé tous les drapeaux lors d’un tour du monde parfait."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Association parfaite",
+      "description": "Secret : atteins 194 dans Associe les drapeaux avec le filtre Tous.",
+      "earnedDescription": "Tu as associé tous les drapeaux lors d’un tour du monde parfait."
+    },
+    "achievement.perfect_which_country": {
+      "name": "Le monde entier",
+      "description": "Secret : atteins 194 dans Quel pays avec le filtre Tous.",
+      "earnedDescription": "Tu as identifié le monde entier en une partie parfaite."
+    }
+  }
+}

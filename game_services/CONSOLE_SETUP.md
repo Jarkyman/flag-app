@@ -5,21 +5,22 @@ før login, achievements og leaderboards kan fungere på rigtige konti.
 
 ## Apple Game Center
 
-### Allerede konfigureret (2026-07-11)
+### Allerede konfigureret (opdateret 2026-07-13)
 
 - Game Center-siden er aktiveret for App Store Connect-appen `6443707640`.
 - De tre globale `All`-leaderboards er oprettet som klassiske leaderboards med
   heltal, Best Score og High to Low. `Find Flag — World` er standard.
-- Alle tre leaderboards har dansk og engelsk lokalisering samt Apple-billeder.
+- Alle tre leaderboards har dansk, engelsk, tysk, spansk, fransk, norsk,
+  brasiliansk portugisisk, europæisk portugisisk og svensk lokalisering.
 - Alle 23 achievements er oprettet med de permanente `appleId`-værdier,
   katalogets point og `Achievable More Than Once = No`.
-- Alle 23 achievements har dansk og engelsk titel, før-/efterbeskrivelse og
-  Apple-billeder.
+- Alle 23 achievements har titel og før-/efterbeskrivelse på alle ni sprog.
+  Det eksisterende 1024 x 1024 Apple-billede er genbrugt i hver lokalisering.
 - De tre perfekte gennemløb er markeret `Hidden = Yes`; de øvrige 20 er synlige.
 - App Store Connect viser `3` leaderboards og `23` achievements med status
-  `Prepare for Submission`. Achievement-totalen er 915 af 1.000 point.
-- Intet er tilføjet til review eller en appversion endnu. Det sker først efter
-  sandbox-test og sammen med den næste release.
+  `Ready for Review`. Achievement-totalen er 915 af 1.000 point.
+- Alle 26 komponenter er tilføjet den eksisterende draft. Intet blev indsendt
+  til review som en del af lokaliseringsarbejdet.
 - App-koden har nu iCloud Documents-entitlements for containeren
   `iCloud.com.Hartvig-Develop.flags`. Containeren skal stadig oprettes/tilknyttes
   App ID'et i Apple Developer, og provisioning profiles skal regenereres.
@@ -46,9 +47,13 @@ før login, achievements og leaderboards kan fungere på rigtige konti.
 Apple-ID'erne er permanente, når komponenterne er oprettet. Ret derfor ikke
 `appleId` i kataloget bagefter.
 
+Apple-leaderboards bruger lokaliserede score-suffikser: `Punkt/Punkte`,
+`punto/puntos`, `point/points`, `poeng`, `ponto/pontos` og `poäng` for de syv
+nye platformssprog.
+
 ## Google Play Games Services
 
-### Allerede konfigureret (2026-07-11)
+### Allerede konfigureret (opdateret 2026-07-13)
 
 - Google Cloud-/Play Games-project: `flags-game-quiz`
 - Numerisk project ID: `203533264391`
@@ -68,19 +73,24 @@ Apple-ID'erne er permanente, når komponenterne er oprettet. Ret derfor ikke
 - Production AAB er bygget og verificeret lokalt på
   `build/app/outputs/bundle/release/app-release.aab`; bundlen indeholder
   `base/root/play-services-games-v2.properties`.
-- Alle 23 achievements er oprettet som drafts i Play Console med de engelske
-  tekster, Google-ikonerne, korrekte steps/point og tre skjulte achievements.
+- Alle 23 achievements er oprettet som drafts i Play Console med tekster på
+  alle ni sprog, Google-ikonerne, korrekte steps/point og tre skjulte
+  achievements.
   Play Console viser `1 - 23 of 23`, `915 of 2,000 points used` og
   `Ready to publish to everyone` for alle 23.
 - Alle 23 genererede achievement-ID'er er skrevet tilbage til
   `achievements/catalog.json`.
-- De tre globale `All`-leaderboards er oprettet som drafts med Number/0
-  decimaler, Largest first, tamper protection og Google-ikoner. Play Console
-  viser `1 - 3 of 3` og `Ready to publish to everyone` for alle tre.
+- De tre globale `All`-leaderboards er oprettet som drafts med lokaliserede
+  navne på alle ni sprog, Number/0 decimaler, Largest first, tamper protection
+  og Google-ikoner. Play Console viser `1 - 3 of 3` og
+  `Ready to publish to everyone` for alle tre.
 - Alle tre leaderboard-ID'er er skrevet tilbage til
   `leaderboards/catalog.json`. Alle 26 Google-ID'er er dermed udfyldt.
 - Cloud-save-koden bruger Google Saved Games/Snapshots og sender et coverbillede
   med hver automatisk backup. Saved Games skal stadig slås til for spillet.
+- Play Console-sprogene er dansk, tysk, engelsk, spansk, fransk, norsk,
+  brasiliansk portugisisk, europæisk portugisisk og svensk. Google viser norsk
+  som `no`; kildefilen hedder `nb_NO.json` for at angive Bokmål præcist.
 
 1. Åbn Play Games Services for pakken `com.hartvig_develop.flags` i Play Console.
 2. Opret/tilknyt Play Games-projektet og OAuth credentials for både debug- og

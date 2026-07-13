@@ -1,7 +1,8 @@
 {
-  "complete": ["da-DK", "en-US"],
-  "pendingHumanReview": [
+  "complete": [
+    "da-DK",
     "de-DE",
+    "en-US",
     "es-ES",
     "fr-FR",
     "nb-NO",
@@ -9,5 +10,6 @@
     "pt-PT",
     "sv-SE"
   ],
-  "note": "Platformstekster oversættes efter godkendelse af dansk og engelsk navn/kriterium, så ændringer ikke skal vedligeholdes ni steder."
+  "pendingHumanReview": [],
+  "note": "Alle ni platformslokaliseringer er gennemgået og gemt i både App Store Connect og Google Play Console. Google Play viser norsk som no, mens kildefilen bruger den mere præcise locale nb-NO."
 }

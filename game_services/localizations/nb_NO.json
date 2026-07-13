@@ -1,0 +1,134 @@
+{
+  "locale": "nb-NO",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Finn flagget — Verden",
+      "description": "Lengste rekke med alle land i Finn flagget."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Match flagg — Verden",
+      "description": "Lengste rekke med alle land i Match flagg."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Hvilket land — Verden",
+      "description": "Lengste rekke med alle land i Hvilket land."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "Første flagg",
+      "description": "Svar riktig på ett spørsmål i et valgfritt spill.",
+      "earnedDescription": "Du svarte riktig på ditt første spørsmål."
+    },
+    "achievement.streak_5_any": {
+      "name": "På gli",
+      "description": "Oppnå en rekke på 5 i et valgfritt spill.",
+      "earnedDescription": "Du oppnådde en rekke på 5."
+    },
+    "achievement.streak_10_any": {
+      "name": "Tosifret",
+      "description": "Oppnå en rekke på 10 i et valgfritt spill.",
+      "earnedDescription": "Du oppnådde en rekke på 10."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Flaggfinner",
+      "description": "Svar riktig på 10 spørsmål i Finn flagget.",
+      "earnedDescription": "Du fant 10 flagg riktig."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "Flaggmatcher",
+      "description": "Svar riktig på 10 spørsmål i Match flagg.",
+      "earnedDescription": "Du matchet 10 flagg riktig."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Kartleser",
+      "description": "Svar riktig på 10 spørsmål i Hvilket land.",
+      "earnedDescription": "Du identifiserte 10 land riktig."
+    },
+    "achievement.training_100_correct": {
+      "name": "Hundreklubben",
+      "description": "Svar riktig på 100 spørsmål på tvers av spillene.",
+      "earnedDescription": "Du svarte riktig på 100 spørsmål i spillene."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Afrika-utforsker",
+      "description": "Oppnå en rekke på 10 med Afrika-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Afrika."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Asia-utforsker",
+      "description": "Oppnå en rekke på 10 med Asia-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Asia."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Europa-utforsker",
+      "description": "Oppnå en rekke på 10 med Europa-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Europa."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "Nord-Amerika-utforsker",
+      "description": "Oppnå en rekke på 10 med Nord-Amerika-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Nord-Amerika."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Oseania-utforsker",
+      "description": "Oppnå en rekke på 10 med Oseania-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Oseania."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "Sør-Amerika-utforsker",
+      "description": "Oppnå en rekke på 10 med Sør-Amerika-filteret.",
+      "earnedDescription": "Du klarte en rekke på 10 i Sør-Amerika."
+    },
+    "achievement.world_tour": {
+      "name": "Jorden rundt",
+      "description": "Oppnå en rekke på 5 på hvert kontinent.",
+      "earnedDescription": "Du klarte en rekke på 5 på hvert kontinent."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Ordreisende",
+      "description": "Løs 10 nivåoppgaver.",
+      "earnedDescription": "Du løste 10 nivåoppgaver."
+    },
+    "achievement.complete_first_level": {
+      "name": "Nivå opp",
+      "description": "Fullfør ditt første nivå.",
+      "earnedDescription": "Du fullførte ditt første nivå."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Flaggmester",
+      "description": "Løs alle de 194 flaggoppgavene.",
+      "earnedDescription": "Du fullførte alle flaggoppgavene."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Landmester",
+      "description": "Løs alle de 194 landoppgavene.",
+      "earnedDescription": "Du fullførte alle landoppgavene."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Heraldikkmester",
+      "description": "Løs alle de 194 våpenskjoldoppgavene.",
+      "earnedDescription": "Du fullførte alle våpenskjoldoppgavene."
+    },
+    "achievement.complete_all_levels": {
+      "name": "Verdensmester",
+      "description": "Fullfør alle flagg-, land- og våpenskjoldoppgaver.",
+      "earnedDescription": "Du mestret alle nivåkategoriene."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Perfekt flaggjakt",
+      "description": "Hemmelig: Oppnå 194 i Finn flagget med filteret Alle.",
+      "earnedDescription": "Du fant alle flaggene på én perfekt jordomreise."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Perfekt match",
+      "description": "Hemmelig: Oppnå 194 i Match flagg med filteret Alle.",
+      "earnedDescription": "Du matchet alle flaggene på én perfekt jordomreise."
+    },
+    "achievement.perfect_which_country": {
+      "name": "Hele verden",
+      "description": "Hemmelig: Oppnå 194 i Hvilket land med filteret Alle.",
+      "earnedDescription": "Du identifiserte hele verden i én perfekt runde."
+    }
+  }
+}

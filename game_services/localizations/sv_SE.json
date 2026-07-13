@@ -1,0 +1,134 @@
+{
+  "locale": "sv-SE",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Hitta flaggan — Världen",
+      "description": "Längsta svit med alla länder i Hitta flaggan."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Matcha flaggor — Världen",
+      "description": "Längsta svit med alla länder i Matcha flaggor."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Vilket land — Världen",
+      "description": "Längsta svit med alla länder i Vilket land."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "Första flaggan",
+      "description": "Svara rätt på en fråga i valfritt spel.",
+      "earnedDescription": "Du svarade rätt på din första fråga."
+    },
+    "achievement.streak_5_any": {
+      "name": "På gång",
+      "description": "Nå en svit på 5 i valfritt spel.",
+      "earnedDescription": "Du nådde en svit på 5."
+    },
+    "achievement.streak_10_any": {
+      "name": "Tvåsiffrigt",
+      "description": "Nå en svit på 10 i valfritt spel.",
+      "earnedDescription": "Du nådde en svit på 10."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Flaggspanare",
+      "description": "Svara rätt på 10 frågor i Hitta flaggan.",
+      "earnedDescription": "Du hittade 10 flaggor rätt."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "Flaggmatchare",
+      "description": "Svara rätt på 10 frågor i Matcha flaggor.",
+      "earnedDescription": "Du matchade 10 flaggor rätt."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Kartläsare",
+      "description": "Svara rätt på 10 frågor i Vilket land.",
+      "earnedDescription": "Du identifierade 10 länder rätt."
+    },
+    "achievement.training_100_correct": {
+      "name": "Hundraklubben",
+      "description": "Svara rätt på 100 frågor sammanlagt i spelen.",
+      "earnedDescription": "Du svarade rätt på 100 frågor i spelen."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Afrikautforskare",
+      "description": "Nå en svit på 10 med Afrika-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Afrika."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Asienutforskare",
+      "description": "Nå en svit på 10 med Asien-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Asien."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Europautforskare",
+      "description": "Nå en svit på 10 med Europa-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Europa."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "Nordamerikautforskare",
+      "description": "Nå en svit på 10 med Nordamerika-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Nordamerika."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Oceanienutforskare",
+      "description": "Nå en svit på 10 med Oceanien-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Oceanien."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "Sydamerikautforskare",
+      "description": "Nå en svit på 10 med Sydamerika-filtret.",
+      "earnedDescription": "Du klarade en svit på 10 i Sydamerika."
+    },
+    "achievement.world_tour": {
+      "name": "Jorden runt",
+      "description": "Nå en svit på 5 på varje kontinent.",
+      "earnedDescription": "Du klarade en svit på 5 på varje kontinent."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Ordresenär",
+      "description": "Lös 10 nivåpussel.",
+      "earnedDescription": "Du löste 10 nivåpussel."
+    },
+    "achievement.complete_first_level": {
+      "name": "Nivå upp",
+      "description": "Klara din första nivå.",
+      "earnedDescription": "Du klarade din första nivå."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Flaggmästare",
+      "description": "Lös alla 194 flaggpussel.",
+      "earnedDescription": "Du klarade alla flaggpussel."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Landsmästare",
+      "description": "Lös alla 194 landspussel.",
+      "earnedDescription": "Du klarade alla landspussel."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Heraldikmästare",
+      "description": "Lös alla 194 vapensköldspussel.",
+      "earnedDescription": "Du klarade alla vapensköldspussel."
+    },
+    "achievement.complete_all_levels": {
+      "name": "Världsmästare",
+      "description": "Klara alla flagg-, lands- och vapensköldspussel.",
+      "earnedDescription": "Du bemästrade alla nivåkategorier."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Perfekt flaggjakt",
+      "description": "Hemlig: Nå 194 i Hitta flaggan med filtret Alla.",
+      "earnedDescription": "Du hittade alla flaggor under en perfekt jorden runt-resa."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Perfekt match",
+      "description": "Hemlig: Nå 194 i Matcha flaggor med filtret Alla.",
+      "earnedDescription": "Du matchade alla flaggor under en perfekt jorden runt-resa."
+    },
+    "achievement.perfect_which_country": {
+      "name": "Hela världen",
+      "description": "Hemlig: Nå 194 i Vilket land med filtret Alla.",
+      "earnedDescription": "Du identifierade hela världen i en perfekt omgång."
+    }
+  }
+}

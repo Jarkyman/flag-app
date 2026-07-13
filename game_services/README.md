@@ -33,8 +33,8 @@ tilbage i katalogerne.
 - `achievements/catalog.json`: stabile nøgler, platform-ID'er, kriterier,
   progression, point, backfill og ikonfil.
 - `leaderboards/catalog.json`: de tre online high scores og regler for submit.
-- `localizations/`: platformstekster. Dansk og engelsk er skrevet som første
-  godkendelsesgrundlag; de øvrige app-sprog er markeret i `status.json`.
+- `localizations/`: platformstekster til alle ni understøttede sprog. Status og
+  platformenes locale-forskelle er beskrevet i `status.json`.
 - `*/icons/master/`: 1024 x 1024 masterbilleder.
 - `*/icons/apple/`: Apple-eksporter i 1024 x 1024.
 - `*/icons/google/`: Google-eksporter i 512 x 512.
@@ -86,12 +86,13 @@ App-integrationen bruger `games_services` 5.1.0 og er implementeret med:
 - schema-validering før restore og automatisk backfill til achievements og
   leaderboards efter en succesfuld restore.
 
-De 23 achievements og tre `All`-leaderboards er nu oprettet som komplette drafts
-i både App Store Connect og Play Console. Apple-komponenterne har dansk og
-engelsk lokalisering samt billeder; Google-komponenterne har ikoner og alle 26
-genererede ID'er er skrevet tilbage i katalogerne. Komponenterne er endnu ikke
-tilføjet en iOS-appversion eller publiceret i Play Games Services, fordi begge
-platforme først skal testes. Se `CONSOLE_SETUP.md`.
+De 23 achievements og tre `All`-leaderboards er oprettet i både App Store
+Connect og Play Console. Alle komponenter har nu platformstekster på dansk,
+engelsk, tysk, spansk, fransk, norsk, brasiliansk portugisisk, europæisk
+portugisisk og svensk. Apple viser alle 26 komponenter som `Ready for Review` i
+den eksisterende draft, og Google-lokaliseringerne er gemt som drafts. Intet blev
+indsendt eller udgivet som en del af lokaliseringsarbejdet. Alle billeder og 26
+genererede Google-ID'er er fortsat koblet til katalogerne. Se `CONSOLE_SETUP.md`.
 
 Cloud-save-koden og iOS-entitlements er implementeret. Før enhedstest skal
 Saved Games aktiveres i Play Console, og iCloud-containeren skal registreres hos

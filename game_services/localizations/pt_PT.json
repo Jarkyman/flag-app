@@ -1,0 +1,134 @@
+{
+  "locale": "pt-PT",
+  "leaderboards": {
+    "leaderboard.find_flag.all": {
+      "name": "Encontra a bandeira — Mundo",
+      "description": "Maior sequência com todos os países em Encontra a bandeira."
+    },
+    "leaderboard.match_flags.all": {
+      "name": "Combina bandeiras — Mundo",
+      "description": "Maior sequência com todos os países em Combina bandeiras."
+    },
+    "leaderboard.which_country.all": {
+      "name": "Qual é o país — Mundo",
+      "description": "Maior sequência com todos os países em Qual é o país."
+    }
+  },
+  "achievements": {
+    "achievement.first_correct": {
+      "name": "Primeira bandeira",
+      "description": "Responde corretamente a uma pergunta em qualquer jogo.",
+      "earnedDescription": "Respondeste corretamente à tua primeira pergunta."
+    },
+    "achievement.streak_5_any": {
+      "name": "Em grande",
+      "description": "Alcança uma sequência de 5 em qualquer jogo.",
+      "earnedDescription": "Alcançaste uma sequência de 5."
+    },
+    "achievement.streak_10_any": {
+      "name": "Dois dígitos",
+      "description": "Alcança uma sequência de 10 em qualquer jogo.",
+      "earnedDescription": "Alcançaste uma sequência de 10."
+    },
+    "achievement.find_flag_10_correct": {
+      "name": "Caçador de bandeiras",
+      "description": "Responde corretamente a 10 perguntas em Encontra a bandeira.",
+      "earnedDescription": "Encontraste corretamente 10 bandeiras."
+    },
+    "achievement.match_flags_10_correct": {
+      "name": "Mestre das combinações",
+      "description": "Responde corretamente a 10 perguntas em Combina bandeiras.",
+      "earnedDescription": "Combinaste corretamente 10 bandeiras."
+    },
+    "achievement.which_country_10_correct": {
+      "name": "Leitor de mapas",
+      "description": "Responde corretamente a 10 perguntas em Qual é o país.",
+      "earnedDescription": "Identificaste corretamente 10 países."
+    },
+    "achievement.training_100_correct": {
+      "name": "Clube dos cem",
+      "description": "Responde corretamente a 100 perguntas entre todos os jogos.",
+      "earnedDescription": "Respondeste corretamente a 100 perguntas nos jogos."
+    },
+    "achievement.africa_streak_10": {
+      "name": "Explorador de África",
+      "description": "Alcança uma sequência de 10 com o filtro África.",
+      "earnedDescription": "Conquistaste uma sequência de 10 em África."
+    },
+    "achievement.asia_streak_10": {
+      "name": "Explorador da Ásia",
+      "description": "Alcança uma sequência de 10 com o filtro Ásia.",
+      "earnedDescription": "Conquistaste uma sequência de 10 na Ásia."
+    },
+    "achievement.europe_streak_10": {
+      "name": "Explorador da Europa",
+      "description": "Alcança uma sequência de 10 com o filtro Europa.",
+      "earnedDescription": "Conquistaste uma sequência de 10 na Europa."
+    },
+    "achievement.north_america_streak_10": {
+      "name": "Explorador da América do Norte",
+      "description": "Alcança uma sequência de 10 com o filtro América do Norte.",
+      "earnedDescription": "Conquistaste uma sequência de 10 na América do Norte."
+    },
+    "achievement.oceania_streak_10": {
+      "name": "Explorador da Oceânia",
+      "description": "Alcança uma sequência de 10 com o filtro Oceânia.",
+      "earnedDescription": "Conquistaste uma sequência de 10 na Oceânia."
+    },
+    "achievement.south_america_streak_10": {
+      "name": "Explorador da América do Sul",
+      "description": "Alcança uma sequência de 10 com o filtro América do Sul.",
+      "earnedDescription": "Conquistaste uma sequência de 10 na América do Sul."
+    },
+    "achievement.world_tour": {
+      "name": "Volta ao mundo",
+      "description": "Alcança uma sequência de 5 em todos os continentes.",
+      "earnedDescription": "Concluíste uma sequência de 5 em todos os continentes."
+    },
+    "achievement.solve_10_puzzles": {
+      "name": "Viajante das palavras",
+      "description": "Resolve 10 desafios de níveis.",
+      "earnedDescription": "Resolveste 10 desafios de níveis."
+    },
+    "achievement.complete_first_level": {
+      "name": "Subir de nível",
+      "description": "Conclui o teu primeiro nível.",
+      "earnedDescription": "Concluíste o teu primeiro nível."
+    },
+    "achievement.complete_flag_levels": {
+      "name": "Mestre das bandeiras",
+      "description": "Resolve os 194 desafios de bandeiras.",
+      "earnedDescription": "Concluíste todos os desafios de bandeiras."
+    },
+    "achievement.complete_country_levels": {
+      "name": "Mestre dos países",
+      "description": "Resolve os 194 desafios de países.",
+      "earnedDescription": "Concluíste todos os desafios de países."
+    },
+    "achievement.complete_coat_of_arms_levels": {
+      "name": "Mestre da heráldica",
+      "description": "Resolve os 194 desafios de brasões.",
+      "earnedDescription": "Concluíste todos os desafios de brasões."
+    },
+    "achievement.complete_all_levels": {
+      "name": "Mestre do mundo",
+      "description": "Conclui todos os desafios de bandeiras, países e brasões.",
+      "earnedDescription": "Dominaste todas as categorias de níveis."
+    },
+    "achievement.perfect_find_flag": {
+      "name": "Caça às bandeiras perfeita",
+      "description": "Secreto: alcança 194 em Encontra a bandeira com o filtro Todos.",
+      "earnedDescription": "Encontraste todas as bandeiras numa volta ao mundo perfeita."
+    },
+    "achievement.perfect_match_flags": {
+      "name": "Combinação perfeita",
+      "description": "Secreto: alcança 194 em Combina bandeiras com o filtro Todos.",
+      "earnedDescription": "Combinaste todas as bandeiras numa volta ao mundo perfeita."
+    },
+    "achievement.perfect_which_country": {
+      "name": "O mundo inteiro",
+      "description": "Secreto: alcança 194 em Qual é o país com o filtro Todos.",
+      "earnedDescription": "Identificaste o mundo inteiro numa partida perfeita."
+    }
+  }
+}

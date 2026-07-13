@@ -22,8 +22,8 @@ void levelUnlockDialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const AppDialogHeader(
-              title: 'Unlock level',
+            AppDialogHeader(
+              title: 'Unlock level'.tr,
               icon: Icons.emoji_events_outlined,
               accentColor: AppColors.yellowColor,
               showCloseButton: false,
@@ -37,7 +37,7 @@ void levelUnlockDialog(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
               ),
               child: Text(
-                'You unlocked a new level: $level',
+                'You unlocked a new level'.trParams({'level': '$level'}),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.mainBlackColor,
@@ -49,7 +49,7 @@ void levelUnlockDialog(
             ),
             SizedBox(height: Dimensions.height20),
             AppDialogButton(
-              label: 'Go to Level $level',
+              label: 'Go to level'.trParams({'level': '$level'}),
               icon: Icons.arrow_forward_rounded,
               onPressed: () {
                 onTapConfirm();
@@ -58,7 +58,7 @@ void levelUnlockDialog(
             ),
             SizedBox(height: Dimensions.height10),
             AppDialogButton(
-              label: 'Cancel',
+              label: 'Cancel'.tr,
               primary: false,
               onPressed: () {
                 onTapCancel();

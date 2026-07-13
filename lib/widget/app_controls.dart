@@ -98,7 +98,7 @@ class AppHintBadge extends StatelessWidget {
 
         return Semantics(
           button: interactive,
-          label: 'Hints: $hints',
+          label: '${'Hints'.tr}: $hints',
           child: Material(
             color: Colors.transparent,
             child: InkWell(

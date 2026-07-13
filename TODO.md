@@ -106,3 +106,29 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 // DONE {M} [release, version-2.0.0] (H): Alle ni sprog i docs-mappen er opdateret til version 2.0.0 med ASO-optimerede App Store-beskrivelser, promotionstekster og keywords samt Play Store-beskrivelser. Teksterne dækker det nye design, 197 lande, de seks spiltilstande, kontinentfilter, hints, Game Center/Play Games Services, 23 achievements og tre globale leaderboards.
 
 // DONE {M} [release, version-2.0.0] (H): `docs/changelog.txt` indeholder release notes til version 2.0.0 på alle ni sprog og holder sig under platformenes tekstgrænser.
+
+
+// TODO: Revenu cat message, did we fix this for version 2.0.0? I got the message after testing on my android device.
+
+"com.revenuecat.purchases:purchases has added this note for purchases:10.6.1:
+
+This version makes unnecessary API calls. Please update to a more recent version.
+
+Please consider upgrading com.revenuecat.purchases:purchases:10.6.1 in order to avoid issues in your future releases.
+
+Affected app bundles and APKs:
+
+version: 24 (1.4.0), release: 24 (1.4.0)
+If you have questions about this SDK, contact the SDK provider.
+
+com.revenuecat.purchases:purchases has added this note for purchases:10.6.1:
+
+This version makes unnecessary API calls. Please update to a more recent version.
+
+Please consider upgrading com.revenuecat.purchases:purchases:10.6.1 in order to avoid issues in your future releases.
+
+Affected app bundles and APKs:
+
+version: 24 (1.4.0), release: 24 (1.4.0)
+If you have questions about this SDK, contact the SDK provider."
+read more: https://support.google.com/googleplay/android-developer/answer/10358880

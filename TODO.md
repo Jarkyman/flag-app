@@ -66,9 +66,9 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game-services, cloud-save] (H): Tilføj remote-first launch-sync før Home, versionsstyret autosave med debounce og app-pause-flush samt read-only legacy-backup og to roterende autosave-slots. En tom førstegangsstate må aldrig uploades under launch eller vælges over reel progression. Settings viser status og bekræftet manuel restore. RevenueCat-køb gemmes ikke i backup'en.
 
-// TODO {S} [ios, game-center, cloud-save, release] (H): Opret eller tilknyt iCloud-containeren `iCloud.com.Hartvig-Develop.flags` til appens App ID i Apple Developer, aktivér iCloud Documents og regenerér provisioning profiles. Kontrollér derefter, at release-signeringen indeholder de nye iCloud-entitlements.
+// DONE {S} [ios, game-center, cloud-save, release] (H): iCloud-containeren `iCloud.com.Hartvig-Develop.flags` er tilknyttet appens App ID, iCloud Documents er aktiveret, og Xcode har genereret et nyt managed Store provisioning profile. En lokal App Store Connect-export bekræfter production-iCloud, `CloudDocuments` og den korrekte container i Release-signeringen.
 
-// TODO {S} [android, play-games, cloud-save, release] (H): Aktivér Saved Games i Play Console og kontrollér, at funktionen er slået til for production.
+// DONE {S} [android, play-games, cloud-save, release] (H): Saved Games er aktiveret og publiceret i Play Console. Play Games-konfigurationen viser `Published` og `Saved games enabled`, og Google Drive API er aktiveret.
 
 // DONE {M} [ads, privacy, ump] (H): Tilføj en dynamisk "Ad privacy choices"-række i Settings, som kun er synlig og interaktiv, når Google UMP returnerer `PrivacyOptionsRequirementStatus.required`. Brug Googles native privacy-options-form, genberegn status efter formularen og brug det anbefalede consent-flow ved hver appstart.
 
@@ -76,7 +76,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {M} [game-services, release] (H): Tilføj Game Center-komponenterne til næste iOS-version, publicér Play Games Services-projektet, upload release-builds og test begge platforme med sandbox/testere før release.
 
-// DONE {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk. Alle ni sprog er gemt i både App Store Connect og Play Console; Apple-komponenterne er Ready for Review, og Google-ændringerne er drafts.
+// DONE {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk. Alle ni sprog er gemt i både App Store Connect og Play Console; Apple-komponenterne er Ready for Review, og Google Play Games-projektets achievements, leaderboards samt lokaliserede navn og 2.0-beskrivelse er publiceret.
 
 // DONE {M} [game-services, achievements, localization] (H): De seks komplette achievements er opdateret direkte fra 194 til 197 inden første Game Services-udgivelse: tre level-achievements og de tre skjulte perfekte All-streaks. Katalogets steps/triggers, alle ni platformstekster, tests samt værdierne i App Store Connect og Play Console er rettet. Der kræves ingen migration af eksisterende platformprogress, da achievements ikke er i produktion endnu.
 
@@ -86,13 +86,13 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {S} [security, git, release] (H): Gennemgå alle ændrede og nye filer før det offentlige GitHub-commit. Bekræft at Firebase-mobilkonfigurationerne kun indeholder offentlige klientidentifikatorer, og at private nøgler, service accounts, client secrets, tokens, keystores, lokale stier og private mailadresser ikke committes. Udvid `.gitignore` med signing- og server-credential-formater.
 
-// TODO {S} [analytics, privacy, release] (H): Opdatér App Store App Privacy og Google Play Data Safety før 2.0.0, så anonym Firebase Analytics deklareres som brugsdata/appinteraktion til analytics, ikke knyttet til brugerens identitet og ikke brugt til tracking.
+// DONE {S} [analytics, privacy, release] (H): App Store App Privacy og Google Play Data Safety er opdateret før 2.0.0. Apple deklarerer Purchase History, Coarse Location, Device ID og Product Interaction til Analytics, ikke knyttet til brugerens identitet og ikke brugt til tracking. Google Play deklarerer App interactions som valgfrit indsamlet, ikke delt og kun brugt til Analytics; de eksisterende automatiske SDK-/appdeklarationer er bevaret. Apples label er publiceret, og Google Plays ændring er sendt til review.
 
-// TODO {S} [analytics, reports] (M): Når de første events er synlige i Firebase, registrér de vigtigste parametre som GA4 Custom Definitions (mindst `game_mode`, `continent`, `hint_type`, `completion_method`, `reason`, `category`, `app_language` og `ads_removed`), så de kan bruges direkte i rapporter og Explorations.
+// DONE {S} [analytics, reports] (M): De første app-events er synlige i Firebase/GA4, og alle otte vigtige parametre er registreret som GA4 Custom Definitions. `game_mode`, `continent`, `hint_type`, `completion_method`, `reason` og `category` er event-scoped; `app_language` og `ads_removed` er user-scoped. Dimensionerne kan bruges i rapporter og Explorations, når GA4's behandlingstid er gået.
 
 // TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når iCloud/Saved Games-platformopsætningen er afsluttet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.
 
-// TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console.
+// TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console. og lavet nyt fearure billede til play store (android)
 
 // DONE {S} [assets, performance, release] (H): Alle 31 rasterassets over 1600 px er normaliseret til maks. 1600 px på længste side med bevaret aspect ratio og transparens: 10 flag, 20 våbenskjold og ét landekort. Unødvendig EXIF-/tekst-/tids-/DPI-metadata er fjernet fra hele rastersamlingen, mens farveinformation er bevaret; samlet fylder de 31 nedskalerede filer 155.404 bytes mindre end originalerne. Runtime-decodes har samme grænse, `Which country` og flag-bolden dekodes i visningsstørrelse, og Flutters LRU-billedcache beholder nyligt brugte billeder inden for et 48 MiB-budget uden at blive nulstillet ved navigation. Flutters standardgrænse på 1000 poster bevares kun som en praktisk irrelevant sikkerhedsgrænse. Regressionstests scanner alle rasterassets uden at dekode dem.
 

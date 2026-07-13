@@ -30,6 +30,30 @@ The only user properties are the selected app language and whether ads have
 been removed. Firebase still creates its own pseudonymous app-instance ID while
 anonymous analytics is enabled.
 
+## Store privacy disclosures
+
+The store disclosures were updated for version 2.0.0 on 14 July 2026. They
+include Firebase's automatically collected analytics signals as well as the
+app's custom events; the app-instance ID therefore has to be disclosed even
+though advertising ID collection and iOS IDFV collection are disabled.
+
+App Store Connect declares these four data types as used only for Analytics,
+not linked to the user's identity and not used for tracking:
+
+- Purchase History;
+- Coarse Location;
+- Device ID;
+- Product Interaction.
+
+The App Store privacy label is published and displays all four categories under
+`Data Not Linked to You`.
+
+Google Play Data Safety includes the existing automatic SDK/app declarations
+and now also declares `App activity > App interactions`. App interactions are
+collected, not shared, not processed ephemerally, optional because analytics can
+be disabled in Settings, and used only for Analytics. The updated questionnaire
+was sent for Google Play review on 14 July 2026.
+
 ## Custom events
 
 | Event | Purpose | Important parameters |
@@ -78,9 +102,13 @@ adb shell setprop debug.firebase.analytics.app .none.
 For iOS, add `-FIRDebugEnabled` to the Runner scheme launch arguments while
 testing and remove it again before release.
 
-After the first production/debug events have populated the Analytics property,
-register the important event parameters as GA4 Custom Definitions. Start with
-`game_mode`, `continent`, `hint_type`, `completion_method`, `reason` and
-`category`, plus the user properties `app_language` and `ads_removed`. This is
-required for convenient use in GA4 reports and Explorations; the raw events are
-still collected before those definitions exist.
+The first app events are visible in Firebase/GA4, and the following GA4 Custom
+Definitions were registered on 14 July 2026:
+
+- event-scoped: `game_mode`, `continent`, `hint_type`, `completion_method`,
+  `reason` and `category`;
+- user-scoped: `app_language` and `ads_removed`.
+
+GA4 can take 24–48 hours to make newly created custom dimensions available in
+reports and Explorations. The raw events continue to be collected during that
+processing period.

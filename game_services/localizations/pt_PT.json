@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Mestre das bandeiras",
-      "description": "Resolve os 194 desafios de bandeiras.",
+      "description": "Resolve os 197 desafios de bandeiras.",
       "earnedDescription": "Concluíste todos os desafios de bandeiras."
     },
     "achievement.complete_country_levels": {
       "name": "Mestre dos países",
-      "description": "Resolve os 194 desafios de países.",
+      "description": "Resolve os 197 desafios de países.",
       "earnedDescription": "Concluíste todos os desafios de países."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Mestre da heráldica",
-      "description": "Resolve os 194 desafios de brasões.",
+      "description": "Resolve os 197 desafios de brasões.",
       "earnedDescription": "Concluíste todos os desafios de brasões."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Caça às bandeiras perfeita",
-      "description": "Secreto: alcança 194 em Encontra a bandeira com o filtro Todos.",
+      "description": "Secreto: alcança 197 em Encontra a bandeira com o filtro Todos.",
       "earnedDescription": "Encontraste todas as bandeiras numa volta ao mundo perfeita."
     },
     "achievement.perfect_match_flags": {
       "name": "Combinação perfeita",
-      "description": "Secreto: alcança 194 em Combina bandeiras com o filtro Todos.",
+      "description": "Secreto: alcança 197 em Combina bandeiras com o filtro Todos.",
       "earnedDescription": "Combinaste todas as bandeiras numa volta ao mundo perfeita."
     },
     "achievement.perfect_which_country": {
       "name": "O mundo inteiro",
-      "description": "Secreto: alcança 194 em Qual é o país com o filtro Todos.",
+      "description": "Secreto: alcança 197 em Qual é o país com o filtro Todos.",
       "earnedDescription": "Identificaste o mundo inteiro numa partida perfeita."
     }
   }

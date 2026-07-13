@@ -38,7 +38,7 @@ void main() {
       catalog.achievements
           .where((achievement) => achievement.hidden)
           .map((achievement) => achievement.steps),
-      everyElement(194),
+      everyElement(197),
     );
     expect(catalog.leaderboards, hasLength(3));
     expect(
@@ -59,9 +59,9 @@ void main() {
         for (final game in TrainingScoreGame.values)
           game: {
             TrainingContinent.all: switch (game) {
-              TrainingScoreGame.findFlag => 194,
+              TrainingScoreGame.findFlag => 197,
               TrainingScoreGame.matchFlags => 20,
-              TrainingScoreGame.whichCountry => 194,
+              TrainingScoreGame.whichCountry => 197,
             },
             TrainingContinent.africa: 10,
             TrainingContinent.asia: 11,
@@ -71,7 +71,7 @@ void main() {
             TrainingContinent.southAmerica: 15,
           },
       },
-      solvedFlagPuzzles: 194,
+      solvedFlagPuzzles: 197,
       solvedCountryPuzzles: 100,
       solvedCoatOfArmsPuzzles: 50,
       completedLevelCategories: 1,
@@ -99,13 +99,42 @@ void main() {
     expect(progress['achievement.world_tour'], 6);
     expect(progress['achievement.solve_10_puzzles'], 10);
     expect(progress['achievement.complete_first_level'], 1);
-    expect(progress['achievement.complete_flag_levels'], 194);
+    expect(progress['achievement.complete_flag_levels'], 197);
     expect(progress['achievement.complete_country_levels'], 100);
     expect(progress['achievement.complete_coat_of_arms_levels'], 50);
     expect(progress['achievement.complete_all_levels'], 1);
-    expect(progress['achievement.perfect_find_flag'], 194);
+    expect(progress['achievement.perfect_find_flag'], 197);
     expect(progress['achievement.perfect_match_flags'], 20);
-    expect(progress['achievement.perfect_which_country'], 194);
+    expect(progress['achievement.perfect_which_country'], 197);
+  });
+
+  test('all six complete achievements unlock at 197, not 196', () {
+    const evaluator = GameAchievementEvaluator();
+    const completeKeys = {
+      'achievement.complete_flag_levels',
+      'achievement.complete_country_levels',
+      'achievement.complete_coat_of_arms_levels',
+      'achievement.perfect_find_flag',
+      'achievement.perfect_match_flags',
+      'achievement.perfect_which_country',
+    };
+    final definitions = catalog.achievements
+        .where((achievement) => completeKeys.contains(achievement.key))
+        .toList(growable: false);
+
+    expect(definitions, hasLength(6));
+    for (final definition in definitions) {
+      expect(
+        evaluator.evaluate(definition, _countryPoolSnapshot(196)).isUnlocked,
+        isFalse,
+        reason: '${definition.key} must require all 197 countries.',
+      );
+      expect(
+        evaluator.evaluate(definition, _countryPoolSnapshot(197)).isUnlocked,
+        isTrue,
+        reason: '${definition.key} must unlock at 197 countries.',
+      );
+    }
   });
 
   test('world tour requires five on every separate continent', () {
@@ -134,4 +163,19 @@ void main() {
 
     expect(evaluator.evaluate(definition, snapshot).currentSteps, 5);
   });
+}
+
+GameProgressSnapshot _countryPoolSnapshot(int progress) {
+  return GameProgressSnapshot(
+    correctAnswers: const {},
+    records: {
+      for (final game in TrainingScoreGame.values)
+        game: {TrainingContinent.all: progress},
+    },
+    solvedFlagPuzzles: progress,
+    solvedCountryPuzzles: progress,
+    solvedCoatOfArmsPuzzles: progress,
+    completedLevelCategories: 0,
+    hasCompletedLevel: false,
+  );
 }

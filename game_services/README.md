@@ -13,10 +13,9 @@ tilbage i katalogerne.
 - Den aktuelle app-pulje er 197 lande: 193 FN-medlemmer, Vatikanstaten,
   Palæstina, Taiwan og Kosovo. Rådata har 250 land/territorieposter, mens
   `CountryController.removeUnUsed()` beholder landene i `continents.json`.
-- De seks komplette achievements er fortsat konfigureret med 194 trin i
-  kataloget og platformskonsollernes endnu ikke udgivne kladder. De skal
-  opdateres direkte til 197 som beskrevet i den højprioriterede TODO, før
-  første Game Services-udgivelse. Der kræves ingen migration af live
+- De seks komplette achievements er konfigureret med 197 trin i kataloget,
+  alle ni platformstekster samt de endnu ikke udgivne komponenter i App Store
+  Connect og Play Console. Der kræves ingen migration af live
   achievement-progress.
 - Apple-point i alt: 915 af de tilladte 1.000.
 - Gameplay virker normalt uden login eller netværk; lokal tracking fortsætter,

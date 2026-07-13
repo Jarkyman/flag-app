@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Flaggmester",
-      "description": "Løs alle de 194 flaggoppgavene.",
+      "description": "Løs alle de 197 flaggoppgavene.",
       "earnedDescription": "Du fullførte alle flaggoppgavene."
     },
     "achievement.complete_country_levels": {
       "name": "Landmester",
-      "description": "Løs alle de 194 landoppgavene.",
+      "description": "Løs alle de 197 landoppgavene.",
       "earnedDescription": "Du fullførte alle landoppgavene."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Heraldikkmester",
-      "description": "Løs alle de 194 våpenskjoldoppgavene.",
+      "description": "Løs alle de 197 våpenskjoldoppgavene.",
       "earnedDescription": "Du fullførte alle våpenskjoldoppgavene."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Perfekt flaggjakt",
-      "description": "Hemmelig: Oppnå 194 i Finn flagget med filteret Alle.",
+      "description": "Hemmelig: Oppnå 197 i Finn flagget med filteret Alle.",
       "earnedDescription": "Du fant alle flaggene på én perfekt jordomreise."
     },
     "achievement.perfect_match_flags": {
       "name": "Perfekt match",
-      "description": "Hemmelig: Oppnå 194 i Match flagg med filteret Alle.",
+      "description": "Hemmelig: Oppnå 197 i Match flagg med filteret Alle.",
       "earnedDescription": "Du matchet alle flaggene på én perfekt jordomreise."
     },
     "achievement.perfect_which_country": {
       "name": "Hele verden",
-      "description": "Hemmelig: Oppnå 194 i Hvilket land med filteret Alle.",
+      "description": "Hemmelig: Oppnå 197 i Hvilket land med filteret Alle.",
       "earnedDescription": "Du identifiserte hele verden i én perfekt runde."
     }
   }

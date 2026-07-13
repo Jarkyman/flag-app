@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Maître des drapeaux",
-      "description": "Résous les 194 énigmes de drapeaux.",
+      "description": "Résous les 197 énigmes de drapeaux.",
       "earnedDescription": "Tu as terminé toutes les énigmes de drapeaux."
     },
     "achievement.complete_country_levels": {
       "name": "Maître des pays",
-      "description": "Résous les 194 énigmes de pays.",
+      "description": "Résous les 197 énigmes de pays.",
       "earnedDescription": "Tu as terminé toutes les énigmes de pays."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Maître de l’héraldique",
-      "description": "Résous les 194 énigmes de blasons.",
+      "description": "Résous les 197 énigmes de blasons.",
       "earnedDescription": "Tu as terminé toutes les énigmes de blasons."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Chasse aux drapeaux parfaite",
-      "description": "Secret : atteins 194 dans Trouve le drapeau avec le filtre Tous.",
+      "description": "Secret : atteins 197 dans Trouve le drapeau avec le filtre Tous.",
       "earnedDescription": "Tu as trouvé tous les drapeaux lors d’un tour du monde parfait."
     },
     "achievement.perfect_match_flags": {
       "name": "Association parfaite",
-      "description": "Secret : atteins 194 dans Associe les drapeaux avec le filtre Tous.",
+      "description": "Secret : atteins 197 dans Associe les drapeaux avec le filtre Tous.",
       "earnedDescription": "Tu as associé tous les drapeaux lors d’un tour du monde parfait."
     },
     "achievement.perfect_which_country": {
       "name": "Le monde entier",
-      "description": "Secret : atteins 194 dans Quel pays avec le filtre Tous.",
+      "description": "Secret : atteins 197 dans Quel pays avec le filtre Tous.",
       "earnedDescription": "Tu as identifié le monde entier en une partie parfaite."
     }
   }

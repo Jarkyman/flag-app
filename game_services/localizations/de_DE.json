@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Flaggenmeister",
-      "description": "Löse alle 194 Flaggenrätsel.",
+      "description": "Löse alle 197 Flaggenrätsel.",
       "earnedDescription": "Du hast alle Flaggenrätsel abgeschlossen."
     },
     "achievement.complete_country_levels": {
       "name": "Ländermeister",
-      "description": "Löse alle 194 Länderrätsel.",
+      "description": "Löse alle 197 Länderrätsel.",
       "earnedDescription": "Du hast alle Länderrätsel abgeschlossen."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Wappenmeister",
-      "description": "Löse alle 194 Wappenrätsel.",
+      "description": "Löse alle 197 Wappenrätsel.",
       "earnedDescription": "Du hast alle Wappenrätsel abgeschlossen."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Perfekte Flaggenjagd",
-      "description": "Geheim: Erreiche 194 in Flagge finden mit dem Filter Alle.",
+      "description": "Geheim: Erreiche 197 in Flagge finden mit dem Filter Alle.",
       "earnedDescription": "Du hast auf einer perfekten Weltreise jede Flagge erkannt."
     },
     "achievement.perfect_match_flags": {
       "name": "Perfekte Zuordnung",
-      "description": "Geheim: Erreiche 194 in Flaggen zuordnen mit dem Filter Alle.",
+      "description": "Geheim: Erreiche 197 in Flaggen zuordnen mit dem Filter Alle.",
       "earnedDescription": "Du hast auf einer perfekten Weltreise jede Flagge zugeordnet."
     },
     "achievement.perfect_which_country": {
       "name": "Die ganze Welt",
-      "description": "Geheim: Erreiche 194 in Welches Land mit dem Filter Alle.",
+      "description": "Geheim: Erreiche 197 in Welches Land mit dem Filter Alle.",
       "earnedDescription": "Du hast die ganze Welt in einem perfekten Lauf erkannt."
     }
   }

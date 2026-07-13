@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Maestro de banderas",
-      "description": "Resuelve los 194 puzles de banderas.",
+      "description": "Resuelve los 197 puzles de banderas.",
       "earnedDescription": "Has completado todos los puzles de banderas."
     },
     "achievement.complete_country_levels": {
       "name": "Maestro de países",
-      "description": "Resuelve los 194 puzles de países.",
+      "description": "Resuelve los 197 puzles de países.",
       "earnedDescription": "Has completado todos los puzles de países."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Maestro de heráldica",
-      "description": "Resuelve los 194 puzles de escudos de armas.",
+      "description": "Resuelve los 197 puzles de escudos de armas.",
       "earnedDescription": "Has completado todos los puzles de escudos de armas."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Caza de banderas perfecta",
-      "description": "Secreto: alcanza 194 en Encuentra la bandera con el filtro Todos.",
+      "description": "Secreto: alcanza 197 en Encuentra la bandera con el filtro Todos.",
       "earnedDescription": "Has encontrado todas las banderas en una vuelta al mundo perfecta."
     },
     "achievement.perfect_match_flags": {
       "name": "Combinación perfecta",
-      "description": "Secreto: alcanza 194 en Empareja banderas con el filtro Todos.",
+      "description": "Secreto: alcanza 197 en Empareja banderas con el filtro Todos.",
       "earnedDescription": "Has emparejado todas las banderas en una vuelta al mundo perfecta."
     },
     "achievement.perfect_which_country": {
       "name": "El mundo entero",
-      "description": "Secreto: alcanza 194 en Qué país con el filtro Todos.",
+      "description": "Secreto: alcanza 197 en Qué país con el filtro Todos.",
       "earnedDescription": "Has identificado el mundo entero en una partida perfecta."
     }
   }

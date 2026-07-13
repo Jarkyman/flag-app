@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Flagmester",
-      "description": "Løs alle 194 flagopgaver.",
+      "description": "Løs alle 197 flagopgaver.",
       "earnedDescription": "Du gennemførte alle flagopgaver."
     },
     "achievement.complete_country_levels": {
       "name": "Landemester",
-      "description": "Løs alle 194 landeopgaver.",
+      "description": "Løs alle 197 landeopgaver.",
       "earnedDescription": "Du gennemførte alle landeopgaver."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Våbenskjoldsmester",
-      "description": "Løs alle 194 våbenskjoldsopgaver.",
+      "description": "Løs alle 197 våbenskjoldsopgaver.",
       "earnedDescription": "Du gennemførte alle våbenskjoldsopgaver."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Den perfekte flagjagt",
-      "description": "Hemmelig: opnå 194 i Find flag med filteret Alle.",
+      "description": "Hemmelig: opnå 197 i Find flag med filteret Alle.",
       "earnedDescription": "Du fandt samtlige flag på én perfekt jordomrejse."
     },
     "achievement.perfect_match_flags": {
       "name": "Det perfekte match",
-      "description": "Hemmelig: opnå 194 i Match flag med filteret Alle.",
+      "description": "Hemmelig: opnå 197 i Match flag med filteret Alle.",
       "earnedDescription": "Du matchede samtlige flag på én perfekt jordomrejse."
     },
     "achievement.perfect_which_country": {
       "name": "Hele verden på plads",
-      "description": "Hemmelig: opnå 194 i Hvilket land med filteret Alle.",
+      "description": "Hemmelig: opnå 197 i Hvilket land med filteret Alle.",
       "earnedDescription": "Du genkendte hele verden i ét perfekt gennemløb."
     }
   }

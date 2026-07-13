@@ -121,12 +121,12 @@ void main() {
         'achievement.south_america_streak_10': '10',
         'achievement.world_tour': '5',
         'achievement.solve_10_puzzles': '10',
-        'achievement.complete_flag_levels': '194',
-        'achievement.complete_country_levels': '194',
-        'achievement.complete_coat_of_arms_levels': '194',
-        'achievement.perfect_find_flag': '194',
-        'achievement.perfect_match_flags': '194',
-        'achievement.perfect_which_country': '194',
+        'achievement.complete_flag_levels': '197',
+        'achievement.complete_country_levels': '197',
+        'achievement.complete_coat_of_arms_levels': '197',
+        'achievement.perfect_find_flag': '197',
+        'achievement.perfect_match_flags': '197',
+        'achievement.perfect_which_country': '197',
       };
 
       for (final requirement in requiredNumbers.entries) {

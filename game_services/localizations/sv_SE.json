@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Flaggmästare",
-      "description": "Lös alla 194 flaggpussel.",
+      "description": "Lös alla 197 flaggpussel.",
       "earnedDescription": "Du klarade alla flaggpussel."
     },
     "achievement.complete_country_levels": {
       "name": "Landsmästare",
-      "description": "Lös alla 194 landspussel.",
+      "description": "Lös alla 197 landspussel.",
       "earnedDescription": "Du klarade alla landspussel."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Heraldikmästare",
-      "description": "Lös alla 194 vapensköldspussel.",
+      "description": "Lös alla 197 vapensköldspussel.",
       "earnedDescription": "Du klarade alla vapensköldspussel."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Perfekt flaggjakt",
-      "description": "Hemlig: Nå 194 i Hitta flaggan med filtret Alla.",
+      "description": "Hemlig: Nå 197 i Hitta flaggan med filtret Alla.",
       "earnedDescription": "Du hittade alla flaggor under en perfekt jorden runt-resa."
     },
     "achievement.perfect_match_flags": {
       "name": "Perfekt match",
-      "description": "Hemlig: Nå 194 i Matcha flaggor med filtret Alla.",
+      "description": "Hemlig: Nå 197 i Matcha flaggor med filtret Alla.",
       "earnedDescription": "Du matchade alla flaggor under en perfekt jorden runt-resa."
     },
     "achievement.perfect_which_country": {
       "name": "Hela världen",
-      "description": "Hemlig: Nå 194 i Vilket land med filtret Alla.",
+      "description": "Hemlig: Nå 197 i Vilket land med filtret Alla.",
       "earnedDescription": "Du identifierade hela världen i en perfekt omgång."
     }
   }

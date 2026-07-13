@@ -97,17 +97,17 @@
     },
     "achievement.complete_flag_levels": {
       "name": "Flag Master",
-      "description": "Solve all 194 flag puzzles.",
+      "description": "Solve all 197 flag puzzles.",
       "earnedDescription": "You completed every flag puzzle."
     },
     "achievement.complete_country_levels": {
       "name": "Country Master",
-      "description": "Solve all 194 country puzzles.",
+      "description": "Solve all 197 country puzzles.",
       "earnedDescription": "You completed every country puzzle."
     },
     "achievement.complete_coat_of_arms_levels": {
       "name": "Heraldry Master",
-      "description": "Solve all 194 coat of arms puzzles.",
+      "description": "Solve all 197 coat of arms puzzles.",
       "earnedDescription": "You completed every coat of arms puzzle."
     },
     "achievement.complete_all_levels": {
@@ -117,17 +117,17 @@
     },
     "achievement.perfect_find_flag": {
       "name": "Perfect Flag Hunt",
-      "description": "Secret: reach 194 in Find Flag with the All filter.",
+      "description": "Secret: reach 197 in Find Flag with the All filter.",
       "earnedDescription": "You found every flag in one perfect world tour."
     },
     "achievement.perfect_match_flags": {
       "name": "Perfect Match",
-      "description": "Secret: reach 194 in Match Flags with the All filter.",
+      "description": "Secret: reach 197 in Match Flags with the All filter.",
       "earnedDescription": "You matched every flag in one perfect world tour."
     },
     "achievement.perfect_which_country": {
       "name": "The Whole World",
-      "description": "Secret: reach 194 in Which Country with the All filter.",
+      "description": "Secret: reach 197 in Which Country with the All filter.",
       "earnedDescription": "You identified the whole world in one perfect run."
     }
   }

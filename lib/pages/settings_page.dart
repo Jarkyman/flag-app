@@ -12,6 +12,7 @@ import '../controllers/ad_consent_controller.dart';
 import '../controllers/analytics_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
+import '../helper/image_decode_size.dart';
 import '../widget/app_swipe_detector.dart';
 import '../widget/background_image.dart';
 import '../widget/buttons/credits_button.dart';
@@ -67,6 +68,11 @@ class SettingsPage extends StatelessWidget {
                               child: Image.asset(
                                 'assets/image/flags/${Get.locale!.countryCode!.toLowerCase()}.png',
                                 fit: BoxFit.cover,
+                                cacheWidth: imageDecodeWidth(
+                                  logicalWidth: Dimensions.width20 * 2.3,
+                                  devicePixelRatio:
+                                      MediaQuery.devicePixelRatioOf(context),
+                                ),
                               ),
                             ),
                           ),

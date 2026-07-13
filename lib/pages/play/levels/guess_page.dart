@@ -10,6 +10,7 @@ import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/models/level_model.dart';
 import 'package:flag_app/widget/tiles/empty_tile.dart';
 import 'package:flag_app/widget/tiles/letter_tile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -26,6 +27,7 @@ import '../../../helper/app_constants.dart';
 import '../../../helper/dimensions.dart';
 import '../../../helper/guess_puzzle_logic.dart';
 import '../../../helper/help_widgets.dart';
+import '../../../helper/image_decode_size.dart';
 import '../../../helper/route_helper.dart';
 import '../../../models/country_model.dart';
 import '../../../widget/ads/ad_banner_widget.dart';
@@ -177,6 +179,16 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       }
       wrongLettersList = getLettersListEmpty(country.country!);
     });
+    _debugLogCurrentAnswer();
+  }
+
+  void _debugLogCurrentAnswer() {
+    if (!kDebugMode) return;
+
+    debugPrint(
+      '[GuessPage] Answer: ${country.country} '
+      '[$argType, level $argLevel, ${argFlagIndex + 1}/${levelList.length}]',
+    );
   }
 
   void checkWin({String completionMethod = 'manual'}) {
@@ -858,6 +870,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
           onSwipeRight: () => _navigateToAdjacentLevel(-1),
           onSwipeLeft: () => _navigateToAdjacentLevel(1),
           child: MenuBackground(
+            showDottedWorldMap: false,
             child: SafeArea(
               bottom: false,
               child: GetBuilder<LevelController>(
@@ -979,6 +992,10 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   }) {
     final imagePath =
         'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.png';
+    final cacheWidth = imageDecodeWidth(
+      logicalWidth: Dimensions.screenWidth,
+      devicePixelRatio: MediaQuery.devicePixelRatioOf(context),
+    );
 
     if (argType == AppConstants.COUNTRIES) {
       return Stack(
@@ -990,11 +1007,16 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
                 'assets/image/${argType.toLowerCase()}/${heroCode.toLowerCase()}.png',
                 fit: BoxFit.contain,
                 color: Colors.transparent,
+                cacheWidth: cacheWidth,
               ),
             ),
           ),
           Positioned.fill(
-            child: Image.asset(imagePath, fit: BoxFit.contain),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+              cacheWidth: cacheWidth,
+            ),
           ),
         ],
       );
@@ -1002,7 +1024,11 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
 
     return Hero(
       tag: imageCode.toLowerCase(),
-      child: Image.asset(imagePath, fit: BoxFit.contain),
+      child: Image.asset(
+        imagePath,
+        fit: BoxFit.contain,
+        cacheWidth: cacheWidth,
+      ),
     );
   }
 
@@ -1011,6 +1037,10 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         country.countryName!.toLowerCase() == 'Côte dIvoire'.toLowerCase()
             ? 'Côte d\'Ivoire'
             : firstLetterUpperCase(country.countryName!);
+    final capitals = country.capital!
+        .split(' / ')
+        .map(firstLetterUpperCase)
+        .toList(growable: false);
 
     return [
       GuessFactData(
@@ -1025,17 +1055,23 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         icon: Icons.flag_rounded,
         label: 'Country'.tr,
         value: countryName,
+        maxLines: 2,
+        textAlign: TextAlign.left,
       ),
       GuessFactData(
         icon: Icons.location_city_rounded,
         label: 'Capital'.tr,
-        value: firstLetterUpperCase(country.capital!),
+        value: capitals.join('\n'),
+        maxLines: capitals.length,
+        textAlign: TextAlign.left,
       ),
       GuessFactData(
         icon: Icons.payments_rounded,
         label: 'Currency'.tr,
         value:
             '${firstLetterUpperCase(country.currencyName!)} (${country.currencyCode!})',
+        maxLines: 3,
+        textAlign: TextAlign.left,
       ),
     ];
   }

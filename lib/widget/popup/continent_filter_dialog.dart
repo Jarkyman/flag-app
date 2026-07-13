@@ -125,7 +125,7 @@ class _ContinentOption extends StatelessWidget {
           },
           borderRadius: BorderRadius.circular(Dimensions.radius15),
           child: Ink(
-            height: Dimensions.height20 * 2.65,
+            height: Dimensions.height20 * 2.9,
             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
             decoration: BoxDecoration(
               color: selected
@@ -160,7 +160,7 @@ class _ContinentOption extends StatelessWidget {
                     children: [
                       AutoSizeText(
                         continent.translationKey.tr,
-                        maxLines: 1,
+                        maxLines: 2,
                         presetFontSizes: [
                           Dimensions.font16 * 0.82,
                           Dimensions.font16 * 0.72,

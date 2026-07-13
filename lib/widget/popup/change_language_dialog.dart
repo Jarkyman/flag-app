@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../controllers/settings_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../../helper/image_decode_size.dart';
 import 'app_dialog.dart';
 
 final List locale = [
@@ -147,6 +148,10 @@ class _LanguageTile extends StatelessWidget {
                 child: Image.asset(
                   'assets/image/flags/$countryCode.png',
                   fit: BoxFit.cover,
+                  cacheWidth: imageDecodeWidth(
+                    logicalWidth: Dimensions.width20 * 2.3,
+                    devicePixelRatio: MediaQuery.devicePixelRatioOf(context),
+                  ),
                 ),
               ),
               SizedBox(width: Dimensions.width15),

@@ -239,11 +239,15 @@ class GuessFactData {
   final IconData icon;
   final String label;
   final String value;
+  final int maxLines;
+  final TextAlign textAlign;
 
   const GuessFactData({
     required this.icon,
     required this.label,
     required this.value,
+    this.maxLines = 1,
+    this.textAlign = TextAlign.right,
   });
 }
 
@@ -426,11 +430,11 @@ class _GuessFactRow extends StatelessWidget {
               ),
               SizedBox(width: Dimensions.width10),
               Flexible(
-                flex: 2,
+                flex: 3,
                 child: AutoSizeText(
                   fact.value,
-                  maxLines: 1,
-                  textAlign: TextAlign.right,
+                  maxLines: fact.maxLines,
+                  textAlign: fact.textAlign,
                   style: TextStyle(
                     color: AppColors.mainBlackColor,
                     fontSize: Dimensions.font16 * 0.86,

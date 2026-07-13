@@ -6,10 +6,12 @@ import 'background_image.dart';
 
 class MenuBackground extends StatelessWidget {
   final Widget child;
+  final bool showDottedWorldMap;
 
   const MenuBackground({
     super.key,
     required this.child,
+    this.showDottedWorldMap = true,
   });
 
   @override
@@ -17,7 +19,8 @@ class MenuBackground extends StatelessWidget {
     return BackgroundImage(
       child: Stack(
         children: [
-          const Positioned.fill(child: _AnimatedDottedWorldMap()),
+          if (showDottedWorldMap)
+            const Positioned.fill(child: _AnimatedDottedWorldMap()),
           Positioned.fill(child: child),
         ],
       ),

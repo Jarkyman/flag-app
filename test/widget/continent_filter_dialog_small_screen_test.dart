@@ -2,6 +2,7 @@ import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/models/training_continent.dart';
 import 'package:flag_app/widget/popup/continent_filter_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
@@ -16,8 +17,8 @@ void main() {
 
     await tester.pumpWidget(
       GetMaterialApp(
-        locale: const Locale('fr', 'FR'),
-        translations: _FrenchTranslations(),
+        locale: const Locale('es', 'ES'),
+        translations: _SpanishTranslations(),
         home: Builder(
           builder: (context) => Scaffold(
             body: Center(
@@ -39,24 +40,34 @@ void main() {
     await tester.tap(find.text('Open'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Amérique du Nord'), findsOneWidget);
-    expect(find.text('Amérique du Sud'), findsOneWidget);
+    for (final continent in ['América del Norte', 'América del Sur']) {
+      final textFinder = find.text(continent);
+      expect(textFinder, findsOneWidget);
+      expect(tester.widget<Text>(textFinder).maxLines, 2);
+
+      final richTextFinder = find.descendant(
+        of: textFinder,
+        matching: find.byType(RichText),
+      );
+      final paragraph = tester.renderObject<RenderParagraph>(richTextFinder);
+      expect(paragraph.didExceedMaxLines, isFalse, reason: continent);
+    }
     expect(tester.takeException(), isNull);
   });
 }
 
-class _FrenchTranslations extends Translations {
+class _SpanishTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        'fr_FR': {
-          'All': 'Tous',
-          'Africa': 'Afrique',
-          'Asia': 'Asie',
-          'Europe': 'Europe',
-          'North America': 'Amérique du Nord',
-          'Oceania': 'Océanie',
-          'South America': 'Amérique du Sud',
-          'Choose continent': 'Choisir un continent',
+        'es_ES': {
+          'All': 'Todos',
+          'Africa': 'África',
+          'Asia': 'Asia',
+          'Europe': 'Europa',
+          'North America': 'América del Norte',
+          'Oceania': 'Oceanía',
+          'South America': 'América del Sur',
+          'Choose continent': 'Elegir continente',
         },
       };
 }

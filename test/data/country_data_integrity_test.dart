@@ -176,6 +176,9 @@ void main() {
         expect(byCode[entry.key]!['capital'], contains(entry.value),
             reason: '$locale/${entry.key}');
       }
+      expect(byCode['BO']!['capital'], contains('Sucre'), reason: locale);
+      expect(byCode['BO']!['capital'], contains('La Paz'), reason: locale);
+      expect(byCode['BR']!['capital'], 'Brasília', reason: locale);
       expect(byCode['PS']!['capital'], isNot('-'), reason: locale);
       expect(byCode['ZA']!['capital'], contains('/'), reason: locale);
     }
@@ -219,6 +222,18 @@ void main() {
         );
       }
     }
+  });
+
+  test('Danish Belarus terminology stays consistent', () {
+    final countries = _jsonList('assets/json/dk/countries.json');
+    final belarus = countries.singleWhere(
+      (country) => country['country_code'] == 'BY',
+    );
+
+    expect(belarus['country_name'], 'Belarus');
+    expect(belarus['country_demonym'], 'belarusere');
+    expect(belarus['currency_name'], 'belarusisk rubel');
+    expect(belarus['lang_name'], 'belarusisk');
   });
 }
 

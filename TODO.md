@@ -94,6 +94,10 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console.
 
-// TODO {M} [release, version-2.0.0] (H): Updater alle sprog i docs mappen til version 2.0.0, så de matcher den nye appversion og de nye features, herunder Game Center/Play Games Services, kontinentfilter, hints, achievements og leaderboards.
+// TODO {S} [assets, performance, release] (M): Normalisér de 10 flagassets over 1600 px (`bo`, `fi`, `md`, `my`, `sg`, `st`, `tk`, `ve`, `ws`, `zm`) til maks. 1600 px bredde med bevaret aspect ratio og høj PNG-kvalitet. Kontrollér visuelt på telefon og tablet, kør asset-integritetstesten, og bekræft at ingen billeder opskaleres eller mister synlig detalje.
 
-// TODO {M} [release, version-2.0.0] (H): lav en changelog fil så det er klar til release
+// DONE {M} [game] (H): Fjern det animerede dotted world map fra de aktive spilleskærme, herunder de tre quizspil og Guess/word. Behold animationen på appens øvrige menu- og informationssider.
+
+// DONE {M} [release, version-2.0.0] (H): Alle ni sprog i docs-mappen er opdateret til version 2.0.0 med ASO-optimerede App Store-beskrivelser, promotionstekster og keywords samt Play Store-beskrivelser. Teksterne dækker det nye design, 197 lande, de seks spiltilstande, kontinentfilter, hints, Game Center/Play Games Services, 23 achievements og tre globale leaderboards.
+
+// DONE {M} [release, version-2.0.0] (H): `docs/changelog.txt` indeholder release notes til version 2.0.0 på alle ni sprog og holder sig under platformenes tekstgrænser.

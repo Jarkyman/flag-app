@@ -1,6 +1,7 @@
 import 'package:flag_app/widget/menu_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -23,5 +24,21 @@ void main() {
     await tester.pump();
 
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('dotted map can be hidden on active game screens',
+      (tester) async {
+    await tester.pumpWidget(
+      const GetMaterialApp(
+        home: Scaffold(
+          body: MenuBackground(
+            showDottedWorldMap: false,
+            child: SizedBox.expand(),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(SvgPicture), findsNothing);
   });
 }

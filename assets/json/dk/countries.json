@@ -366,7 +366,7 @@
   {
     "country_code": "BO",
     "country_name": "Bolivia",
-    "capital": "Sucre",
+    "capital": "Sucre / La Paz",
     "country_demonym": "Bolivianere",
     "total_area": 1098581,
     "population": 11673021,
@@ -392,7 +392,7 @@
   {
     "country_code": "BR",
     "country_name": "Brasilien",
-    "capital": "Brasilien",
+    "capital": "Brasília",
     "country_demonym": "Brasilianere",
     "total_area": 8514877,
     "population": 212559417,
@@ -458,14 +458,14 @@
     "country_code": "BY",
     "country_name": "Belarus",
     "capital": "Minsk",
-    "country_demonym": "hviderussere",
+    "country_demonym": "belarusere",
     "total_area": 207600,
     "population": 9449323,
     "currency_code": "BYN",
-    "currency_name": "hviderussisk rubel",
+    "currency_name": "belarusisk rubel",
     "currency_symbol": "Br",
     "lang_code": "BE",
-    "lang_name": "hviderussisk"
+    "lang_name": "belarusisk"
   },
   {
     "country_code": "BZ",

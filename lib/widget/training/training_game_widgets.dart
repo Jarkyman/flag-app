@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
+import '../../helper/image_decode_size.dart';
 import '../../models/training_continent.dart';
 import '../app_controls.dart';
 import '../menu_page_header.dart';
@@ -652,7 +653,15 @@ class TrainingFlagAnswerCard extends StatelessWidget {
                   Positioned.fill(
                     child: Padding(
                       padding: EdgeInsets.all(Dimensions.width5),
-                      child: Image.asset(image, fit: BoxFit.contain),
+                      child: Image.asset(
+                        image,
+                        fit: BoxFit.contain,
+                        cacheWidth: imageDecodeWidth(
+                          logicalWidth: Dimensions.screenWidth / 2,
+                          devicePixelRatio:
+                              MediaQuery.devicePixelRatioOf(context),
+                        ),
+                      ),
                     ),
                   ),
                   if (correct || wrong)

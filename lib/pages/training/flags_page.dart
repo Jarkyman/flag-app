@@ -485,6 +485,7 @@ class _FlagsPageState extends State<FlagsPage> {
     openHelpDialog();
     return Scaffold(
       body: MenuBackground(
+        showDottedWorldMap: false,
         child: SafeArea(
           bottom: false,
           child: GetBuilder<CountryController>(builder: (countryController) {

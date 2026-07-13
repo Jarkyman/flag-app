@@ -1,27 +1,27 @@
 <en-US>
-Huge update! Enjoy our new optimized UI, lightning-fast app launch, smoother navigation animations, and various bug fixes for an even better experience.
+Welcome to Flags Game 2.0! The entire app has a fresh, playful design with smoother navigation and new letter animations. Explore 197 countries, including Palestine, Taiwan, and Kosovo. Choose a continent in Find Flag, Match Flags, and Which Country, with separate records for every region. Use improved hints, unlock 23 Game Center/Play Games achievements, compete on three global leaderboards, and enjoy updated country data and many fixes.
 </en-US>
 <da-DK>
-Kæmpe opdatering! Oplev vores nye optimerede design, lynhurtige opstart, blødere animationer ved navigering og adskillige fejlrettelser for en endnu bedre spiloplevelse.
+Velkommen til Flags Game 2.0! Hele appen har fået et nyt, legende design med blødere navigation og nye bogstavanimationer. Udforsk nu 197 lande, inklusive Palæstina, Taiwan og Kosovo. Vælg kontinent i Find flag, Match flag og Hvilket land, og få separate rekorder for hver region. Brug forbedrede hints, lås op for 23 Game Center/Play Games-achievements, konkurrer på tre globale ranglister, og få opdaterede landedata og mange rettelser.
 </da-DK>
 <de-DE>
-Großes Update! Freuen Sie sich auf unser neues, optimiertes Design, einen blitzschnellen App-Start, flüssigere Navigations-Animationen und diverse Fehlerbehebungen für ein noch besseres Erlebnis.
+Willkommen bei Flags Game 2.0! Die gesamte App hat ein neues, verspieltes Design, flüssigere Navigation und neue Buchstabenanimationen. Entdecke 197 Länder, darunter Palästina, Taiwan und Kosovo. Wähle in Flagge finden, Flaggen zuordnen und Welches Land einen Kontinent mit eigenen Rekorden pro Region. Nutze verbesserte Hinweise, schalte 23 Game-Center-/Play-Games-Erfolge frei, tritt auf drei globalen Bestenlisten an und freue dich auf aktualisierte Länderdaten und viele Korrekturen.
 </de-DE>
 <es-ES>
-¡Gran actualización! Disfruta de nuestro nuevo diseño optimizado, inicio de app ultrarrápido, animaciones de navegación más suaves y varias correcciones de errores para una experiencia aún mejor.
+¡Te damos la bienvenida a Flags Game 2.0! Toda la app estrena un diseño divertido, navegación más fluida y nuevas animaciones de letras. Explora 197 países, incluidos Palestina, Taiwán y Kosovo. Elige continente en Encuentra la bandera, Empareja banderas y Qué país, con récords separados por región. Usa pistas mejoradas, desbloquea 23 logros de Game Center/Play Games, compite en tres clasificaciones globales y disfruta de datos actualizados y muchas correcciones.
 </es-ES>
 <fr-FR>
-Énorme mise à jour ! Profitez de notre nouvelle interface optimisée, d'un démarrage d'application ultra-rapide, d'animations de navigation plus fluides et de diverses corrections de bugs pour une expérience encore meilleure.
+Bienvenue dans Flags Game 2.0 ! Toute l’app adopte un design ludique, une navigation plus fluide et de nouvelles animations de lettres. Explore 197 pays, dont la Palestine, Taïwan et le Kosovo. Choisis un continent dans Trouve le drapeau, Associe les drapeaux et Quel pays, avec un record par région. Utilise des indices améliorés, débloque 23 succès Game Center/Play Games, participe à trois classements mondiaux et profite de données actualisées et de nombreux correctifs.
 </fr-FR>
 <no-NO>
-Kjempestor oppdatering! Opplev vårt nye, optimaliserte design, lynrask oppstart, mykere navigasjonsanimasjoner og diverse feilrettinger for en enda bedre opplevelse.
+Velkommen til Flags Game 2.0! Hele appen har fått et nytt, lekent design med mykere navigasjon og nye bokstavanimasjoner. Utforsk 197 land, inkludert Palestina, Taiwan og Kosovo. Velg kontinent i Finn flagget, Match flagg og Hvilket land, med egne rekorder for hver region. Bruk forbedrede hint, lås opp 23 Game Center-/Play Games-prestasjoner, konkurrer på tre globale resultatlister, og få oppdaterte landdata og mange feilrettinger.
 </no-NO>
 <pt-BR>
-Grande atualização! Aproveite nossa nova interface otimizada, inicialização de aplicativo ultrarrápida, animações de navegação mais suaves e várias correções de bugs para uma experiência ainda melhor.
+Boas-vindas ao Flags Game 2.0! O app inteiro ganhou um visual divertido, navegação mais fluida e novas animações de letras. Explore 197 países, incluindo Palestina, Taiwan e Kosovo. Escolha um continente em Encontre a bandeira, Combine bandeiras e Qual é o país, com recordes separados por região. Use dicas melhores, desbloqueie 23 conquistas do Game Center/Play Games, dispute três placares globais e aproveite dados atualizados e muitas correções.
 </pt-BR>
 <pt-PT>
-Grande atualização! Aproveite a nossa nova interface otimizada, arranque de aplicação ultrarrápido, animações de navegação mais suaves e várias correções de bugs para uma experiência ainda melhor.
+Bem-vindo ao Flags Game 2.0! Toda a app recebeu um design divertido, navegação mais fluida e novas animações de letras. Explora 197 países, incluindo a Palestina, Taiwan e o Kosovo. Escolhe um continente em Encontra a bandeira, Combina bandeiras e Qual é o país, com recordes separados por região. Utiliza pistas melhoradas, desbloqueia 23 conquistas do Game Center/Play Games, compete em três classificações globais e desfruta de dados atualizados e muitas correções.
 </pt-PT>
 <sv-SE>
-Jättestor uppdatering! Upplev vår nya optimerade design, blixtsnabba uppstart, mjukare navigationsanimationer och diverse felkorrigeringar för en ännu bättre upplevelse.
+Välkommen till Flags Game 2.0! Hela appen har fått en ny, lekfull design med smidigare navigering och nya bokstavsanimationer. Utforska 197 länder, inklusive Palestina, Taiwan och Kosovo. Välj kontinent i Hitta flaggan, Matcha flaggor och Vilket land, med separata rekord för varje region. Använd förbättrade ledtrådar, lås upp 23 Game Center-/Play Games-prestationer, tävla på tre globala topplistor och ta del av uppdaterade landsdata och många rättningar.
 </sv-SE>

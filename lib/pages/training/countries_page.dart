@@ -476,6 +476,7 @@ class _CountriesPageState extends State<CountriesPage> {
     openHelpDialog();
     return Scaffold(
       body: MenuBackground(
+        showDottedWorldMap: false,
         child: SafeArea(
           bottom: false,
           child: GetBuilder<CountryController>(

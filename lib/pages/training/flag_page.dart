@@ -19,6 +19,7 @@ import '../../controllers/sound_controller.dart';
 import '../../helper/ad_helper.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/help_widgets.dart';
+import '../../helper/image_decode_size.dart';
 import '../../models/training_continent.dart';
 import '../../widget/ads/ad_banner_widget.dart';
 import '../../widget/menu_background.dart';
@@ -477,6 +478,7 @@ class _FlagPageState extends State<FlagPage> {
     openHelpDialog();
     return Scaffold(
       body: MenuBackground(
+        showDottedWorldMap: false,
         child: SafeArea(
           bottom: false,
           child: GetBuilder<CountryController>(
@@ -518,6 +520,11 @@ class _FlagPageState extends State<FlagPage> {
                               child: Image.asset(
                                 'assets/image/flags/$imgCode.png',
                                 fit: BoxFit.contain,
+                                cacheWidth: imageDecodeWidth(
+                                  logicalWidth: Dimensions.screenWidth,
+                                  devicePixelRatio:
+                                      MediaQuery.devicePixelRatioOf(context),
+                                ),
                               ),
                             ),
                           ),

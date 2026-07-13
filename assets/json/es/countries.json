@@ -366,7 +366,7 @@
   {
     "country_code": "BO",
     "country_name": "Bolivia",
-    "capital": "Sucre",
+    "capital": "Sucre / La Paz",
     "country_demonym": "Bolivianos",
     "total_area": 1098581,
     "population": 11673021,
@@ -392,7 +392,7 @@
   {
     "country_code": "BR",
     "country_name": "Brasil",
-    "capital": "Brasilia",
+    "capital": "Brasília",
     "country_demonym": "Brasileños",
     "total_area": 8514877,
     "population": 212559417,

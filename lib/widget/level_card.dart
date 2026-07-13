@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../helper/app_colors.dart';
 import '../helper/app_constants.dart';
 import '../helper/dimensions.dart';
+import '../helper/image_decode_size.dart';
 
 class LevelCard extends StatelessWidget {
   final bool guessed;
@@ -113,15 +114,25 @@ class _LevelImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cacheWidth = imageDecodeWidth(
+      logicalWidth: Dimensions.screenWidth / 3,
+      devicePixelRatio: MediaQuery.devicePixelRatioOf(context),
+    );
+
     if (isCountry) {
       return Image.asset(
         image,
         fit: BoxFit.contain,
         color: guessed ? AppColors.correctColor : AppColors.textColorGray,
+        cacheWidth: cacheWidth,
       );
     }
 
-    final imageWidget = Image.asset(image, fit: BoxFit.contain);
+    final imageWidget = Image.asset(
+      image,
+      fit: BoxFit.contain,
+      cacheWidth: cacheWidth,
+    );
     if (guessed) return imageWidget;
 
     return ColorFiltered(

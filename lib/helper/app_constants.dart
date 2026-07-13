@@ -20,6 +20,7 @@ class AppConstants {
   // Settings
   static const String LANGUAGE = 'language';
   static const String SOUND = 'sound';
+  static const String ANALYTICS_ENABLED = 'analytics-enabled';
   static const String FIRST_LAUNCH = 'first-launch';
   static const String FIRST_HELP_GUESS = 'first-help-guess';
   static const String FIRST_HELP_TRAIN = 'first-help-train';

@@ -17,17 +17,17 @@
   "achievements": {
     "achievement.first_correct": {
       "name": "First Flag",
-      "description": "Answer one training question correctly.",
-      "earnedDescription": "You answered your first training question correctly."
+      "description": "Answer one question correctly in any game.",
+      "earnedDescription": "You answered your first question correctly."
     },
     "achievement.streak_5_any": {
       "name": "On a Roll",
-      "description": "Reach a streak of 5 in any training game.",
+      "description": "Reach a streak of 5 in any game.",
       "earnedDescription": "You reached a streak of 5."
     },
     "achievement.streak_10_any": {
       "name": "Double Digits",
-      "description": "Reach a streak of 10 in any training game.",
+      "description": "Reach a streak of 10 in any game.",
       "earnedDescription": "You reached a streak of 10."
     },
     "achievement.find_flag_10_correct": {
@@ -47,8 +47,8 @@
     },
     "achievement.training_100_correct": {
       "name": "Century Club",
-      "description": "Answer 100 training questions correctly.",
-      "earnedDescription": "You answered 100 training questions correctly."
+      "description": "Answer 100 questions correctly across the games.",
+      "earnedDescription": "You answered 100 questions correctly across the games."
     },
     "achievement.africa_streak_10": {
       "name": "Africa Explorer",

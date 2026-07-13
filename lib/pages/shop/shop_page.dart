@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flag_app/controllers/hint_controller.dart';
+import 'package:flag_app/controllers/analytics_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/widget/background_image.dart';
@@ -78,10 +81,29 @@ class _ShopPageState extends State<ShopPage> {
     try {
       await Purchases.purchase(PurchaseParams.storeProduct(product));
       onPurchased();
+      unawaited(
+        Get.find<AnalyticsController>().purchaseCompleted(
+          productId: identifier,
+        ),
+      );
+      if (identifier == AppConstants.REMOVE_ADS_ID) {
+        unawaited(
+          Get.find<AnalyticsController>().updateAppContext(
+            language: Get.locale?.toString() ?? 'en_US',
+            adsRemoved: true,
+          ),
+        );
+      }
       Get.find<SoundController>().completeSound();
     } on PlatformException catch (error) {
       final errorCode = PurchasesErrorHelper.getErrorCode(error);
       if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
+        unawaited(
+          Get.find<AnalyticsController>().purchaseFailed(
+            productId: identifier,
+            reason: errorCode.name,
+          ),
+        );
         purchaseErrorSnackbar();
       }
     }
@@ -273,6 +295,12 @@ class _ShopPageState extends State<ShopPage> {
                             _rewardedAd?.show(
                               onUserEarnedReward: (_, reward) {
                                 Get.find<HintController>().addHint(3);
+                                unawaited(
+                                  Get.find<AnalyticsController>()
+                                      .rewardedAdCompleted(
+                                    placement: 'shop_hints',
+                                  ),
+                                );
                                 Get.find<SoundController>().completeSound();
                               },
                             );

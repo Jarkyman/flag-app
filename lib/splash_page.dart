@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flag_app/controllers/country_controller.dart';
+import 'package:flag_app/controllers/analytics_controller.dart';
 import 'package:flag_app/controllers/cloud_save_controller.dart';
 import 'package:flag_app/controllers/game_services_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
@@ -44,6 +45,10 @@ class _SplashPageState extends State<SplashScreen>
     ]);
     Get.find<LevelController>().initUnlockedLevels();
     Get.find<SoundController>().init();
+    await Get.find<AnalyticsController>().updateAppContext(
+      language: Get.locale?.toString() ?? 'en_US',
+      adsRemoved: Get.find<ShopController>().isAdsRemoved,
+    );
     ReviewController.rateMyApp.init();
     await _initializeCloudSync();
     if (controller.isCompleted) {

@@ -32,9 +32,16 @@ class SettingsRepo {
     return await sharedPreferences.setBool(AppConstants.SOUND, sound);
   }
 
+  Future<bool> analyticsSettingRead() async {
+    return sharedPreferences.getBool(AppConstants.ANALYTICS_ENABLED) ?? true;
+  }
+
+  Future<bool> analyticsSettingsSave(bool enabled) async {
+    return sharedPreferences.setBool(AppConstants.ANALYTICS_ENABLED, enabled);
+  }
+
   Future<bool> firstLaunchRead() async {
-    bool first =
-        sharedPreferences.getBool(AppConstants.FIRST_LAUNCH) ?? true;
+    bool first = sharedPreferences.getBool(AppConstants.FIRST_LAUNCH) ?? true;
     return first;
   }
 

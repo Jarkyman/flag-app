@@ -114,7 +114,7 @@ kopieres direkte til `games-ids.xml`; de øvrige værdier kopieres til kataloger
 1. Kør `flutter analyze` og `flutter test`.
 2. Åbn Game services fra Home og kontrollér status `Connected`.
 3. Åbn begge native overlays.
-4. Få ét korrekt træningssvar og kontrollér `First Flag`.
+4. Få ét korrekt svar i et af spillene og kontrollér `First Flag`.
 5. Sæt en ny `All`-rekord og kontrollér det rigtige leaderboard.
 6. Vælg et kontinent og kontrollér, at scoren ikke rammer et online leaderboard.
 7. Log ud/afvis login og kontrollér, at gameplay og lokal tracking fortsætter.

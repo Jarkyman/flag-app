@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../controllers/sound_controller.dart';
 import '../controllers/ad_consent_controller.dart';
+import '../controllers/analytics_controller.dart';
 import '../helper/app_colors.dart';
 import '../helper/dimensions.dart';
 import '../widget/app_swipe_detector.dart';
@@ -17,6 +18,7 @@ import '../widget/buttons/credits_button.dart';
 import '../widget/menu_page_header.dart';
 import '../widget/popup/change_language_dialog.dart';
 import '../widget/popup/cloud_save_dialog.dart';
+import '../widget/popup/disable_analytics_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -94,6 +96,32 @@ class SettingsPage extends StatelessWidget {
                             ),
                           );
                         }),
+                        SizedBox(height: Dimensions.height10),
+                        GetBuilder<AnalyticsController>(
+                          builder: (analyticsController) {
+                            return SettingsButton(
+                              title: 'Anonymous analytics'.tr,
+                              onTap: () => _setAnalyticsEnabled(
+                                analyticsController,
+                                !analyticsController.isEnabled,
+                              ),
+                              leading: const Icon(
+                                Icons.insights_rounded,
+                                color: AppColors.purpleColor,
+                              ),
+                              trailing: Switch(
+                                value: analyticsController.isEnabled,
+                                onChanged: (enabled) => _setAnalyticsEnabled(
+                                  analyticsController,
+                                  enabled,
+                                ),
+                                activeThumbColor: AppColors.purpleColor,
+                                inactiveThumbColor: AppColors.purpleColor,
+                                inactiveTrackColor: AppColors.textColorGray,
+                              ),
+                            );
+                          },
+                        ),
                         SizedBox(height: Dimensions.height10),
                         SettingsButton(
                           title: 'Cloud save'.tr,
@@ -197,4 +225,16 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _setAnalyticsEnabled(
+  AnalyticsController controller,
+  bool enabled,
+) async {
+  if (!enabled && controller.isEnabled) {
+    final shouldDisable = await showDisableAnalyticsDialog();
+    if (!shouldDisable) return;
+  }
+
+  await controller.setEnabled(enabled);
 }

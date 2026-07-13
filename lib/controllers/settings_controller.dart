@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flag_app/repos/settings_repo.dart';
 import 'package:get/get.dart';
 
+import 'analytics_controller.dart';
+
 class SettingsController extends GetxController implements GetxService {
   final SettingsRepo settingsRepo;
   Locale _locale = const Locale('en', 'US');
@@ -27,6 +29,7 @@ class SettingsController extends GetxController implements GetxService {
     _locale = Locale(language.split('_')[0], language.split('_')[1]);
     settingsRepo.languageSettingsSave(language);
     Get.updateLocale(_locale);
+    await Get.find<AnalyticsController>().updateLanguage(language);
   }
 
   Future<void> firstHelpGuessSave(bool first) async {

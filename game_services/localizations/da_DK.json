@@ -17,17 +17,17 @@
   "achievements": {
     "achievement.first_correct": {
       "name": "Første flag",
-      "description": "Svar rigtigt på ét spørgsmål i træning.",
-      "earnedDescription": "Du svarede rigtigt på dit første træningsspørgsmål."
+      "description": "Svar rigtigt på ét spørgsmål i et af spillene.",
+      "earnedDescription": "Du svarede rigtigt på dit første spørgsmål."
     },
     "achievement.streak_5_any": {
       "name": "Godt i gang",
-      "description": "Opnå en streak på 5 i et træningsspil.",
+      "description": "Opnå en streak på 5 i et af spillene.",
       "earnedDescription": "Du opnåede en streak på 5."
     },
     "achievement.streak_10_any": {
       "name": "Tocifret streak",
-      "description": "Opnå en streak på 10 i et træningsspil.",
+      "description": "Opnå en streak på 10 i et af spillene.",
       "earnedDescription": "Du opnåede en streak på 10."
     },
     "achievement.find_flag_10_correct": {
@@ -47,8 +47,8 @@
     },
     "achievement.training_100_correct": {
       "name": "De hundrede",
-      "description": "Svar rigtigt på 100 træningsspørgsmål.",
-      "earnedDescription": "Du svarede rigtigt på 100 træningsspørgsmål."
+      "description": "Svar rigtigt på 100 spørgsmål på tværs af spillene.",
+      "earnedDescription": "Du svarede rigtigt på 100 spørgsmål i spillene."
     },
     "achievement.africa_streak_10": {
       "name": "Afrikakender",

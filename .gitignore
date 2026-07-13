@@ -73,9 +73,22 @@ render.experimental.xml
 # Keystore files
 *.jks
 *.keystore
+*.p12
+*.p8
+*.pfx
+*.pem
+*.mobileprovision
 
-# Google Services (e.g. APIs or Firebase)
+# Server credentials must never be committed
+firebase-adminsdk-*.json
+*service-account*.json
+
+# Firebase mobile client configs are public app configuration and are
+# intentionally tracked only at the paths used by the app.
 google-services.json
+!android/app/google-services.json
+GoogleService-Info.plist
+!ios/Runner/GoogleService-Info.plist
 
 # Android Profiling
 *.hprof

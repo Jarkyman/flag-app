@@ -7,7 +7,7 @@ tilbage i katalogerne.
 
 ## Besluttet scope
 
-- Tre klassiske high-to-low leaderboards, ét for hvert træningsspil.
+- Tre klassiske high-to-low leaderboards, ét for hvert af spillene på Home.
 - Kun spil med kontinentfilteret `All` må indsende scores online.
 - 23 achievements: 20 synlige og tre skjulte perfekte gennemløb.
 - Et perfekt gennemløb er en streak på 194 i `All`. Rådata har 249 poster, men

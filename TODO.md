@@ -68,18 +68,20 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {S} [ios, game-center, cloud-save, release] (H): Opret eller tilknyt iCloud-containeren `iCloud.com.Hartvig-Develop.flags` til appens App ID i Apple Developer, aktivér iCloud Documents og regenerér provisioning profiles. Kontrollér derefter, at release-signeringen indeholder de nye iCloud-entitlements.
 
-// TODO {S} [android, play-games, cloud-save, release] (H): Aktivér Saved Games i Play Console og gennemfør Save/Restore-test mellem to Android-enheder med samme testkonto før release.
-
-// TODO {S} [ios, game-center, cloud-save, release] (H): Gennemfør automatisk launch-restore og manuel Restore-test mellem to iOS-enheder med samme iCloud-/Game Center-testkonto før release.
+// TODO {S} [android, play-games, cloud-save, release] (H): Aktivér Saved Games i Play Console og kontrollér, at funktionen er slået til for production.
 
 // DONE {M} [ads, privacy, ump] (H): Tilføj en dynamisk "Ad privacy choices"-række i Settings, som kun er synlig og interaktiv, når Google UMP returnerer `PrivacyOptionsRequirementStatus.required`. Brug Googles native privacy-options-form, genberegn status efter formularen og brug det anbefalede consent-flow ved hver appstart.
 
-// TODO {M} [game-services, localization] (H): fjern ord som training, da jeg ikke syntes at de 3 spille modes på startskærmen skal hede trænings baner, find på noget andet så det bare lyder som et spil og ikke en træning.
+// DONE {M} [game-services, localization] (H): Omtal konsekvent Find flag, Match flags og Which country som spil frem for training, practice eller træning i apptekster, Credits og Game Services-lokaliseringer. Bevar interne persistence- og platform-ID'er for kompatibilitet.
 
 // DONE {M} [game-services, release] (H): Tilføj Game Center-komponenterne til næste iOS-version, publicér Play Games Services-projektet, upload release-builds og test begge platforme med sandbox/testere før release.
 
 // TODO {M} [game-services, localization] (M): Oversæt og review achievement-/leaderboardteksterne til de resterende syv platformslokaliseringer efter dansk og engelsk.
 
-// TODO {M} [analytics, firebase] (H): Implementér Firebase Analytics efter samme setup som i de andre apps. Track centrale, ikke-personhenførbare events for skærmvisninger, spilstart/-slut, korrekte/forkerte svar, streak/ny rekord, kontinentfilter, hintbrug og Game Center/Play Games-flow. Opdatér også privacy-/consent-konfiguration og test events på både Android og iOS.
+// DONE {M} [analytics, firebase] (H): Implementér Firebase Analytics efter samme setup som i de andre apps. Track centrale, ikke-personhenførbare events for skærmvisninger, spilstart/-slut, korrekte/forkerte svar, streak/ny rekord, kontinentfilter, hintbrug og Game Center/Play Games-flow. Opdatér også privacy-/consent-konfiguration og test events på både Android og iOS.
 
-// TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når Android/iOS game-services er testet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.
+// TODO {S} [analytics, privacy, release] (H): Opdatér App Store App Privacy og Google Play Data Safety før 2.0.0, så anonym Firebase Analytics deklareres som brugsdata/appinteraktion til analytics, ikke knyttet til brugerens identitet og ikke brugt til tracking.
+
+// TODO {S} [analytics, reports] (M): Når de første events er synlige i Firebase, registrér de vigtigste parametre som GA4 Custom Definitions (mindst `game_mode`, `continent`, `hint_type`, `completion_method`, `reason`, `category`, `app_language` og `ads_removed`), så de kan bruges direkte i rapporter og Explorations.
+
+// TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når iCloud/Saved Games-platformopsætningen er afsluttet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.

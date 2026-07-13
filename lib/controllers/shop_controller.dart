@@ -9,10 +9,24 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../repos/shop_repo.dart';
 
+typedef StoreProductsLoader = Future<List<StoreProduct>> Function(
+  List<String> productIdentifiers, {
+  required ProductCategory productCategory,
+});
+
 class ShopController extends GetxController implements GetxService {
   final ShopRepo shopRepo;
+  final StoreProductsLoader productsLoader;
 
-  ShopController({required this.shopRepo});
+  ShopController({
+    required this.shopRepo,
+    StoreProductsLoader? productsLoader,
+  }) : productsLoader = productsLoader ??
+            ((productIdentifiers, {required productCategory}) =>
+                Purchases.getProducts(
+                  productIdentifiers,
+                  productCategory: productCategory,
+                ));
 
   bool _levelsUnlocked = false;
 
@@ -33,9 +47,15 @@ class ShopController extends GetxController implements GetxService {
   List<StoreProduct> _products = [];
 
   Future<List<StoreProduct>> get getProducts async {
-    _products =
-        await Purchases.getProducts(_productsIds);
+    _products = await _loadProducts();
     return _products;
+  }
+
+  Future<List<StoreProduct>> _loadProducts() {
+    return productsLoader(
+      _productsIds,
+      productCategory: ProductCategory.nonSubscription,
+    );
   }
 
   Future<void> loadShopSettings() async {
@@ -46,8 +66,7 @@ class ShopController extends GetxController implements GetxService {
       (_) => updateCustomerStatus(),
     );
     try {
-      _products =
-          await Purchases.getProducts(_productsIds);
+      _products = await _loadProducts();
     } catch (e) {
       debugPrint(e.toString());
       _products = [];

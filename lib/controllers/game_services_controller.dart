@@ -12,6 +12,7 @@ import '../game_services/models/remote_achievement_progress.dart';
 import '../models/training_continent.dart';
 import '../cloud_save/cloud_save_session.dart';
 import '../cloud_save/cloud_save_auto_save.dart';
+import 'analytics_controller.dart';
 
 enum GameServicesStatus {
   idle,
@@ -30,12 +31,14 @@ class GameServicesController extends GetxController
   final GameServicesGateway gateway;
   final GameAchievementEvaluator evaluator;
   final GameServicesCatalogLoader catalogLoader;
+  final AnalyticsController? analytics;
 
   GameServicesController({
     required this.progressRepo,
     required this.snapshotBuilder,
     required this.gateway,
     this.evaluator = const GameAchievementEvaluator(),
+    this.analytics,
     GameServicesCatalogLoader? catalogLoader,
   }) : catalogLoader = catalogLoader ?? GameServicesCatalog.load;
 
@@ -72,7 +75,9 @@ class GameServicesController extends GetxController
   }
 
   @override
-  Future<void> signIn() => _enqueue(_signInAndSync);
+  Future<void> signIn() {
+    return _enqueue(() => _signInAndSync(source: 'manual'));
+  }
 
   @override
   Future<void> syncStoredProgress() {
@@ -107,6 +112,13 @@ class GameServicesController extends GetxController
   Future<void> showAchievements() {
     return _enqueue(() async {
       if (!await _ensureSignedIn()) return;
+      unawaited(
+        analytics?.gameServicesOverlay(
+              platform: gateway.platform.name,
+              overlay: 'achievements',
+            ) ??
+            Future.value(),
+      );
       await _guardPlatformCall(gateway.showAchievements);
     });
   }
@@ -114,6 +126,13 @@ class GameServicesController extends GetxController
   Future<void> showLeaderboards() {
     return _enqueue(() async {
       if (!await _ensureSignedIn()) return;
+      unawaited(
+        analytics?.gameServicesOverlay(
+              platform: gateway.platform.name,
+              overlay: 'leaderboards',
+            ) ??
+            Future.value(),
+      );
       await _guardPlatformCall(gateway.showLeaderboards);
     });
   }
@@ -138,10 +157,10 @@ class GameServicesController extends GetxController
 
     _authenticationSubscription ??=
         gateway.authenticationChanges.listen(_handleAuthenticationChange);
-    await _signInAndSync();
+    await _signInAndSync(source: 'launch');
   }
 
-  Future<void> _signInAndSync() async {
+  Future<void> _signInAndSync({required String source}) async {
     _catalog ??= await catalogLoader();
     if (!isConfigured) {
       _status = GameServicesStatus.unavailable;
@@ -161,10 +180,26 @@ class GameServicesController extends GetxController
         await _syncAchievements(force: true);
         await _syncLeaderboards(force: true);
       }
+      unawaited(
+        analytics?.gameServicesAuthentication(
+              platform: gateway.platform.name,
+              status: _isSignedIn ? 'connected' : 'disconnected',
+              source: source,
+            ) ??
+            Future.value(),
+      );
     } catch (error, stackTrace) {
       _isSignedIn = false;
       _status = GameServicesStatus.disconnected;
       _logError('Could not sign into game services', error, stackTrace);
+      unawaited(
+        analytics?.gameServicesAuthentication(
+              platform: gateway.platform.name,
+              status: 'error',
+              source: source,
+            ) ??
+            Future.value(),
+      );
     }
     update();
   }
@@ -185,7 +220,7 @@ class GameServicesController extends GetxController
 
   Future<bool> _ensureSignedIn() async {
     if (_isSignedIn) return true;
-    await _signInAndSync();
+    await _signInAndSync(source: 'overlay');
     return _isSignedIn;
   }
 

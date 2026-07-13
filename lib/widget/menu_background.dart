@@ -92,15 +92,26 @@ class _AnimatedDottedWorldMapState extends State<_AnimatedDottedWorldMap>
               maxWidth: mapWidth * 2,
               minHeight: mapHeight,
               maxHeight: mapHeight,
-              child: Row(
+              child: Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  _DottedWorldMapImage(
+                  Positioned(
+                    left: 0,
                     width: mapWidth,
                     height: mapHeight,
+                    child: _DottedWorldMapImage(
+                      width: mapWidth,
+                      height: mapHeight,
+                    ),
                   ),
-                  _DottedWorldMapImage(
+                  Positioned(
+                    left: mapWidth,
                     width: mapWidth,
                     height: mapHeight,
+                    child: _DottedWorldMapImage(
+                      width: mapWidth,
+                      height: mapHeight,
+                    ),
                   ),
                 ],
               ),

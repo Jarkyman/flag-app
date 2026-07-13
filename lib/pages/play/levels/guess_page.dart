@@ -16,6 +16,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shake/shake.dart';
 
 import '../../../controllers/country_controller.dart';
+import '../../../controllers/analytics_controller.dart';
 import '../../../controllers/game_services_controller.dart';
 import '../../../controllers/hint_controller.dart';
 import '../../../controllers/sound_controller.dart';
@@ -76,6 +77,11 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     argFlagIndex = Get.arguments[2];
 
     setInit();
+    unawaited(
+      Get.find<AnalyticsController>().gameStarted(
+        gameMode: 'word_$_analyticsCategory',
+      ),
+    );
     createBannerAd();
     detector = ShakeDetector.autoStart(
       onPhoneShake: (_) {
@@ -173,7 +179,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     });
   }
 
-  void checkWin() {
+  void checkWin({String completionMethod = 'manual'}) {
     if (countryAnswer().removeAllWhitespace.toUpperCase() ==
         country.country!.removeAllWhitespace.toUpperCase()) {
       final wasAlreadyGuessed = country.guessed == true;
@@ -182,6 +188,14 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       Get.find<LevelController>().isNewLevelUnlocked(argType);
       if (!wasAlreadyGuessed) {
         unawaited(Get.find<GameServicesController>().refreshLevelProgress());
+        unawaited(
+          Get.find<AnalyticsController>().levelCompleted(
+            category: _analyticsCategory,
+            level: argLevel,
+            completionMethod: completionMethod,
+            firstCompletion: true,
+          ),
+        );
       }
     } else {
       bool done = true;
@@ -685,7 +699,14 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         );
         levelController.saveAllLetters(argType, country, allLetters);
         Get.find<HintController>().useHint(hints);
-        checkWin();
+        unawaited(
+          Get.find<AnalyticsController>().hintUsed(
+            gameMode: 'word_$_analyticsCategory',
+            hintType: 'correct_letter',
+            cost: hints,
+          ),
+        );
+        checkWin(completionMethod: 'correct_letter_hint');
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
@@ -703,6 +724,13 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       if (!bombUsed) {
         _applyBomb();
         Get.find<HintController>().useHint(hints);
+        unawaited(
+          Get.find<AnalyticsController>().hintUsed(
+            gameMode: 'word_$_analyticsCategory',
+            hintType: 'bomb',
+            cost: hints,
+          ),
+        );
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
@@ -735,15 +763,37 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       Get.find<LevelController>().guessed(argType, country, true);
       //});
       Get.find<HintController>().useHint(hints);
+      unawaited(
+        Get.find<AnalyticsController>().hintUsed(
+          gameMode: 'word_$_analyticsCategory',
+          hintType: 'finish',
+          cost: hints,
+        ),
+      );
       Get.find<SoundController>().completeSound();
       Get.find<LevelController>().isNewLevelUnlocked(argType);
       if (!wasAlreadyGuessed) {
         unawaited(Get.find<GameServicesController>().refreshLevelProgress());
+        unawaited(
+          Get.find<AnalyticsController>().levelCompleted(
+            category: _analyticsCategory,
+            level: argLevel,
+            completionMethod: 'finish_hint',
+            firstCompletion: true,
+          ),
+        );
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
     }
   }
+
+  String get _analyticsCategory => switch (argType) {
+        AppConstants.FLAGS => 'flags',
+        AppConstants.COUNTRIES => 'countries',
+        AppConstants.COC => 'coat_of_arms',
+        _ => 'unknown',
+      };
 
   // Dialog open count - currently unused but kept for future use
   // ignore: unused_field

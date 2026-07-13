@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../controllers/country_controller.dart';
+import '../../controllers/analytics_controller.dart';
 import '../../controllers/game_services_controller.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/review_controller.dart';
@@ -34,6 +35,8 @@ class FlagsPage extends StatefulWidget {
 }
 
 class _FlagsPageState extends State<FlagsPage> {
+  static const String _gameMode = 'match_flags';
+
   late CountryModel selectedCountry;
   late List<CountryModel> countryOptions;
   List<bool> correctColor = [false, false, false, false, false, false];
@@ -75,10 +78,27 @@ class _FlagsPageState extends State<FlagsPage> {
       isLoading = false;
     });
     debugPrint('Flags high score: $highScore');
+    unawaited(
+      Get.find<AnalyticsController>().gameStarted(
+        gameMode: _gameMode,
+        continent: selectedContinent,
+      ),
+    );
   }
 
   @override
   void dispose() {
+    if (score > 0) {
+      unawaited(
+        Get.find<AnalyticsController>().gameFinished(
+          gameMode: _gameMode,
+          score: score,
+          newRecord: hasNewRecordThisRun,
+          reason: 'exit',
+          continent: selectedContinent,
+        ),
+      );
+    }
     _bannerAd?.dispose();
     _rewardedAd?.dispose();
     _interstitialAd?.dispose();
@@ -189,7 +209,7 @@ class _FlagsPageState extends State<FlagsPage> {
     });
   }
 
-  void checkWin(String country, int selected) {
+  void checkWin(String country, int selected, {bool usedHint = false}) {
     isDelay = true;
     this.selected = selected;
     if (country == selectedCountry.countryName.toString()) {
@@ -217,6 +237,16 @@ class _FlagsPageState extends State<FlagsPage> {
           streak: score,
         ),
       );
+      unawaited(
+        Get.find<AnalyticsController>().answerSubmitted(
+          gameMode: _gameMode,
+          correct: true,
+          streak: score,
+          usedHint: usedHint,
+          newRecord: score == highScore && hasNewRecordThisRun,
+          continent: selectedContinent,
+        ),
+      );
     } else {
       Get.find<SoundController>().wrongSound();
       setState(() {
@@ -232,6 +262,16 @@ class _FlagsPageState extends State<FlagsPage> {
           );
         }
       });
+      unawaited(
+        Get.find<AnalyticsController>().answerSubmitted(
+          gameMode: _gameMode,
+          correct: false,
+          streak: score,
+          usedHint: false,
+          newRecord: hasNewRecordThisRun,
+          continent: selectedContinent,
+        ),
+      );
       const Duration(milliseconds: 500).delay(() {
         int randomInt = random.nextInt(10);
         if (_interstitialAd != null &&
@@ -255,6 +295,11 @@ class _FlagsPageState extends State<FlagsPage> {
       onTapConfirm: () {
         _rewardedAd?.show(
           onUserEarnedReward: (_, reward) {
+            unawaited(
+              Get.find<AnalyticsController>().rewardedAdCompleted(
+                placement: '${_gameMode}_continue',
+              ),
+            );
             generateCountries();
             Get.close(1);
             isTryAgainUsed = true;
@@ -262,6 +307,15 @@ class _FlagsPageState extends State<FlagsPage> {
         );
       },
       onTapCancel: () {
+        unawaited(
+          Get.find<AnalyticsController>().gameFinished(
+            gameMode: _gameMode,
+            score: score,
+            newRecord: hasNewRecordThisRun,
+            reason: 'wrong_answer',
+            continent: selectedContinent,
+          ),
+        );
         wrongChoice(selected);
         Get.find<CountryController>().resetCount(
           continent: _continentFilter,
@@ -287,7 +341,14 @@ class _FlagsPageState extends State<FlagsPage> {
   void useCorrectHint(int hints) {
     if (Get.find<HintController>().checkIfEnoughHints(hints) && !checkUsed) {
       Get.find<HintController>().useHint(hints);
-      checkWin(selectedCountry.countryName!, getCorrect());
+      unawaited(
+        Get.find<AnalyticsController>().hintUsed(
+          gameMode: _gameMode,
+          hintType: 'correct_answer',
+          cost: hints,
+        ),
+      );
+      checkWin(selectedCountry.countryName!, getCorrect(), usedHint: true);
     }
   }
 
@@ -295,6 +356,13 @@ class _FlagsPageState extends State<FlagsPage> {
     if (Get.find<HintController>().checkIfEnoughHints(hints) &&
         !fiftyFiftyUsed) {
       Get.find<HintController>().useHint(hints);
+      unawaited(
+        Get.find<AnalyticsController>().hintUsed(
+          gameMode: _gameMode,
+          hintType: 'fifty_fifty',
+          cost: hints,
+        ),
+      );
       int correct = getCorrect();
       wrongColor = [false, false, false, false, false, false];
       Random ran = Random();
@@ -346,6 +414,24 @@ class _FlagsPageState extends State<FlagsPage> {
       return;
     }
 
+    if (score > 0) {
+      unawaited(
+        Get.find<AnalyticsController>().gameFinished(
+          gameMode: _gameMode,
+          score: score,
+          newRecord: hasNewRecordThisRun,
+          reason: 'continent_changed',
+          continent: selectedContinent,
+        ),
+      );
+    }
+    unawaited(
+      Get.find<AnalyticsController>().continentSelected(
+        gameMode: _gameMode,
+        continent: nextContinent,
+      ),
+    );
+
     final continentFilter = nextContinent == TrainingContinent.all
         ? null
         : nextContinent.assetNameFor(Get.locale!);
@@ -374,6 +460,12 @@ class _FlagsPageState extends State<FlagsPage> {
       isDelay = false;
       isLoading = false;
     });
+    unawaited(
+      Get.find<AnalyticsController>().gameStarted(
+        gameMode: _gameMode,
+        continent: nextContinent,
+      ),
+    );
   }
 
   void openHelpDialog() {

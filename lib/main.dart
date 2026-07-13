@@ -1,13 +1,20 @@
 import 'package:flag_app/helper/locale_handler.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'helper/dependencies.dart' as dep;
 import 'helper/route_helper.dart';
+import 'analytics/analytics_navigator_observer.dart';
+import 'controllers/analytics_controller.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await dep.init();
   runApp(const MyApp());
 }
@@ -35,6 +42,11 @@ class MyApp extends StatelessWidget {
       //home: TestPage(),
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
+      navigatorObservers: [
+        AnalyticsNavigatorObserver(
+          controller: Get.find<AnalyticsController>(),
+        ),
+      ],
     );
   }
 }

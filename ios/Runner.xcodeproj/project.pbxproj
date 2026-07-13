@@ -13,6 +13,7 @@
 		3795A6CA28EF011100B34EBC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795A6C928EF011100B34EBC /* StoreKit.framework */; };
 		37BFF55B2EB1436400F65638 /* Flags_icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 37BFF55A2EB1436300F65638 /* Flags_icon.icon */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		4348CAF1AD1C69AE6394BFC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BE59FAAF85657EB5C65A830 /* GoogleService-Info.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		0B8B017B9F2035815F50D601 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
+		1BE59FAAF85657EB5C65A830 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3722CF6C291AF55C0038E3E8 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		373A1E9E28FAF74B007EAF46 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = Configuration.storekit; path = Runner/Configuration.storekit; sourceTree = "<group>"; };
 		3795A6C928EF011100B34EBC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -114,6 +116,7 @@
 				97C146EF1CF9000F007C117D /* Products */,
 				88B6DA2CA87425B4F22EA2A0 /* Pods */,
 				2D191A0725E8F824F5EA160B /* Frameworks */,
+				1BE59FAAF85657EB5C65A830 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,6 +227,7 @@
 				37BFF55B2EB1436400F65638 /* Flags_icon.icon in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				3722CF6D291AF55C0038E3E8 /* StoreKitTestCertificate.cer in Resources */,
+				4348CAF1AD1C69AE6394BFC9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

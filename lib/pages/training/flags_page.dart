@@ -585,16 +585,7 @@ class _FlagsPageState extends State<FlagsPage> {
                         ),
                         SizedBox(height: Dimensions.height15),
                         Expanded(
-                          child: GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 1.45,
-                              mainAxisSpacing: Dimensions.height10,
-                              crossAxisSpacing: Dimensions.width10,
-                            ),
+                          child: TrainingFlagAnswerGrid(
                             itemCount: countryOptions.length,
                             itemBuilder: (context, index) {
                               final eliminated = fiftyFiftyUsed &&
@@ -640,9 +631,10 @@ class _FlagsPageState extends State<FlagsPage> {
                       _interstitialAd?.dispose();
                       _interstitialAd = null;
                     }
-                    return _bannerAd != null && !shopController.isAdsRemoved
-                        ? AdBannerWidget(bannerAd: _bannerAd)
-                        : const SizedBox.shrink();
+                    if (!AdHelper.adsEnabled || shopController.isAdsRemoved) {
+                      return const SizedBox.shrink();
+                    }
+                    return AdBannerWidget(bannerAd: _bannerAd);
                   },
                 ),
               ],

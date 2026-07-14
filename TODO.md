@@ -12,6 +12,7 @@ Her er en liste over ting, der bør opdateres, rettes eller forbedres i appen, f
 // DONE {S} [ui, animation] (H): Tilføj flere micro-animationer, f.eks. når man gætter rigtigt/forkert (shake-effekt, konfetti) og blødere side-overgange.
 // DONE {C} [ui, splash] (M): Udskift den manuelle `splash_page.dart` med pakken `flutter_native_splash` for en mere flydende og lynhurtig opstart uden hardcodede ventetider.
 // DONE {S} [ui, safe-area, release] (H): Giv Home og de fælles menu-/spilheaders ekstra `Dimensions`-baseret luft under systemets øverste safe area, så settings-, tilbage-, hjælp- og hintknapper samt sidetitler ikke sidder for højt på notch-/Dynamic Island-enheder. Baggrunden forbliver edge-to-edge, og bundlayoutet ændres ikke.
+// DONE {S} [ui, responsive, ipad, release] (H): Gør de seks flagvalg i Match flags højde-responsive uden scroll. Kortene beholder deres normale 1,45-format på telefoner, men komprimeres ensartet på brede skærme som iPad Pro 13, så nederste række altid er fuldt synlig.
 
 ## 🏗️ Arkitektur & Kodekvalitet
 // DONE {M} [architecture, init] (H): Refaktorér indlæsningen af data i `splash_page.dart`. Lige nu bruger du sekventielle `await`, hvilket gør opstarten unødigt langsom. Brug `Future.wait` til at køre uafhængige requests parallelt.
@@ -93,7 +94,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når iCloud/Saved Games-platformopsætningen er afsluttet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.
 
-// DONE {M} [release, version-2.0.0] (H): Der er taget seks rene, engelske screenshots uden reklamer, statuslinje eller bundnavigation til hver af de fire store-enhedstyper: Android-telefon 1080×1920, Android-tablet 1600×2650, iPhone 6,9″ 1320×2868 og iPad 13″ 2064×2752. Alle 24 billeder er gemt som RGB-PNG uden alfa under de respektive `docs`-mapper.
+// DONE {M} [release, version-2.0.0] (H): Der er taget seks rene, engelske screenshots uden reklamer, statuslinje eller bundnavigation til hver af de fire store-enhedstyper: Android-telefon 1440×3200, Android-tablet 1600×2650, iPhone 6,9″ 1320×2868 og iPad 13″ 2064×2752. Det endelige sæt viser Home, Word game, færdigt Word game med landeinfo samt de tre quizspil; kontinent-popupen er fjernet fra sættet. Alle 24 billeder er gemt som RGB-PNG uden alfa under de respektive `docs`-mapper.
 
 // TODO {M} [release, play-store, version-2.0.0] (H): Lav et nyt feature graphic til Google Play for version 2.0.0.
 

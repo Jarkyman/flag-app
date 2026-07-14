@@ -67,6 +67,31 @@ void main() {
     ]);
   });
 
+  test('cached access loads without waiting for store products', () async {
+    SharedPreferences.setMockInitialValues({
+      AppConstants.ADS_REMOVE: true,
+      AppConstants.UNLOCK_LEVELS: true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    var productLoadCount = 0;
+    final controller = ShopController(
+      shopRepo: ShopRepo(sharedPreferences: preferences),
+      productsLoader: (
+        identifiers, {
+        required productCategory,
+      }) async {
+        productLoadCount++;
+        return const [];
+      },
+    );
+
+    await controller.loadCachedShopSettings();
+
+    expect(productLoadCount, 0);
+    expect(controller.isAdsRemoved, isTrue);
+    expect(controller.isLevelsUnlocked, isTrue);
+  });
+
   for (final testCase in [
     (
       name: 'nothing',

@@ -35,6 +35,7 @@ class CloudSaveController extends GetxController
   final DateTime Function() now;
   final Duration autoSaveDelay;
   final Duration launchRetryDelay;
+  final Duration launchSyncTimeout;
   final int launchLoadAttempts;
 
   CloudSaveController({
@@ -44,6 +45,7 @@ class CloudSaveController extends GetxController
     DateTime Function()? now,
     this.autoSaveDelay = const Duration(seconds: 3),
     this.launchRetryDelay = const Duration(milliseconds: 750),
+    this.launchSyncTimeout = const Duration(seconds: 6),
     this.launchLoadAttempts = 8,
   })  : assert(launchLoadAttempts > 0),
         now = now ?? DateTime.now;
@@ -106,11 +108,14 @@ class CloudSaveController extends GetxController
 
     _setStatus(CloudSaveStatus.syncing);
     try {
-      final backups = await _loadRemoteBackupsWithRetry();
+      final backups = await _loadRemoteBackupsWithRetry().timeout(
+        launchSyncTimeout,
+      );
       final bestRemote = _selectBestRemote(backups);
       if (bestRemote == null) {
         _initialRemoteAbsenceConfirmed = true;
         debugPrint('Cloud launch sync: no remote backup found.');
+        if (store.pendingChangeAt != null) _schedulePendingUpload();
         return CloudSaveResult.notFound;
       }
       _initialRemoteAbsenceConfirmed = false;
@@ -123,14 +128,14 @@ class CloudSaveController extends GetxController
       final pendingChange = store.pendingChangeAt;
       if (lastLocalSave == null) {
         debugPrint('Cloud launch sync: restoring remote backup.');
-        await _restoreSnapshot(bestRemote.data);
+        await _restoreSnapshot(bestRemote.data, syncProgress: false);
       } else if (pendingChange != null &&
           pendingChange.isAfter(bestRemote.data.savedAtUtc)) {
-        await _uploadSnapshot(backups);
+        _schedulePendingUpload();
       } else if (bestRemote.data.savedAtUtc.isAfter(lastLocalSave)) {
-        await _restoreSnapshot(bestRemote.data);
+        await _restoreSnapshot(bestRemote.data, syncProgress: false);
       } else if (pendingChange != null) {
-        await _uploadSnapshot(backups);
+        _schedulePendingUpload();
       }
       return CloudSaveResult.success;
     } on FormatException catch (error, stackTrace) {
@@ -186,6 +191,13 @@ class CloudSaveController extends GetxController
       data: snapshot.encode(),
     );
     await store.markCloudSaveComplete(savedAt);
+  }
+
+  void _schedulePendingUpload() {
+    _autoSaveTimer?.cancel();
+    _autoSaveTimer = Timer(autoSaveDelay, () {
+      unawaited(flushAutoSave());
+    });
   }
 
   Future<void> _reconcilePendingChanges() async {
@@ -294,11 +306,22 @@ class CloudSaveController extends GetxController
     return true;
   }
 
-  Future<void> _restoreSnapshot(CloudSaveData snapshot) async {
+  Future<void> _restoreSnapshot(
+    CloudSaveData snapshot, {
+    bool syncProgress = true,
+  }) async {
     await store.restore(snapshot);
     await store.markCloudSaveComplete(snapshot.savedAtUtc);
     await store.clearPendingChanges();
-    await session.syncStoredProgress();
+    if (syncProgress) unawaited(_syncRestoredProgress());
+  }
+
+  Future<void> _syncRestoredProgress() async {
+    try {
+      await session.syncStoredProgress();
+    } catch (error, stackTrace) {
+      _logError('Could not backfill restored game progress', error, stackTrace);
+    }
   }
 
   void _setStatus(CloudSaveStatus value) {

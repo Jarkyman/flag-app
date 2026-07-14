@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flag_app/cloud_save/cloud_save_gateway.dart';
 import 'package:flag_app/cloud_save/cloud_save_session.dart';
 import 'package:flag_app/cloud_save/cloud_save_store.dart';
@@ -174,6 +176,52 @@ void main() {
     expect(gateway.saveCalls, 0);
   });
 
+  test('launch timeout continues offline without confirming an empty cloud',
+      () async {
+    final gateway = _FakeCloudSaveGateway(hangOnFirstLoad: true);
+    final store = _FakeCloudSaveStore(snapshot: _snapshot(savedAt));
+    final controller = CloudSaveController(
+      gateway: gateway,
+      store: store,
+      session: _FakeCloudSaveSession(),
+      now: () => savedAt,
+      autoSaveDelay: Duration.zero,
+      launchRetryDelay: Duration.zero,
+      launchSyncTimeout: const Duration(milliseconds: 10),
+      launchLoadAttempts: 1,
+    );
+
+    expect(await controller.syncOnLaunch(), CloudSaveResult.failed);
+    expect(store.restoredData, isNull);
+    expect(gateway.saveCalls, 0);
+
+    controller.scheduleAutoSave();
+    await Future<void>.delayed(const Duration(milliseconds: 20));
+
+    expect(gateway.saveCalls, 0);
+    expect(store.pendingChangeAt, savedAt);
+  });
+
+  test('restored local data does not wait for a hanging native backfill',
+      () async {
+    final backup = _snapshot(savedAt);
+    final session = _FakeCloudSaveSession(hangOnSync: true);
+    final store = _FakeCloudSaveStore(snapshot: backup);
+    final controller = CloudSaveController(
+      gateway: _FakeCloudSaveGateway(dataToLoad: backup.encode()),
+      store: store,
+      session: session,
+    );
+
+    final result = await controller.restoreFromCloud().timeout(
+          const Duration(milliseconds: 100),
+        );
+
+    expect(result, CloudSaveResult.success);
+    expect(store.restoredData?.savedAtUtc, savedAt);
+    expect(session.syncCalls, 1);
+  });
+
   test('a new device restores remote data even after a pending local change',
       () async {
     final remoteAt = savedAt.subtract(const Duration(hours: 1));
@@ -274,12 +322,14 @@ class _FakeCloudSaveGateway implements CloudSaveGateway {
   final String? dataToLoad;
   final Map<String, String?> dataByName;
   final List<Map<String, String>> loadResults;
+  final bool hangOnFirstLoad;
 
   _FakeCloudSaveGateway({
     this.isSupported = true,
     this.dataToLoad,
     this.dataByName = const {},
     this.loadResults = const [],
+    this.hangOnFirstLoad = false,
   });
 
   String? savedName;
@@ -288,6 +338,10 @@ class _FakeCloudSaveGateway implements CloudSaveGateway {
 
   @override
   Future<Map<String, String>> loadAll({required List<String> names}) async {
+    if (hangOnFirstLoad && loadCalls == 0) {
+      loadCalls++;
+      return Completer<Map<String, String>>().future;
+    }
     if (loadCalls < loadResults.length) {
       return loadResults[loadCalls++];
     }
@@ -311,7 +365,12 @@ class _FakeCloudSaveSession implements CloudSaveSession {
   @override
   bool isSignedIn;
 
-  _FakeCloudSaveSession({this.isSignedIn = true});
+  final bool hangOnSync;
+
+  _FakeCloudSaveSession({
+    this.isSignedIn = true,
+    this.hangOnSync = false,
+  });
 
   int signInCalls = 0;
   int syncCalls = 0;
@@ -323,8 +382,10 @@ class _FakeCloudSaveSession implements CloudSaveSession {
   }
 
   @override
-  Future<void> syncStoredProgress() async {
+  Future<void> syncStoredProgress() {
     syncCalls++;
+    if (hangOnSync) return Completer<void>().future;
+    return Future.value();
   }
 }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flag_app/controllers/country_continent_controller.dart';
 import 'package:flag_app/controllers/ad_consent_controller.dart';
 import 'package:flag_app/controllers/analytics_controller.dart';
@@ -45,11 +47,16 @@ Future<void> init() async {
     sharedPreferences: sharedPreferences,
   );
   if (AppRuntime.adsEnabled) {
-    await MobileAds.instance.initialize().then((initializationStatus) {
+    try {
+      final initializationStatus = await MobileAds.instance
+          .initialize()
+          .timeout(const Duration(seconds: 3));
       initializationStatus.adapterStatuses.forEach((key, value) {
         debugPrint('Adapter status for $key: ${value.description}');
       });
-    });
+    } catch (error) {
+      debugPrint('Mobile Ads initialization skipped during startup: $error');
+    }
   }
   await LocaleHandler.initLanguages();
 

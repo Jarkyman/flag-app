@@ -56,6 +56,9 @@ class ShopController extends GetxController implements GetxService {
   ];
 
   List<StoreProduct> _products = [];
+  Future<void>? _purchasesInitialization;
+  bool _purchasesConfigured = false;
+  bool _customerInfoListenerRegistered = false;
 
   Future<List<StoreProduct>> get getProducts async {
     if (!AppRuntime.externalServicesEnabled) return const [];
@@ -71,25 +74,41 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future<void> loadShopSettings() async {
-    if (!AppRuntime.externalServicesEnabled) {
-      await Future.wait([
-        levelsUnlockRead(),
-        removeAdsRead(),
-      ]);
-      _products = [];
-      update();
-      return;
-    }
+    await loadCachedShopSettings();
+    await initializePurchases();
+  }
 
-    await initPlatformState();
+  Future<void> loadCachedShopSettings() async {
     await Future.wait([
       levelsUnlockRead(),
       removeAdsRead(),
     ]);
-    Purchases.addCustomerInfoUpdateListener(
-      (_) => updateCustomerStatus(),
+
+    if (!AppRuntime.externalServicesEnabled) {
+      _products = [];
+    }
+    update();
+  }
+
+  Future<void> initializePurchases() {
+    if (!AppRuntime.externalServicesEnabled) return Future.value();
+    return _purchasesInitialization ??= _initializePurchases().whenComplete(
+      () => _purchasesInitialization = null,
     );
+  }
+
+  Future<void> _initializePurchases() async {
     try {
+      if (!_purchasesConfigured) {
+        await initPlatformState();
+        _purchasesConfigured = true;
+      }
+      if (!_customerInfoListenerRegistered) {
+        Purchases.addCustomerInfoUpdateListener(
+          (_) => updateCustomerStatus(),
+        );
+        _customerInfoListenerRegistered = true;
+      }
       _products = await _loadProducts();
     } catch (e) {
       debugPrint(e.toString());

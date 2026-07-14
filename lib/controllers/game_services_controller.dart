@@ -32,6 +32,7 @@ class GameServicesController extends GetxController
   final GameAchievementEvaluator evaluator;
   final GameServicesCatalogLoader catalogLoader;
   final AnalyticsController? analytics;
+  final Duration authenticationTimeout;
 
   GameServicesController({
     required this.progressRepo,
@@ -39,6 +40,7 @@ class GameServicesController extends GetxController
     required this.gateway,
     this.evaluator = const GameAchievementEvaluator(),
     this.analytics,
+    this.authenticationTimeout = const Duration(seconds: 3),
     GameServicesCatalogLoader? catalogLoader,
   }) : catalogLoader = catalogLoader ?? GameServicesCatalog.load;
 
@@ -53,6 +55,7 @@ class GameServicesController extends GetxController
 
   bool _initializationRequested = false;
   bool _isSignedIn = false;
+  bool _startupRestoreFinished = false;
   @override
   bool get isSignedIn => _isSignedIn;
 
@@ -87,6 +90,12 @@ class GameServicesController extends GetxController
       await _syncLeaderboards(force: true);
       update();
     });
+  }
+
+  void markStartupRestoreFinished() {
+    if (_startupRestoreFinished) return;
+    _startupRestoreFinished = true;
+    if (_isSignedIn) unawaited(syncStoredProgress());
   }
 
   Future<void> recordTrainingCorrect({
@@ -172,11 +181,11 @@ class GameServicesController extends GetxController
     _lastError = null;
     update();
     try {
-      _isSignedIn = await gateway.signIn();
+      _isSignedIn = await gateway.signIn().timeout(authenticationTimeout);
       _status = _isSignedIn
           ? GameServicesStatus.connected
           : GameServicesStatus.disconnected;
-      if (_isSignedIn) {
+      if (_isSignedIn && source != 'launch') {
         await _syncAchievements(force: true);
         await _syncLeaderboards(force: true);
       }
@@ -210,7 +219,7 @@ class GameServicesController extends GetxController
         ? GameServicesStatus.connected
         : GameServicesStatus.disconnected;
     update();
-    if (signedIn) {
+    if (signedIn && _startupRestoreFinished) {
       _enqueue(() async {
         await _syncAchievements(force: true);
         await _syncLeaderboards(force: true);

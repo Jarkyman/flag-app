@@ -11,10 +11,19 @@ class AdBannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bannerAd = _bannerAd;
     return SizedBox(
-      width: _bannerAd!.size.width.toDouble(),
-      height: _bannerAd!.size.height.toDouble(),
-      child: AdWidget(ad: _bannerAd!),
+      width: double.infinity,
+      height: AdSize.banner.height.toDouble(),
+      child: bannerAd == null
+          ? null
+          : Center(
+              child: SizedBox(
+                width: bannerAd.size.width.toDouble(),
+                height: bannerAd.size.height.toDouble(),
+                child: AdWidget(ad: bannerAd),
+              ),
+            ),
     );
   }
 }

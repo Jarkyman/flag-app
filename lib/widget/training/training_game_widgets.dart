@@ -591,6 +591,57 @@ class TrainingTextAnswerCard extends StatelessWidget {
   }
 }
 
+class TrainingFlagAnswerGrid extends StatelessWidget {
+  final int itemCount;
+  final IndexedWidgetBuilder itemBuilder;
+
+  const TrainingFlagAnswerGrid({
+    super.key,
+    required this.itemCount,
+    required this.itemBuilder,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const crossAxisCount = 2;
+        const naturalAspectRatio = 1.45;
+        final rowCount = (itemCount / crossAxisCount).ceil();
+        if (rowCount == 0) return const SizedBox.shrink();
+
+        final mainAxisSpacing = Dimensions.height10;
+        final crossAxisSpacing = Dimensions.width10;
+        final itemWidth =
+            (constraints.maxWidth - crossAxisSpacing * (crossAxisCount - 1)) /
+                crossAxisCount;
+        final naturalItemHeight = itemWidth / naturalAspectRatio;
+        final availableItemHeight = constraints.hasBoundedHeight
+            ? (constraints.maxHeight - mainAxisSpacing * (rowCount - 1)) /
+                rowCount
+            : naturalItemHeight;
+        final itemHeight =
+            availableItemHeight > 0 && availableItemHeight < naturalItemHeight
+                ? availableItemHeight
+                : naturalItemHeight;
+
+        return GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            mainAxisExtent: itemHeight,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
+          ),
+          itemCount: itemCount,
+          itemBuilder: itemBuilder,
+        );
+      },
+    );
+  }
+}
+
 class TrainingFlagAnswerCard extends StatelessWidget {
   final String image;
   final Color accentColor;

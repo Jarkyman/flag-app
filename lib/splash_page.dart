@@ -36,6 +36,8 @@ class _SplashPageState extends State<SplashScreen>
   late AnimationController controller;
 
   Future<void> _loadResource() async {
+    final shopController = Get.find<ShopController>();
+    final analyticsController = Get.find<AnalyticsController>();
     await Get.find<SettingsController>().languageSettingRead();
     await Future.wait([
       Get.find<CountryController>().readCountries(Get.locale!),
@@ -43,13 +45,16 @@ class _SplashPageState extends State<SplashScreen>
       Get.find<ScoreController>().readAllScores(),
       Get.find<HintController>().readHints(),
       Get.find<LevelController>().readLevels(),
-      Get.find<ShopController>().loadShopSettings(),
+      shopController.loadCachedShopSettings(),
     ]);
     Get.find<LevelController>().initUnlockedLevels();
     Get.find<SoundController>().init();
-    await Get.find<AnalyticsController>().updateAppContext(
-      language: Get.locale?.toString() ?? 'en_US',
-      adsRemoved: Get.find<ShopController>().isAdsRemoved,
+    unawaited(shopController.initializePurchases());
+    unawaited(
+      analyticsController.updateAppContext(
+        language: Get.locale?.toString() ?? 'en_US',
+        adsRemoved: shopController.isAdsRemoved,
+      ),
     );
     ReviewController.rateMyApp.init();
     await _initializeCloudSync();
@@ -65,7 +70,15 @@ class _SplashPageState extends State<SplashScreen>
 
     final gameServicesController = Get.find<GameServicesController>();
     await gameServicesController.initialize();
+    if (!gameServicesController.isSignedIn) {
+      gameServicesController.markStartupRestoreFinished();
+      debugPrint(
+        'Startup continues offline because game services are not connected.',
+      );
+      return;
+    }
     await Get.find<CloudSaveController>().syncOnLaunch();
+    gameServicesController.markStartupRestoreFinished();
   }
 
   void _navigateToHome() {

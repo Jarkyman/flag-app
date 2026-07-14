@@ -640,9 +640,10 @@ class _CountriesPageState extends State<CountriesPage> {
                         _interstitialAd?.dispose();
                         _interstitialAd = null;
                       }
-                      return _bannerAd != null && !shopController.isAdsRemoved
-                          ? AdBannerWidget(bannerAd: _bannerAd)
-                          : const SizedBox.shrink();
+                      if (!AdHelper.adsEnabled || shopController.isAdsRemoved) {
+                        return const SizedBox.shrink();
+                      }
+                      return AdBannerWidget(bannerAd: _bannerAd);
                     },
                   ),
                 ],

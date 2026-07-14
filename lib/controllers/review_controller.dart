@@ -24,22 +24,7 @@ class ReviewController {
         rateButton: 'RATE'.tr,
         noButton: 'NO THANKS'.tr,
         laterButton: 'MAYBE LATER'.tr,
-        listener: (button) {
-          // The button click listener (useful if you want to cancel the click event).
-          switch (button) {
-            case RateMyAppDialogButton.rate:
-              print('Clicked on "Rate".');
-              break;
-            case RateMyAppDialogButton.later:
-              print('Clicked on "Later".');
-              break;
-            case RateMyAppDialogButton.no:
-              print('Clicked on "No".');
-              break;
-          }
-
-          return true; // Return false if you want to cancel the click event.
-        },
+        listener: (_) => true,
         ignoreNativeDialog: Platform.isAndroid,
         // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
         //dialogStyle: const DialogStyle(), // Custom dialog styles.

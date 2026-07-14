@@ -81,7 +81,6 @@ class _FlagPageState extends State<FlagPage> {
       isLoading = false;
       isTryAgainUsed = false;
     });
-    debugPrint('Flag high score: $highScore');
     unawaited(
       Get.find<AnalyticsController>().gameStarted(
         gameMode: _gameMode,
@@ -253,7 +252,6 @@ class _FlagPageState extends State<FlagPage> {
           4,
           continent: _continentFilter,
         );
-        debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
@@ -346,7 +344,6 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   void openWrongDialog() {
-    debugPrint('isAdLoaded: $isAdLoaded');
     wrongGuessDialog(
       score: score,
       isNewRecord: hasNewRecordThisRun,

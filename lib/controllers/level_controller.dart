@@ -198,7 +198,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('country amount = ${_cocLevels.length}');
     } else if (playOption == AppConstants.COC) {
       for (var element in _cocLevels) {
         if (element == country) {
@@ -207,7 +206,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('coc amount = ${_cocLevels.length}');
     }
 
     update();
@@ -230,7 +228,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('country amount = ${_cocLevels.length}');
     } else if (playOption == AppConstants.COC) {
       for (var element in _cocLevels) {
         if (element == country) {
@@ -239,7 +236,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('coc amount = ${_cocLevels.length}');
     }
   }
 
@@ -261,7 +257,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('country amount = ${_cocLevels.length}');
     } else if (playOption == AppConstants.COC) {
       for (var element in _cocLevels) {
         if (element == country) {
@@ -270,7 +265,6 @@ class LevelController extends GetxController implements GetxService {
           saveLevels(playOption);
         }
       }
-      print('coc amount = ${_cocLevels.length}');
     }
   }
 
@@ -279,7 +273,6 @@ class LevelController extends GetxController implements GetxService {
     if (playOption == AppConstants.FLAGS) {
       for (var element in _flagLevels) {
         if (element == country) {
-          print('save allletters');
           element.allLetters = allLetters;
           //country.guessed = true;
           saveLevels(playOption);
@@ -316,7 +309,6 @@ class LevelController extends GetxController implements GetxService {
   }
 
   Future<void> readLevels({bool reset = false}) async {
-    print('ReadLevels${Get.locale!}');
     _flagLevels = await levelRepo.readLevels(AppConstants.FLAGS, Get.locale!,
         reset: reset);
     _countriesLevels = await levelRepo

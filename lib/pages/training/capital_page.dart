@@ -39,7 +39,6 @@ class _CapitalPageState extends State<CapitalPage> {
         selectedCountry = Get.find<CountryController>().getACountry();
         countryOptions = Get.find<CountryController>()
             .generateCountries(selectedCountry.countryName.toString(), 4);
-        debugPrint('Selected country: ${selectedCountry.countryName}');
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;
@@ -121,8 +120,6 @@ class _CapitalPageState extends State<CapitalPage> {
       highScore = Get.find<ScoreController>().getCapitalScore;
       isLoading = false;
     });
-    debugPrint(
-        'Capital high score: ${Get.find<ScoreController>().getCapitalScore}');
   }
 
   @override

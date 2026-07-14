@@ -39,6 +39,7 @@ Each directory contains the same six scenes in store order:
 5. Match flags
 6. Which country
 
-All finished files are 8-bit RGB PNGs without an alpha channel. Filenames are
+The current files are clean source captures in 8-bit RGBA PNG format. Flatten
+the final store-marketing exports to RGB without transparency. Filenames are
 lower-case and sortable, for example `01-home-en.png` and
 `06-which-country-en.png`.

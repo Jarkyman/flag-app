@@ -53,8 +53,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2E7D32)),
         useMaterial3: true,
       ),
-      //home: FlagPage(),
-      //home: TestPage(),
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
       navigatorObservers: [

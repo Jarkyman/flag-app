@@ -252,7 +252,6 @@ class _CountriesPageState extends State<CountriesPage> {
           4,
           continent: _continentFilter,
         );
-        debugPrint(selectedCountry.countryName);
         correctColor = [false, false, false, false];
         wrongColor = [false, false, false, false];
         isLoading = false;

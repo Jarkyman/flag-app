@@ -48,12 +48,7 @@ Future<void> init() async {
   );
   if (AppRuntime.adsEnabled) {
     try {
-      final initializationStatus = await MobileAds.instance
-          .initialize()
-          .timeout(const Duration(seconds: 3));
-      initializationStatus.adapterStatuses.forEach((key, value) {
-        debugPrint('Adapter status for $key: ${value.description}');
-      });
+      await MobileAds.instance.initialize().timeout(const Duration(seconds: 3));
     } catch (error) {
       debugPrint('Mobile Ads initialization skipped during startup: $error');
     }

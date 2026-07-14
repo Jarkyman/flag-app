@@ -223,7 +223,6 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       }
       wrongLettersList = getLettersListEmpty(country.country!);
     });
-    _debugLogCurrentAnswer();
   }
 
   bool _sameLetterGrid(
@@ -235,15 +234,6 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
       if (!listEquals(first[row], second[row])) return false;
     }
     return true;
-  }
-
-  void _debugLogCurrentAnswer() {
-    if (!kDebugMode) return;
-
-    debugPrint(
-      '[GuessPage] Answer: ${country.country} '
-      '[$argType, level $argLevel, ${argFlagIndex + 1}/${levelList.length}]',
-    );
   }
 
   void checkWin({String completionMethod = 'manual'}) {

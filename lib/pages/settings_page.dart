@@ -2,10 +2,11 @@ import 'package:flag_app/helper/app_constants.dart';
 import 'package:flag_app/helper/help_widgets.dart';
 import 'package:flag_app/widget/buttons/settings_button.dart';
 import 'package:flag_app/widget/popup/help_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:launch_app_store/launch_app_store.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/sound_controller.dart';
 import '../controllers/ad_consent_controller.dart';
@@ -196,11 +197,7 @@ class SettingsPage extends StatelessWidget {
                         SizedBox(height: Dimensions.height10),
                         SettingsButton(
                           title: 'Review app'.tr,
-                          onTap: () {
-                            LaunchReview.launch(
-                                androidAppId: AppConstants.ANDROID_ID,
-                                iOSAppId: AppConstants.IOS_ID);
-                          },
+                          onTap: _openStoreReview,
                           leading: const Icon(
                             Icons.star_rounded,
                             color: AppColors.yellowColor,
@@ -229,6 +226,25 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+Future<void> _openStoreReview() async {
+  final storeUri = defaultTargetPlatform == TargetPlatform.iOS
+      ? Uri.parse(
+          'https://apps.apple.com/app/id${AppConstants.IOS_ID}?action=write-review',
+        )
+      : Uri.parse(
+          'https://play.google.com/store/apps/details?id=${AppConstants.ANDROID_ID}',
+        );
+
+  if (!await launchUrl(storeUri, mode: LaunchMode.externalApplication)) {
+    Get.snackbar(
+      'Something went wrong'.tr,
+      'Could not open the app store'.tr,
+      snackPosition: SnackPosition.BOTTOM,
+      margin: EdgeInsets.all(Dimensions.width15),
     );
   }
 }

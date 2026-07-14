@@ -115,12 +115,13 @@ class ShopController extends GetxController implements GetxService {
       _products = [];
     }
 
-    debugPrint(_products.toString());
     update();
   }
 
   Future<void> initPlatformState() async {
-    await Purchases.setLogLevel(LogLevel.debug);
+    await Purchases.setLogLevel(
+      kDebugMode ? LogLevel.debug : LogLevel.warn,
+    );
 
     PurchasesConfiguration? configuration;
     if (Platform.isAndroid) {

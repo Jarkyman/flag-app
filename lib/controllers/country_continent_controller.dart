@@ -20,7 +20,6 @@ class CountryContinentController extends GetxController implements GetxService {
         as List<dynamic>;
     _countries = [];
     _countries = list.map((e) => CountryContinentModel.fromJson(e)).toList();
-    print(_countries.length);
     update();
   }
 

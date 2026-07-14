@@ -46,19 +46,6 @@ class CountryController extends GetxController implements GetxService {
     _clearCountryPools();
   }
 
-  List<CountryModel> getTestObj() {
-    List<CountryModel> result = [];
-    Get.find<CountryContinentController>().getCountries.forEach((continent) {
-      for (var country in _countries) {
-        if (country.countryName == continent.country) {
-          result.add(country);
-        }
-      }
-    });
-    print('Test Obj ${result.length}');
-    return result;
-  }
-
   String getCountryCode(String country) {
     String countryCode = 'error';
     for (var element in _countries) {

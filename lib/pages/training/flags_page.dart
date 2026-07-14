@@ -79,7 +79,6 @@ class _FlagsPageState extends State<FlagsPage> {
       highScore = _recordFor(selectedContinent);
       isLoading = false;
     });
-    debugPrint('Flags high score: $highScore');
     unawaited(
       Get.find<AnalyticsController>().gameStarted(
         gameMode: _gameMode,
@@ -251,7 +250,6 @@ class _FlagsPageState extends State<FlagsPage> {
           6,
           continent: _continentFilter,
         );
-        debugPrint('Correct index: ${getCorrect() + 1}');
         correctColor = [false, false, false, false, false, false];
         wrongColor = [false, false, false, false, false, false];
         isLoading = false;

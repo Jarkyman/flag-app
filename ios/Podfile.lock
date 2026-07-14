@@ -1,21 +1,15 @@
 PODS:
   - Flutter (1.0.0)
-  - launch_app_store (0.0.3):
-    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - launch_app_store (from `.symlinks/plugins/launch_app_store/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  launch_app_store:
-    :path: ".symlinks/plugins/launch_app_store/ios"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  launch_app_store: 4c7a9002f31fa353f9a96e7edc7bb80608448319
 
 PODFILE CHECKSUM: 4f6060ea9edd3ffce42b235464571d58edb370bc
 

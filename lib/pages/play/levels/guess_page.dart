@@ -168,9 +168,11 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
               ad.dispose();
               return;
             }
+            final loadedBanner = ad as BannerAd;
+            if (identical(_bannerAd, loadedBanner)) return;
             setState(() {
               _bannerAd?.dispose();
-              _bannerAd = ad as BannerAd;
+              _bannerAd = loadedBanner;
             });
           },
           onAdFailedToLoad: (ad, err) {

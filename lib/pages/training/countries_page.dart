@@ -225,9 +225,11 @@ class _CountriesPageState extends State<CountriesPage> {
               ad.dispose();
               return;
             }
+            final loadedBanner = ad as BannerAd;
+            if (identical(_bannerAd, loadedBanner)) return;
             setState(() {
               _bannerAd?.dispose();
-              _bannerAd = ad as BannerAd;
+              _bannerAd = loadedBanner;
             });
           },
           onAdFailedToLoad: (ad, err) {

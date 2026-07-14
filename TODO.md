@@ -103,6 +103,7 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // DONE {S} [assets, performance, release] (H): Kør en afsluttende profile/release-stresstest på fysisk iPhone og Android: gennemse mange Guess/word-billeder i alle tre kategorier, skift sprog flere gange, spil alle tre quizmodes, forlad/genåbn levels og bekræft både hurtig cache-genvisning og stabil hukommelse uden OOM, manglende glyph-atlas eller synligt kvalitetstab.
 
+// DONE {S} [ads, memory, release] (H): Ret annonce-livscyklussen i Find flag, Match flags og Which country. Interstitials og rewarded ads kan ikke længere loades eller vises parallelt, viste annoncer disposed/nullstilles før genindlæsning, failed-to-show håndteres, sene load-callbacks efter navigation rydder deres annonceobjekt, og banner/interstitial frigives straks ved reklamefjernelse.
 
 // DONE {M} [debug, hints] (L): Den midlertidige debug-belønning på 9000 hints er fjernet. Rewarded-videoen og dens lokaliserede knaptekst giver igen 3 hints i både debug- og release-builds; en allerede optjent testsaldo ændres ikke.
 

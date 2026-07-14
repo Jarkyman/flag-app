@@ -59,6 +59,8 @@ class _FlagPageState extends State<FlagPage> {
   BannerAd? _bannerAd;
   RewardedAd? _rewardedAd;
   InterstitialAd? _interstitialAd;
+  bool _isInterstitialAdLoading = false;
+  bool _isRewardedAdLoading = false;
 
   @override
   void initState() {
@@ -108,56 +110,90 @@ class _FlagPageState extends State<FlagPage> {
   }
 
   void _loadInterstitialAd() {
-    if (AdHelper.forcedAdsEnabled) {
-      InterstitialAd.load(
-        adUnitId: AdHelper.interstitialAdUnitId,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-              onAdDismissedFullScreenContent: (ad) {
-                openWrongDialog();
-                _loadInterstitialAd();
-              },
-            );
-            setState(() {
-              _interstitialAd = ad;
-            });
-          },
-          onAdFailedToLoad: (err) {
-            debugPrint('Failed to load an interstitial ad: ${err.message}');
-          },
-        ),
-      );
+    if (!AdHelper.forcedAdsEnabled ||
+        _interstitialAd != null ||
+        _isInterstitialAdLoading) {
+      return;
     }
+
+    _isInterstitialAdLoading = true;
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _isInterstitialAdLoading = false;
+          if (!mounted || !AdHelper.forcedAdsEnabled) {
+            ad.dispose();
+            return;
+          }
+
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: _finishInterstitialAd,
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              debugPrint(
+                'Failed to show an interstitial ad: ${error.message}',
+              );
+              _finishInterstitialAd(ad);
+            },
+          );
+          setState(() {
+            _interstitialAd?.dispose();
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {
+          _isInterstitialAdLoading = false;
+          debugPrint('Failed to load an interstitial ad: ${err.message}');
+        },
+      ),
+    );
+  }
+
+  void _finishInterstitialAd(InterstitialAd ad) {
+    ad.dispose();
+    if (!mounted) return;
+
+    _interstitialAd = null;
+    openWrongDialog();
+    _loadInterstitialAd();
   }
 
   void _loadRewardedAd() {
-    if (!AdHelper.adsEnabled) return;
+    if (!AdHelper.adsEnabled || _rewardedAd != null || _isRewardedAdLoading) {
+      return;
+    }
 
+    _isRewardedAdLoading = true;
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
+          _isRewardedAdLoading = false;
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
+
           ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              setState(() {
-                ad.dispose();
-                _rewardedAd = null;
-              });
-              _loadRewardedAd();
+            onAdDismissedFullScreenContent: _finishRewardedAd,
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              debugPrint(
+                'Failed to show a rewarded ad: ${error.message}',
+              );
+              _finishRewardedAd(ad);
             },
           );
           setState(() {
-            isAdLoaded = true;
-          });
-
-          setState(() {
+            _rewardedAd?.dispose();
             _rewardedAd = ad;
+            isAdLoaded = true;
           });
         },
         onAdFailedToLoad: (err) {
+          _isRewardedAdLoading = false;
+          if (!mounted) return;
           setState(() {
             isAdLoaded = false;
           });
@@ -165,6 +201,17 @@ class _FlagPageState extends State<FlagPage> {
         },
       ),
     );
+  }
+
+  void _finishRewardedAd(RewardedAd ad) {
+    ad.dispose();
+    if (!mounted) return;
+
+    setState(() {
+      _rewardedAd = null;
+      isAdLoaded = false;
+    });
+    _loadRewardedAd();
   }
 
   void createBannerAd() {
@@ -175,7 +222,12 @@ class _FlagPageState extends State<FlagPage> {
         size: AdSize.banner,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
+            if (!mounted || !AdHelper.forcedAdsEnabled) {
+              ad.dispose();
+              return;
+            }
             setState(() {
+              _bannerAd?.dispose();
               _bannerAd = ad as BannerAd;
             });
           },
@@ -275,11 +327,14 @@ class _FlagPageState extends State<FlagPage> {
         ),
       );
       const Duration(milliseconds: 500).delay(() {
+        if (!mounted) return;
         int randomInt = random.nextInt(10);
         if (_interstitialAd != null &&
             randomInt == 2 &&
             !Get.find<ShopController>().isAdsRemoved) {
-          _interstitialAd?.show();
+          final ad = _interstitialAd!;
+          _interstitialAd = null;
+          ad.show();
         } else {
           openWrongDialog();
           ReviewController.checkReviewPopup(context);
@@ -296,7 +351,13 @@ class _FlagPageState extends State<FlagPage> {
       isTryAgainUsed: isTryAgainUsed || !isAdLoaded,
       adLoaded: isAdLoaded,
       onTapConfirm: () {
-        _rewardedAd?.show(
+        final ad = _rewardedAd;
+        if (ad == null) return;
+        setState(() {
+          _rewardedAd = null;
+          isAdLoaded = false;
+        });
+        ad.show(
           onUserEarnedReward: (_, reward) {
             unawaited(
               Get.find<AnalyticsController>().rewardedAdCompleted(
@@ -576,7 +637,10 @@ class _FlagPageState extends State<FlagPage> {
                   GetBuilder<ShopController>(
                     builder: (shopController) {
                       if (shopController.isAdsRemoved) {
+                        _bannerAd?.dispose();
+                        _bannerAd = null;
                         _interstitialAd?.dispose();
+                        _interstitialAd = null;
                       }
                       return _bannerAd != null && !shopController.isAdsRemoved
                           ? AdBannerWidget(bannerAd: _bannerAd)

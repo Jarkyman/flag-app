@@ -11,6 +11,7 @@ Her er en liste over ting, der bør opdateres, rettes eller forbedres i appen, f
 // DONE {M} [ui, theme] (M): Opdater `ThemeData` i `main.dart` til at bruge Material 3 (`useMaterial3: true`) og en moderne `ColorScheme`.
 // DONE {S} [ui, animation] (H): Tilføj flere micro-animationer, f.eks. når man gætter rigtigt/forkert (shake-effekt, konfetti) og blødere side-overgange.
 // DONE {C} [ui, splash] (M): Udskift den manuelle `splash_page.dart` med pakken `flutter_native_splash` for en mere flydende og lynhurtig opstart uden hardcodede ventetider.
+// DONE {S} [ui, safe-area, release] (H): Giv Home og de fælles menu-/spilheaders ekstra `Dimensions`-baseret luft under systemets øverste safe area, så settings-, tilbage-, hjælp- og hintknapper samt sidetitler ikke sidder for højt på notch-/Dynamic Island-enheder. Baggrunden forbliver edge-to-edge, og bundlayoutet ændres ikke.
 
 ## 🏗️ Arkitektur & Kodekvalitet
 // DONE {M} [architecture, init] (H): Refaktorér indlæsningen af data i `splash_page.dart`. Lige nu bruger du sekventielle `await`, hvilket gør opstarten unødigt langsom. Brug `Future.wait` til at køre uafhængige requests parallelt.
@@ -92,7 +93,11 @@ Og så er kredits emailen også forkert flags@hartvigsolutions.com kan bruges.
 
 // TODO {M} [release, version-2.0.0] (H): Klargør version 2.0.0, når iCloud/Saved Games-platformopsætningen er afsluttet, de resterende platformstekster er oversat/reviewet, Firebase Analytics er verificeret, og release-builds/store-metadata er gennemgået.
 
-// TODO {M} [release, version-2.0.0] (H): Tag nye billeder af alle 4 enheder, tablet, android phone, iPhone og iPad, til App Store Connect og Play Console. og lavet nyt fearure billede til play store (android)
+// DONE {M} [release, version-2.0.0] (H): Der er taget seks rene, engelske screenshots uden reklamer, statuslinje eller bundnavigation til hver af de fire store-enhedstyper: Android-telefon 1080×1920, Android-tablet 1600×2650, iPhone 6,9″ 1320×2868 og iPad 13″ 2064×2752. Alle 24 billeder er gemt som RGB-PNG uden alfa under de respektive `docs`-mapper.
+
+// TODO {M} [release, play-store, version-2.0.0] (H): Lav et nyt feature graphic til Google Play for version 2.0.0.
+
+// DONE {M} [android, play-points] (S): En etårig Play Points-kuponpromotion med 50% rabat på pointprisen og Tier 3-kuponværdi er oprettet og indsendt i Play Console.
 
 // DONE {S} [assets, performance, release] (H): Alle 31 rasterassets over 1600 px er normaliseret til maks. 1600 px på længste side med bevaret aspect ratio og transparens: 10 flag, 20 våbenskjold og ét landekort. Unødvendig EXIF-/tekst-/tids-/DPI-metadata er fjernet fra hele rastersamlingen, mens farveinformation er bevaret; samlet fylder de 31 nedskalerede filer 155.404 bytes mindre end originalerne. Runtime-decodes har samme grænse, `Which country` og flag-bolden dekodes i visningsstørrelse, og Flutters LRU-billedcache beholder nyligt brugte billeder inden for et 48 MiB-budget uden at blive nulstillet ved navigation. Flutters standardgrænse på 1000 poster bevares kun som en praktisk irrelevant sikkerhedsgrænse. Regressionstests scanner alle rasterassets uden at dekode dem.
 

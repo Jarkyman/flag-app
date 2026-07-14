@@ -30,11 +30,13 @@ import '../ads/ad_consent_gateway.dart';
 import '../ads/platform_ad_consent_gateway.dart';
 import '../analytics/analytics_gateway.dart';
 import '../analytics/firebase_analytics_gateway.dart';
+import '../analytics/noop_analytics_gateway.dart';
 
 import '../game_services/game_progress_repo.dart';
 import '../game_services/game_progress_snapshot_builder.dart';
 import '../game_services/game_services_gateway.dart';
 import '../game_services/platform_game_services_gateway.dart';
+import 'app_runtime.dart';
 import 'locale_handler.dart';
 
 Future<void> init() async {
@@ -42,11 +44,13 @@ Future<void> init() async {
   final gameProgressRepo = GameProgressRepo(
     sharedPreferences: sharedPreferences,
   );
-  await MobileAds.instance.initialize().then((initializationStatus) {
-    initializationStatus.adapterStatuses.forEach((key, value) {
-      debugPrint('Adapter status for $key: ${value.description}');
+  if (AppRuntime.adsEnabled) {
+    await MobileAds.instance.initialize().then((initializationStatus) {
+      initializationStatus.adapterStatuses.forEach((key, value) {
+        debugPrint('Adapter status for $key: ${value.description}');
+      });
     });
-  });
+  }
   await LocaleHandler.initLanguages();
 
   //Repo
@@ -61,7 +65,12 @@ Future<void> init() async {
   Get.lazyPut<GameServicesGateway>(() => PlatformGameServicesGateway());
   Get.lazyPut<CloudSaveGateway>(() => PlatformCloudSaveGateway());
   Get.lazyPut<AdConsentGateway>(() => PlatformAdConsentGateway());
-  Get.put<AnalyticsGateway>(FirebaseAnalyticsGateway(), permanent: true);
+  Get.put<AnalyticsGateway>(
+    AppRuntime.externalServicesEnabled
+        ? FirebaseAnalyticsGateway()
+        : const NoopAnalyticsGateway(),
+    permanent: true,
+  );
 
   //Controller
   Get.lazyPut(() => CountryController(countryRepo: Get.find()));

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../helper/app_colors.dart';
 import '../../helper/app_constants.dart';
+import '../../helper/app_runtime.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/image_decode_size.dart';
 import '../../helper/route_helper.dart';
@@ -24,7 +25,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    unawaited(showConsentForm());
+    if (AppRuntime.adsEnabled) {
+      unawaited(showConsentForm());
+    }
   }
 
   @override
@@ -35,7 +38,12 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                padding: EdgeInsets.fromLTRB(
+                  Dimensions.width10,
+                  Dimensions.headerTopSpacing,
+                  Dimensions.width10,
+                  0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

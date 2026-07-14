@@ -5,18 +5,35 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'helper/dependencies.dart' as dep;
+import 'helper/app_runtime.dart';
 import 'helper/image_memory_manager.dart';
 import 'helper/route_helper.dart';
+import 'helper/screenshot_system_ui.dart';
 import 'analytics/analytics_navigator_observer.dart';
 import 'controllers/analytics_controller.dart';
 import 'firebase_options.dart';
 
-Future<void> main() async {
+Future<void> main() {
+  return bootstrapFlagsApp();
+}
+
+Future<void> bootstrapFlagsApp({
+  AppRuntimeMode mode = AppRuntimeMode.production,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  AppRuntime.configure(mode);
   ImageMemoryManager.configureCache();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  if (AppRuntime.isScreenshotMode) {
+    await ScreenshotSystemUi.hideSystemBars();
+  } else {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
   await dep.init();
   runApp(const MyApp());
 }
@@ -27,10 +44,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return GetMaterialApp(
       translations: LocaleHandler(),
       locale: const Locale('en', 'US'),

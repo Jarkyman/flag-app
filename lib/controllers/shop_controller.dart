@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
+import '../helper/app_runtime.dart';
 import '../repos/shop_repo.dart';
 
 typedef StoreProductsLoader = Future<List<StoreProduct>> Function(
@@ -57,6 +58,7 @@ class ShopController extends GetxController implements GetxService {
   List<StoreProduct> _products = [];
 
   Future<List<StoreProduct>> get getProducts async {
+    if (!AppRuntime.externalServicesEnabled) return const [];
     _products = await _loadProducts();
     return _products;
   }
@@ -69,6 +71,16 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future<void> loadShopSettings() async {
+    if (!AppRuntime.externalServicesEnabled) {
+      await Future.wait([
+        levelsUnlockRead(),
+        removeAdsRead(),
+      ]);
+      _products = [];
+      update();
+      return;
+    }
+
     await initPlatformState();
     await Future.wait([
       levelsUnlockRead(),
@@ -112,6 +124,7 @@ class ShopController extends GetxController implements GetxService {
   }
 
   Future<Set<RestoredPurchase>> restorePurchases() async {
+    if (!AppRuntime.externalServicesEnabled) return {};
     final customerInfo = await purchasesRestorer();
     final restoredPurchases = _activePermanentPurchases(customerInfo);
     await _savePermanentPurchases(restoredPurchases);

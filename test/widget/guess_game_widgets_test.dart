@@ -1,6 +1,7 @@
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
 import 'package:flag_app/helper/app_constants.dart';
+import 'package:flag_app/helper/dimensions.dart';
 import 'package:flag_app/repos/hint_repo.dart';
 import 'package:flag_app/widget/play/guess_game_widgets.dart';
 import 'package:flutter/material.dart';
@@ -47,8 +48,16 @@ void main() {
     final titleRect = tester.getRect(find.text('Level 10'));
     final helpRect = tester.getRect(find.byIcon(Icons.question_mark_rounded));
     final hintRect = tester.getRect(find.text('999+'));
+    final headerRect = tester.getRect(find.byType(GuessGameHeader));
 
     expect(titleRect.center.dx, closeTo(180, 0.5));
+    expect(
+      headerRect.height,
+      closeTo(
+        Dimensions.headerTopSpacing + Dimensions.height20 * 3.2,
+        0.1,
+      ),
+    );
     expect(helpRect.right, lessThan(titleRect.left));
     expect(titleRect.right, lessThan(hintRect.left));
     expect(tester.takeException(), isNull);

@@ -25,69 +25,72 @@ class GuessGameHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: Dimensions.height20 * 3.2,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.width45 * 2.4,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AutoSizeText(
-                  title,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.mainBlackColor,
-                    fontSize: Dimensions.font20,
-                    fontWeight: FontWeight.w900,
-                    height: 1,
+      height: Dimensions.headerTopSpacing + Dimensions.height20 * 3.2,
+      child: Padding(
+        padding: EdgeInsets.only(top: Dimensions.headerTopSpacing),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: Dimensions.width45 * 2.4,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AutoSizeText(
+                    title,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.mainBlackColor,
+                      fontSize: Dimensions.font20,
+                      fontWeight: FontWeight.w900,
+                      height: 1,
+                    ),
                   ),
-                ),
-                SizedBox(height: Dimensions.height10 * 0.35),
-                AutoSizeText(
-                  subtitle,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.textColorGray,
-                    fontSize: Dimensions.font16 * 0.72,
-                    fontWeight: FontWeight.w700,
-                    height: 1,
+                  SizedBox(height: Dimensions.height10 * 0.35),
+                  AutoSizeText(
+                    subtitle,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.textColorGray,
+                      fontSize: Dimensions.font16 * 0.72,
+                      fontWeight: FontWeight.w700,
+                      height: 1,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            left: Dimensions.width10,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AppControlButton(
-                  icon: Icons.arrow_back_ios_new_rounded,
-                  onTap: onBack,
-                  semanticLabel:
-                      MaterialLocalizations.of(context).backButtonTooltip,
-                ),
-                SizedBox(width: Dimensions.width5),
-                AppControlButton(
-                  icon: Icons.question_mark_rounded,
-                  onTap: onHelp,
-                  accentColor: AppColors.skyColor,
-                  semanticLabel: 'Help'.tr,
-                ),
-              ],
+            Positioned(
+              left: Dimensions.width10,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AppControlButton(
+                    icon: Icons.arrow_back_ios_new_rounded,
+                    onTap: onBack,
+                    semanticLabel:
+                        MaterialLocalizations.of(context).backButtonTooltip,
+                  ),
+                  SizedBox(width: Dimensions.width5),
+                  AppControlButton(
+                    icon: Icons.question_mark_rounded,
+                    onTap: onHelp,
+                    accentColor: AppColors.skyColor,
+                    semanticLabel: 'Help'.tr,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            right: Dimensions.width10,
-            child: const MenuHintBadge(),
-          ),
-        ],
+            Positioned(
+              right: Dimensions.width10,
+              child: const MenuHintBadge(),
+            ),
+          ],
+        ),
       ),
     );
   }

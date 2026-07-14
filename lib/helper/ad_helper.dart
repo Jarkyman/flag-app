@@ -4,7 +4,14 @@ import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import 'app_runtime.dart';
+
 class AdHelper {
+  static bool get adsEnabled => AppRuntime.adsEnabled;
+
+  static bool get forcedAdsEnabled =>
+      adsEnabled && !Get.find<ShopController>().isAdsRemoved;
+
   static String get bannerAdUnitId {
     if (!Get.find<ShopController>().isAdsRemoved) {
       if (kDebugMode) {

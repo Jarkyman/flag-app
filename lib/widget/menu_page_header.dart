@@ -30,42 +30,45 @@ class MenuPageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: Dimensions.height20 * 3.2,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: titleHorizontalPadding ?? Dimensions.width45 * 2,
-            ),
-            child: AutoSizeText(
-              title,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AppColors.mainBlackColor,
-                fontSize: Dimensions.font26,
-                fontWeight: FontWeight.w800,
+      height: Dimensions.headerTopSpacing + Dimensions.height20 * 3.2,
+      child: Padding(
+        padding: EdgeInsets.only(top: Dimensions.headerTopSpacing),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: titleHorizontalPadding ?? Dimensions.width45 * 2,
+              ),
+              child: AutoSizeText(
+                title,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.mainBlackColor,
+                  fontSize: Dimensions.font26,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ),
-          ),
-          Positioned(
-            left: Dimensions.width10,
-            child: MenuRoundButton(
-              icon: leadingIcon,
-              onTap: onLeadingTap ?? Get.back,
-              accentColor: leadingAccentColor,
-              semanticLabel: leadingIcon == Icons.close_rounded
-                  ? MaterialLocalizations.of(context).closeButtonTooltip
-                  : MaterialLocalizations.of(context).backButtonTooltip,
-            ),
-          ),
-          if (trailing != null || showHintBadge)
             Positioned(
-              right: Dimensions.width10,
-              child: trailing ?? const MenuHintBadge(),
+              left: Dimensions.width10,
+              child: MenuRoundButton(
+                icon: leadingIcon,
+                onTap: onLeadingTap ?? Get.back,
+                accentColor: leadingAccentColor,
+                semanticLabel: leadingIcon == Icons.close_rounded
+                    ? MaterialLocalizations.of(context).closeButtonTooltip
+                    : MaterialLocalizations.of(context).backButtonTooltip,
+              ),
             ),
-        ],
+            if (trailing != null || showHintBadge)
+              Positioned(
+                right: Dimensions.width10,
+                child: trailing ?? const MenuHintBadge(),
+              ),
+          ],
+        ),
       ),
     );
   }

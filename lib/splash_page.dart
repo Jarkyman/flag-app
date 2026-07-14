@@ -12,6 +12,7 @@ import 'package:flag_app/controllers/settings_controller.dart';
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/controllers/sound_controller.dart';
 import 'package:flag_app/helper/app_colors.dart';
+import 'package:flag_app/helper/app_runtime.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,6 +61,8 @@ class _SplashPageState extends State<SplashScreen>
   }
 
   Future<void> _initializeCloudSync() async {
+    if (!AppRuntime.externalServicesEnabled) return;
+
     final gameServicesController = Get.find<GameServicesController>();
     await gameServicesController.initialize();
     await Get.find<CloudSaveController>().syncOnLaunch();

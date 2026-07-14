@@ -123,6 +123,14 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   void _loadRewardedAd() {
+    if (!AdHelper.adsEnabled) {
+      setState(() {
+        loadAd = false;
+        isAdLoaded = false;
+      });
+      return;
+    }
+
     setState(() {
       loadAd = true;
       isAdLoaded = false;

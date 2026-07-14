@@ -12,6 +12,9 @@ class Dimensions {
   static double height30 = screenHeight / 28.13;
   static double height45 = screenHeight / 18.76;
 
+  // Extra breathing room below the system top safe area for page headers.
+  static double headerTopSpacing = height10;
+
   //Dynamic width, padding and margin
   static double width5 = screenHeight / 168.8;
   static double width10 = screenHeight / 84.4;

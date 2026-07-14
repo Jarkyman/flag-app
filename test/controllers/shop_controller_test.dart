@@ -1,5 +1,6 @@
 import 'package:flag_app/controllers/shop_controller.dart';
 import 'package:flag_app/helper/app_constants.dart';
+import 'package:flag_app/helper/app_runtime.dart';
 import 'package:flag_app/repos/shop_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -7,6 +8,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  tearDown(() => AppRuntime.configure(AppRuntimeMode.production));
+
+  test('screenshot mode reads access without contacting the store', () async {
+    AppRuntime.configure(AppRuntimeMode.screenshots);
+    SharedPreferences.setMockInitialValues({
+      AppConstants.ADS_REMOVE: true,
+      AppConstants.UNLOCK_LEVELS: true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    var productLoadCount = 0;
+    final controller = ShopController(
+      shopRepo: ShopRepo(sharedPreferences: preferences),
+      productsLoader: (
+        identifiers, {
+        required productCategory,
+      }) async {
+        productLoadCount++;
+        return const [];
+      },
+    );
+
+    await controller.loadShopSettings();
+
+    expect(productLoadCount, 0);
+    expect(controller.isAdsRemoved, isTrue);
+    expect(controller.isLevelsUnlocked, isTrue);
+  });
 
   test('loads direct Android products as non-subscriptions', () async {
     SharedPreferences.setMockInitialValues({});

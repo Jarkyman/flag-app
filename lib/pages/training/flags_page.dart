@@ -106,7 +106,7 @@ class _FlagsPageState extends State<FlagsPage> {
   }
 
   void _loadInterstitialAd() {
-    if (!Get.find<ShopController>().isAdsRemoved) {
+    if (AdHelper.forcedAdsEnabled) {
       InterstitialAd.load(
         adUnitId: AdHelper.interstitialAdUnitId,
         request: const AdRequest(),
@@ -132,6 +132,8 @@ class _FlagsPageState extends State<FlagsPage> {
   }
 
   void _loadRewardedAd() {
+    if (!AdHelper.adsEnabled) return;
+
     RewardedAd.load(
       adUnitId: AdHelper.rewardedAdUnitId,
       request: const AdRequest(),
@@ -166,7 +168,7 @@ class _FlagsPageState extends State<FlagsPage> {
   }
 
   void createBannerAd() {
-    if (!Get.find<ShopController>().isAdsRemoved) {
+    if (AdHelper.forcedAdsEnabled) {
       BannerAd(
         adUnitId: AdHelper.bannerAdUnitId,
         request: const AdRequest(),

@@ -106,7 +106,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   }
 
   void _loadInterstitialAd() {
-    if (Get.find<ShopController>().isAdsRemoved ||
+    if (!AdHelper.forcedAdsEnabled ||
         _interstitialAd != null ||
         _isInterstitialAdLoading) {
       return;
@@ -157,7 +157,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
   }
 
   void createBannerAd() {
-    if (!Get.find<ShopController>().isAdsRemoved) {
+    if (AdHelper.forcedAdsEnabled) {
       BannerAd(
         adUnitId: AdHelper.bannerAdUnitId,
         request: const AdRequest(),

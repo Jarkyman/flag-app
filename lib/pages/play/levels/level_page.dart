@@ -42,6 +42,8 @@ class _LevelPageState extends State<LevelPage> {
   }
 
   void createBannerAd() {
+    if (!AdHelper.forcedAdsEnabled) return;
+
     BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       request: const AdRequest(),

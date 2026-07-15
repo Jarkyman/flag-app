@@ -2,9 +2,9 @@
 
 Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
-## Version 2.0.0
+## Version 2.0.1
 
-// TODO {S} [release, app-store, play-store, version-2.0.0] (H): Upload det signerede build `2.0.0+25` til App Store Connect og Play Console, gennemgå platformenes sidste valideringer og spørgsmål, tilknyt screenshots/release notes og udgiv gerne først som en kontrolleret staged/phased release.
+// TODO {S} [release, app-store, play-store, version-2.0.1] (H): Byg, signér og upload cloud-save-hotfixet `2.0.1+26` til App Store Connect og Play Console. Tilknyt korte release notes om den mere pålidelige automatiske backup, gennemgå platformenes sidste valideringer og udgiv til 100 % efter review.
 
 ## Toolchain og dependencies
 
@@ -24,7 +24,7 @@ Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
 // TODO {M} [accessibility, ui, localization] (M): Lav en samlet accessibility-gennemgang med VoiceOver/TalkBack, stor tekst, kontrast, reduced motion og touch targets på Home, menuer, popups og alle seks spiltilstande.
 
-// TODO {M} [integration-test, startup, cloud-save, purchases] (M): Tilføj få højværdifulde integration-smoketests for offline appstart, cloud-restore før autosave og købsgendannelse. Testene skal dække reelle regressionsrisici og ikke duplikere de eksisterende 483 unit-/widgettests.
+// TODO {M} [integration-test, startup, cloud-save, purchases] (M): Tilføj få højværdifulde integration-smoketests for offline appstart, cloud-restore før autosave og købsgendannelse. Testene skal dække reelle regressionsrisici og ikke duplikere de eksisterende 485 unit-/widgettests.
 
 // TODO {S} [analytics, product] (L): Gennemgå 2.0.0-data efter nogle ugers reel brug: frafald pr. skærm/spil, kontinentvalg, hintbrug, adfærd før køb og crashfri brug. Brug resultaterne til at prioritere 2.1 i stedet for at gætte.
 

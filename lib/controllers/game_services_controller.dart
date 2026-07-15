@@ -23,6 +23,7 @@ enum GameServicesStatus {
 }
 
 typedef GameServicesCatalogLoader = Future<GameServicesCatalog> Function();
+typedef PostStartupAuthenticationSync = Future<void> Function();
 
 class GameServicesController extends GetxController
     implements GetxService, CloudSaveSession {
@@ -56,6 +57,7 @@ class GameServicesController extends GetxController
   bool _initializationRequested = false;
   bool _isSignedIn = false;
   bool _startupRestoreFinished = false;
+  PostStartupAuthenticationSync? _postStartupAuthenticationSync;
   @override
   bool get isSignedIn => _isSignedIn;
 
@@ -75,6 +77,12 @@ class GameServicesController extends GetxController
     if (_initializationRequested) return _operationQueue;
     _initializationRequested = true;
     return _enqueue(_initialize);
+  }
+
+  void setPostStartupAuthenticationSync(
+    PostStartupAuthenticationSync sync,
+  ) {
+    _postStartupAuthenticationSync = sync;
   }
 
   @override
@@ -214,13 +222,26 @@ class GameServicesController extends GetxController
   }
 
   void _handleAuthenticationChange(bool signedIn) {
+    final wasSignedIn = _isSignedIn;
     _isSignedIn = signedIn;
     _status = signedIn
         ? GameServicesStatus.connected
         : GameServicesStatus.disconnected;
     update();
-    if (signedIn && _startupRestoreFinished) {
+    if (signedIn && !wasSignedIn && _startupRestoreFinished) {
       _enqueue(() async {
+        final postStartupSync = _postStartupAuthenticationSync;
+        if (postStartupSync != null) {
+          try {
+            await postStartupSync();
+          } catch (error, stackTrace) {
+            _logError(
+              'Could not sync cloud progress after authentication',
+              error,
+              stackTrace,
+            );
+          }
+        }
         await _syncAchievements(force: true);
         await _syncLeaderboards(force: true);
       });

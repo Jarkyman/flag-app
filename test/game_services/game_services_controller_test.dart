@@ -163,6 +163,42 @@ void main() {
 
     expect(gateway.loadAchievementsCalls, 1);
   });
+
+  test('late authentication waits for cloud sync before backfill', () async {
+    SharedPreferences.setMockInitialValues({});
+    final preferences = await SharedPreferences.getInstance();
+    final progressRepo = GameProgressRepo(sharedPreferences: preferences);
+    final gateway = _FakeGameServicesGateway(signedInOnSignIn: false);
+    final cloudSync = Completer<void>();
+    final controller = GameServicesController(
+      progressRepo: progressRepo,
+      snapshotBuilder: GameProgressSnapshotBuilder(
+        progressRepo: progressRepo,
+        scoreController: ScoreController(
+          scoreRepo: ScoreRepo(sharedPreferences: preferences),
+        ),
+        levelController: LevelController(
+          levelRepo: LevelRepo(sharedPreferences: preferences),
+        ),
+      ),
+      gateway: gateway,
+      catalogLoader: () async => _catalog,
+    );
+    controller.setPostStartupAuthenticationSync(() => cloudSync.future);
+
+    await controller.initialize();
+    controller.markStartupRestoreFinished();
+    gateway.emitAuthentication(true);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+
+    expect(controller.isSignedIn, isTrue);
+    expect(gateway.loadAchievementsCalls, 0);
+
+    cloudSync.complete();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+
+    expect(gateway.loadAchievementsCalls, 1);
+  });
 }
 
 const _catalog = GameServicesCatalog(
@@ -204,20 +240,29 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   final GameNetworkPlatform platform;
   final bool configured;
   final bool hangOnSignIn;
+  final bool signedInOnSignIn;
 
   _FakeGameServicesGateway({
     this.platform = GameNetworkPlatform.ios,
     this.configured = true,
     this.hangOnSignIn = false,
+    this.signedInOnSignIn = true,
   });
 
+  final _authenticationChanges = StreamController<bool>.broadcast();
   final reportedAchievements = <String>[];
   final submittedScores = <String, int>{};
   int signInCalls = 0;
   int loadAchievementsCalls = 0;
+  bool _isSignedIn = false;
 
   @override
-  Stream<bool> get authenticationChanges => const Stream.empty();
+  Stream<bool> get authenticationChanges => _authenticationChanges.stream;
+
+  void emitAuthentication(bool signedIn) {
+    _isSignedIn = signedIn;
+    _authenticationChanges.add(signedIn);
+  }
 
   @override
   bool supportsCatalog(GameServicesCatalog catalog) => configured;
@@ -226,11 +271,12 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   Future<bool> signIn() async {
     signInCalls++;
     if (hangOnSignIn) return Completer<bool>().future;
-    return true;
+    _isSignedIn = signedInOnSignIn;
+    return _isSignedIn;
   }
 
   @override
-  Future<bool> isSignedIn() async => true;
+  Future<bool> isSignedIn() async => _isSignedIn;
 
   @override
   Future<List<RemoteAchievementProgress>> loadAchievements() async {

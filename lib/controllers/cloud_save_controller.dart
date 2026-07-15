@@ -115,6 +115,7 @@ class CloudSaveController extends GetxController
       if (bestRemote == null) {
         _initialRemoteAbsenceConfirmed = true;
         debugPrint('Cloud launch sync: no remote backup found.');
+        await _markExistingProgressPending();
         if (store.pendingChangeAt != null) _schedulePendingUpload();
         return CloudSaveResult.notFound;
       }
@@ -198,6 +199,13 @@ class CloudSaveController extends GetxController
     _autoSaveTimer = Timer(autoSaveDelay, () {
       unawaited(flushAutoSave());
     });
+  }
+
+  Future<void> _markExistingProgressPending() async {
+    if (store.pendingChangeAt != null) return;
+    final changedAt = now().toUtc();
+    if (_isPristine(store.createSnapshot(changedAt))) return;
+    await store.markPendingChanges(changedAt);
   }
 
   Future<void> _reconcilePendingChanges() async {

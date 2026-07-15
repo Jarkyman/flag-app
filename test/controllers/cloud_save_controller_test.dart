@@ -163,17 +163,41 @@ void main() {
     final gateway = _FakeCloudSaveGateway();
     final controller = CloudSaveController(
       gateway: gateway,
-      store: _FakeCloudSaveStore(snapshot: _snapshot(savedAt)),
+      store: _FakeCloudSaveStore(snapshot: _pristineSnapshot(savedAt)),
       session: _FakeCloudSaveSession(),
       now: () => savedAt,
+      autoSaveDelay: Duration.zero,
       launchRetryDelay: Duration.zero,
       launchLoadAttempts: 1,
     );
 
     final result = await controller.syncOnLaunch();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
 
     expect(result, CloudSaveResult.notFound);
     expect(gateway.saveCalls, 0);
+  });
+
+  test('launch sync uploads existing progress after confirming an empty cloud',
+      () async {
+    final gateway = _FakeCloudSaveGateway();
+    final store = _FakeCloudSaveStore(snapshot: _snapshot(savedAt));
+    final controller = CloudSaveController(
+      gateway: gateway,
+      store: store,
+      session: _FakeCloudSaveSession(),
+      now: () => savedAt,
+      autoSaveDelay: Duration.zero,
+      launchRetryDelay: Duration.zero,
+      launchLoadAttempts: 1,
+    );
+
+    expect(await controller.syncOnLaunch(), CloudSaveResult.notFound);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+
+    expect(gateway.saveCalls, 1);
+    expect(store.pendingChangeAt, isNull);
+    expect(store.markedAt, savedAt);
   });
 
   test('launch timeout continues offline without confirming an empty cloud',

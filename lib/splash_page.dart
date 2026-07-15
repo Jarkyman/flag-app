@@ -69,6 +69,10 @@ class _SplashPageState extends State<SplashScreen>
     if (!AppRuntime.externalServicesEnabled) return;
 
     final gameServicesController = Get.find<GameServicesController>();
+    final cloudSaveController = Get.find<CloudSaveController>();
+    gameServicesController.setPostStartupAuthenticationSync(() async {
+      await cloudSaveController.syncOnLaunch();
+    });
     await gameServicesController.initialize();
     if (!gameServicesController.isSignedIn) {
       gameServicesController.markStartupRestoreFinished();
@@ -77,7 +81,7 @@ class _SplashPageState extends State<SplashScreen>
       );
       return;
     }
-    await Get.find<CloudSaveController>().syncOnLaunch();
+    await cloudSaveController.syncOnLaunch();
     gameServicesController.markStartupRestoreFinished();
   }
 

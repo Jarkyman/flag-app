@@ -43,3 +43,9 @@ The current files are clean source captures in 8-bit RGBA PNG format. Flatten
 the final store-marketing exports to RGB without transparency. Filenames are
 lower-case and sortable, for example `01-home-en.png` and
 `06-which-country-en.png`.
+
+The finished marketing exports and editable panorama PSDs are stored under
+`docs/App Store/images/image_store/` and `docs/Play Store/images/image_store/`.
+Google Play's final feature graphic is
+`docs/Play Store/images/image_store/feature-graphic.png`: an RGB PNG at the
+required 1024 × 500 px size.

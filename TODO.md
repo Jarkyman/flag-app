@@ -4,8 +4,6 @@ Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
 ## Version 2.0.0
 
-// TODO {M} [release, store-assets, version-2.0.0] (H): Lav store-venlige marketingbilleder ud fra de 24 rene kilde-screenshots, eksportér de endelige filer som RGB uden transparens, og lav et nyt Google Play feature graphic til 2.0.0.
-
 // TODO {S} [release, app-store, play-store, version-2.0.0] (H): Upload det signerede build `2.0.0+25` til App Store Connect og Play Console, gennemgå platformenes sidste valideringer og spørgsmål, tilknyt screenshots/release notes og udgiv gerne først som en kontrolleret staged/phased release.
 
 ## Toolchain og dependencies

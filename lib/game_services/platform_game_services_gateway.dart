@@ -6,8 +6,14 @@ import 'models/game_achievement_progress.dart';
 import 'models/game_leaderboard_definition.dart';
 import 'models/game_services_catalog.dart';
 import 'models/remote_achievement_progress.dart';
+import 'platform_game_auth_session.dart';
 
 class PlatformGameServicesGateway implements GameServicesGateway {
+  PlatformGameServicesGateway({PlatformGameAuthSession? authSession})
+      : _authSession = authSession ?? PlatformGameAuthSession.instance;
+
+  final PlatformGameAuthSession _authSession;
+
   @override
   GameNetworkPlatform get platform {
     if (kIsWeb) return GameNetworkPlatform.unsupported;
@@ -20,7 +26,7 @@ class PlatformGameServicesGateway implements GameServicesGateway {
 
   @override
   Stream<bool> get authenticationChanges =>
-      GameAuth.player.map((player) => player != null).distinct();
+      _authSession.authenticationChanges.distinct();
 
   @override
   bool supportsCatalog(GameServicesCatalog catalog) {
@@ -42,13 +48,10 @@ class PlatformGameServicesGateway implements GameServicesGateway {
   }
 
   @override
-  Future<bool> signIn() async {
-    await GameAuth.signIn();
-    return GameAuth.isSignedIn;
-  }
+  Future<bool> signIn() => _authSession.signIn();
 
   @override
-  Future<bool> isSignedIn() => GameAuth.isSignedIn;
+  Future<bool> isSignedIn() async => _authSession.isSignedIn;
 
   @override
   Future<List<RemoteAchievementProgress>> loadAchievements() async {

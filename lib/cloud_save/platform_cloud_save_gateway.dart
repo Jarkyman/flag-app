@@ -17,7 +17,11 @@ class PlatformCloudSaveGateway implements CloudSaveGateway {
     required String name,
     required String data,
   }) async {
-    final coverImage = await rootBundle.load('assets/image/flag_ball.png');
+    // Google Play Games guarantees 800 KB for snapshot cover images. The
+    // full-size flag ball is larger than that, so use the dedicated thumbnail
+    // to prevent Android commits from being rejected while keeping the artwork.
+    final coverImage =
+        await rootBundle.load('assets/image/flag_ball_cloud_save.png');
     await SaveGame.saveGame(
       data: data,
       name: name,

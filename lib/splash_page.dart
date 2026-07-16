@@ -32,6 +32,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashPageState extends State<SplashScreen>
     with TickerProviderStateMixin {
+  static const _platformStartupTimeout = Duration(seconds: 10);
+
   late Animation<double> animation;
   late AnimationController controller;
 
@@ -73,16 +75,42 @@ class _SplashPageState extends State<SplashScreen>
     gameServicesController.setPostStartupAuthenticationSync(() async {
       await cloudSaveController.syncOnLaunch();
     });
-    await gameServicesController.initialize();
-    if (!gameServicesController.isSignedIn) {
-      gameServicesController.markStartupRestoreFinished();
+    final startupSync = _runInitialCloudSync(
+      gameServicesController,
+      cloudSaveController,
+    );
+    try {
+      await startupSync.timeout(_platformStartupTimeout);
+    } on TimeoutException {
+      // Do not cancel the native work. It owns the initial restore and will
+      // finish in the background, while the user can continue into the app.
       debugPrint(
-        'Startup continues offline because game services are not connected.',
+        'Platform startup exceeded 10 seconds; continuing with local levels '
+        'while cloud sync finishes in the background.',
       );
-      return;
+      unawaited(startupSync);
     }
-    await cloudSaveController.syncOnLaunch();
-    gameServicesController.markStartupRestoreFinished();
+  }
+
+  Future<void> _runInitialCloudSync(
+    GameServicesController gameServicesController,
+    CloudSaveController cloudSaveController,
+  ) async {
+    try {
+      await gameServicesController.initialize();
+      if (!gameServicesController.isSignedIn) {
+        debugPrint(
+          'Startup continues offline because game services are not connected.',
+        );
+        return;
+      }
+      await cloudSaveController.syncOnLaunch();
+    } catch (error, stackTrace) {
+      debugPrint('Initial Game Services/cloud sync failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
+    } finally {
+      gameServicesController.markStartupRestoreFinished();
+    }
   }
 
   void _navigateToHome() {

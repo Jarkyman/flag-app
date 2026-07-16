@@ -2,9 +2,9 @@
 
 Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
-## Version 2.0.1
+## Version 2.0.2
 
-// TODO {S} [release, app-store, play-store, version-2.0.1] (H): Byg, signér og upload cloud-save-hotfixet `2.0.1+26` til App Store Connect og Play Console. Tilknyt korte release notes om den mere pålidelige automatiske backup, gennemgå platformenes sidste valideringer og udgiv til 100 % efter review.
+// TODO {S} [release, app-store, play-store, version-2.0.2] (H): Byg, signér og upload cloud-save-hotfixet `2.0.2+27` til App Store Connect og Play Console. Tilknyt korte release notes om den mere pålidelige automatiske backup og restore ved opstart, gennemgå platformenes sidste valideringer og udgiv til 100 % efter review.
 
 ## Toolchain og dependencies
 

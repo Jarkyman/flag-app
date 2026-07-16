@@ -45,8 +45,8 @@ class CloudSaveController extends GetxController
     DateTime Function()? now,
     this.autoSaveDelay = const Duration(seconds: 3),
     this.launchRetryDelay = const Duration(milliseconds: 750),
-    this.launchSyncTimeout = const Duration(seconds: 6),
-    this.launchLoadAttempts = 8,
+    this.launchSyncTimeout = const Duration(seconds: 10),
+    this.launchLoadAttempts = 100,
   })  : assert(launchLoadAttempts > 0),
         now = now ?? DateTime.now;
 
@@ -108,9 +108,7 @@ class CloudSaveController extends GetxController
 
     _setStatus(CloudSaveStatus.syncing);
     try {
-      final backups = await _loadRemoteBackupsWithRetry().timeout(
-        launchSyncTimeout,
-      );
+      final backups = await _loadRemoteBackupsWithRetry();
       final bestRemote = _selectBestRemote(backups);
       if (bestRemote == null) {
         _initialRemoteAbsenceConfirmed = true;
@@ -156,7 +154,13 @@ class CloudSaveController extends GetxController
 
     _setStatus(CloudSaveStatus.restoring);
     try {
-      final bestRemote = _selectBestRemote(await _loadRemoteBackups());
+      // iCloud and Saved Games can expose the authenticated player before the
+      // snapshot list itself is ready. Manual restore needs the same discovery
+      // window as launch restore, otherwise it can incorrectly report that no
+      // backup exists and then find it a few seconds later.
+      final bestRemote = _selectBestRemote(
+        await _loadRemoteBackupsWithRetry(),
+      );
       if (bestRemote == null) {
         return CloudSaveResult.notFound;
       }
@@ -249,24 +253,53 @@ class CloudSaveController extends GetxController
   }
 
   Future<List<_RemoteBackup>> _loadRemoteBackupsWithRetry() async {
+    final stopwatch = Stopwatch()..start();
+    var lastAttemptWasSuccessfulAndEmpty = false;
+
     for (var attempt = 0; attempt < launchLoadAttempts; attempt++) {
+      final remaining = launchSyncTimeout - stopwatch.elapsed;
+      if (remaining <= Duration.zero) {
+        if (lastAttemptWasSuccessfulAndEmpty) return const [];
+        throw TimeoutException(
+          'Cloud backup discovery exceeded $launchSyncTimeout.',
+        );
+      }
+
       try {
-        final backups = await _loadRemoteBackups();
+        final backups = await _loadRemoteBackups().timeout(remaining);
         if (backups.isNotEmpty || attempt == launchLoadAttempts - 1) {
           return backups;
         }
+        lastAttemptWasSuccessfulAndEmpty = true;
         debugPrint(
-          'Cloud launch sync: Saved Games not ready '
-          '(attempt ${attempt + 1}/$launchLoadAttempts).',
+          'Cloud backup discovery: Saved Games not ready '
+          '(attempt ${attempt + 1}).',
         );
+      } on FormatException {
+        rethrow;
       } catch (error) {
-        if (attempt == launchLoadAttempts - 1) rethrow;
+        lastAttemptWasSuccessfulAndEmpty = false;
+        if (attempt == launchLoadAttempts - 1 ||
+            stopwatch.elapsed >= launchSyncTimeout) {
+          rethrow;
+        }
         debugPrint(
-          'Cloud launch sync: retrying after $error '
-          '(attempt ${attempt + 1}/$launchLoadAttempts).',
+          'Cloud backup discovery: retrying after $error '
+          '(attempt ${attempt + 1}).',
         );
       }
-      await Future<void>.delayed(launchRetryDelay);
+
+      final remainingAfterLoad = launchSyncTimeout - stopwatch.elapsed;
+      if (remainingAfterLoad <= Duration.zero) {
+        if (lastAttemptWasSuccessfulAndEmpty) return const [];
+        throw TimeoutException(
+          'Cloud backup discovery exceeded $launchSyncTimeout.',
+        );
+      }
+      final delay = launchRetryDelay < remainingAfterLoad
+          ? launchRetryDelay
+          : remainingAfterLoad;
+      await Future<void>.delayed(delay);
     }
     return const [];
   }

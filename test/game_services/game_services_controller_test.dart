@@ -135,6 +135,28 @@ void main() {
     expect(controller.lastError, contains('TimeoutException'));
   });
 
+  test('platform authentication gets ten seconds by default', () async {
+    SharedPreferences.setMockInitialValues({});
+    final preferences = await SharedPreferences.getInstance();
+    final progressRepo = GameProgressRepo(sharedPreferences: preferences);
+    final controller = GameServicesController(
+      progressRepo: progressRepo,
+      snapshotBuilder: GameProgressSnapshotBuilder(
+        progressRepo: progressRepo,
+        scoreController: ScoreController(
+          scoreRepo: ScoreRepo(sharedPreferences: preferences),
+        ),
+        levelController: LevelController(
+          levelRepo: LevelRepo(sharedPreferences: preferences),
+        ),
+      ),
+      gateway: _FakeGameServicesGateway(),
+      catalogLoader: () async => _catalog,
+    );
+
+    expect(controller.authenticationTimeout, const Duration(seconds: 10));
+  });
+
   test('launch backfill waits until cloud restore has finished', () async {
     SharedPreferences.setMockInitialValues({});
     final preferences = await SharedPreferences.getInstance();
@@ -199,6 +221,40 @@ void main() {
 
     expect(gateway.loadAchievementsCalls, 1);
   });
+
+  test('a hanging native progress load times out without blocking the queue',
+      () async {
+    SharedPreferences.setMockInitialValues({});
+    final preferences = await SharedPreferences.getInstance();
+    final progressRepo = GameProgressRepo(sharedPreferences: preferences);
+    final gateway = _FakeGameServicesGateway(hangOnLoadAchievements: true);
+    final controller = GameServicesController(
+      progressRepo: progressRepo,
+      snapshotBuilder: GameProgressSnapshotBuilder(
+        progressRepo: progressRepo,
+        scoreController: ScoreController(
+          scoreRepo: ScoreRepo(sharedPreferences: preferences),
+        ),
+        levelController: LevelController(
+          levelRepo: LevelRepo(sharedPreferences: preferences),
+        ),
+      ),
+      gateway: gateway,
+      catalogLoader: () async => _catalog,
+      platformOperationTimeout: const Duration(milliseconds: 10),
+    );
+
+    await controller.initialize();
+    await controller.syncStoredProgress().timeout(
+          const Duration(milliseconds: 100),
+        );
+    await controller.showLeaderboards().timeout(
+          const Duration(milliseconds: 100),
+        );
+
+    expect(gateway.loadAchievementsCalls, 1);
+    expect(gateway.showLeaderboardsCalls, 1);
+  });
 }
 
 const _catalog = GameServicesCatalog(
@@ -240,12 +296,14 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   final GameNetworkPlatform platform;
   final bool configured;
   final bool hangOnSignIn;
+  final bool hangOnLoadAchievements;
   final bool signedInOnSignIn;
 
   _FakeGameServicesGateway({
     this.platform = GameNetworkPlatform.ios,
     this.configured = true,
     this.hangOnSignIn = false,
+    this.hangOnLoadAchievements = false,
     this.signedInOnSignIn = true,
   });
 
@@ -254,6 +312,7 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   final submittedScores = <String, int>{};
   int signInCalls = 0;
   int loadAchievementsCalls = 0;
+  int showLeaderboardsCalls = 0;
   bool _isSignedIn = false;
 
   @override
@@ -281,6 +340,9 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   @override
   Future<List<RemoteAchievementProgress>> loadAchievements() async {
     loadAchievementsCalls++;
+    if (hangOnLoadAchievements) {
+      return Completer<List<RemoteAchievementProgress>>().future;
+    }
     return const [];
   }
 
@@ -306,5 +368,7 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   Future<void> showAchievements() async {}
 
   @override
-  Future<void> showLeaderboards() async {}
+  Future<void> showLeaderboards() async {
+    showLeaderboardsCalls++;
+  }
 }

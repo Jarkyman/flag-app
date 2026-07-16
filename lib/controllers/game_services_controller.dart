@@ -34,6 +34,7 @@ class GameServicesController extends GetxController
   final GameServicesCatalogLoader catalogLoader;
   final AnalyticsController? analytics;
   final Duration authenticationTimeout;
+  final Duration platformOperationTimeout;
 
   GameServicesController({
     required this.progressRepo,
@@ -41,7 +42,8 @@ class GameServicesController extends GetxController
     required this.gateway,
     this.evaluator = const GameAchievementEvaluator(),
     this.analytics,
-    this.authenticationTimeout = const Duration(seconds: 3),
+    this.authenticationTimeout = const Duration(seconds: 10),
+    this.platformOperationTimeout = const Duration(seconds: 12),
     GameServicesCatalogLoader? catalogLoader,
   }) : catalogLoader = catalogLoader ?? GameServicesCatalog.load;
 
@@ -288,11 +290,13 @@ class GameServicesController extends GetxController
       final remoteSteps = remote?.completedSteps ?? fallbackSteps;
 
       try {
-        await gateway.reportAchievement(
-          progress: progress,
-          remoteSteps: remoteSteps,
-          remoteUnlocked: remote?.unlocked ?? false,
-        );
+        await gateway
+            .reportAchievement(
+              progress: progress,
+              remoteSteps: remoteSteps,
+              remoteUnlocked: remote?.unlocked ?? false,
+            )
+            .timeout(platformOperationTimeout);
         _lastReportedSteps[progress.definition.key] = progress.clampedSteps;
         if (gateway.platform == GameNetworkPlatform.android) {
           final syncedSteps = progress.clampedSteps > remoteSteps
@@ -321,7 +325,9 @@ class GameServicesController extends GetxController
 
   Future<void> _loadRemoteAchievementProgress() async {
     try {
-      final achievements = await gateway.loadAchievements();
+      final achievements = await gateway.loadAchievements().timeout(
+            platformOperationTimeout,
+          );
       _remoteAchievements
         ..clear()
         ..addEntries(
@@ -373,7 +379,9 @@ class GameServicesController extends GetxController
       (item) => item.key == leaderboardKey,
     );
     try {
-      await gateway.submitScore(leaderboard: leaderboard, score: score);
+      await gateway
+          .submitScore(leaderboard: leaderboard, score: score)
+          .timeout(platformOperationTimeout);
       _lastSubmittedScores[leaderboardKey] =
           score > previousScore ? score : previousScore;
     } catch (error, stackTrace) {
@@ -383,7 +391,7 @@ class GameServicesController extends GetxController
 
   Future<void> _guardPlatformCall(Future<void> Function() action) async {
     try {
-      await action();
+      await action().timeout(platformOperationTimeout);
       _lastError = null;
     } catch (error, stackTrace) {
       _logError('Game services platform call failed', error, stackTrace);

@@ -18,6 +18,8 @@ void main() {
       gateway: gateway,
       store: store,
       session: session,
+      launchRetryDelay: Duration.zero,
+      launchLoadAttempts: 1,
     );
 
     final result = await controller.restoreFromCloud();
@@ -36,6 +38,8 @@ void main() {
       gateway: gateway,
       store: store,
       session: session,
+      launchRetryDelay: Duration.zero,
+      launchLoadAttempts: 1,
     );
 
     final result = await controller.restoreFromCloud();
@@ -59,6 +63,7 @@ void main() {
     final result = await controller.restoreFromCloud();
 
     expect(result, CloudSaveResult.invalidBackup);
+    expect(gateway.loadCalls, 1);
     expect(store.restoredData, isNull);
     expect(session.syncCalls, 0);
   });
@@ -158,6 +163,38 @@ void main() {
     expect(store.restoredData?.savedAtUtc, savedAt);
   });
 
+  test('manual restore retries until iCloud exposes the backup', () async {
+    final backup = _snapshot(savedAt);
+    final gateway = _FakeCloudSaveGateway(
+      loadResults: [
+        const {},
+        {CloudSaveController.autoSaveNames.first: backup.encode()},
+      ],
+    );
+    final store = _FakeCloudSaveStore(snapshot: backup);
+    final controller = CloudSaveController(
+      gateway: gateway,
+      store: store,
+      session: _FakeCloudSaveSession(),
+      launchRetryDelay: Duration.zero,
+      launchLoadAttempts: 2,
+    );
+
+    expect(await controller.restoreFromCloud(), CloudSaveResult.success);
+    expect(gateway.loadCalls, 2);
+    expect(store.restoredData?.savedAtUtc, savedAt);
+  });
+
+  test('cloud discovery waits up to ten seconds by default', () {
+    final controller = CloudSaveController(
+      gateway: _FakeCloudSaveGateway(),
+      store: _FakeCloudSaveStore(snapshot: _snapshot(savedAt)),
+      session: _FakeCloudSaveSession(),
+    );
+
+    expect(controller.launchSyncTimeout, const Duration(seconds: 10));
+  });
+
   test('launch sync never uploads an empty backup when the account has none',
       () async {
     final gateway = _FakeCloudSaveGateway();
@@ -224,6 +261,30 @@ void main() {
 
     expect(gateway.saveCalls, 0);
     expect(store.pendingChangeAt, savedAt);
+  });
+
+  test('launch deadline confirms repeated successful empty cloud reads',
+      () async {
+    final gateway = _FakeCloudSaveGateway();
+    final store = _FakeCloudSaveStore(snapshot: _snapshot(savedAt));
+    final controller = CloudSaveController(
+      gateway: gateway,
+      store: store,
+      session: _FakeCloudSaveSession(),
+      now: () => savedAt,
+      autoSaveDelay: Duration.zero,
+      launchRetryDelay: const Duration(milliseconds: 5),
+      launchSyncTimeout: const Duration(milliseconds: 25),
+      launchLoadAttempts: 100,
+    );
+
+    expect(await controller.syncOnLaunch(), CloudSaveResult.notFound);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+
+    expect(gateway.saveCalls, 1);
+    final callsAtReturn = gateway.loadCalls;
+    await Future<void>.delayed(const Duration(milliseconds: 40));
+    expect(gateway.loadCalls, callsAtReturn);
   });
 
   test('restored local data does not wait for a hanging native backfill',

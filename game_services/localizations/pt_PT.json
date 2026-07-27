@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Qual é o país — Mundo",
       "description": "Maior sequência com todos os países em Qual é o país."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Desafio diário",
+      "description": "O melhor tempo do dia em 10 perguntas variadas."
     }
   },
   "achievements": {

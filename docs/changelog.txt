@@ -1,45 +1,36 @@
 <en-US>
-Welcome to Flags Game 2.0! The entire app has a fresh, playful design, smoother navigation, and new animations.
-Explore 197 countries, their flags, and coats of arms. Choose a continent in Find Flag, Match Flags, and Which Country, with a separate record for each region.
-Enjoy improved gameplay, unlock 23 Game Center/Play Games achievements, compete on three global leaderboards, and discover updated country data alongside many fixes.
+New Daily Challenge: race through 10 mixed flag, country and coat of arms questions, compare your time on the daily leaderboard, and turn on a daily reminder.
+Smaller images make the app lighter, alongside several experience improvements.
 </en-US>
 <da-DK>
-Velkommen til Flags Game 2.0! Hele appen har fået et nyt, legende design, mere flydende navigation og nye animationer.
-Udforsk 197 lande samt deres flag og våbenskjolde. Vælg et kontinent i Find flag, Match flag og Hvilket land med en separat rekord for hver region.
-Få en forbedret spiloplevelse, lås op for 23 Game Center-/Play Games-achievements, konkurrer på tre globale ranglister, og oplev opdaterede landedata samt mange rettelser.
+Ny Daglig udfordring: kom hurtigt gennem 10 blandede spørgsmål om flag, lande og våbenskjolde, sammenlign din tid på dagens leaderboard, og slå en daglig påmindelse til.
+Mindre billeder gør appen lettere, sammen med flere forbedringer.
 </da-DK>
 <de-DE>
-Willkommen bei Flags Game 2.0! Die gesamte App hat ein frisches, verspieltes Design, flüssigere Navigation und neue Animationen.
-Entdecke 197 Länder mit ihren Flaggen und Wappen. Wähle in Flagge finden, Flaggen zuordnen und Welches Land einen Kontinent, mit einem eigenen Rekord für jede Region.
-Freue dich auf verbessertes Gameplay, schalte 23 Game-Center-/Play-Games-Erfolge frei, tritt auf drei globalen Bestenlisten an und entdecke aktualisierte Länderdaten sowie zahlreiche Fehlerbehebungen.
+Neue tägliche Herausforderung: Löse 10 gemischte Fragen zu Flaggen, Ländern und Wappen auf Zeit, vergleiche dich in der täglichen Bestenliste und aktiviere eine tägliche Erinnerung.
+Kleinere Bilder und weitere Verbesserungen machen die App leichter.
 </de-DE>
 <es-ES>
-¡Te damos la bienvenida a Flags Game 2.0! Toda la app estrena un diseño fresco y divertido, una navegación más fluida y nuevas animaciones.
-Explora 197 países, sus banderas y escudos. Elige un continente en Encuentra la bandera, Empareja banderas y ¿Qué país?, con un récord independiente para cada región.
-Disfruta de mejoras en el juego, desbloquea 23 logros de Game Center/Play Games, compite en tres clasificaciones globales y descubre datos de países actualizados y numerosas correcciones.
+Nuevo Desafío diario: completa a contrarreloj 10 preguntas variadas sobre banderas, países y escudos, compara tu tiempo en la clasificación diaria y activa un recordatorio.
+Las imágenes ocupan menos y se incluyen varias mejoras de la experiencia.
 </es-ES>
 <fr-FR>
-Bienvenue dans Flags Game 2.0 ! Toute l’app adopte un design frais et ludique, une navigation plus fluide et de nouvelles animations.
-Explore 197 pays, leurs drapeaux et leurs armoiries. Choisis un continent dans Trouve le drapeau, Associe les drapeaux et Quel pays, avec un record distinct pour chaque région.
-Profite d’une expérience de jeu améliorée, débloque 23 succès Game Center/Play Games, participe à trois classements mondiaux et découvre des données actualisées et de nombreux correctifs.
+Nouveau Défi quotidien : réponds au plus vite à 10 questions variées sur les drapeaux, pays et armoiries, compare ton temps au classement du jour et active un rappel quotidien.
+Des images plus légères et diverses améliorations sont aussi incluses.
 </fr-FR>
 <no-NO>
-Velkommen til Flags Game 2.0! Hele appen har fått et nytt, lekent design, smidigere navigasjon og nye animasjoner.
-Utforsk 197 land, flaggene og våpenskjoldene deres. Velg et kontinent i Finn flagget, Match flagg og Hvilket land, med en egen rekord for hver region.
-Nyt en bedre spillopplevelse, lås opp 23 Game Center-/Play Games-prestasjoner, konkurrer på tre globale resultatlister og oppdag oppdaterte landdata og mange feilrettinger.
+Ny Daglig utfordring: svar så raskt som mulig på 10 varierte spørsmål om flagg, land og riksvåpen, sammenlign tiden din på dagens resultatliste, og slå på en daglig påminnelse.
+Mindre bilder gjør appen lettere, sammen med flere forbedringer.
 </no-NO>
 <pt-BR>
-Boas-vindas ao Flags Game 2.0! O app inteiro ganhou um visual novo e divertido, navegação mais fluida e novas animações.
-Explore 197 países, suas bandeiras e brasões. Escolha um continente em Encontre a bandeira, Combine bandeiras e Qual é o país, com um recorde separado para cada região.
-Aproveite melhorias na jogabilidade, desbloqueie 23 conquistas do Game Center/Play Games, dispute três placares globais e confira dados atualizados dos países e muitas correções.
+Novo Desafio diário: responda rapidamente a 10 perguntas variadas sobre bandeiras, países e brasões, compare seu tempo no placar diário e ative um lembrete.
+Imagens menores deixam o app mais leve, junto com várias melhorias na experiência.
 </pt-BR>
 <pt-PT>
-Bem-vindo ao Flags Game 2.0! Toda a app recebeu um visual novo e divertido, navegação mais fluida e novas animações.
-Explora 197 países, as suas bandeiras e brasões. Escolhe um continente em Encontra a bandeira, Combina bandeiras e Qual é o país, com um recorde separado para cada região.
-Desfruta de uma jogabilidade melhorada, desbloqueia 23 conquistas do Game Center/Play Games, compete em três classificações globais e descobre dados atualizados dos países e muitas correções.
+Novo Desafio diário: responde rapidamente a 10 perguntas variadas sobre bandeiras, países e brasões, compara o teu tempo na classificação diária e ativa um lembrete.
+Imagens menores tornam a app mais leve, juntamente com várias melhorias.
 </pt-PT>
 <sv-SE>
-Välkommen till Flags Game 2.0! Hela appen har fått en ny, lekfull design, smidigare navigering och nya animationer.
-Utforska 197 länder, deras flaggor och vapensköldar. Välj en kontinent i Hitta flaggan, Matcha flaggor och Vilket land, med ett separat rekord för varje region.
-Njut av en förbättrad spelupplevelse, lås upp 23 Game Center-/Play Games-prestationer, tävla på tre globala topplistor och upptäck uppdaterade landsdata och många korrigeringar.
+Ny Daglig utmaning: ta dig snabbt igenom 10 blandade frågor om flaggor, länder och riksvapen, jämför din tid på dagens topplista och slå på en daglig påminnelse.
+Mindre bilder gör appen lättare, tillsammans med flera förbättringar.
 </sv-SE>

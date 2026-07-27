@@ -7,7 +7,8 @@ tilbage i katalogerne.
 
 ## Besluttet scope
 
-- Tre klassiske high-to-low leaderboards, ét for hvert af spillene på Home.
+- Tre klassiske high-to-low leaderboards, ét for hvert af spillene på Home,
+  samt et dagligt low-to-high tidsleaderboard til Daily Challenge.
 - Kun spil med kontinentfilteret `All` må indsende scores online.
 - 23 achievements: 20 synlige og tre skjulte perfekte gennemløb.
 - Den aktuelle app-pulje er 197 lande: 193 FN-medlemmer, Vatikanstaten,
@@ -36,7 +37,8 @@ tilbage i katalogerne.
 
 - `achievements/catalog.json`: stabile nøgler, platform-ID'er, kriterier,
   progression, point, backfill og ikonfil.
-- `leaderboards/catalog.json`: de tre online high scores og regler for submit.
+- `leaderboards/catalog.json`: de tre online high scores, Daily Challenge og
+  regler for submit.
 - `localizations/`: platformstekster til alle ni understøttede sprog. Status og
   platformenes locale-forskelle er beskrevet i `status.json`.
 - `*/icons/master/`: 1024 x 1024 masterbilleder.
@@ -49,13 +51,14 @@ tilbage i katalogerne.
 1. Login er valgfrit og må aldrig blokere spillet.
 2. En leaderboard-score indsendes kun, når spilleren spiller med `All`.
 3. Ved login indsendes alle tre gemte `All`-rekorder, så offline rekorder syncer.
+   Daily Challenge indsendes separat som dagens afsluttede tid.
 4. Best-streak- og level-achievements backfilles fra gemt data.
 5. Lifetime-tællere kan ikke udledes sikkert fra den nuværende app og begynder
    derfor ved den version, der introducerer tællerne.
 6. Progression må kun bevæge sig fremad. En lavere rapporteret værdi må aldrig
    overskrive tidligere achievement-progress.
 7. Google-ID'er genereres i Play Console og skrives tilbage i katalogerne.
-   Alle 23 achievement-ID'er og tre leaderboard-ID'er er udfyldt.
+   Alle 23 achievement-ID'er og fire leaderboard-ID'er er udfyldt.
    Apple-ID'erne i kataloget behandles som permanente.
 
 ## Platformkrav
@@ -90,8 +93,9 @@ App-integrationen bruger `games_services` 5.1.0 og er implementeret med:
 - schema-validering før restore og automatisk backfill til achievements og
   leaderboards efter en succesfuld restore.
 
-De 23 achievements og tre `All`-leaderboards er oprettet i både App Store
-Connect og Play Console. Alle komponenter har nu platformstekster på dansk,
+De 23 achievements, tre `All`-leaderboards og Daily Challenge-leaderboardet er
+oprettet i både App Store Connect og Play Console. Alle komponenter har nu
+platformstekster på dansk,
 engelsk, tysk, spansk, fransk, norsk, brasiliansk portugisisk, europæisk
 portugisisk og svensk. Apple viser alle 26 komponenter som `Ready for Review` i
 den eksisterende draft, og Google-lokaliseringerne er gemt som drafts. Intet blev

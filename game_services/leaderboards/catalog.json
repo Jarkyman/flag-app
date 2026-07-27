@@ -28,6 +28,14 @@
       "game": "which_country",
       "localRecordKey": "countries-score",
       "icon": "which_country_all.png"
+    },
+    {
+      "key": "leaderboard.daily_challenge",
+      "appleId": "flags.leaderboard.daily_challenge",
+      "googleId": "CgkIh8ycnPYFEAIQHA",
+      "game": "daily_challenge",
+      "appleScoreDivisor": 10,
+      "icon": "daily_challenge.png"
     }
   ]
 }

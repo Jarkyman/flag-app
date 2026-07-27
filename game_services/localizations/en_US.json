@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Which Country — World",
       "description": "Highest all-countries streak in Which Country."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Daily Challenge",
+      "description": "The day's fastest time across 10 mixed questions."
     }
   },
   "achievements": {

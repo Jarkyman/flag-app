@@ -157,7 +157,7 @@ class _SplashPageState extends State<SplashScreen>
                       createRectTween: (begin, end) =>
                           MaterialRectCenterArcTween(begin: begin, end: end),
                       child: Image.asset(
-                        'assets/image/flag_ball.png',
+                        'assets/image/flag_ball.webp',
                         width: Dimensions.splashImg,
                         cacheWidth: imageDecodeWidth(
                           logicalWidth: Dimensions.splashImg,

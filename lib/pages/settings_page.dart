@@ -67,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                   Dimensions.radius10 / 2),
                               child: Image.asset(
-                                'assets/image/flags/${Get.locale!.countryCode!.toLowerCase()}.png',
+                                'assets/image/flags/${Get.locale!.countryCode!.toLowerCase()}.webp',
                                 fit: BoxFit.cover,
                                 cacheWidth: imageDecodeWidth(
                                   logicalWidth: Dimensions.width20 * 2.3,

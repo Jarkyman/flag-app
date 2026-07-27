@@ -8,7 +8,7 @@ void main() {
     final rasterFiles = Directory('assets')
         .listSync(recursive: true)
         .whereType<File>()
-        .where((file) => file.path.toLowerCase().endsWith('.png'))
+        .where(_isRasterFile)
         .toList();
 
     expect(rasterFiles, isNotEmpty);
@@ -60,6 +60,28 @@ void main() {
       reason: 'Assets with removable metadata:\n${metadataAssets.join('\n')}',
     );
   });
+
+  test('game images use WebP except for the cloud save cover', () {
+    final pngFiles = Directory('assets/image')
+        .listSync(recursive: true)
+        .whereType<File>()
+        .where((file) => file.path.toLowerCase().endsWith('.png'))
+        .map((file) => file.path)
+        .toList();
+
+    expect(
+      pngFiles,
+      ['assets/image/flag_ball_cloud_save.png'],
+    );
+  });
+}
+
+bool _isRasterFile(File file) {
+  final path = file.path.toLowerCase();
+  return path.endsWith('.png') ||
+      path.endsWith('.jpg') ||
+      path.endsWith('.jpeg') ||
+      path.endsWith('.webp');
 }
 
 Set<String> _readPngChunkNames(File file) {
@@ -96,7 +118,7 @@ Set<String> _readPngChunkNames(File file) {
 ({int width, int height}) _readRasterDimensions(File file) {
   final handle = file.openSync();
   try {
-    final header = handle.readSync(24);
+    final header = handle.readSync(30);
     if (header.length >= 24 &&
         _startsWith(header, const <int>[137, 80, 78, 71, 13, 10, 26, 10])) {
       return (
@@ -110,10 +132,43 @@ Set<String> _readPngChunkNames(File file) {
       return _readJpegDimensions(handle, file.path);
     }
 
+    if (header.length >= 25 &&
+        String.fromCharCodes(header.take(4)) == 'RIFF' &&
+        String.fromCharCodes(header.skip(8).take(4)) == 'WEBP') {
+      return _readWebpDimensions(header, file.path);
+    }
+
     throw FormatException('Unsupported raster format', file.path);
   } finally {
     handle.closeSync();
   }
+}
+
+({int width, int height}) _readWebpDimensions(
+  List<int> header,
+  String path,
+) {
+  final chunkType = String.fromCharCodes(header.skip(12).take(4));
+  if (chunkType == 'VP8L' && header[20] == 0x2f) {
+    final bits =
+        header[21] | header[22] << 8 | header[23] << 16 | header[24] << 24;
+    return (
+      width: (bits & 0x3fff) + 1,
+      height: ((bits >> 14) & 0x3fff) + 1,
+    );
+  }
+  if (chunkType == 'VP8X' && header.length >= 30) {
+    return (
+      width: _uint24LittleEndian(header, 24) + 1,
+      height: _uint24LittleEndian(header, 27) + 1,
+    );
+  }
+
+  throw FormatException('Unsupported WebP chunk $chunkType', path);
+}
+
+int _uint24LittleEndian(List<int> bytes, int offset) {
+  return bytes[offset] | bytes[offset + 1] << 8 | bytes[offset + 2] << 16;
 }
 
 ({int width, int height}) _readJpegDimensions(

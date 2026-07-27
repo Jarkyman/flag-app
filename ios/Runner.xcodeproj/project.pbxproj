@@ -19,6 +19,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		F1A000000000000000000001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1A000000000000000000010 /* InfoPlist.strings */; };
 		D276DB194ACE72506BF16059 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F20DD2AAD272D27A49A264D0 /* libPods-Runner.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,15 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1A000000000000000000011 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000012 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000013 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000014 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000015 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000016 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1A000000000000000000017 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1A000000000000000000018 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1A000000000000000000019 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F20DD2AAD272D27A49A264D0 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -135,6 +145,7 @@
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
+				F1A000000000000000000010 /* InfoPlist.strings */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
@@ -199,7 +210,15 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				da,
+				de,
 				en,
+				es,
+				fr,
+				nb,
+				"pt-BR",
+				"pt-PT",
+				sv,
 				Base,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
@@ -226,6 +245,7 @@
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				37BFF55B2EB1436400F65638 /* Flags_icon.icon in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				F1A000000000000000000001 /* InfoPlist.strings in Resources */,
 				3722CF6D291AF55C0038E3E8 /* StoreKitTestCertificate.cer in Resources */,
 				4348CAF1AD1C69AE6394BFC9 /* GoogleService-Info.plist in Resources */,
 			);
@@ -316,6 +336,22 @@
 				97C147001CF9000F007C117D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F1A000000000000000000010 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1A000000000000000000011 /* da */,
+				F1A000000000000000000012 /* de */,
+				F1A000000000000000000013 /* en */,
+				F1A000000000000000000014 /* es */,
+				F1A000000000000000000015 /* fr */,
+				F1A000000000000000000016 /* nb */,
+				F1A000000000000000000017 /* pt-BR */,
+				F1A000000000000000000018 /* pt-PT */,
+				F1A000000000000000000019 /* sv */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

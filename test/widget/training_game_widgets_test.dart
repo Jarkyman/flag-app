@@ -21,7 +21,7 @@ void main() {
             width: 390 / 2,
             height: 200,
             child: TrainingFlagAnswerCard(
-              image: 'assets/image/flags/ve.png',
+              image: 'assets/image/flags/ve.webp',
               accentColor: AppColors.purpleColor,
               state: TrainingAnswerState.idle,
               onTap: () {},
@@ -52,7 +52,7 @@ void main() {
             width: 390 / 2,
             height: 200,
             child: TrainingFlagAnswerCard(
-              image: 'assets/image/flags/rs.png',
+              image: 'assets/image/flags/rs.webp',
               accentColor: AppColors.purpleColor,
               state: TrainingAnswerState.idle,
               onTap: () {},

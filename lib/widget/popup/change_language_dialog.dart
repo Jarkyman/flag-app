@@ -146,7 +146,7 @@ class _LanguageTile extends StatelessWidget {
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Image.asset(
-                  'assets/image/flags/$countryCode.png',
+                  'assets/image/flags/$countryCode.webp',
                   fit: BoxFit.cover,
                   cacheWidth: imageDecodeWidth(
                     logicalWidth: Dimensions.width20 * 2.3,

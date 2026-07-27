@@ -13,6 +13,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../controllers/hint_controller.dart';
 import '../../controllers/analytics_controller.dart';
 import '../../controllers/game_services_controller.dart';
+import '../../controllers/level_controller.dart';
 import '../../controllers/review_controller.dart';
 import '../../controllers/settings_controller.dart';
 import '../../controllers/shop_controller.dart';
@@ -337,13 +338,13 @@ class _CountriesPageState extends State<CountriesPage> {
           ad.show();
         } else {
           openWrongDialog();
-          ReviewController.checkReviewPopup(context);
         }
       });
     }
   }
 
   void openWrongDialog() {
+    final finishedScore = score;
     wrongGuessDialog(
       score: score,
       isNewRecord: hasNewRecordThisRun,
@@ -384,6 +385,15 @@ class _CountriesPageState extends State<CountriesPage> {
           continent: _continentFilter,
         );
         Get.close(1);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          ReviewController.checkReviewPopup(
+            context,
+            trainingScore: finishedScore,
+            completedLevels:
+                Get.find<LevelController>().finishedLevelsAcrossCategories,
+          );
+        });
       },
     );
   }
@@ -580,7 +590,7 @@ class _CountriesPageState extends State<CountriesPage> {
                               accentColor: AppColors.skyColor,
                               padding: EdgeInsets.all(Dimensions.width20),
                               child: Image.asset(
-                                'assets/image/countries/$imageCode-full.png',
+                                'assets/image/countries/$imageCode-full.webp',
                                 fit: BoxFit.contain,
                                 cacheWidth: imageDecodeWidth(
                                   logicalWidth: Dimensions.screenWidth,

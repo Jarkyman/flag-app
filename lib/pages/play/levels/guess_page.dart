@@ -20,6 +20,7 @@ import '../../../controllers/country_controller.dart';
 import '../../../controllers/analytics_controller.dart';
 import '../../../controllers/game_services_controller.dart';
 import '../../../controllers/hint_controller.dart';
+import '../../../controllers/review_controller.dart';
 import '../../../controllers/sound_controller.dart';
 import '../../../helper/ad_helper.dart';
 import '../../../helper/app_colors.dart';
@@ -253,6 +254,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
             firstCompletion: true,
           ),
         );
+        _checkReviewMilestoneAfterFrame();
       }
     } else {
       bool done = true;
@@ -839,6 +841,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
             firstCompletion: true,
           ),
         );
+        _checkReviewMilestoneAfterFrame();
       }
     } else {
       Get.toNamed(RouteHelper.getShopPage());
@@ -851,6 +854,17 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
         AppConstants.COC => 'coat_of_arms',
         _ => 'unknown',
       };
+
+  void _checkReviewMilestoneAfterFrame() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ReviewController.checkReviewPopup(
+        context,
+        completedLevels:
+            Get.find<LevelController>().finishedLevelsAcrossCategories,
+      );
+    });
+  }
 
   // Dialog open count - currently unused but kept for future use
   // ignore: unused_field
@@ -1042,7 +1056,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
     required String heroCode,
   }) {
     final imagePath =
-        'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.png';
+        'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.webp';
     final cacheWidth = imageDecodeWidth(
       logicalWidth: Dimensions.screenWidth,
       devicePixelRatio: MediaQuery.devicePixelRatioOf(context),
@@ -1055,7 +1069,7 @@ class _GuessPageState extends State<GuessPage> with TickerProviderStateMixin {
             child: Hero(
               tag: heroCode.toLowerCase(),
               child: Image.asset(
-                'assets/image/${argType.toLowerCase()}/${heroCode.toLowerCase()}.png',
+                'assets/image/${argType.toLowerCase()}/${heroCode.toLowerCase()}.webp',
                 fit: BoxFit.contain,
                 color: Colors.transparent,
                 cacheWidth: cacheWidth,

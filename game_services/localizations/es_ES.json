@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Qué país — Mundo",
       "description": "Mayor racha con todos los países en Qué país."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Desafío diario",
+      "description": "El mejor tiempo del día en 10 preguntas variadas."
     }
   },
   "achievements": {

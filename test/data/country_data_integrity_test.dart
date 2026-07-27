@@ -86,15 +86,15 @@ void main() {
     for (final entry in continents) {
       final code = (countryByName[entry['Country']]!['country_code'] as String)
           .toLowerCase();
-      expect(File('assets/image/flags/$code.png').existsSync(), isTrue,
+      expect(File('assets/image/flags/$code.webp').existsSync(), isTrue,
           reason: '$code flag');
       expect(
-        File('assets/image/countries/$code-full.png').existsSync(),
+        File('assets/image/countries/$code-full.webp').existsSync(),
         isTrue,
         reason: '$code country locator',
       );
       expect(
-        File('assets/image/coat of arms/$code.png').existsSync(),
+        File('assets/image/coat of arms/$code.webp').existsSync(),
         isTrue,
         reason: '$code coat of arms',
       );

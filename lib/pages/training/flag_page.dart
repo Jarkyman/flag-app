@@ -13,6 +13,7 @@ import '../../controllers/hint_controller.dart';
 import '../../controllers/analytics_controller.dart';
 import '../../controllers/game_services_controller.dart';
 import '../../controllers/review_controller.dart';
+import '../../controllers/level_controller.dart';
 import '../../controllers/settings_controller.dart';
 import '../../controllers/shop_controller.dart';
 import '../../controllers/sound_controller.dart';
@@ -337,13 +338,13 @@ class _FlagPageState extends State<FlagPage> {
           ad.show();
         } else {
           openWrongDialog();
-          ReviewController.checkReviewPopup(context);
         }
       });
     }
   }
 
   void openWrongDialog() {
+    final finishedScore = score;
     wrongGuessDialog(
       score: score,
       isNewRecord: hasNewRecordThisRun,
@@ -384,6 +385,15 @@ class _FlagPageState extends State<FlagPage> {
           continent: _continentFilter,
         );
         Get.close(1);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          ReviewController.checkReviewPopup(
+            context,
+            trainingScore: finishedScore,
+            completedLevels:
+                Get.find<LevelController>().finishedLevelsAcrossCategories,
+          );
+        });
       },
     );
   }
@@ -580,7 +590,7 @@ class _FlagPageState extends State<FlagPage> {
                               accentColor: AppColors.coralColor,
                               padding: EdgeInsets.all(Dimensions.width20),
                               child: Image.asset(
-                                'assets/image/flags/$imgCode.png',
+                                'assets/image/flags/$imgCode.webp',
                                 fit: BoxFit.contain,
                                 cacheWidth: imageDecodeWidth(
                                   logicalWidth: Dimensions.screenWidth,

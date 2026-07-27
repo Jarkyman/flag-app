@@ -27,6 +27,9 @@ typedef PostStartupAuthenticationSync = Future<void> Function();
 
 class GameServicesController extends GetxController
     implements GetxService, CloudSaveSession {
+  static const String dailyChallengeLeaderboardKey =
+      'leaderboard.daily_challenge';
+
   final GameProgressRepo progressRepo;
   final GameProgressSnapshotBuilder snapshotBuilder;
   final GameServicesGateway gateway;
@@ -65,6 +68,12 @@ class GameServicesController extends GetxController
 
   bool get isConfigured =>
       _catalog != null && gateway.supportsCatalog(_catalog!);
+
+  bool get hasDailyChallengeLeaderboard =>
+      _catalog?.leaderboards.any(
+        (leaderboard) => leaderboard.key == dailyChallengeLeaderboardKey,
+      ) ??
+      false;
 
   bool get isBusy => _status == GameServicesStatus.signingIn;
 
@@ -126,6 +135,34 @@ class GameServicesController extends GetxController
 
   Future<void> refreshLevelProgress() {
     return _enqueue(() => _syncAchievements(force: false));
+  }
+
+  Future<void> recordDailyChallengeScore({
+    required int scoreMilliseconds,
+    required String dayKey,
+  }) {
+    return _enqueue(() async {
+      _catalog ??= await catalogLoader();
+      final leaderboard = _catalog?.leaderboards.firstWhereOrNull(
+        (item) => item.key == dailyChallengeLeaderboardKey,
+      );
+      if (leaderboard == null || !await _ensureSignedIn()) return;
+      await _submitLeaderboard(
+        leaderboard.key,
+        scoreMilliseconds,
+        force: true,
+      );
+      unawaited(
+        analytics?.logEvent(
+              'daily_challenge_score_submitted',
+              parameters: {
+                'day': dayKey,
+                'score_ms': scoreMilliseconds,
+              },
+            ) ??
+            Future.value(),
+      );
+    });
   }
 
   Future<void> showAchievements() {
@@ -345,8 +382,10 @@ class GameServicesController extends GetxController
     if (catalog == null || !_isSignedIn) return;
     final snapshot = snapshotBuilder.build();
     for (final leaderboard in catalog.leaderboards) {
+      final game = leaderboard.game;
+      if (game == null) continue;
       final score = snapshot.recordFor(
-        leaderboard.game,
+        game,
         TrainingContinent.all,
       );
       await _submitLeaderboard(leaderboard.key, score, force: force);

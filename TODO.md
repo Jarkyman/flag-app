@@ -2,11 +2,15 @@
 
 Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
-## Version 2.0.2
+## Version 2.1.0
 
-// TODO {S} [release, app-store, play-store, version-2.0.2] (H): Byg, signér og upload cloud-save-hotfixet `2.0.2+27` til App Store Connect og Play Console. Tilknyt korte release notes om den mere pålidelige automatiske backup og restore ved opstart, gennemgå platformenes sidste valideringer og udgiv til 100 % efter review.
+// TODO {S} [release, app-store, play-store, version-2.1.0] (H): Monitorér review og udgivelse af Android `2.1.0+29` og iOS `2.1.0+30`. Gennemfør stadig notification-smoketest på fysisk iPhone og Android som opfølgning; emulator-testen er grøn, men fysisk levering er ikke verificeret.
+
+// TODO {S} [marketing, video, app-store, play-store] (M): Producer og upload en kort store-video, der viser Home, Daily Challenge, flag, landkort og våbenskjolde i den eksisterende 2.0-kampagnestil.
 
 ## Toolchain og dependencies
+
+// TODO {S} [android, google-play, policy, release] (H): Opdatér appen til at targete Android 16 / API 36 eller højere og udgiv et nyt production-build senest 31. august 2026. Det nuværende højeste build targeter API 35; efter deadlinen blokerer Google Play nye appopdateringer. Verificér især notifikationer, Play Games, køb, annoncer og cloud save, og bekræft bagefter at [policy-sagen](https://play.google.com/console/u/0/developers/6988786543080092848/app/4972476568011111729/policy-center/issues/4987030206078622510/details) er ryddet.
 
 // TODO {M} [android, flutter, kotlin, maintenance] (M): Migrér Android-projektet og kompatible plugins til Flutters Built-in Kotlin, fjern `android.builtInKotlin=false`, og aktivér den nye Gradle DSL, når plugin-økosystemet understøtter det. Verificér køb, annoncer, Firebase, e-mail, lyd og deling med release-build og fysiske enheder.
 
@@ -20,7 +24,7 @@ Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
 // TODO {M} [firebase, crashlytics, privacy] (M): Overvej Firebase Crashlytics til anonyme crash- og non-fatal-rapporter, så produktionsfejl som OOM, billeddecode og platform-login kan opdages. Opdatér Analytics-opt-out, App Privacy og Data Safety før aktivering.
 
-// TODO {M} [performance, app-size, assets] (M): Brug Play Consoles faktiske device-downloadstørrelse og App Stores buildstørrelse efter 2.0.0 til at finde de største assetgrupper. Undersøg tabsfri WebP/bedre PNG-komprimering uden at forringe flag, våbenskjolde, offline-spil eller billedcache.
+// TODO {M} [performance, app-size, assets] (M): Sammenlign App Stores behandlede buildstørrelse for 2.1.0 med 2.0.2. Play Console viser allerede 82,3 MB device-download, 48,3 MB mindre end den forrige release, efter at 977 billed-assets er konverteret lossless til WebP.
 
 // TODO {M} [accessibility, ui, localization] (M): Lav en samlet accessibility-gennemgang med VoiceOver/TalkBack, stor tekst, kontrast, reduced motion og touch targets på Home, menuer, popups og alle seks spiltilstande.
 
@@ -29,8 +33,6 @@ Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 // TODO {S} [analytics, product] (L): Gennemgå 2.0.0-data efter nogle ugers reel brug: frafald pr. skærm/spil, kontinentvalg, hintbrug, adfærd før køb og crashfri brug. Brug resultaterne til at prioritere 2.1 i stedet for at gætte.
 
 ## Idéer til senere versioner
-
-// TODO {M} [game, retention] (L): Overvej en lille daglig udfordring med samme lande for alle, en lokal streak og en delbar resultattekst uden persondata.
 
 // TODO {M} [game, learning] (L): Overvej et valgfrit “mine svære lande”-spil, der samler de lande, spilleren oftest svarer forkert på, uden at ændre eksisterende records og leaderboards.
 

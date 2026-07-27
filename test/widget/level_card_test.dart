@@ -22,7 +22,7 @@ void main() {
             height: 130,
             child: LevelCard(
               guessed: true,
-              image: 'assets/image/flags/ve.png',
+              image: 'assets/image/flags/ve.webp',
               option: AppConstants.FLAGS,
               number: 1,
             ),

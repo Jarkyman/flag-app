@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Hvilket land — Verden",
       "description": "Lengste rekke med alle land i Hvilket land."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Daglig utfordring",
+      "description": "Dagens raskeste tid gjennom 10 varierte spørsmål."
     }
   },
   "achievements": {

@@ -6,33 +6,50 @@ import 'package:get/get.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
 class ReviewController {
+  static const int minimumTrainingScore = 10;
+  static const int minimumCompletedLevels = 10;
+
   static final RateMyApp rateMyApp = RateMyApp(
-    minDays: 3,
-    minLaunches: 8,
-    remindDays: 5,
-    remindLaunches: 8,
+    minDays: 0,
+    minLaunches: 1,
+    remindDays: 7,
+    remindLaunches: 5,
     googlePlayIdentifier: AppConstants.ANDROID_ID,
     appStoreIdentifier: AppConstants.IOS_ID,
   );
 
-  static void checkReviewPopup(BuildContext context) {
-    if (rateMyApp.shouldOpenDialog) {
-      rateMyApp.showRateDialog(
-        context,
-        title: 'Rate Flags game'.tr,
-        message: 'RateMsg'.tr,
-        rateButton: 'RATE'.tr,
-        noButton: 'NO THANKS'.tr,
-        laterButton: 'MAYBE LATER'.tr,
-        listener: (_) => true,
-        ignoreNativeDialog: Platform.isAndroid,
-        // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
-        //dialogStyle: const DialogStyle(), // Custom dialog styles.
-        onDismissed: () =>
-            rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed),
-        // contentBuilder: (context, defaultContent) => content, // This one allows you to change the default dialog content.
-        // actionsBuilder: (context) => [], // This one allows you to use your own buttons.
-      );
+  static bool hasReachedReviewMilestone({
+    required int trainingScore,
+    required int completedLevels,
+  }) {
+    return trainingScore >= minimumTrainingScore ||
+        completedLevels >= minimumCompletedLevels;
+  }
+
+  static void checkReviewPopup(
+    BuildContext context, {
+    int trainingScore = 0,
+    int completedLevels = 0,
+  }) {
+    if (!hasReachedReviewMilestone(
+      trainingScore: trainingScore,
+      completedLevels: completedLevels,
+    )) {
+      return;
     }
+    if (!rateMyApp.shouldOpenDialog) return;
+
+    rateMyApp.showRateDialog(
+      context,
+      title: 'Rate Flags game'.tr,
+      message: 'RateMsg'.tr,
+      rateButton: 'RATE'.tr,
+      noButton: 'NO THANKS'.tr,
+      laterButton: 'MAYBE LATER'.tr,
+      listener: (_) => true,
+      ignoreNativeDialog: Platform.isAndroid,
+      onDismissed: () =>
+          rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed),
+    );
   }
 }

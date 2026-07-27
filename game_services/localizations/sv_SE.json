@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Vilket land — Världen",
       "description": "Längsta svit med alla länder i Vilket land."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Daglig utmaning",
+      "description": "Dagens snabbaste tid genom 10 blandade frågor."
     }
   },
   "achievements": {

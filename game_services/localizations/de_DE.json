@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Welches Land — Welt",
       "description": "Höchste Serie mit allen Ländern in Welches Land."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Tägliche Herausforderung",
+      "description": "Die schnellste Zeit des Tages für 10 gemischte Fragen."
     }
   },
   "achievements": {

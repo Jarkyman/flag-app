@@ -40,10 +40,21 @@ void main() {
           .map((achievement) => achievement.steps),
       everyElement(197),
     );
-    expect(catalog.leaderboards, hasLength(3));
+    expect(catalog.leaderboards, hasLength(4));
     expect(
-      catalog.leaderboards.map((leaderboard) => leaderboard.game).toSet(),
+      catalog.leaderboards
+          .map((leaderboard) => leaderboard.game)
+          .whereType<TrainingScoreGame>()
+          .toSet(),
       TrainingScoreGame.values.toSet(),
+    );
+    expect(
+      catalog.leaderboards
+          .singleWhere(
+            (leaderboard) => leaderboard.key == 'leaderboard.daily_challenge',
+          )
+          .appleScoreDivisor,
+      10,
     );
   });
 

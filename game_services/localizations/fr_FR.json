@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Quel pays — Monde",
       "description": "Meilleure série avec tous les pays dans Quel pays."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Défi quotidien",
+      "description": "Le meilleur temps du jour sur 10 questions variées."
     }
   },
   "achievements": {

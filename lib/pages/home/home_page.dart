@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                             end: end,
                           ),
                           child: Image.asset(
-                            'assets/image/flag_ball.png',
+                            'assets/image/flag_ball.webp',
                             cacheWidth: imageDecodeWidth(
                               logicalWidth: Dimensions.height45 * 3.1,
                               devicePixelRatio:
@@ -110,6 +110,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(height: Dimensions.height20),
+                      MenuButton(
+                        onTap: () =>
+                            Get.toNamed(RouteHelper.getDailyChallengePage()),
+                        title: 'Daily challenge'.tr,
+                        icon: Icons.calendar_month_rounded,
+                        accentColor: AppColors.purpleColor,
+                        subText: '10',
+                      ),
+                      SizedBox(height: Dimensions.height10),
                       MenuButton(
                         onTap: () => Get.toNamed(RouteHelper.getPlayPage()),
                         title: 'Play'.tr,

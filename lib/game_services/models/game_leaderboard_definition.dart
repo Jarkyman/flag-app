@@ -4,13 +4,15 @@ class GameLeaderboardDefinition {
   final String key;
   final String appleId;
   final String? googleId;
-  final TrainingScoreGame game;
+  final TrainingScoreGame? game;
+  final int appleScoreDivisor;
 
   const GameLeaderboardDefinition({
     required this.key,
     required this.appleId,
     required this.googleId,
     required this.game,
+    this.appleScoreDivisor = 1,
   });
 
   factory GameLeaderboardDefinition.fromJson(Map<String, dynamic> json) {
@@ -18,10 +20,12 @@ class GameLeaderboardDefinition {
       key: json['key'] as String,
       appleId: json['appleId'] as String,
       googleId: json['googleId'] as String?,
+      appleScoreDivisor: json['appleScoreDivisor'] as int? ?? 1,
       game: switch (json['game'] as String) {
         'find_flag' => TrainingScoreGame.findFlag,
         'match_flags' => TrainingScoreGame.matchFlags,
         'which_country' => TrainingScoreGame.whichCountry,
+        'daily_challenge' => null,
         final value => throw FormatException('Unknown training game: $value'),
       },
     );

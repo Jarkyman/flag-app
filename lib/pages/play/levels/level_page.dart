@@ -124,7 +124,7 @@ class _LevelPageState extends State<LevelPage> {
                               child: LevelCard(
                                 guessed: level.guessed!,
                                 image:
-                                    'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.png',
+                                    'assets/image/${argType.toLowerCase()}/${imageCode.toLowerCase()}.webp',
                                 option: argType,
                                 number: index + 1,
                               ),

@@ -5,6 +5,7 @@ import 'package:flag_app/controllers/ad_consent_controller.dart';
 import 'package:flag_app/controllers/analytics_controller.dart';
 import 'package:flag_app/controllers/cloud_save_controller.dart';
 import 'package:flag_app/controllers/country_controller.dart';
+import 'package:flag_app/controllers/daily_challenge_controller.dart';
 import 'package:flag_app/controllers/game_services_controller.dart';
 import 'package:flag_app/controllers/hint_controller.dart';
 import 'package:flag_app/controllers/level_controller.dart';
@@ -33,6 +34,9 @@ import '../ads/platform_ad_consent_gateway.dart';
 import '../analytics/analytics_gateway.dart';
 import '../analytics/firebase_analytics_gateway.dart';
 import '../analytics/noop_analytics_gateway.dart';
+import '../daily_challenge/daily_challenge_reminder.dart';
+import '../daily_challenge/daily_challenge_repository.dart';
+import '../daily_challenge/platform_daily_challenge_reminder.dart';
 
 import '../game_services/game_progress_repo.dart';
 import '../game_services/game_progress_snapshot_builder.dart';
@@ -63,6 +67,12 @@ Future<void> init() async {
   Get.lazyPut(() => LevelRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => SettingsRepo(sharedPreferences: sharedPreferences));
   Get.lazyPut(() => ShopRepo(sharedPreferences: sharedPreferences));
+  Get.lazyPut(
+    () => DailyChallengeRepository(sharedPreferences: sharedPreferences),
+  );
+  Get.lazyPut<DailyChallengeReminder>(
+    () => PlatformDailyChallengeReminder(),
+  );
   Get.put<GameProgressRepo>(gameProgressRepo, permanent: true);
   Get.lazyPut<GameServicesGateway>(() => PlatformGameServicesGateway());
   Get.lazyPut<CloudSaveGateway>(() => PlatformCloudSaveGateway());
@@ -83,6 +93,25 @@ Future<void> init() async {
   Get.lazyPut(() => SoundController(settingsRepo: Get.find()));
   Get.lazyPut(() => SettingsController(settingsRepo: Get.find()));
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+  Get.lazyPut(
+    () => DailyChallengeController(
+      repository: Get.find(),
+      reminder: Get.find(),
+      countriesProvider: () => Get.find<CountryController>().getCountries,
+      submitScore: ({
+        required int scoreMilliseconds,
+        required String dayKey,
+      }) {
+        return Get.find<GameServicesController>().recordDailyChallengeScore(
+          scoreMilliseconds: scoreMilliseconds,
+          dayKey: dayKey,
+        );
+      },
+      analytics: Get.find<AnalyticsController>(),
+      playCorrectSound: () => Get.find<SoundController>().correctSound(),
+      playWrongSound: () => Get.find<SoundController>().wrongSound(),
+    ),
+  );
   Get.lazyPut(() => AdConsentController(gateway: Get.find()));
   final analyticsController = AnalyticsController(
     gateway: Get.find(),

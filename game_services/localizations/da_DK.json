@@ -12,6 +12,10 @@
     "leaderboard.which_country.all": {
       "name": "Hvilket land — Verden",
       "description": "Højeste streak med alle lande i Hvilket land."
+    },
+    "leaderboard.daily_challenge": {
+      "name": "Daglig udfordring",
+      "description": "Dagens hurtigste tid gennem 10 blandede spørgsmål."
     }
   },
   "achievements": {

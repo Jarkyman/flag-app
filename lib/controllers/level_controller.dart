@@ -120,6 +120,12 @@ class LevelController extends GetxController implements GetxService {
     return finishedLevels;
   }
 
+  int get finishedLevelsAcrossCategories {
+    return getFinishedLevels(AppConstants.FLAGS) +
+        getFinishedLevels(AppConstants.COUNTRIES) +
+        getFinishedLevels(AppConstants.COC);
+  }
+
   int getLevelAmount(String playOption) {
     List<LevelModel> levels = getList(playOption)!;
     int amount = 0;

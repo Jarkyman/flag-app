@@ -120,11 +120,15 @@ class PlatformGameServicesGateway implements GameServicesGateway {
     required GameLeaderboardDefinition leaderboard,
     required int score,
   }) {
+    final platformScore = platform == GameNetworkPlatform.ios
+        ? (score + leaderboard.appleScoreDivisor - 1) ~/
+            leaderboard.appleScoreDivisor
+        : score;
     return Leaderboards.submitScore(
       score: Score(
         iOSLeaderboardID: leaderboard.appleId,
         androidLeaderboardID: leaderboard.googleId,
-        value: score,
+        value: platformScore,
       ),
     );
   }

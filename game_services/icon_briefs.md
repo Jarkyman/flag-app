@@ -1,6 +1,7 @@
 # Billedbriefs
 
-Genereret med den indbyggede imagegen-workflow den 10. juli 2026. Den fælles
+De oprindelige ikoner blev genereret med den indbyggede imagegen-workflow den
+10. juli 2026; Daily Challenge-ikonet blev tilføjet den 2. august 2026. Den fælles
 promptretning var: *playful premium 3D clay/soft-plastic mobile game icon,
 rounded tactile shapes, warm off-white background, soft studio lighting, bold
 centered silhouette, circular-crop safe, no text, numbers, logos or watermark*.
@@ -16,6 +17,7 @@ crop. Masteren er 1024 x 1024 RGB PNG.
 - Find flag: koral `#F2766B`
 - Match flag: lilla `#7E6CCB`
 - Hvilket land: blå `#4D8EC9`
+- Daily Challenge: mint/teal `#42B5A4` med koral timer
 - Fælles progression: teal `#42B5A4`
 - Store sejre: guld `#D99700` / gul `#FBBF24`
 - Baggrund: varm off-white med en blød tonet gradient
@@ -55,3 +57,4 @@ crop. Masteren er 1024 x 1024 RGB PNG.
 | `find_flag_all.png` | Koral podie med flagkugle øverst |
 | `match_flags_all.png` | Lilla podie med to matchende flagkort |
 | `which_country_all.png` | Blåt podie med globus og lokationsnål |
+| `daily_challenge.png` | Mint podie med globus, koral timer, ti farvede checkpoints og laurbærkrans |

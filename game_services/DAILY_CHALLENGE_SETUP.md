@@ -47,9 +47,14 @@ entry is:
 }
 ```
 
-The Google Play Games configuration is published. The Game Center leaderboard
-is configured as recurring and localized in every supported app language; it
-must be included with the 2.1.0 App Store review submission.
+The Google Play Games configuration is published. The recurring Game Center
+leaderboard is live and localized in every supported app language.
+
+The matching text-free leaderboard image is available as a 1024 x 1024 Apple
+asset in `leaderboards/icons/apple/daily_challenge.png` and as a 512 x 512
+Google asset in `leaderboards/icons/google/daily_challenge.png`. On 2026-08-02,
+the Google image was added to the published leaderboard, while the same Apple
+master was added to all nine localization versions and submitted for review.
 
 ## Fairness scope
 

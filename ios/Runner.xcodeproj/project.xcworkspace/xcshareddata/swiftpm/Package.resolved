@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleDataTransport.git",
       "state" : {
-        "revision" : "617af071af9aa1d6a091d59a202910ac482128f9",
-        "version" : "10.1.0"
+        "revision" : "ba3358d3c3dbae8ef230b58a46b97ad65e84e974",
+        "version" : "10.1.1"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleads/swift-package-manager-google-mobile-ads",
       "state" : {
-        "revision" : "a81f522aa4f59c0d90ee523d703bd426d5b27a03",
-        "version" : "13.4.0"
+        "revision" : "868149fc50d1452078e83540e636cf519bac3e6a",
+        "version" : "13.7.0"
       }
     },
     {

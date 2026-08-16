@@ -99,6 +99,14 @@ void main() {
       );
     }
   });
+
+  test('daily challenge invites preserve time and download placeholders', () {
+    for (final locale in locales.entries) {
+      final invite = locale.value['Daily challenge invite'];
+      expect(invite, contains('@time'), reason: '${locale.key} needs @time');
+      expect(invite, contains('@url'), reason: '${locale.key} needs @url');
+    }
+  });
 }
 
 Map<String, Map<String, String>> _readLocales() {

@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../controllers/daily_challenge_controller.dart';
 import '../../controllers/game_services_controller.dart';
@@ -13,6 +16,7 @@ import '../../daily_challenge/models/daily_challenge_question.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/image_decode_size.dart';
+import '../../game_services/models/game_leaderboard_score.dart';
 import '../../models/country_model.dart';
 import '../../widget/app_controls.dart';
 import '../../widget/menu_background.dart';
@@ -363,6 +367,7 @@ class _DailyChallengeResults extends StatelessWidget {
                 SizedBox(height: Dimensions.height15),
                 Text(
                   'Challenge complete'.tr,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.mainBlackColor,
                     fontSize: Dimensions.font26,
@@ -413,14 +418,25 @@ class _DailyChallengeResults extends StatelessWidget {
                 if (gameServices.hasDailyChallengeLeaderboard) ...[
                   SizedBox(height: Dimensions.height20),
                   _DailyPrimaryButton(
-                    label: 'Leaderboards'.tr,
+                    label: 'View leaderboard'.tr,
                     icon: Icons.leaderboard_rounded,
                     onTap: () async {
                       await controller.resubmitCompletedScore();
-                      await gameServices.showLeaderboards();
+                      if (!context.mounted) return;
+                      await _showDailyLeaderboard(
+                        context: context,
+                        gameServices: gameServices,
+                        score: score,
+                      );
                     },
                   ),
                 ],
+                SizedBox(height: Dimensions.height10),
+                _DailyOutlineButton(
+                  label: 'Invite friends'.tr,
+                  icon: Icons.person_add_alt_1_rounded,
+                  onTap: () => _shareDailyChallenge(context, score),
+                ),
               ],
             ),
           ),
@@ -445,8 +461,8 @@ class _DailyChallengeResults extends StatelessWidget {
                 SizedBox(width: Dimensions.width10),
                 Expanded(
                   child: Text(
-                    '${'Next challenge in'.tr} '
-                    '${_formatRemaining(controller.timeUntilNextChallenge)}',
+                    '${'Next challenge'.tr} '
+                    '${_formatClockTime(controller.day.endsAtUtc.toLocal())}',
                     style: TextStyle(
                       color: AppColors.mainBlackColor,
                       fontSize: Dimensions.font16,
@@ -983,6 +999,324 @@ class _DailyPrimaryButton extends StatelessWidget {
   }
 }
 
+class _DailyOutlineButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final FutureOr<void> Function() onTap;
+
+  const _DailyOutlineButton({
+    required this.label,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: Dimensions.height20 * 2.6,
+      child: OutlinedButton.icon(
+        onPressed: () => onTap(),
+        icon: Icon(icon, size: Dimensions.iconSize24),
+        label: AutoSizeText(
+          label,
+          maxLines: 1,
+          minFontSize: Dimensions.font16 * 0.5,
+          stepGranularity: Dimensions.font16 / 16,
+          style: TextStyle(
+            fontSize: Dimensions.font16,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.purpleColor,
+          side: BorderSide(
+            color: AppColors.purpleColor.withValues(alpha: 0.35),
+            width: Dimensions.width5 * 0.25,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.radius20),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DailyLeaderboardSheet extends StatelessWidget {
+  final Future<List<GameLeaderboardScore>?> scores;
+  final GameServicesController gameServices;
+  final int score;
+
+  const _DailyLeaderboardSheet({
+    required this.scores,
+    required this.gameServices,
+    required this.score,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      heightFactor: 0.82,
+      child: DecoratedBox(
+        key: const ValueKey('daily-leaderboard-sheet-background'),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF7FBFA),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(Dimensions.radius30),
+          ),
+        ),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              Dimensions.width20,
+              Dimensions.height10,
+              Dimensions.width20,
+              Dimensions.height20,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: Dimensions.width30 * 1.5,
+                  height: Dimensions.height10 * 0.5,
+                  decoration: BoxDecoration(
+                    color: AppColors.textColorGray.withValues(alpha: 0.3),
+                    borderRadius: BorderRadius.circular(Dimensions.radius10),
+                  ),
+                ),
+                SizedBox(height: Dimensions.height15),
+                Row(
+                  children: [
+                    Container(
+                      width: Dimensions.height45,
+                      height: Dimensions.height45,
+                      decoration: BoxDecoration(
+                        color: AppColors.purpleColor.withValues(alpha: 0.12),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius15),
+                      ),
+                      child: Icon(
+                        Icons.groups_rounded,
+                        color: AppColors.purpleColor,
+                        size: Dimensions.iconSize24,
+                      ),
+                    ),
+                    SizedBox(width: Dimensions.width15),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Friends today'.tr,
+                            style: TextStyle(
+                              color: AppColors.mainBlackColor,
+                              fontSize: Dimensions.font20,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            'Daily challenge leaderboard'.tr,
+                            style: TextStyle(
+                              color: AppColors.textColorGray,
+                              fontSize: Dimensions.font16 * 0.78,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      tooltip:
+                          MaterialLocalizations.of(context).closeButtonTooltip,
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+                  ],
+                ),
+                SizedBox(height: Dimensions.height15),
+                Expanded(
+                  child: FutureBuilder<List<GameLeaderboardScore>?>(
+                    future: scores,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.purpleColor,
+                          ),
+                        );
+                      }
+                      if (snapshot.data == null) {
+                        return _LeaderboardMessage(
+                          icon: Icons.cloud_off_rounded,
+                          title: 'Could not load leaderboard'.tr,
+                          message: 'Try again in Game Center or Play Games.'.tr,
+                        );
+                      }
+                      final entries = snapshot.data!;
+                      if (entries.isEmpty) {
+                        return _LeaderboardMessage(
+                          icon: Icons.person_add_alt_1_rounded,
+                          title: 'No friends on the leaderboard yet'.tr,
+                          message: 'Invite friends to compare daily times.'.tr,
+                        );
+                      }
+                      return ListView.separated(
+                        itemCount: entries.length,
+                        separatorBuilder: (_, __) =>
+                            SizedBox(height: Dimensions.height10),
+                        itemBuilder: (context, index) =>
+                            _LeaderboardEntry(score: entries[index]),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: Dimensions.height15),
+                _DailyPrimaryButton(
+                  label: 'Open global leaderboard'.tr,
+                  icon: Icons.public_rounded,
+                  onTap: gameServices.showDailyChallengeLeaderboard,
+                ),
+                SizedBox(height: Dimensions.height10),
+                _DailyOutlineButton(
+                  label: 'Invite friends'.tr,
+                  icon: Icons.person_add_alt_1_rounded,
+                  onTap: () => _shareDailyChallenge(context, score),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LeaderboardEntry extends StatelessWidget {
+  final GameLeaderboardScore score;
+
+  const _LeaderboardEntry({required this.score});
+
+  @override
+  Widget build(BuildContext context) {
+    final avatar = _decodeAvatar(score.playerAvatarBase64);
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimensions.width15,
+        vertical: Dimensions.height10,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(Dimensions.radius15),
+        border: Border.all(
+          color: AppColors.purpleColor.withValues(alpha: 0.12),
+        ),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: Dimensions.width30,
+            child: Text(
+              '#${score.rank}',
+              style: TextStyle(
+                color: AppColors.purpleColor,
+                fontSize: Dimensions.font16,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          SizedBox(width: Dimensions.width10),
+          CircleAvatar(
+            radius: Dimensions.iconSize24,
+            backgroundColor: AppColors.skyColor.withValues(alpha: 0.15),
+            foregroundImage: avatar == null ? null : MemoryImage(avatar),
+            child: avatar == null
+                ? Icon(
+                    Icons.person_rounded,
+                    color: AppColors.skyColor,
+                    size: Dimensions.iconSize24,
+                  )
+                : null,
+          ),
+          SizedBox(width: Dimensions.width15),
+          Expanded(
+            child: Text(
+              score.playerName,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: AppColors.mainBlackColor,
+                fontSize: Dimensions.font16,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          SizedBox(width: Dimensions.width10),
+          Text(
+            _formatChallengeTime(score.rawScore),
+            style: TextStyle(
+              color: AppColors.purpleColor,
+              fontSize: Dimensions.font16,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LeaderboardMessage extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String message;
+
+  const _LeaderboardMessage({
+    required this.icon,
+    required this.title,
+    required this.message,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.all(Dimensions.width20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: AppColors.purpleColor,
+              size: Dimensions.iconSize24 * 2,
+            ),
+            SizedBox(height: Dimensions.height15),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppColors.mainBlackColor,
+                fontSize: Dimensions.font20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            SizedBox(height: Dimensions.height10),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppColors.textColorGray,
+                fontSize: Dimensions.font16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 BoxDecoration _cardDecoration({
   required Color accentColor,
   required double accentOpacity,
@@ -1014,9 +1348,53 @@ String _formatChallengeTime(int milliseconds) {
       '${centiseconds.toString().padLeft(2, '0')}';
 }
 
-String _formatRemaining(Duration duration) {
-  final hours = duration.inHours;
-  final minutes = duration.inMinutes.remainder(60);
-  return '${hours.toString().padLeft(2, '0')}:'
-      '${minutes.toString().padLeft(2, '0')}';
+String _formatClockTime(DateTime time) {
+  return '${time.hour.toString().padLeft(2, '0')}:'
+      '${time.minute.toString().padLeft(2, '0')}';
+}
+
+Future<void> _showDailyLeaderboard({
+  required BuildContext context,
+  required GameServicesController gameServices,
+  required int score,
+}) async {
+  final scores = gameServices.loadDailyChallengeFriendScores();
+  await showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    useSafeArea: true,
+    backgroundColor: Colors.transparent,
+    builder: (_) => _DailyLeaderboardSheet(
+      scores: scores,
+      gameServices: gameServices,
+      score: score,
+    ),
+  );
+}
+
+Future<void> _shareDailyChallenge(BuildContext context, int score) async {
+  const downloadUrl = 'https://hartvigsolutions.com/#flags-game/download';
+  final renderBox = context.findRenderObject();
+  final shareOrigin = renderBox is RenderBox
+      ? renderBox.localToGlobal(Offset.zero) & renderBox.size
+      : null;
+  await SharePlus.instance.share(
+    ShareParams(
+      subject: 'Daily challenge'.tr,
+      text: 'Daily challenge invite'.trParams({
+        'time': _formatChallengeTime(score),
+        'url': downloadUrl,
+      }),
+      sharePositionOrigin: shareOrigin,
+    ),
+  );
+}
+
+Uint8List? _decodeAvatar(String? encodedAvatar) {
+  if (encodedAvatar == null || encodedAvatar.isEmpty) return null;
+  try {
+    return base64Decode(encodedAvatar);
+  } on FormatException {
+    return null;
+  }
 }

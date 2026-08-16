@@ -2,7 +2,7 @@
 
 Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
-## Version 2.1.0
+## Version 2.1.1
 
 // TODO {S} [release, app-store, play-store, version-2.1.0] (H): Monitorér review og udgivelse af Android `2.1.0+29` og iOS `2.1.0+30`. Gennemfør stadig notification-smoketest på fysisk iPhone og Android som opfølgning; emulator-testen er grøn, men fysisk levering er ikke verificeret.
 
@@ -10,7 +10,9 @@ Kun aktive og fremtidige opgaver. Afsluttede opgaver arkiveres ikke her.
 
 ## Toolchain og dependencies
 
-// TODO {S} [android, google-play, policy, release] (H): Opdatér appen til at targete Android 16 / API 36 eller højere og udgiv et nyt production-build senest 31. august 2026. Det nuværende højeste build targeter API 35; efter deadlinen blokerer Google Play nye appopdateringer. Verificér især notifikationer, Play Games, køb, annoncer og cloud save, og bekræft bagefter at [policy-sagen](https://play.google.com/console/u/0/developers/6988786543080092848/app/4972476568011111729/policy-center/issues/4987030206078622510/details) er ryddet.
+// TODO {S} [android, google-play, policy, release, version-2.1.1] (H): Upload og udgiv `2.1.1+31`, som nu targeter Android 16 / API 36, senest 31. august 2026. Verificér især notifikationer, Play Games, køb, annoncer og cloud save på fysiske enheder, og bekræft bagefter at [policy-sagen](https://play.google.com/console/u/0/developers/6988786543080092848/app/4972476568011111729/policy-center/issues/4987030206078622510/details) er ryddet.
+
+// TODO {S} [daily-challenge, game-center, play-games, qa] (H): Smoketest dagens venneliste med mindst to rigtige Game Center-konti og to Play Games-konti. Verificér samtykkedialogen til vennelisten, spillerbilleder, tom/fejltilstand, invitation via delingsarket og skift mellem i dag, uge og all-time i den native globale rangliste.
 
 // TODO {M} [android, flutter, kotlin, maintenance] (M): Migrér Android-projektet og kompatible plugins til Flutters Built-in Kotlin, fjern `android.builtInKotlin=false`, og aktivér den nye Gradle DSL, når plugin-økosystemet understøtter det. Verificér køb, annoncer, Firebase, e-mail, lyd og deling med release-build og fysiske enheder.
 

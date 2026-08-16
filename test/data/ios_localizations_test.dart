@@ -41,6 +41,11 @@ void main() {
       );
     }
     expect(project, contains('InfoPlist.strings in Resources'));
-    expect(infoPlist, contains('<key>ITSAppUsesNonExemptEncryption</key>'));
+    expect(
+      infoPlist,
+      contains(
+        '<key>ITSAppUsesNonExemptEncryption</key>\n\t\t<false/>',
+      ),
+    );
   });
 }

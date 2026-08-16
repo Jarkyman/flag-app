@@ -7,6 +7,8 @@ import '../game_services/game_achievement_evaluator.dart';
 import '../game_services/game_progress_repo.dart';
 import '../game_services/game_progress_snapshot_builder.dart';
 import '../game_services/game_services_gateway.dart';
+import '../game_services/models/game_leaderboard_definition.dart';
+import '../game_services/models/game_leaderboard_score.dart';
 import '../game_services/models/game_services_catalog.dart';
 import '../game_services/models/remote_achievement_progress.dart';
 import '../models/training_continent.dart';
@@ -191,6 +193,63 @@ class GameServicesController extends GetxController
       );
       await _guardPlatformCall(gateway.showLeaderboards);
     });
+  }
+
+  Future<void> showDailyChallengeLeaderboard() {
+    return _enqueue(() async {
+      _catalog ??= await catalogLoader();
+      final leaderboard = _dailyChallengeLeaderboard;
+      if (leaderboard == null || !await _ensureSignedIn()) return;
+      unawaited(
+        analytics?.gameServicesOverlay(
+              platform: gateway.platform.name,
+              overlay: 'daily_challenge_leaderboard',
+            ) ??
+            Future.value(),
+      );
+      await _guardPlatformCall(
+        () => gateway.showLeaderboard(
+          leaderboard: leaderboard,
+          playerScope: GameLeaderboardPlayerScope.global,
+          timeScope: GameLeaderboardTimeScope.today,
+        ),
+      );
+    });
+  }
+
+  Future<List<GameLeaderboardScore>?> loadDailyChallengeFriendScores() {
+    return _enqueueValue(() async {
+      _catalog ??= await catalogLoader();
+      final leaderboard = _dailyChallengeLeaderboard;
+      if (leaderboard == null || !await _ensureSignedIn()) return null;
+      try {
+        final scores = await gateway
+            .loadLeaderboardScores(
+              leaderboard: leaderboard,
+              playerScope: GameLeaderboardPlayerScope.friends,
+              timeScope: GameLeaderboardTimeScope.today,
+              maxResults: 25,
+            )
+            .timeout(platformOperationTimeout);
+        _lastError = null;
+        return scores;
+      } catch (error, stackTrace) {
+        _logError(
+          'Could not load daily challenge friend scores',
+          error,
+          stackTrace,
+        );
+        return null;
+      } finally {
+        update();
+      }
+    });
+  }
+
+  GameLeaderboardDefinition? get _dailyChallengeLeaderboard {
+    return _catalog?.leaderboards.firstWhereOrNull(
+      (leaderboard) => leaderboard.key == dailyChallengeLeaderboardKey,
+    );
   }
 
   Future<void> _initialize() async {
@@ -441,6 +500,14 @@ class GameServicesController extends GetxController
   Future<void> _enqueue(Future<void> Function() operation) {
     final next = _operationQueue.then((_) => operation());
     _operationQueue = next.catchError((Object _, StackTrace __) {});
+    return next;
+  }
+
+  Future<T> _enqueueValue<T>(Future<T> Function() operation) {
+    final next = _operationQueue.then((_) => operation());
+    _operationQueue = next.then<void>((_) {}).catchError(
+          (Object _, StackTrace __) {},
+        );
     return next;
   }
 

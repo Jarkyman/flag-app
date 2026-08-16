@@ -4,6 +4,7 @@ import 'package:games_services/games_services.dart';
 import 'game_services_gateway.dart';
 import 'models/game_achievement_progress.dart';
 import 'models/game_leaderboard_definition.dart';
+import 'models/game_leaderboard_score.dart';
 import 'models/game_services_catalog.dart';
 import 'models/remote_achievement_progress.dart';
 import 'platform_game_auth_session.dart';
@@ -138,4 +139,66 @@ class PlatformGameServicesGateway implements GameServicesGateway {
 
   @override
   Future<void> showLeaderboards() => Leaderboards.showLeaderboards();
+
+  @override
+  Future<void> showLeaderboard({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+  }) {
+    return Leaderboards.showLeaderboards(
+      iOSLeaderboardID: leaderboard.appleId,
+      androidLeaderboardID: leaderboard.googleId ?? '',
+      playerScope: _platformPlayerScope(playerScope),
+      timeScope: _platformTimeScope(timeScope),
+    );
+  }
+
+  @override
+  Future<List<GameLeaderboardScore>> loadLeaderboardScores({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+    required int maxResults,
+  }) async {
+    final scores = await Leaderboards.loadLeaderboardScores(
+      iOSLeaderboardID: leaderboard.appleId,
+      androidLeaderboardID: leaderboard.googleId ?? '',
+      playerCentered: false,
+      scope: _platformPlayerScope(playerScope),
+      timeScope: _platformTimeScope(timeScope),
+      forceRefresh: true,
+      maxResults: maxResults,
+    );
+    return scores
+            ?.map(
+              (score) => GameLeaderboardScore(
+                rank: score.rank,
+                displayScore: score.displayScore,
+                rawScore: platform == GameNetworkPlatform.ios
+                    ? score.rawScore * leaderboard.appleScoreDivisor
+                    : score.rawScore,
+                playerName: score.scoreHolder.displayName,
+                playerId: score.scoreHolder.playerID,
+                playerAvatarBase64: score.scoreHolder.iconImage,
+              ),
+            )
+            .toList(growable: false) ??
+        const [];
+  }
+}
+
+PlayerScope _platformPlayerScope(GameLeaderboardPlayerScope scope) {
+  return switch (scope) {
+    GameLeaderboardPlayerScope.global => PlayerScope.global,
+    GameLeaderboardPlayerScope.friends => PlayerScope.friendsOnly,
+  };
+}
+
+TimeScope _platformTimeScope(GameLeaderboardTimeScope scope) {
+  return switch (scope) {
+    GameLeaderboardTimeScope.today => TimeScope.today,
+    GameLeaderboardTimeScope.week => TimeScope.week,
+    GameLeaderboardTimeScope.allTime => TimeScope.allTime,
+  };
 }

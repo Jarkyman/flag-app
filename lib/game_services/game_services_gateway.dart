@@ -1,5 +1,6 @@
 import 'models/game_achievement_progress.dart';
 import 'models/game_leaderboard_definition.dart';
+import 'models/game_leaderboard_score.dart';
 import 'models/game_services_catalog.dart';
 import 'models/remote_achievement_progress.dart';
 
@@ -32,4 +33,17 @@ abstract class GameServicesGateway {
   Future<void> showAchievements();
 
   Future<void> showLeaderboards();
+
+  Future<void> showLeaderboard({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+  });
+
+  Future<List<GameLeaderboardScore>> loadLeaderboardScores({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+    required int maxResults,
+  });
 }

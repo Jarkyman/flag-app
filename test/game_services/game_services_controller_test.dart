@@ -9,6 +9,7 @@ import 'package:flag_app/game_services/game_services_gateway.dart';
 import 'package:flag_app/game_services/models/game_achievement_definition.dart';
 import 'package:flag_app/game_services/models/game_achievement_progress.dart';
 import 'package:flag_app/game_services/models/game_leaderboard_definition.dart';
+import 'package:flag_app/game_services/models/game_leaderboard_score.dart';
 import 'package:flag_app/game_services/models/game_services_catalog.dart';
 import 'package:flag_app/game_services/models/remote_achievement_progress.dart';
 import 'package:flag_app/models/training_continent.dart';
@@ -255,6 +256,50 @@ void main() {
     expect(gateway.loadAchievementsCalls, 1);
     expect(gateway.showLeaderboardsCalls, 1);
   });
+
+  test('loads today friend scores and opens the daily global leaderboard',
+      () async {
+    SharedPreferences.setMockInitialValues({});
+    final preferences = await SharedPreferences.getInstance();
+    const friendScore = GameLeaderboardScore(
+      rank: 2,
+      displayScore: '00:12.34',
+      rawScore: 12340,
+      playerName: 'Flag Friend',
+      playerId: 'friend-1',
+      playerAvatarBase64: null,
+    );
+    final gateway = _FakeGameServicesGateway(
+      leaderboardScores: const [friendScore],
+    );
+    final controller = GameServicesController(
+      progressRepo: GameProgressRepo(sharedPreferences: preferences),
+      snapshotBuilder: GameProgressSnapshotBuilder(
+        progressRepo: GameProgressRepo(sharedPreferences: preferences),
+        scoreController: ScoreController(
+          scoreRepo: ScoreRepo(sharedPreferences: preferences),
+        ),
+        levelController: LevelController(
+          levelRepo: LevelRepo(sharedPreferences: preferences),
+        ),
+      ),
+      gateway: gateway,
+      catalogLoader: () async => _catalog,
+    );
+
+    await controller.initialize();
+    final scores = await controller.loadDailyChallengeFriendScores();
+    await controller.showDailyChallengeLeaderboard();
+
+    expect(scores, const [friendScore]);
+    expect(gateway.loadedLeaderboard?.key, 'leaderboard.daily_challenge');
+    expect(gateway.loadedPlayerScope, GameLeaderboardPlayerScope.friends);
+    expect(gateway.loadedTimeScope, GameLeaderboardTimeScope.today);
+    expect(gateway.loadedMaxResults, 25);
+    expect(gateway.shownLeaderboard?.key, 'leaderboard.daily_challenge');
+    expect(gateway.shownPlayerScope, GameLeaderboardPlayerScope.global);
+    expect(gateway.shownTimeScope, GameLeaderboardTimeScope.today);
+  });
 }
 
 const _catalog = GameServicesCatalog(
@@ -288,6 +333,13 @@ const _catalog = GameServicesCatalog(
       googleId: 'google-which-country',
       game: TrainingScoreGame.whichCountry,
     ),
+    GameLeaderboardDefinition(
+      key: 'leaderboard.daily_challenge',
+      appleId: 'flags.leaderboard.daily_challenge',
+      googleId: 'google-daily-challenge',
+      game: null,
+      appleScoreDivisor: 10,
+    ),
   ],
 );
 
@@ -298,6 +350,7 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   final bool hangOnSignIn;
   final bool hangOnLoadAchievements;
   final bool signedInOnSignIn;
+  final List<GameLeaderboardScore> leaderboardScores;
 
   _FakeGameServicesGateway({
     this.platform = GameNetworkPlatform.ios,
@@ -305,6 +358,7 @@ class _FakeGameServicesGateway implements GameServicesGateway {
     this.hangOnSignIn = false,
     this.hangOnLoadAchievements = false,
     this.signedInOnSignIn = true,
+    this.leaderboardScores = const [],
   });
 
   final _authenticationChanges = StreamController<bool>.broadcast();
@@ -313,6 +367,13 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   int signInCalls = 0;
   int loadAchievementsCalls = 0;
   int showLeaderboardsCalls = 0;
+  GameLeaderboardDefinition? shownLeaderboard;
+  GameLeaderboardPlayerScope? shownPlayerScope;
+  GameLeaderboardTimeScope? shownTimeScope;
+  GameLeaderboardDefinition? loadedLeaderboard;
+  GameLeaderboardPlayerScope? loadedPlayerScope;
+  GameLeaderboardTimeScope? loadedTimeScope;
+  int? loadedMaxResults;
   bool _isSignedIn = false;
 
   @override
@@ -370,5 +431,30 @@ class _FakeGameServicesGateway implements GameServicesGateway {
   @override
   Future<void> showLeaderboards() async {
     showLeaderboardsCalls++;
+  }
+
+  @override
+  Future<void> showLeaderboard({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+  }) async {
+    shownLeaderboard = leaderboard;
+    shownPlayerScope = playerScope;
+    shownTimeScope = timeScope;
+  }
+
+  @override
+  Future<List<GameLeaderboardScore>> loadLeaderboardScores({
+    required GameLeaderboardDefinition leaderboard,
+    required GameLeaderboardPlayerScope playerScope,
+    required GameLeaderboardTimeScope timeScope,
+    required int maxResults,
+  }) async {
+    loadedLeaderboard = leaderboard;
+    loadedPlayerScope = playerScope;
+    loadedTimeScope = timeScope;
+    loadedMaxResults = maxResults;
+    return leaderboardScores;
   }
 }

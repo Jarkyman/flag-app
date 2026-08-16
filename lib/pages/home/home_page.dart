@@ -57,113 +57,141 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(
-                    Dimensions.width20,
-                    Dimensions.height10,
-                    Dimensions.width20,
-                    Dimensions.height30,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: Dimensions.height45 * 3.1,
-                        height: Dimensions.height45 * 3.1,
-                        padding: EdgeInsets.all(Dimensions.width10),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.45),
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  AppColors.mainColor.withValues(alpha: 0.12),
-                              blurRadius: Dimensions.radius30,
-                              offset: Offset(0, Dimensions.height10),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final screenSize = MediaQuery.sizeOf(context);
+                    final fitAllCardsLayout =
+                        constraints.maxWidth < 600 && screenSize.height >= 780;
+                    final heroSize =
+                        Dimensions.height45 * (fitAllCardsLayout ? 2.55 : 3.1);
+                    final menuHeight =
+                        Dimensions.height20 * (fitAllCardsLayout ? 3.25 : 3.7);
+                    final menuGap =
+                        Dimensions.height10 * (fitAllCardsLayout ? 0.7 : 1);
+                    final sectionGap =
+                        Dimensions.height20 * (fitAllCardsLayout ? 0.75 : 1);
+
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(
+                        Dimensions.width20,
+                        Dimensions.height10 * (fitAllCardsLayout ? 0.6 : 1),
+                        Dimensions.width20,
+                        Dimensions.height30 * (fitAllCardsLayout ? 0.35 : 1),
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: heroSize,
+                            height: heroSize,
+                            padding: EdgeInsets.all(Dimensions.width10),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.45),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.mainColor
+                                      .withValues(alpha: 0.12),
+                                  blurRadius: Dimensions.radius30,
+                                  offset: Offset(0, Dimensions.height10),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Hero(
-                          tag: AppConstants.FLAG_BALL_HERO,
-                          createRectTween: (begin, end) =>
-                              MaterialRectCenterArcTween(
-                            begin: begin,
-                            end: end,
-                          ),
-                          child: Image.asset(
-                            'assets/image/flag_ball.webp',
-                            cacheWidth: imageDecodeWidth(
-                              logicalWidth: Dimensions.height45 * 3.1,
-                              devicePixelRatio:
-                                  MediaQuery.devicePixelRatioOf(context),
+                            child: Hero(
+                              tag: AppConstants.FLAG_BALL_HERO,
+                              createRectTween: (begin, end) =>
+                                  MaterialRectCenterArcTween(
+                                begin: begin,
+                                end: end,
+                              ),
+                              child: Image.asset(
+                                'assets/image/flag_ball.webp',
+                                cacheWidth: imageDecodeWidth(
+                                  logicalWidth: heroSize,
+                                  devicePixelRatio:
+                                      MediaQuery.devicePixelRatioOf(context),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: Dimensions.height10 *
+                                (fitAllCardsLayout ? 0.7 : 1),
+                          ),
+                          Text(
+                            'Flags Game',
+                            style: TextStyle(
+                              color: AppColors.mainBlackColor,
+                              fontSize: Dimensions.font26,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: Dimensions.width5 * 0.1,
+                            ),
+                          ),
+                          SizedBox(height: sectionGap),
+                          MenuButton(
+                            onTap: () => Get.toNamed(
+                                RouteHelper.getDailyChallengePage()),
+                            title: 'Daily challenge'.tr,
+                            icon: Icons.calendar_month_rounded,
+                            accentColor: AppColors.purpleColor,
+                            subText: '10',
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            onTap: () => Get.toNamed(RouteHelper.getPlayPage()),
+                            title: 'Play'.tr,
+                            icon: Icons.explore_rounded,
+                            accentColor: AppColors.mainColor,
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            onTap: () => Get.toNamed(RouteHelper.getFlagPage()),
+                            title: 'Find flag'.tr,
+                            icon: Icons.flag_rounded,
+                            accentColor: AppColors.coralColor,
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            onTap: () =>
+                                Get.toNamed(RouteHelper.getFlagsPage()),
+                            title: 'Match flags'.tr,
+                            icon: Icons.grid_view_rounded,
+                            accentColor: AppColors.purpleColor,
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            onTap: () =>
+                                Get.toNamed(RouteHelper.getCountriesPage()),
+                            title: 'Which country'.tr,
+                            icon: Icons.public_rounded,
+                            accentColor: AppColors.skyColor,
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            onTap: () =>
+                                Get.toNamed(RouteHelper.getGameServicesPage()),
+                            title: 'Game services'.tr,
+                            icon: Icons.emoji_events_rounded,
+                            accentColor: AppColors.goldColor,
+                            height: menuHeight,
+                          ),
+                          SizedBox(height: menuGap),
+                          MenuButton(
+                            key: const ValueKey('home-shop-menu-button'),
+                            onTap: () => Get.toNamed(RouteHelper.getShopPage()),
+                            title: 'Shop'.tr,
+                            icon: Icons.shopping_bag_outlined,
+                            accentColor: AppColors.yellowColor,
+                            height: menuHeight,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: Dimensions.height10),
-                      Text(
-                        'Flags Game',
-                        style: TextStyle(
-                          color: AppColors.mainBlackColor,
-                          fontSize: Dimensions.font26,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: Dimensions.width5 * 0.1,
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.height20),
-                      MenuButton(
-                        onTap: () =>
-                            Get.toNamed(RouteHelper.getDailyChallengePage()),
-                        title: 'Daily challenge'.tr,
-                        icon: Icons.calendar_month_rounded,
-                        accentColor: AppColors.purpleColor,
-                        subText: '10',
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () => Get.toNamed(RouteHelper.getPlayPage()),
-                        title: 'Play'.tr,
-                        icon: Icons.explore_rounded,
-                        accentColor: AppColors.mainColor,
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () => Get.toNamed(RouteHelper.getFlagPage()),
-                        title: 'Find flag'.tr,
-                        icon: Icons.flag_rounded,
-                        accentColor: AppColors.coralColor,
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () => Get.toNamed(RouteHelper.getFlagsPage()),
-                        title: 'Match flags'.tr,
-                        icon: Icons.grid_view_rounded,
-                        accentColor: AppColors.purpleColor,
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () =>
-                            Get.toNamed(RouteHelper.getCountriesPage()),
-                        title: 'Which country'.tr,
-                        icon: Icons.public_rounded,
-                        accentColor: AppColors.skyColor,
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () =>
-                            Get.toNamed(RouteHelper.getGameServicesPage()),
-                        title: 'Game services'.tr,
-                        icon: Icons.emoji_events_rounded,
-                        accentColor: AppColors.goldColor,
-                      ),
-                      SizedBox(height: Dimensions.height10),
-                      MenuButton(
-                        onTap: () => Get.toNamed(RouteHelper.getShopPage()),
-                        title: 'Shop'.tr,
-                        icon: Icons.shopping_bag_outlined,
-                        accentColor: AppColors.yellowColor,
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ),
             ],
